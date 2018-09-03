@@ -1,0 +1,6 @@
+STRINGTABLE Oenoise
+{
+	Oenoise								"C++ SDK - Noise Effector";
+
+	NOISEEFFECTOR_SCALE		"Scale";
+}

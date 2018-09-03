@@ -1,0 +1,6 @@
+STRINGTABLE Ohairsdkconstraint
+{
+	Ohairsdkconstraint "Hair SDK - Constraint";
+
+	HAIR_CONSTRAINT_STRENGTH	"Strength";
+}

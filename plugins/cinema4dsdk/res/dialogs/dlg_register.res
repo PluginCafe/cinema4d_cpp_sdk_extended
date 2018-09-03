@@ -1,0 +1,14 @@
+// C4D-DialogResource
+
+DIALOG DLG_REGISTER
+{
+  NAME T1;
+  GROUP
+  {
+  	COLUMNS 2;
+  	
+    STATICTEXT { NAME T2; }
+    EDITTEXT IDC_SERIALNUMBER { SIZE 300,0; }
+  }
+  DLGGROUP { OK;CANCEL;HELP; }
+}

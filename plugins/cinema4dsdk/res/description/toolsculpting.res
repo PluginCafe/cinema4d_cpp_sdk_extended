@@ -1,0 +1,15 @@
+CONTAINER ToolSculpting
+{
+  NAME ToolSculpting;
+	INCLUDE ToolBase;
+
+  GROUP MDATA_MAINGROUP
+  {
+		GROUP
+		{
+			REAL SCULPTING_RADIUS { MIN 1; }
+			VECTOR SCULPTING_VECTOR { UNIT METER; }
+			BOOL SCULPTING_DO_VBO_UPDATE { }
+		}
+	}
+}

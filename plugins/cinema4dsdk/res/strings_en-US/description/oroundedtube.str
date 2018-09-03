@@ -1,0 +1,12 @@
+STRINGTABLE Oroundedtube
+{
+	Oroundedtube "Rounded Tube Object";
+
+	TUBEOBJECT_RAD			"Main Radius";
+	TUBEOBJECT_IRADX		"X Radius";
+	TUBEOBJECT_IRADY		"Y Radius";
+	TUBEOBJECT_SUB			"Segments";
+	TUBEOBJECT_ROUNDSUB	"Fillet Segments";
+	TUBEOBJECT_ROUNDRAD	"Fillet Radius";
+	TUBEOBJECT_SEG			"Rotation Segments";
+}

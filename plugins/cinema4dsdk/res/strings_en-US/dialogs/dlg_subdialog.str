@@ -1,0 +1,8 @@
+// C4D-DialogResource
+
+DIALOGSTRINGS DLG_SUBDIALOG
+{
+	TDLG "Sub-Dialog Example";
+	T1 "Show Sub-Dialog 1";
+	T2 "Show Sub-Dialog 2";
+}

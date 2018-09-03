@@ -1,0 +1,6 @@
+STRINGTABLE Ohyperfile
+{
+	Ohyperfile							"HyperFile Example Object";
+	ID_BUTTON_ADD_IMAGE			"Add Image";
+	ID_BUTTON_SHOW_IMAGES		"Show Images";
+}

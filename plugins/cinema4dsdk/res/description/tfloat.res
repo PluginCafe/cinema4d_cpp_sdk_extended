@@ -1,0 +1,10 @@
+CONTAINER Tfloat
+{
+	NAME Tfloat;
+	INCLUDE Tcustomdatabase;
+
+	GROUP ID_TAGPROPERTIES
+	{
+		BOOL ID_CUSTOM_PARAMETER { }
+	}
+}

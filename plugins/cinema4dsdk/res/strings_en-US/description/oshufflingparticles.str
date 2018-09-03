@@ -1,0 +1,10 @@
+STRINGTABLE oshufflingparticles
+{
+  oshufflingparticles  "Particles Shuffling";
+        
+  SDK_EXAMPLE_SHUFFLINGPARTICLES_SIZE_X           "Sizes";
+  SDK_EXAMPLE_SHUFFLINGPARTICLES_SIZE_Y           "";
+  SDK_EXAMPLE_SHUFFLINGPARTICLES_SIZE_Z           "";
+  SDK_EXAMPLE_SHUFFLINGPARTICLES_SEED             "Random Seed";
+  SDK_EXAMPLE_SHUFFLINGPARTICLES_STRENGTH         "Strength";  
+}

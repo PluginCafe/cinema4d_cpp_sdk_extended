@@ -1,0 +1,4 @@
+STRINGTABLE ToolSculptDrawPolyBrush
+{
+	ToolSculptDrawPolyBrush		"Sculpt Example Draw Poly Brush Tool";
+}

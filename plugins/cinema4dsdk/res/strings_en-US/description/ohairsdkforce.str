@@ -1,0 +1,7 @@
+STRINGTABLE Ohairsdkforce
+{
+	Ohairsdkforce "Hair SDK - Object Force";
+
+	HAIR_FORCE_STRENGTH	"Strength";
+	HAIR_FORCE_LINK		"Object";
+}

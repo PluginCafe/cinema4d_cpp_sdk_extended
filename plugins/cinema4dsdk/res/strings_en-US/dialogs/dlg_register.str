@@ -1,0 +1,5 @@
+DIALOGSTRINGS DLG_REGISTER
+{
+  T1 "Register Plugin";
+  T2 "Serial Number";
+}

@@ -1,0 +1,13 @@
+STRINGTABLE VPcolorize
+{
+	VPcolorize						"Selective Colorize";
+	VP_COLORIZE_DELTA_R		"Red";
+	VP_COLORIZE_DELTA_G		"Green";
+	VP_COLORIZE_DELTA_B		"Blue";
+	VP_COLORIZE_MODE			"Mode";
+		VP_COLORIZE_MODE_COMPLETE			"Complete Image";
+		VP_COLORIZE_MODE_ALPHA				"Use Alpha";
+		VP_COLORIZE_MODE_OBJECTBUFFER "Use Object Buffer";
+	VP_COLORIZE_OBJECTID	"Object ID";
+	VP_COLORIZE_LENSGLOW	"Glow Test";
+}

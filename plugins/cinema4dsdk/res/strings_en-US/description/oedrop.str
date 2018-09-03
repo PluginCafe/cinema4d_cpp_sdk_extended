@@ -1,0 +1,22 @@
+STRINGTABLE Oedrop
+{
+	Oedrop "C++ SDK - Drop to Surface Effector";
+
+	DROPEFFECTOR_GROUPEFFECTOR		"Effector";
+
+	DROPEFFECTOR_STRENGTH					"Strength";
+
+	DROPEFFECTOR_TARGET						"Target Object";
+	DROPEFFECTOR_MODE							"Projection Mode";
+		DROPEFFECTOR_MODE_PNORMAL			"Along +Normal";
+		DROPEFFECTOR_MODE_NNORMAL			"Along -Normal";
+		DROPEFFECTOR_MODE_AXIS				"Towards Target Axis";
+		DROPEFFECTOR_MODE_SELFAXIS		"Toward Own Axis";
+		DROPEFFECTOR_MODE_PX					"Along +X";
+		DROPEFFECTOR_MODE_PY					"Along +Y";
+		DROPEFFECTOR_MODE_PZ					"Along +Z";
+		DROPEFFECTOR_MODE_NX					"Along -X";
+		DROPEFFECTOR_MODE_NY					"Along -Y";
+		DROPEFFECTOR_MODE_NZ					"Along -Z";
+	DROPEFFECTOR_DISTANCE					"Max Distance";
+}

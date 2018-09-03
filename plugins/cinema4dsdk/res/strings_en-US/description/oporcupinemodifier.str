@@ -1,0 +1,7 @@
+STRINGTABLE oporcupinemodifier
+{
+  oporcupinemodifier    "Porcupine Modifier";
+  
+  SDK_EXAMPLE_PORCUPINEMODIFIER_PERCENTAGE          "Percentage";
+  SDK_EXAMPLE_PORCUPINEMODIFIER_LEVEL               "Level";  
+}

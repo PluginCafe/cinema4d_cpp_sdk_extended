@@ -1,0 +1,18 @@
+STRINGTABLE ogreektemple
+{
+  ogreektemple      "Greek Temple";
+
+  SDK_EXAMPLE_GREEKTEMPLE_WIDTH             "Width";
+  SDK_EXAMPLE_GREEKTEMPLE_HEIGHT            "Height";
+  SDK_EXAMPLE_GREEKTEMPLE_LENGTH            "Length";
+
+  SDK_EXAMPLE_GREEKTEMPLE_X_SEGMENTS        "Segments along X";
+  SDK_EXAMPLE_GREEKTEMPLE_Y_SEGMENTS        "Segments along Y";
+  SDK_EXAMPLE_GREEKTEMPLE_Z_SEGMENTS        "Segments along Z";
+
+  SDK_EXAMPLE_GREEKTEMPLE_STAIRS            "Number of stairs";
+  SDK_EXAMPLE_GREEKTEMPLE_COLS_SPACEX       "Columns distance along X";
+  SDK_EXAMPLE_GREEKTEMPLE_COLS_SPACEZ       "Columns distance along Y";
+
+  SDK_EXAMPLE_GREEKTEMPLE                   "SDK Example - Greek Temple";
+}

@@ -1,0 +1,11 @@
+// C4D-DialogResource
+
+DIALOGSTRINGS IDD_SHADER_BROWSER
+{
+  IDS_DIALOG   "Layer Shader Browser";
+  IDS_STATIC   "Layer Shader";
+  IDS_STATIC1  "Group";
+  IDS_STATIC2  "Group";
+  IDS_STATIC3  "Layers";
+  IDS_STATIC4  "Properties";
+}

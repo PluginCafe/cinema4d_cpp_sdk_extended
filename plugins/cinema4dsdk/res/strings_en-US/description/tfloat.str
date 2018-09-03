@@ -1,0 +1,6 @@
+STRINGTABLE Tfloat
+{
+	Tfloat "Float Data Tag";
+
+	ID_CUSTOM_PARAMETER										"Custom Tag Additional Parameter";
+}

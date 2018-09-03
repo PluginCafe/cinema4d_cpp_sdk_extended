@@ -1,0 +1,8 @@
+STRINGTABLE Dexample
+{
+	Dexample					"Example Datatype";
+
+	EXAMPLE_LONG			"Long";
+	EXAMPLE_STRING		"String";
+	EXAMPLE_VECTOR		"Vector";
+}

@@ -1,0 +1,8 @@
+STRINGTABLE Thairsdkrendering
+{
+	Thairsdkrendering "Hair SDK - Render Modifier";
+
+	HAIR_RENDERING_SHADOW	"Shadow";
+	HAIR_RENDERING_TRANSPARENCY "Transparency";
+	HAIR_RENDERING_DEPTH "Depth";
+}

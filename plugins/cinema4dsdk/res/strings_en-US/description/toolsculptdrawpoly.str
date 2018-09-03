@@ -1,0 +1,5 @@
+STRINGTABLE ToolSculptDrawPoly
+{
+  ToolSculptDrawPoly	"C++ SDK - Simple Sculpt Draw Poly Tool";  
+  SCULPTDRAWPOLY_POLYGONSIZE "Polygon Size";
+}

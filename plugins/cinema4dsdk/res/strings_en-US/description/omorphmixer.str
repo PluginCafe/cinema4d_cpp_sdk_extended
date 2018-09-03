@@ -1,0 +1,7 @@
+STRINGTABLE Omorphmixer
+{
+	Omorphmixer	"Morphmixer Object";
+
+	MORPHMIXER_RECORD	"Record";
+	MORPHMIXER_IMPORT "Magpie Pro Import...";
+}

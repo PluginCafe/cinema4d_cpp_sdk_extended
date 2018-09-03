@@ -1,0 +1,6 @@
+STRINGTABLE Msimplematerial
+{
+	Msimplematerial	"Simple Material";
+
+	SIMPLEMATERIAL_COLOR	"Color";
+}

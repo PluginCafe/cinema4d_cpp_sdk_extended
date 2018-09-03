@@ -1,0 +1,8 @@
+STRINGTABLE ToolSculpting
+{
+  ToolSculpting	"C++ SDK - Simple Sculpting Tool";
+  
+  SCULPTING_RADIUS					"Radius";
+  SCULPTING_VECTOR					"Direction";
+  SCULPTING_DO_VBO_UPDATE		"Do VBO Update";
+}

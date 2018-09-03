@@ -1,0 +1,10 @@
+CONTAINER oheartshape
+{
+	NAME oheartshape;
+	INCLUDE Obase;
+
+	GROUP ID_OBJECTPROPERTIES
+	{
+		REAL SDK_EXAMPLE_HEARTSHAPE_RADIUS 		{ UNIT METER; MIN 0.0; }
+	}
+}

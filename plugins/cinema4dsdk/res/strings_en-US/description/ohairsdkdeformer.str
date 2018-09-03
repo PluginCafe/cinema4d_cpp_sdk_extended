@@ -1,0 +1,10 @@
+STRINGTABLE Ohairsdkdeformer
+{
+	Ohairsdkdeformer "Hair SDK - Comb Deformer";
+
+	HAIR_DEFORMER_STRENGTH	"Strength";
+
+	HAIR_DEFORMER_COMB_X	"Comb X";
+	HAIR_DEFORMER_COMB_Y	"Comb Y";
+	HAIR_DEFORMER_COMB_Z	"Comb Z";
+}

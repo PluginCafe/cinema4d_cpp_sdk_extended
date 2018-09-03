@@ -1,0 +1,7 @@
+STRINGTABLE Xmandelbrot
+{
+	Xmandelbrot "Mandelbrot Shader";
+
+	MANDELBROTSHADER_COLOROFFSET	"Color Offset";
+	MANDELBROTSHADER_OBJECTACCESS	"Object Access Example";
+}

@@ -1,0 +1,13 @@
+STRINGTABLE oruledmesh
+{
+  oruledmesh    "Ruled Mesh";
+
+  SDK_EXAMPLE_RULEDMESH_S_STEPS             "S-steps";
+  SDK_EXAMPLE_RULEDMESH_T_STEPS             "T-steps";
+  SDK_EXAMPLE_RULEDMESH_FLIP_FIRST          "Flip 1st. Curve";
+  SDK_EXAMPLE_RULEDMESH_FLIP_SECOND         "Flip 2nd. Curve";
+  SDK_EXAMPLE_RULEDMESH_PARAM_FIRST         "1st. Curve Parametrization";
+  SDK_EXAMPLE_RULEDMESH_PARAM_SECOND        "2nd. Curve Parametrization";
+  SDK_EXAMPLE_RULEDMESH_PARAM_UNIFORM       "Uniform";
+  SDK_EXAMPLE_RULEDMESH_PARAM_NATURAL       "Natural";
+}

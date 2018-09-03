@@ -1,0 +1,9 @@
+STRINGTABLE oplanebypolygons
+{
+  oplanebypolygons  "Plane by polygons";
+  SDK_EXAMPLE_PLANEBYPOLYGONS_WIDTH             "Width";
+  SDK_EXAMPLE_PLANEBYPOLYGONS_HEIGHT            "Height"; 
+  SDK_EXAMPLE_PLANEBYPOLYGONS_W_SUBD            "Width Subdivisions";
+  SDK_EXAMPLE_PLANEBYPOLYGONS_H_SUBD            "Height Subdivisions";
+  SDK_EXAMPLE_PLANEBYPOLYGONS_USE_TRIS          "Use Triangles";
+}

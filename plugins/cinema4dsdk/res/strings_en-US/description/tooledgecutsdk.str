@@ -1,0 +1,9 @@
+STRINGTABLE ToolEdgeCutSDK
+{
+  ToolEdgeCutSDK	"C++ Edge Cut SDK";
+
+	MDATA_EDGECUTSDK_SUBDIV				"Subdivision";
+	MDATA_EDGECUTSDK_OFFSET				"Offset";
+	MDATA_EDGECUTSDK_SCALE					"Scale";
+	MDATA_EDGECUTSDK_CREATENGONS		"Create N-gons";
+}

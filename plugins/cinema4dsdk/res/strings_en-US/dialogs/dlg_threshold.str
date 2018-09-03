@@ -1,0 +1,9 @@
+// C4D-DialogResource
+
+DIALOGSTRINGS DLG_THRESHOLD
+{
+	STR_TITLE "Threshold";
+	STR_LEVELS	"Levels:";
+ 	STR_PREVIEW "Document Preview";
+	STR_EMPTY "";
+}

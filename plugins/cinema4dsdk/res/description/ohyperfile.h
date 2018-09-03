@@ -1,0 +1,11 @@
+#ifndef OHYPERFILE_H_
+#define OHYPERFILE_H_
+
+enum
+{
+	ID_BUTTON_ADD_IMAGE = 1000,
+	ID_BUTTON_SHOW_IMAGES = 1001,
+	_DUMMY
+};
+
+#endif // OHYPERFILE_H__

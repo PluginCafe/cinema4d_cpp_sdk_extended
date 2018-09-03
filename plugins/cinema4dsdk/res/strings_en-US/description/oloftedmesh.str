@@ -1,0 +1,13 @@
+STRINGTABLE oloftedmesh
+{
+    oloftedmesh     "Lofted Mesh";
+
+    SDK_EXAMPLE_LOFTEDMESH_S_STEPS              "S-steps";
+    SDK_EXAMPLE_LOFTEDMESH_T_STEPS              "T-steps";
+    SDK_EXAMPLE_LOFTEDMESH_INTERPOLATION        "Sections interpolation";
+    SDK_EXAMPLE_SPLINETYPE_LINEAR               "Linear";
+    SDK_EXAMPLE_SPLINETYPE_CUBIC                "Cubic";
+    SDK_EXAMPLE_SPLINETYPE_AKIMA                "Akima";
+    SDK_EXAMPLE_SPLINETYPE_BSPLINE              "B-Spline";
+    SDK_EXAMPLE_SPLINETYPE_BEZIER               "Bezier";
+}

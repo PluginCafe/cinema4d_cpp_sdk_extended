@@ -1,0 +1,10 @@
+// C4D-DialogResource
+
+DIALOGSTRINGS DLG_LISTVIEW
+{
+	TDLG "Listview Example";
+	T1 "Available";
+	T2 "->";
+	T3 "Selected";
+	T4 "<-";
+}

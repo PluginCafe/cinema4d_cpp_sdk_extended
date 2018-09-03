@@ -1,0 +1,11 @@
+CONTAINER Ohairsdkforce
+{
+	NAME Ohairsdkforce;
+	INCLUDE Obase;
+	
+	GROUP ID_OBJECTPROPERTIES
+	{
+		REAL HAIR_FORCE_STRENGTH { UNIT PERCENT; }
+		LINK HAIR_FORCE_LINK { ACCEPT { Obase; } }
+	}
+}

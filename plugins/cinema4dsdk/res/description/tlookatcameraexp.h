@@ -1,0 +1,12 @@
+#ifndef TLOOKATCAMERAEXP_H__
+#define TLOOKATCAMERAEXP_H__
+
+enum
+{
+	LOOKATCAMERAEXP_PITCH				= 1000
+};
+
+#endif // TLOOKATCAMERAEXP_H__
+
+
+

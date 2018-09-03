@@ -1,0 +1,7 @@
+STRINGTABLE Ospherifydeformer
+{
+	Ospherifydeformer "Spherify";
+
+	SPHERIFYDEFORMER_RADIUS		"Radius";
+	SPHERIFYDEFORMER_STRENGTH	"Strength";
+}

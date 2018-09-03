@@ -1,0 +1,9 @@
+STRINGTABLE Ogltest
+{
+	Ogltest											"OpenGL test";
+
+	GLTEST_TYPE									"Type";
+	GLTEST_TYPE_PARTICLE_SLOW		"Particles (slow)";
+	GLTEST_TYPE_PARTICLE_FAST_BLOCK		"Particles (fast block)";
+	GLTEST_TYPE_PARTICLE_FAST_BUFFER		"Particles (fast buffer)";
+}

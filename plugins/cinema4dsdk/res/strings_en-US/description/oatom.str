@@ -1,0 +1,9 @@
+STRINGTABLE Oatom
+{
+	Oatom							"Atom Object";
+
+	ATOMOBJECT_CRAD		"Cylinder Radius";
+	ATOMOBJECT_SRAD		"Sphere Radius";
+	ATOMOBJECT_SUB		"Subdivisions";
+	ATOMOBJECT_SINGLE	"Single Elements";
+}

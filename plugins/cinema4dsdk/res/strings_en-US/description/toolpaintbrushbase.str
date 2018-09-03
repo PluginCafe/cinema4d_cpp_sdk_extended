@@ -1,0 +1,4 @@
+STRINGTABLE ToolPaintBrushBase
+{
+	ToolPaintBrushBase		"Paint Brush";
+}

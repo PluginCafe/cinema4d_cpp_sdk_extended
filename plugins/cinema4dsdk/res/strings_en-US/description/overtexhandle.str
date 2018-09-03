@@ -1,0 +1,8 @@
+STRINGTABLE overtexhandle
+{
+  overtexhandle "Vertex Handle";
+  
+  SDK_EXAMPLE_VERTEXHANDLE_POINT_A_DIST            "Vertex A Distance";
+  SDK_EXAMPLE_VERTEXHANDLE_POINT_B_DIST            "Vertex B Distance";
+  SDK_EXAMPLE_VERTEXHANDLE_POINT_C_DIST            "Vertex C Distance";  
+}

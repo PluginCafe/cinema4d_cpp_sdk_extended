@@ -1,0 +1,17 @@
+// Supported platforms
+Platform=Win64;OSX
+
+// Type of project
+Type=DLL
+
+// API dependencies
+APIS=core.framework;cinema.framework
+
+// Enable some advanced classic API support; not needed for hybrid plugins
+C4D=true
+
+// Plug-in code-style check level
+stylecheck.level=3
+
+// Custom ID
+ModuleId=net.maxonexample.microsdk

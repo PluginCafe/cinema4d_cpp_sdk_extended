@@ -1,0 +1,9 @@
+STRINGTABLE VPstereo
+{
+	VPstereo						"Example Stereoscopic Post-Effect";
+	VP_STEREO_ENABLE				"Enable";
+	VP_STEREO_CAMERAS				"Cameras";
+	VP_STEREO_CAMERAS_2				"2 (Red/Green)";
+	VP_STEREO_CAMERAS_3				"3 (Red/Green/Blue)";
+	VP_STEREO_SEPARATION			"Separation";
+}

@@ -1,0 +1,7 @@
+STRINGTABLE Ohairsdkcollider
+{
+	Ohairsdkcollider "Hair SDK - Object Collider";
+
+	HAIRSDK_COLLIDER_BOUNCE	"Bounce";
+	HAIRSDK_COLLIDER_FRICTION	"Friction";
+}

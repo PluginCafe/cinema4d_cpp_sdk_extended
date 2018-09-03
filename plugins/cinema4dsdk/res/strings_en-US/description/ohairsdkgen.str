@@ -1,0 +1,12 @@
+STRINGTABLE Ohairsdkgen
+{
+	Ohairsdkgen "Hair SDK - Generator Object";
+
+	HAIR_GEN_LINK		"Link";
+	HAIR_GEN_COUNT		"Count";
+	HAIR_GEN_SEGMENTS	"Segments";
+	HAIR_GEN_LENGTH		"Length";
+	HAIR_GEN_LENGTH_VAR	"Variation";
+	HAIR_GEN_NOISE		"Noise";
+	HAIR_GEN_GENERATE	"Cache Grass";
+}

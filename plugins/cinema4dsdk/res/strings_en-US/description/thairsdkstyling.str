@@ -1,0 +1,8 @@
+STRINGTABLE Thairsdkstyling
+{
+	Thairsdkstyling "Hair SDK - Styling";
+
+	HAIR_STYLING_DISPLACE	"Displace";
+	HAIR_STYLING_SPLINE_X	"Shape X";
+	HAIR_STYLING_SPLINE_Y	"Shape Y";
+}

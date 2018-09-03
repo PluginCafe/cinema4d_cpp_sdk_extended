@@ -1,0 +1,15 @@
+CONTAINER Omorphmixer
+{
+	NAME Omorphmixer;
+	INCLUDE Obase;
+
+	GROUP ID_OBJECTPROPERTIES
+	{
+		GROUP
+		{
+			COLUMNS 2;
+			BUTTON MORPHMIXER_RECORD { }
+			BUTTON MORPHMIXER_IMPORT { }
+		}
+	}
+}

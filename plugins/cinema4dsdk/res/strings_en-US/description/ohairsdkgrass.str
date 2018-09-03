@@ -1,0 +1,12 @@
+STRINGTABLE Ohairsdkgrass
+{
+	Ohairsdkgrass "Hair SDK - Grass Object";
+
+	HAIR_GRASS_LINK			"Link";
+	HAIR_GRASS_COUNT		"Count";
+	HAIR_GRASS_SEGMENTS		"Segments";
+	HAIR_GRASS_LENGTH		"Length";
+	HAIR_GRASS_LENGTH_VAR	"Variation";
+	HAIR_GRASS_NOISE		"Noise";
+	HAIR_GRASS_GENERATE		"Cache Grass";
+}

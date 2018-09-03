@@ -1,0 +1,16 @@
+STRINGTABLE Odescription
+{
+	Odescription						"Description Example Object";
+
+	ID_GROUP_CONTROL				"Controls";
+
+	ID_SELECT_DESCRIPTION		"Description";
+	ID_SET_PARAMETER				"Set Paramter";
+	ID_GET_PARAMETER				"Get Parameter";
+
+	ID_GROUP_DYNAMIC				"Dynamic Group";
+
+
+	ID_GROUP_RESULT					"Result";
+	ID_RESULT_TEXT					"Result";
+}

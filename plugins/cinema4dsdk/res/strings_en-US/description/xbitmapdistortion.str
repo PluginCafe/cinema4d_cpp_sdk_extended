@@ -1,0 +1,9 @@
+STRINGTABLE Xbitmapdistortion
+{
+	Xbitmapdistortion "Bitmap Distortion Shader";
+
+	BITMAPDISTORTIONSHADER_NOISE 		"Noise";
+	BITMAPDISTORTIONSHADER_OCTAVES	"Octaves";
+	BITMAPDISTORTIONSHADER_SCALE		"Scale";
+	BITMAPDISTORTIONSHADER_TEXTURE	"Texture";
+}

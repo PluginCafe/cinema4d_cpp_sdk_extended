@@ -1,0 +1,12 @@
+#ifndef OGLTEST_H__
+#define OGLTEST_H__
+
+enum
+{
+	GLTEST_TYPE										= 1000,
+		GLTEST_TYPE_PARTICLE_SLOW			= 1,
+		GLTEST_TYPE_PARTICLE_FAST_BLOCK		= 2,
+		GLTEST_TYPE_PARTICLE_FAST_BUFFER	= 3
+};
+
+#endif // OGLTEST_H__

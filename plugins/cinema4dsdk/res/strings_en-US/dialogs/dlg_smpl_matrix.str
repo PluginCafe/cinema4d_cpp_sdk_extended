@@ -1,0 +1,16 @@
+// C4D-DialogResource
+
+DIALOGSTRINGS DLG_SMPL_MATRIX
+{
+	STR_TITLE "SDK Matrix";
+	STR_ANGLE	"Angle:";
+	STR_MIX	"Blend:";
+	STR_FILTERTYP "Operator:";
+  STR_TEXTURE_MODE "Wrap Texture";
+ 	STR_PREVIEW "Document Preview";
+	STR_EMPTY "";
+
+	STR_POPUP_ID0	"Triangle A";
+	STR_POPUP_ID1	"Triangle B";
+
+}

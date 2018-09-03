@@ -1,0 +1,10 @@
+STRINGTABLE orevolvedmesh
+{
+    orevolvedmesh   "Revolved Mesh";
+
+    SDK_EXAMPLE_REVOLVEDMESH_S_STEPS            "S-steps";
+    SDK_EXAMPLE_REVOLVEDMESH_T_STEPS            "T-steps";
+    SDK_EXAMPLE_REVOLVEDMESH_SPINNINGAXIS       "Spinning Axis";
+    SDK_EXAMPLE_REVOLVEDMESH_STARTANGLE         "Start Angle";
+    SDK_EXAMPLE_REVOLVEDMESH_ENDANGLE           "End Angle";
+}

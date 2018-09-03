@@ -1,0 +1,7 @@
+STRINGTABLE oheartshape
+{
+  oheartshape       "Heart Shape";
+  
+  SDK_EXAMPLE_HEARTSHAPE_RADIUS         "Heart radius";
+  SDK_EXAMPLE_HEARTSHAPE                "SDK Example - Heart Shape";
+}
