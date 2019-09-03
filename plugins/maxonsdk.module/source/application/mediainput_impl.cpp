@@ -132,9 +132,11 @@ private:
 	// private sub-functions
 
 	// ------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Opens the file and analyses it to read the image width and height.
-	/// @return							OK on success
+	/// @return												OK on success
 	// ------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	Result<void> AnalyzeMaxonSDKImageFormat()
 	{
 		iferr_scope;
@@ -175,10 +177,12 @@ private:
 	}
 
 	// ------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Reads the current line of the image into the given memory.
-	/// @param[in,out] rowmem			Memory for a single row of the image.
-	/// @return										OK on success.
+	/// @param[in,out] rowmem					Memory for a single row of the image.
+	/// @return												OK on success.
 	// ------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	Result<void> ReadRow(BaseArray<UChar>& rowmem)
 	{
 		iferr_scope;
@@ -212,10 +216,12 @@ private:
 
 public:
 	// ------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Sets the URL of the file the media input should load.
-	/// @param[in] url			The URL of the file to load.
-	/// @return							OK on success.
+	/// @param[in] url								The URL of the file to load.
+	/// @return												OK on success.
 	// ------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	Result<void> InitUrl(const Url& url)
 	{
 		// store the given Url
@@ -444,7 +450,7 @@ public:
 		return FileFormats::Get(MaxonSDKImageFileFormatImpl::GetClass().GetId());
 	}
 
-	MAXON_METHOD Result<const DataType*> GetHandlerType() const
+	MAXON_METHOD Result<DataType> GetHandlerType() const
 	{
 		// files of this format will be loaded with a MediaInput
 		return GetDataType<MediaInputRef>();

@@ -417,7 +417,7 @@ DRAWRESULT RoundedTube::Draw(BaseObject* op, DRAWPASS drawpass, BaseDraw* bd, Ba
 	Float	irady = data->GetFloat(TUBEOBJECT_IRADY);
 	Int32	axis	= data->GetInt32(PRIM_AXIS);
 
-	bd->SetPen(GetViewColor(VIEWCOLOR_ACTIVEPOINT));
+	// bd->SetPen(GetViewColor(VIEWCOLOR_HANDLES));
 
 	HandleInfo info;
 	Int32			 hitid = op->GetHighlightHandle(bd);
@@ -430,11 +430,11 @@ DRAWRESULT RoundedTube::Draw(BaseObject* op, DRAWPASS drawpass, BaseDraw* bd, Ba
 		if (i == hitid)
 			bd->SetPen(GetViewColor(VIEWCOLOR_SELECTION_PREVIEW));
 		else
-			bd->SetPen(GetViewColor(VIEWCOLOR_ACTIVEPOINT));
+			bd->SetPen(GetViewColor(VIEWCOLOR_HANDLES));
 		bd->DrawHandle(info.position, DRAWHANDLE::BIG, 0);
 
 		// Draw lines to the handles
-		bd->SetPen(GetViewColor(VIEWCOLOR_ACTIVEPOINT));
+		bd->SetPen(GetViewColor(VIEWCOLOR_HANDLES));
 		switch (i)
 		{
 			case 0:

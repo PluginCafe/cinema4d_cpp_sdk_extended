@@ -3,15 +3,10 @@
 ///
 /// "BlendFunctionStepImpl" is the implementation class that defines the
 /// implementation behaviour.
-/// "BlendFunctionStepUnitTest" is the implementation of a unit test that
-/// checks above implementation.
 // ------------------------------------------------------------------------
 
 // MAXON API header files
 #include "maxon/blend_function.h"
-
-// for unit tests
-#include "maxon/unittest.h"
 #include "maxon/lib_math.h"
 
 // local header files
@@ -34,8 +29,8 @@ public:
 		iferr_scope;
 
 		// validate input data by checking the input data types
-		const DataType* const startType = startValue.GetType();
-		const DataType* const endType = endValue.GetType();
+		const DataType& startType = startValue.GetType();
+		const DataType& endType = endValue.GetType();
 
 		// data types must match
 		if (startType != endType)

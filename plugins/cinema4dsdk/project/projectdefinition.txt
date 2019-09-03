@@ -5,7 +5,7 @@ Platform=Win64;OSX
 Type=DLL
 
 // API dependencies
-APIS=cinema.framework;mesh_misc.framework;math.framework;crypt.framework;python.framework;core.framework;
+APIS=cinema.framework;mesh_misc.framework;math.framework;crypt.framework;python.framework;image.framework;command.framework;core.framework;
 
 // C4D component
 C4D=true

@@ -61,10 +61,10 @@ namespace LatticePlaneModifierHelper
 	//----------------------------------------------------------------------------------------
 	/// EvaluateBinomialCoefficient evaluates the value of the binomial coefficient (https://en.wikipedia.org/wiki/Binomial_coefficient) given the two terms required.
 	/// @brief EvaluateBinomialCoefficient evaluates the value of the binomial coefficients.
-	/// @param[in] n			First term of the binomial coefficient.
-	/// @param[in] k			Second term of the binomial coefficient.
-	/// @return						The binomial coefficient value for n and k.
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] n									First term of the binomial coefficient.
+	/// @param[in] k									Second term of the binomial coefficient.
+	/// @return												The binomial coefficient value for n and k.
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<Float> EvaluateBinomialCoefficient(const Int32 n, const Int32 k);
 	static maxon::Result<Float> EvaluateBinomialCoefficient(const Int32 n, const Int32 k)
 	{
@@ -77,14 +77,14 @@ namespace LatticePlaneModifierHelper
 		return res;
 	}
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// EvaluateBernsteinPoly evaluates the Bernstein polynomial (https://en.wikipedia.org/wiki/Bernstein_polynomial) given the k-th term (out of n-th) and the abscissa (x) value to be used in the FFD to evaluate mesh points displacement.
 	/// @brief EvaluateBernsteinPoly computes the Bernstein polynomial coefficients.
-	/// @param[in] n			Total number of terms of the Bernstein polynomial.
-	/// @param[in] k			Current k-th term of the Bernstein polynomial.
-	/// @param[in] x			Current abscissa to evaluate the polynomial.
-	/// @return						The value of Bernstein polynomial.
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] n									Total number of terms of the Bernstein polynomial.
+	/// @param[in] k									Current k-th term of the Bernstein polynomial.
+	/// @param[in] x									Current abscissa to evaluate the polynomial.
+	/// @return												The value of Bernstein polynomial.
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<Float> EvaluateBernsteinPoly(const Int32 n, const Int32 k, const Float x);
 	static maxon::Result<Float> EvaluateBernsteinPoly(const Int32 n, const Int32 k, const Float x)
 	{
@@ -96,15 +96,15 @@ namespace LatticePlaneModifierHelper
 		return res;
 	}
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// EvaluateBBMinMax evaluates the bounding box min and max points given a BaseObject instance.
 	/// @brief EvaluateBBMinMax evaluates the bounding box extremes of a BaseObject instance.
-	/// @param[out] min							The furthest negative extreme.
-	/// @param[out] max							The furthest positive extreme.
-	/// @param[in] pointObj					The BaseObject instance to evaluate.
-	/// @param[in] evaluatePoints		Evaluate the bouding box on the real points position rather than on the value returned by GetRad()
-	/// @return							@trueIfOtherwiseFalse{extremes are successfully evaluated}
-	//------------------------------------------------------------------------------------------------
+	/// @param[out] min								The furthest negative extreme.
+	/// @param[out] max								The furthest positive extreme.
+	/// @param[in] pointObj						The BaseObject instance to evaluate.
+	/// @param[in] evaluatePoints			Evaluate the bouding box on the real points position rather than on the value returned by GetRad()
+	/// @return												@trueIfOtherwiseFalse{extremes are successfully evaluated}
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<void> EvaluateBBMinMax(Vector& min, Vector& max, PointObject* pointObj, const Bool evaluatePoints = false);
 	static maxon::Result<void> EvaluateBBMinMax(Vector& min, Vector& max, PointObject* pointObj, const Bool evaluatePoints/*= false*/)
 	{
@@ -142,17 +142,17 @@ namespace LatticePlaneModifierHelper
 		return maxon::OK;
 	}
 
-//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// EvaluateMainAxes evaluates the orthonormal basis given the bounding box min and max points retrieved from a BaseObject instance.
 	/// @brief EvaluateMainAxes evaluates the orthonormal basis of a bounding box
-	/// @param[out] axisA	The Vector instance returning the first main axis of the modifier cage.
-	/// @param[out] axisB	The Vector instance returning the second main axis of the modifier cage.
-	/// @param[out] axisC	The Vector instance returning the third main axis of the modifier cage.
-	/// @param[in] min		The Vector instance storing the bounding box furthest negative extreme.
-	/// @param[in] max		The Vector instance storing the bounding box furthest positive extreme.
-	/// @param[in] setST	The Bool instance defining the if STU axis should always match XYZ.
-	/// @return						@trueIfOtherwiseFalse{the three main axes are set}
-	//------------------------------------------------------------------------------------------------
+	/// @param[out] axisA							The Vector instance returning the first main axis of the modifier cage.
+	/// @param[out] axisB							The Vector instance returning the second main axis of the modifier cage.
+	/// @param[out] axisC							The Vector instance returning the third main axis of the modifier cage.
+	/// @param[in] min								The Vector instance storing the bounding box furthest negative extreme.
+	/// @param[in] max								The Vector instance storing the bounding box furthest positive extreme.
+	/// @param[in] setST							The Bool instance defining the if STU axis should always match XYZ.
+	/// @return												@trueIfOtherwiseFalse{the three main axes are set}
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<void> EvaluateMainAxes(Vector& axisA, Vector& axisB, Vector& axisC, const Vector& min, const Vector& max, const Bool setST = true);
 	static maxon::Result<void> EvaluateMainAxes(Vector& axisA, Vector& axisB, Vector& axisC, const Vector& min, const Vector& max, const Bool setST/*= true*/)
 	{
@@ -203,14 +203,14 @@ namespace LatticePlaneModifierHelper
 		return maxon::UnexpectedError(MAXON_SOURCE_LOCATION);
 	}
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// FillBernsteinTerms, given the number of segments composing the lattice modifier, evaluates the Bernstein polynomial at a given s-th and t-th cage point and store in a 2-dim BaseArray.
 	/// @brief FillBernsteinTerms evaluates the Bernstein polynomial at a given s-th and t-th cage point and store in 2-dim BaseArray.
-	/// @param[out] pointFFD	The FFD_Data instance storing the relevant data for the FFD evaluation.
-	/// @param[in] sSegs			The number of segments along the S-axis of the deformation cage.
-	/// @param[in] tSegs			The number of segments along the T-axis of the deformation cage.
-	/// @return								@trueIfOtherwiseFalse{evaluation is performed}
-	//------------------------------------------------------------------------------------------------
+	/// @param[out] pointFFD					The FFD_Data instance storing the relevant data for the FFD evaluation.
+	/// @param[in] sSegs							The number of segments along the S-axis of the deformation cage.
+	/// @param[in] tSegs							The number of segments along the T-axis of the deformation cage.
+	/// @return												@trueIfOtherwiseFalse{evaluation is performed}
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<void> FillBernsteinTerms(FFD_Data& pointFFD, const Int32 sSegs = 0, const Int32 tSegs = 0);
 	static maxon::Result<void> FillBernsteinTerms(FFD_Data& pointFFD, const Int32 sSegs/*= 0*/, const Int32 tSegs/*= 0*/)
 	{
@@ -260,93 +260,94 @@ public:
 
 protected:
 private:
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// UpdateCageData updates the PointObject instance representing the deformer cage upon cage parameters change.
 	/// @brief UpdateCageData updates the PointObject representing the deformer cage.
-	/// @param[out] pointObj	The pointer to the PointObject instance storing the cage representation.
-	/// @return								@trueIfOtherwiseFalse{PointObject is updated}
-	//------------------------------------------------------------------------------------------------
+	/// @param[out] pointObj					The pointer to the PointObject instance storing the cage representation.
+	/// @return												@trueIfOtherwiseFalse{PointObject is updated}
+	//----------------------------------------------------------------------------------------
 	maxon::Result<Bool> UpdateCageData(PointObject* pointObj);
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// UpdateSData updates the PointObject instance when the parameters (size and segmentation) related to the S-axis change.
 	/// @brief UpdateSData updates the PointObject instance when S-axis related parameters change.
-	/// @param[out] pointObj	The pointer to the PointObject instance storing the cage representation.
-	/// @param[in] sSegs			The number of segments along the S-axis.
-	/// @param[in] sSize			The length of the deformer along the S-axis.
-	/// @return								@trueIfOtherwiseFalse{the update referred to the S-axis is properly achieved}
-	//------------------------------------------------------------------------------------------------
+	/// @param[out] pointObj					The pointer to the PointObject instance storing the cage representation.
+	/// @param[in] sSegs							The number of segments along the S-axis.
+	/// @param[in] sSize							The length of the deformer along the S-axis.
+	/// @return												@trueIfOtherwiseFalse{the update referred to the S-axis is properly achieved}
+	//----------------------------------------------------------------------------------------
 	maxon::Result<void> UpdateSData(PointObject* pointObj, const Int32 sSegs, const Float sSize);
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// UpdateTData updates the PointObject instance when the parameters (size and segmentation) related to the T-axis change.
 	/// @brief UpdateTData updates the PointObject instance when T-axis related parameters change.
-	/// @param[out] pointObj	The pointer to the PointObject instance storing the cage representation.
-	/// @param[in] tSegs			The number of segments along the T-axis.
-	/// @param[in] tSize			The length of the deformer along the T-axis.
-	/// @return								@trueIfOtherwiseFalse{the update referred to the T-axis is properly achieved}
-	//------------------------------------------------------------------------------------------------
+	/// @param[out] pointObj					The pointer to the PointObject instance storing the cage representation.
+	/// @param[in] tSegs							The number of segments along the T-axis.
+	/// @param[in] tSize							The length of the deformer along the T-axis.
+	/// @return												@trueIfOtherwiseFalse{the update referred to the T-axis is properly achieved}
+	//----------------------------------------------------------------------------------------
 	maxon::Result<void> UpdateTData(PointObject* pointObj, const Int32 tSegs, const Float tSize);
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// PrepareFFD fills up the FFD_Data BaseArray responsible for storing for each vertex of the deformed object the values to properly evaluate the Bernstein polynomials at each cage's point
 	/// @brief PrepareFFD fills up the FFD_Data BaseArray to operate object deformation.
-	/// @param[out] pointsFFD		The FFD_Data BaseArray containing the values to evaluate the Bernstein function at cage's points.
-	/// @param[in] opPointObj		The pointer to the PointObject instance representing the deformed object.
-	/// @param[in] modPointObj	The pointer to the PointObject instance representing the modifier's cage.
-	/// @return									@trueIfOtherwiseFalse{the BaseArray is properly filled up}
-	//------------------------------------------------------------------------------------------------
+	/// @param[out] pointsFFD					The FFD_Data BaseArray containing the values to evaluate the Bernstein function at cage's points.
+	/// @param[in] opPointObj					The pointer to the PointObject instance representing the deformed object.
+	/// @param[in] modPointObj				The pointer to the PointObject instance representing the modifier's cage.
+	/// @return												@trueIfOtherwiseFalse{the BaseArray is properly filled up}
+	//----------------------------------------------------------------------------------------
 	maxon::Result<void> PrepareFFD(maxon::BaseArray<FFD_Data>& pointsFFD, PointObject* opPointObj, PointObject* modPointObj);
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// EvaluateFFD evaluates, looping over each point of the cage, the position of the deformed object's points.
 	/// @brief EvaluateFFD the position of the deformed object's points.
-	/// @param[out] opPointObj	The pointer to the PointObject instance representing the deformed object.
-	/// @param[in] modPointObj	The pointer to the PointObject instance representing the modifier's cage.
-	/// @param[in] pointsFFD		The FFD_Data BaseArray containing the values used to compute new position the deformed object's points.
-	/// @return									@trueIfOtherwiseFalse{the BaseArray is properly filled up}
-	//------------------------------------------------------------------------------------------------
+	/// @param[out] opPointObj				The pointer to the PointObject instance representing the deformed object.
+	/// @param[in] modPointObj				The pointer to the PointObject instance representing the modifier's cage.
+	/// @param[in] pointsFFD					The FFD_Data BaseArray containing the values used to compute new position the deformed object's points.
+	/// @return												@trueIfOtherwiseFalse{the BaseArray is properly filled up}
+	//----------------------------------------------------------------------------------------
 	maxon::Result<void> EvaluateFFD(PointObject* opPointObj, PointObject* modPointObj, const maxon::BaseArray<FFD_Data>& pointsFFD);
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// CheckNormalAlignmentWithModifierZ verify the alignment of a vertex normal with the modifiers Z-axis.
 	/// @brief CheckNormalAlignmentWithModifierZ verify the alignment of a vertex normal with the modifiers Z-axis.
-	/// @param[in] pointData		The pointer to the FFD_Data instance storing the normal for the vertex.
-	/// @param[in] angleThd			The threshold value for the dot product between the two normals.
-	/// @return									@trueIfOtherwiseFalse{the normals dot product is within the threshold range}
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] pointData					The pointer to the FFD_Data instance storing the normal for the vertex.
+	/// @param[in] angleThd						The threshold value for the dot product between the two normals.
+	/// @return												@trueIfOtherwiseFalse{the normals dot product is within the threshold range}
+	//----------------------------------------------------------------------------------------
 	maxon::Result<Bool> CheckNormalAlignmentWithModifierZ(const FFD_Data* pointData, const Float angleThd = 0);
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// DrawPoints is responsible for representing in viewport the points used to modify the FFD cage.
 	/// @brief DrawPoints represents the points of the FFD cage.
-	/// @param[in] bd					The pointer to the BaseDraw instance.
-	/// @param[in] pointsBS		The pointer to the BaseSelect instance representing the selected points.
-	/// @param[in] pointsR		The pointer to the Vector array storing the position of the points.
-	/// @param[in] pointsCnt	The Int32 instance storing the length of the array storing the points' position.
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] bd									The pointer to the BaseDraw instance.
+	/// @param[in] pointsBS						The pointer to the BaseSelect instance representing the selected points.
+	/// @param[in] pointsR						The pointer to the Vector array storing the position of the points.
+	/// @param[in] pointsCnt					The Int32 instance storing the length of the array storing the points' position.
+	//----------------------------------------------------------------------------------------
 	maxon::Result<void> DrawPoints(BaseDraw* bd, BaseSelect* pointsBS, const Vector* pointsR, const Int32 pointsCnt);
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// ResetCagePoints is responsible to set the modifier's cage points to an even distribution on the area identified by the cage sizes and the number of segments.
 	/// @brief ResetCagePoints evenly distribute the modifier's cage points based on segmentations and sizes.
-	/// @param[out] pointObj			The pointer to the writable array storing the modifier's points position.
-	/// @param[in] sSize					The size of the cage along the S-axis.
-	/// @param[in] tSize					The size of the cage along the T-axis.
-	/// @param[in] sSegs					The number of cage segments along the S-axis.
-	/// @param[in] tSegs					The number of cage segments along the T-axis.
-	/// @param[in] onlyZ					The flag to optionally reset only the Z-component of the modifier's points.
-	/// @return										@trueIfOtherwiseFalse{PointObject is successfully updated}
+	/// @param[out] pointObj					The pointer to the writable array storing the modifier's points position.
+	/// @param[in] sSize							The size of the cage along the S-axis.
+	/// @param[in] tSize							The size of the cage along the T-axis.
+	/// @param[in] sSegs							The number of cage segments along the S-axis.
+	/// @param[in] tSegs							The number of cage segments along the T-axis.
+	/// @param[in] onlyZ							The flag to optionally reset only the Z-component of the modifier's points.
+	/// @return												@trueIfOtherwiseFalse{PointObject is successfully updated}
+	//----------------------------------------------------------------------------------------
 	maxon::Result<void> ResetCagePoints(PointObject* pointObj, const Float sSize, const Float tSize, const Int32 sSegs, const Int32 tSegs, const Bool onlyZ = false);
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// EvaluateAndStoreVertexNormals is responsible to evaluate the vertex normal for each vertex and store in the corresponding FFD_Data entry.
 	/// NOTE: the stored vertex normals are NOT normalized.
 	/// @brief EvaluateAndStoreVertexNormals evaluates and store vertex normals of a PolygonObject instance.
-	/// @param[out] pointsFFD			The reference to the BaseArray of FFD_Data storing data for FFD evaluation.
-	/// @param[in] pointObj				The pointer to the PointObject instance whose vertex normals should be evaluated.
-	/// @return										@trueIfOtherwiseFalse{successful}
-	//------------------------------------------------------------------------------------------------
+	/// @param[out] pointsFFD					The reference to the BaseArray of FFD_Data storing data for FFD evaluation.
+	/// @param[in] pointObj						The pointer to the PointObject instance whose vertex normals should be evaluated.
+	/// @return												@trueIfOtherwiseFalse{successful}
+	//----------------------------------------------------------------------------------------
 	maxon::Result<void> EvaluateAndStoreVertexNormals(maxon::BaseArray<FFD_Data>& pointsFFD, PointObject* pointObj);
 
 public:

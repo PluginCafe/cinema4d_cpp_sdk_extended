@@ -227,7 +227,7 @@ Bool SimpleMaterial::Message(GeListNode* node, Int32 type, void* data)
 				bcRender.SetFloat(RDATA_YRES, h);
 				bcRender.SetInt32(RDATA_ANTIALIASING, ANTI_GEOMETRY);
 				if (image->bLowQuality)
-					bcRender.SetInt32(RDATA_RENDERENGINE, RDATA_RENDERENGINE_PREVIEWSOFTWARE);
+					bcRender.SetInt32(RDATA_RENDERENGINE, RDATA_RENDERENGINE_PREVIEWHARDWARE);
 				image->pDest->Clear(0, 0, 0);
 				image->lResult = RenderDocument(image->pDoc, bcRender, nullptr, nullptr, image->pDest,
 													 RENDERFLAGS::EXTERNAL | RENDERFLAGS::PREVIEWRENDER, image->pThread);

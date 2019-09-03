@@ -3,8 +3,8 @@
 /// It shows how to declare methods, functions, published objects and how to use interface inheritance.
 // ------------------------------------------------------------------------
 
-#ifndef MAXONSDK_INTERFACES_H__
-#define MAXONSDK_INTERFACES_H__
+#ifndef INTERFACES_DECLARATIONS_H__
+#define INTERFACES_DECLARATIONS_H__
 
 // MAXON API header file
 #include "maxon/factory.h"
@@ -17,25 +17,27 @@ namespace maxonsdk
 // ------------------------------------------------------------------------
 /// SimpleNumberInterface is a primitive interface. It allows to store a maxon::Int value.
 // ------------------------------------------------------------------------
-class SimpleNumberInterface : MAXON_INTERFACE_BASES(maxon::Object)
+class SimpleNumberInterface : MAXON_INTERFACE_BASES(maxon::ObjectInterface)
 {
 	MAXON_INTERFACE(SimpleNumberInterface, MAXON_REFERENCE_NORMAL, "net.maxonexample.interfaces.simplenumber");
 
 public:
-	// ---------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Stores the given number.
 	/// param[in] number		The number to store.
-	// ---------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	MAXON_METHOD void SetNumber(maxon::Int number);
-	// ---------------------------------------------------------------------
+
+	//----------------------------------------------------------------------------------------
 	/// Returns the stored number.
-	/// @return			The stored number.
-	// ---------------------------------------------------------------------
+	/// @return												The stored number.
+	//----------------------------------------------------------------------------------------
 	MAXON_METHOD maxon::Int GetNumber() const;
-	// ---------------------------------------------------------------------
+
+	//----------------------------------------------------------------------------------------
 	/// Returns the stored number as a maxon::Float.
-	/// @return			The stored number as maxon::Float.
-	// ---------------------------------------------------------------------
+	/// @return												The stored number as maxon::Float.
+	//----------------------------------------------------------------------------------------
 	MAXON_FUNCTION maxon::Float GetFloat() const
 	{
 		return maxon::Float(GetNumber());
@@ -51,15 +53,16 @@ class EvenOddNumberInterface : MAXON_INTERFACE_BASES(SimpleNumberInterface)
 	MAXON_INTERFACE(EvenOddNumberInterface, MAXON_REFERENCE_NORMAL, "net.maxonexample.interfaces.advancednumber");
 
 public:
-	// ---------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Returns true if the stored number is even.
-	///	@return			true if even.
-	// ---------------------------------------------------------------------
+	/// @return												true if even.
+	//----------------------------------------------------------------------------------------
 	MAXON_METHOD maxon::Bool IsEven() const;
-	// ---------------------------------------------------------------------
+
+	//----------------------------------------------------------------------------------------
 	/// Returns true if the stored number is odd.
-	///	@return			true if odd.
-	// -------------------------------------------------------------------
+	/// @return												true if odd.
+	//----------------------------------------------------------------------------------------
 	MAXON_FUNCTION maxon::Bool IsOdd() const
 	{
 		return !IsEven();
@@ -70,25 +73,25 @@ public:
 /// SequenceOperationInterface stores an array of maxon::Float values
 /// and executes a certain mathematical operation.
 // ------------------------------------------------------------------------
-class SequenceOperationInterface : MAXON_INTERFACE_BASES(maxon::Object)
+class SequenceOperationInterface : MAXON_INTERFACE_BASES(maxon::ObjectInterface)
 {
 	MAXON_INTERFACE(SequenceOperationInterface, MAXON_REFERENCE_NORMAL, "net.maxonexample.interfaces.sequenceoperation");
 
 public:
-	// ---------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Adds the given number to the internal array.
-	///	@param[in] number			The value to add.
-	/// @return								maxon::OK on success.
-	// ---------------------------------------------------------------------
+	/// @param[in] number							The value to add.
+	/// @return												maxon::OK on success.
+	//----------------------------------------------------------------------------------------
 	MAXON_METHOD maxon::Result<void> AddNumber(maxon::Float number);
-	// ---------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Clears all internal data.
-	// ---------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	MAXON_METHOD void Reset();
-	// ---------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Performs the mathematical operation and returns its result.
-	/// @return			The result.
-	// ---------------------------------------------------------------------
+	/// @return												The result.
+	//----------------------------------------------------------------------------------------
 	MAXON_METHOD maxon::Float GetResult();
 };
 
@@ -103,20 +106,20 @@ class DirectoryElementInterface : MAXON_INTERFACE_BASES(maxon::HierarchyObjectIn
 	MAXON_INTERFACE(DirectoryElementInterface, MAXON_REFERENCE_NORMAL, "net.maxonexample.directoryelement");
 
 public:
-	// ---------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Sets the folder name for this element.
-	///	@param[in] folder			The local folder.
-	// ---------------------------------------------------------------------
+	/// @param[in] folder							The local folder.
+	//----------------------------------------------------------------------------------------
 	MAXON_METHOD void SetFolder(const maxon::String & folder);
-	// ---------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Returns the folder name for this element.
-	///	@return			The local folder.
-	// ---------------------------------------------------------------------
+	/// @return												The local folder.
+	//----------------------------------------------------------------------------------------
 	MAXON_METHOD maxon::String GetFolder() const;
-	// ---------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Returns the full Url including the parent folders.
-	///	@return			The fully constructed maxon::Url.
-	// ---------------------------------------------------------------------
+	/// @return												The fully constructed maxon::Url.
+	//----------------------------------------------------------------------------------------
 	MAXON_METHOD maxon::Result<maxon::Url> GetFullUrl() const;
 };
 
@@ -158,4 +161,4 @@ MAXON_DECLARATION(maxon::Class<maxonsdk::DirectoryElementRef>, DirectoryElement,
 
 }
 
-#endif
+#endif // INTERFACES_DECLARATIONS_H__

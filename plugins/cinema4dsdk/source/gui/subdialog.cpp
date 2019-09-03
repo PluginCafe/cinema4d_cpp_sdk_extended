@@ -232,17 +232,17 @@ private:
 	MainDialog dlg;
 
 public:
-	virtual Bool Execute(BaseDocument* doc);
-	virtual Int32 GetState(BaseDocument* doc);
+	virtual Bool Execute(BaseDocument* doc, GeDialog* parentManager);
+	virtual Int32 GetState(BaseDocument* doc, GeDialog* parentManager);
 	virtual Bool RestoreLayout(void* secret);
 };
 
-Int32 SubDialogTest::GetState(BaseDocument* doc)
+Int32 SubDialogTest::GetState(BaseDocument* doc, GeDialog* parentManager)
 {
 	return CMD_ENABLED;
 }
 
-Bool SubDialogTest::Execute(BaseDocument* doc)
+Bool SubDialogTest::Execute(BaseDocument* doc, GeDialog* parentManager)
 {
 	return dlg.Open(DLG_TYPE::ASYNC, ID_SUBDIALOGTEST, -1, -1);
 }

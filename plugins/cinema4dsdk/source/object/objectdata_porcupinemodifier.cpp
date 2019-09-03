@@ -16,12 +16,13 @@ static const Int32 ID_SDKEXAMPLE_OBJECTDATA_PORCUPINEMODIFIER = 1038236;
 
 namespace PorcupineModifierHelpers
 {
-	//------------------------------------------------------------------------------------------------
+#if 0
+	//----------------------------------------------------------------------------------------
 	/// Global helper function to check if a transformation matrix is an identity matrix.
 	/// @brief Global helper function to check if a transformation matrix is an identity matrix.
-	/// @param[in] mat				The matrix to be verified.
-	/// @return								True if matrix produces no offset, rotation and scaling
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] mat								The matrix to be verified.
+	/// @return												True if matrix produces no offset, rotation and scaling
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<Bool> IsMatrixIdentity(const Matrix& mat);
 	static maxon::Result<Bool> IsMatrixIdentity(const Matrix& mat)
 	{
@@ -30,15 +31,16 @@ namespace PorcupineModifierHelpers
 
 		return false;
 	}
+#endif
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Global helper function responsible to return a random int value between a min and a max value.
 	/// @brief Global helper function responsible to return a random int between min and max.
-	/// @param[in] min				Min integer value of the output range.
-	/// @param[in] max				Max integer value of the output range.
-	/// @param[in] rndGen			Random generator reference.
-	/// @return								The random number within the range.
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] min								Min integer value of the output range.
+	/// @param[in] max								Max integer value of the output range.
+	/// @param[in] rndGen							Random generator reference.
+	/// @return												The random number within the range.
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<Int32> PickRandomNumberBetweenMinMax(const Int32 &min, const Int32& max, Random *rndGen);
 	static maxon::Result<Int32> PickRandomNumberBetweenMinMax(const Int32 &min, const Int32& max, Random *rndGen)
 	{
@@ -73,36 +75,36 @@ public:
 
 protected:
 private:
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Private helper method responsible to allocate the arrays responsible to store noise data,
 	/// normal data per vertex, and the change status of the vertexes
-	/// @param[in] currentArraySize			Current size to be used to allocate arrays.
-	/// @param[in] previousArraySize		Previous size of the allocated arrays (might be zero).
-	/// @return													True if successful.
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] currentArraySize		Current size to be used to allocate arrays.
+	/// @param[in] previousArraySize	Previous size of the allocated arrays (might be zero).
+	/// @return												True if successful.
+	//----------------------------------------------------------------------------------------
 	maxon::Result<void> AllocateArrays(const Int32& currentArraySize, const Int32 previousArraySize);
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Private helper method responsible to compute and store the vertexes normal data
 	/// normal data per vertex, and the change status of the vertexes
-	/// @param[in] objectPolysPtrR			Array of CPolygon for the current object.
-	/// @param[in] objectPolysCount			Number of polygons belonging to the current object.
-	/// @return													True if successful.
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] objectPolysPtrR		Array of CPolygon for the current object.
+	/// @param[in] objectPolysCount		Number of polygons belonging to the current object.
+	/// @return												True if successful.
+	//----------------------------------------------------------------------------------------
 	maxon::Result<void> FillFaceNormals(const CPolygon* objectPolysPtrR, const Int32 objectPolysCount);
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Private helper method responsible to displace the vertices affected by the
 	/// normal data per vertex, and the change status of the vertexes
 	/// @param[in] changeablePntsCount	Number of vertices to be displaced
-	/// @param[in] pntsCount			Number of vertices present on the current object.
-	/// @param[in] bt										Pointer to the BaseThread object.
-	/// @param[in] randomGen						Reference to the Random object.
-	/// @param[in] op_mg								Reference to the object world transformation matrix.
-	/// @param[in] mod_mg								Reference to the modifier world transformation matrix.
-	/// @param[in] modLocalOffset				Reference to the modifier local offset vector.
-	/// @return													True if successful.
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] pntsCount					Number of vertices present on the current object.
+	/// @param[in] bt									Pointer to the BaseThread object.
+	/// @param[in] randomGen					Reference to the Random object.
+	/// @param[in] op_mg							Reference to the object world transformation matrix.
+	/// @param[in] mod_mg							Reference to the modifier world transformation matrix.
+	/// @param[in] modLocalOffset			Reference to the modifier local offset vector.
+	/// @return												True if successful.
+	//----------------------------------------------------------------------------------------
 	maxon::Result<void> DisplacePointsAlongDirection(const Int32 changeablePntsCount, const Int32 pntsCount, BaseThread* bt, Random *randomGen, const Matrix& op_mg, const Matrix& mod_mg, const Vector& modLocalOffset, const Bool isPoly);
 
 public:

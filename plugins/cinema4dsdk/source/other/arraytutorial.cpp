@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////
-// CINEMA 4D SDK                                           //
+// Cinema 4D SDK                                           //
 /////////////////////////////////////////////////////////////
 // (c) MAXON Computer GmbH, all rights reserved            //
 /////////////////////////////////////////////////////////////
@@ -42,7 +42,7 @@ public:
 		array.Erase(5) iferr_return;
 
 		// Insert an element at index 5.
-		array.Insert(value, 5) iferr_return;
+		array.Insert(5, value) iferr_return;
 
 		// Append an element at the end of the array.
 		array.Append(value) iferr_return;
@@ -73,7 +73,7 @@ public:
 			return false;
 
 		// Insert an element at index 5.
-		iferr (array.Insert(value, 5))
+		iferr (array.Insert(5, value))
 			return false;
 
 		// Append an element at the end of the array.

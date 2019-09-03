@@ -82,8 +82,7 @@ RENDERRESULT VisualizePostData::Execute(BaseVideoPost* node, VideoPostStruct* vp
 Bool VisualizePostData::RenderEngineCheck(BaseVideoPost* node, Int32 id)
 {
 	// the following render engines are not supported by this effect
-	if (id == RDATA_RENDERENGINE_PREVIEWSOFTWARE ||
-			id == RDATA_RENDERENGINE_PREVIEWHARDWARE ||
+	if (id == RDATA_RENDERENGINE_PREVIEWHARDWARE ||
 			id == RDATA_RENDERENGINE_CINEMAN)
 		return false;
 

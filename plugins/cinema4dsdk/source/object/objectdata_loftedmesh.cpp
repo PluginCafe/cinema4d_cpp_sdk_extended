@@ -17,7 +17,7 @@ static const Int32 ID_SDKEXAMPLE_OBJECTDATA_LOFTEDMESH = 1038749;
 
 namespace LoftedMeshHelpers
 {
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Global helper function filling PolygonObject vertices array and polygon indices array
 	/// with the data contained in a 2-dim array of vector listing the vertices space position.
 	/// @brief Global helper function to populate PolygonObject with data from 2-dim array of positions.
@@ -29,7 +29,7 @@ namespace LoftedMeshHelpers
 	/// @param[in] closedS						The reference to the boolean closure status along S-direction.
 	/// @param[in] closedT						The reference to the boolean closure status along T-direction.
 	/// @return												@trueIfOtherwiseFalse{successful}
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<void> FillPolygonObjectData(PolygonObject& polyObj, const Int32& verticesAlongS, const Int32& verticesAlongT, HierarchyHelp* hh, const maxon::BaseArray<maxon::BaseArray<Vector>>& verticesBA, const Bool& closedS = false, const Bool& closedT = false);
 	static maxon::Result<void> FillPolygonObjectData(PolygonObject& polyObj, const Int32& verticesAlongS, const Int32& verticesAlongT, HierarchyHelp* hh, const maxon::BaseArray<maxon::BaseArray<Vector>>& verticesBA, const Bool& closedS/*= false*/, const Bool& closedT/*= false*/)
 	{
@@ -120,7 +120,7 @@ namespace LoftedMeshHelpers
 		return maxon::OK;
 	}
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Global helper function resizing the BaseArray of BaseArray of vector for storing points pos.
 	/// @brief Global helper function to create, init and return a 2-dim BaseArray of vector.
 	/// @param[in] verticesBA					The 2-dim BaseArray storing the vertices position.
@@ -129,7 +129,7 @@ namespace LoftedMeshHelpers
 	/// @param[in] closedA						The reference to the boolean closure status along S-direction.
 	/// @param[in] closedB						The reference to the boolean closure status along T-direction.
 	/// @return												@trueIfOtherwiseFalse{successful}
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<void> ResizeverticesBaseArray(maxon::BaseArray<maxon::BaseArray<Vector>>& verticesBA, const Int32& sizeA, const Int32& sizeB, const Bool& closedA = false, const Bool& closedB = false);
 	static maxon::Result<void> ResizeverticesBaseArray(maxon::BaseArray<maxon::BaseArray<Vector>>& verticesBA, const Int32& sizeA, const Int32& sizeB, const Bool& closedA/*= false*/, const Bool& closedB/*= false*/)
 	{
@@ -152,15 +152,15 @@ namespace LoftedMeshHelpers
 		return maxon::OK;
 	}
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Global helper function returning a Tangent object providing tangent direction and weight.
 	/// @brief Return a Tangent object providing tangent direction and weight.
-	/// @param[in] direction			The reference to the direction of the tangent.
-	/// @param[in] weight					The reference to the weight of the tangent.
-	/// @param[in] computeLeft		The reference to the flag to compute the tangent at the left side.
-	/// @param[in] computeRight		The reference to the flag to compute the tangent at the right side.
-	/// @return										The computed tangent.
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] direction					The reference to the direction of the tangent.
+	/// @param[in] weight							The reference to the weight of the tangent.
+	/// @param[in] computeLeft				The reference to the flag to compute the tangent at the left side.
+	/// @param[in] computeRight				The reference to the flag to compute the tangent at the right side.
+	/// @return												The computed tangent.
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<Tangent> ComputeTangents(const Vector& direction, const Float& weight, const Bool& computeLeft, const Bool& computeRight);
 	static maxon::Result<Tangent> ComputeTangents(const Vector& direction, const Float& weight, const Bool& computeLeft, const Bool& computeRight)
 	{
@@ -209,42 +209,42 @@ public:
 	virtual Bool Message(GeListNode* node, Int32 type, void* data);
 
 private:
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Method checking the dirty status and clone (eventually) the input objects.
 	/// @brief Method to check the dirty status and clone (eventually) the input objects.
-	/// @param[in] op							The pointer to the BaseObject instance. @callerOwnsPointed{object}.
-	/// @param[in] hh							The pointer to the HierarchyHelp instance. @callerOwnsPointed{hierarchy helper}.
-	/// @param[in] doc						The pointer to the BaseDocument where op exists.
-	/// @param[out] isDLChanged		The reference to the boolean proving if dependency list has changed.
-	/// @return										@trueIfOtherwiseFalse{successful}
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] op									The pointer to the BaseObject instance. @callerOwnsPointed{object}.
+	/// @param[in] hh									The pointer to the HierarchyHelp instance. @callerOwnsPointed{hierarchy helper}.
+	/// @param[in] doc								The pointer to the BaseDocument where op exists.
+	/// @param[out] isDLChanged				The reference to the boolean proving if dependency list has changed.
+	/// @return												@trueIfOtherwiseFalse{successful}
+	//----------------------------------------------------------------------------------------
 	maxon::Result<void> PrepareDependencyList(BaseObject* op, HierarchyHelp* hh, const BaseDocument* doc, Bool& isDLChanged);
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Method filling the 2-dim BaseArray responsible for storing the vertices position.
 	/// @brief Method to populate the 2-dim BaseArray responsible for storing the vertices position.
-	/// @param[in] verticesData		The reference to the 2-dim BaseArray instance.
-	/// @param[in] stepsS					The reference to the number of segments on S.
-	/// @param[in] stepsT					The reference to the number of segments on T.
-	/// @param[in] interpType			The reference to the type of interpolation to be used for section
-	/// @return										@trueIfOtherwiseFalse{successful}
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] verticesData				The reference to the 2-dim BaseArray instance.
+	/// @param[in] stepsS							The reference to the number of segments on S.
+	/// @param[in] stepsT							The reference to the number of segments on T.
+	/// @param[in] interpType					The reference to the type of interpolation to be used for section
+	/// @return												@trueIfOtherwiseFalse{successful}
+	//----------------------------------------------------------------------------------------
 	maxon::Result<void> FillverticesPosition(maxon::BaseArray<maxon::BaseArray<Vector>>& verticesData, const Int32& stepsS, const Int32& stepsT, const SPLINETYPE& interpType);
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Method checking and setting the Phong tag for the returned PolygonObject.
 	/// @brief Method to check and set the Phong tag for the returned PolygonObject.
-	/// @param[in] op							The pointer to the BaseObject instance. @callerOwnsPointed{object}.
-	/// @param[in] polyObj				The pointer to the PolygonOjbect instance. @callerOwnsPointed{polygon object}.
-	/// @return										@trueIfOtherwiseFalse{successful}
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] op									The pointer to the BaseObject instance. @callerOwnsPointed{object}.
+	/// @param[in] polyObj						The pointer to the PolygonOjbect instance. @callerOwnsPointed{polygon object}.
+	/// @return												@trueIfOtherwiseFalse{successful}
+	//----------------------------------------------------------------------------------------
 	maxon::Result<void> CheckAndSetPhongTag(BaseObject* op, PolygonObject* polyObj);
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Method releasing all the allocated resources before returning from GVO.
 	/// @brief Method used before returning from GVO to release all the allocated resources.
-	/// @return										@trueIfOtherwiseFalse{successful}
-	//------------------------------------------------------------------------------------------------
+	/// @return												@trueIfOtherwiseFalse{successful}
+	//----------------------------------------------------------------------------------------
 	maxon::Result<void> FreeResources();
 
 private:

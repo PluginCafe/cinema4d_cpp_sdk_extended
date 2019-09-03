@@ -15,13 +15,13 @@ class InterfacesUnitTest : public maxon::UnitTestComponent<InterfacesUnitTest>
 {
 	MAXON_COMPONENT();
 
-	// ------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Utility function to test SimpleNumberRef elements.
-	/// @param[in] expectedInt		Expected internal value.
-	/// @param[in] expectedFloat	Expected internal value as maxon::Float.
-	/// @param[in] number					The SimpleNumberRef object to test.
-	/// @return										maxon::OK on success.
-	// ------------------------------------------------------------------------
+	/// @param[in] expectedInt				Expected internal value.
+	/// @param[in] expectedFloat			Expected internal value as maxon::Float.
+	/// @param[in] number							The SimpleNumberRef object to test.
+	/// @return												maxon::OK on success.
+	//----------------------------------------------------------------------------------------
 	maxon::Result<void> TestSimpleNumberRef(maxon::Int expectedInt, maxon::Float expectedFloat, const maxonsdk::SimpleNumberRef& number)
 	{
 		const maxon::Int	 intNumber = number.GetNumber();
@@ -36,14 +36,14 @@ class InterfacesUnitTest : public maxon::UnitTestComponent<InterfacesUnitTest>
 		return maxon::OK;
 	}
 
-	// ------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Utility function to test EvenOddNumberRef elements. Will call TestSimpleNumberRef() internally.
-	/// @param[in] expectedInt		Expected internal value.
-	/// @param[in] expectedFloat	Expected internal value as maxon::Float.
-	/// @param[in] expectedEven		Expected parity. true if even.
-	/// @param[in] number					The EvenOddNumberRef object to test.
-	/// @return										maxon::OK on success.
-	// ------------------------------------------------------------------------
+	/// @param[in] expectedInt				Expected internal value.
+	/// @param[in] expectedFloat			Expected internal value as maxon::Float.
+	/// @param[in] expectedEven				Expected parity. true if even.
+	/// @param[in] number							The EvenOddNumberRef object to test.
+	/// @return												maxon::OK on success.
+	//----------------------------------------------------------------------------------------
 	maxon::Result<void> TestEvenOddNumberRef(maxon::Int expectedInt, maxon::Float expectedFloat, maxon::Bool expectedEven, const maxonsdk::EvenOddNumberRef& number)
 	{
 		iferr_scope;
@@ -63,13 +63,13 @@ class InterfacesUnitTest : public maxon::UnitTestComponent<InterfacesUnitTest>
 		return maxon::OK;
 	}
 
-	// ------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Utility function to test SequenceOperationRef elements.
-	/// @param[in] sequence					Array of float values.
-	/// @param[in] expectedResult		Expected result of the operation.
-	/// @param[in] operation				The SequenceOperationRef object to test.
-	/// @return											maxon::OK on success.
-	// ------------------------------------------------------------------------
+	/// @param[in] sequence						Array of float values.
+	/// @param[in] expectedResult			Expected result of the operation.
+	/// @param[in] operation					The SequenceOperationRef object to test.
+	/// @return												maxon::OK on success.
+	//----------------------------------------------------------------------------------------
 	maxon::Result<void> TestSequenceOperationRef(maxon::BaseArray<maxon::Float>& sequence, maxon::Float expectedResult, const maxonsdk::SequenceOperationRef& operation)
 	{
 		iferr_scope;

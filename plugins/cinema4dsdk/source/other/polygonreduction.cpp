@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////
-// CINEMA 4D SDK                                           //
+// Cinema 4D SDK                                           //
 /////////////////////////////////////////////////////////////
 // (c) MAXON Computer GmbH, all rights reserved            //
 /////////////////////////////////////////////////////////////
@@ -17,12 +17,12 @@ static const Int32 ID_POLYREDUCTON_TEST = 1038949;
 class PolygonReductionCommand : public CommandData
 {
 public:
-	virtual Int32 GetState(BaseDocument* doc);
-	virtual Bool Execute(BaseDocument* doc);
+	virtual Int32 GetState(BaseDocument* doc, GeDialog* parentManager);
+	virtual Bool Execute(BaseDocument* doc, GeDialog* parentManager);
 };
 
 
-Int32 PolygonReductionCommand::GetState(BaseDocument* doc)
+Int32 PolygonReductionCommand::GetState(BaseDocument* doc, GeDialog* parentManager)
 {
 	BaseObject* activeObject = doc->GetActiveObject();
 	if (!doc || !activeObject || !activeObject->IsInstanceOf(Opolygon))
@@ -31,7 +31,7 @@ Int32 PolygonReductionCommand::GetState(BaseDocument* doc)
 	return CMD_ENABLED;
 }
 
-Bool PolygonReductionCommand::Execute(BaseDocument* doc)
+Bool PolygonReductionCommand::Execute(BaseDocument* doc, GeDialog* parentManager)
 {
 	if (!doc)
 		return false;

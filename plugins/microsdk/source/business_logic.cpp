@@ -25,11 +25,11 @@ maxon::Result<BaseObject*> MakeCube()
 	return cube;
 }
 
-//-------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
 /// Static function that creates a cube object and inserts it into the currently active
 /// BaseDocument.
-/// @return						maxon::OK on success.
-//-------------------------------------------------------------------------------------------
+/// @return												maxon::OK on success.
+//----------------------------------------------------------------------------------------
 static maxon::Result<void> MakeAndInsertCube()
 {
 	// "iferr_scope" needed for attributes like "iferr_return"

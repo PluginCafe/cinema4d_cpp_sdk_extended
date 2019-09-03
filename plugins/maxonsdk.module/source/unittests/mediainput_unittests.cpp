@@ -14,13 +14,13 @@ class MaxonSDKMediaInputUnitTest : public UnitTestComponent<MaxonSDKMediaInputUn
 {
 	MAXON_COMPONENT();
 
-	// ------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Internal function that creates a virtual memory file with the given data.
 	/// The virtual file is loaded into a ImageTextureRef.
-	/// @param[in] fileContent			Content of the virtual file.
-	/// @param[in] suffix						Suffix of the virtual file.
-	/// @return											OK on success.
-	// ------------------------------------------------------------------------
+	/// @param[in] fileContent				Content of the virtual file.
+	/// @param[in] suffix							Suffix of the virtual file.
+	/// @return												OK on success.
+	//----------------------------------------------------------------------------------------
 	Result<void> LoadImageTest(const String& fileContent, const String& suffix)
 	{
 		iferr_scope;

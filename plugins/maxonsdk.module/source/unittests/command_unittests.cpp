@@ -15,14 +15,14 @@ class MeanCommandsUnitTest : public maxon::UnitTestComponent<MeanCommandsUnitTes
 {
 	MAXON_COMPONENT();
 
-	// ------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Internal utility function to construct the data and execute the command.
-	/// @param[in] values									Array of float values.
-	/// @param[in] expectedValueResult		Expected mean value.
+	/// @param[in] values							Array of float values.
+	/// @param[in] expectedValueResult	Expected mean value.
 	/// @param[in] expectedCommandResult	Expected command return value.
-	/// @param[in] command								The command to execute.
-	/// @return														maxon::OK on success.
-	// ------------------------------------------------------------------------
+	/// @param[in] command						The command to execute.
+	/// @return												maxon::OK on success.
+	//----------------------------------------------------------------------------------------
 	maxon::Result<void> TestCommand(maxon::BaseArray<maxon::Float>& values, maxon::Float expectedValueResult, maxon::COMMANDRESULT expectedCommandResult, const maxon::CommandClass& command)
 	{
 		iferr_scope;

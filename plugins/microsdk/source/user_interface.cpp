@@ -1,12 +1,14 @@
 // project header files
 #include "user_interface.h"
 #include "business_logic.h"
+#include "c4d_symbols.h"
 
 // classic API header files
 #include "c4d_commandplugin.h"
 #include "c4d_gui.h"
 #include "c4d_general.h"
 #include "c4d_basedocument.h"
+#include "c4d_resource.h"
 
 namespace microsdk
 {
@@ -19,10 +21,10 @@ class MakeCubeCommand : public CommandData
 	INSTANCEOF(MakeCubeCommand, CommandData)
 
 public:
-	//-------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Creates a new instance of the command. To be used with RegisterCommandPlugin().
-	/// @return			The new instance.
-	//-------------------------------------------------------------------------------------------
+	/// @return												The new instance.
+	//----------------------------------------------------------------------------------------
 	static MakeCubeCommand* Alloc()
 	{
 		MakeCubeCommand* command = nullptr;
@@ -41,7 +43,7 @@ public:
 	//-------------------------------------------------------------------------------------------
 	/// Executes the operation on the given, active BaseDocument.
 	//-------------------------------------------------------------------------------------------
-	virtual Bool Execute(BaseDocument* doc)
+	virtual Bool Execute(BaseDocument* doc, GeDialog* parentManager)
 	{
 		iferr_scope_handler
 		{
@@ -72,7 +74,7 @@ void RegisterCubeCommand()
 {
 	// plugin IDs must be obtained from plugincafe.com to avoid collisions
 	const Int32 pluginID = 1041028;
-	const Bool	success	 = RegisterCommandPlugin(pluginID, "Make Cube"_s, 0, nullptr, maxon::String(), MakeCubeCommand::Alloc());
+	const Bool	success	 = RegisterCommandPlugin(pluginID, GeLoadString(IDS_MAKECUBE), 0, nullptr, maxon::String(), MakeCubeCommand::Alloc());
 
 	if (!success)
 	{

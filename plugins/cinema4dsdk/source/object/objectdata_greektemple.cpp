@@ -20,15 +20,15 @@ static const Int32 ID_SDKEXAMPLE_OBJECTDATA_GREEKTEMPLE = 1038235;
 
 namespace GreekTempleHelpers
 {
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Global helper function returning the scaling factor of the value passed based on modulo and
 	/// base unit.
 	/// @brief Global helper function to compute the scale factor upon a modulo, a base unit and a scaling value
-	/// @param[in] modulo					Multiplier of the base unit.
-	/// @param[in] baseUnit				Base value of the scaling.
-	/// @param[in] value					Original value to scale.
-	/// @return										Scaled value.
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] modulo							Multiplier of the base unit.
+	/// @param[in] baseUnit						Base value of the scaling.
+	/// @param[in] value							Original value to scale.
+	/// @return												Scaled value.
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<Float> ComputeScaleFactor(const Float& modulo, const Float& baseUnit, const Float& value);
 	static maxon::Result<Float> ComputeScaleFactor(const Float& modulo, const Float& baseUnit, const Float& value)
 	{
@@ -38,15 +38,15 @@ namespace GreekTempleHelpers
 			return 1.0f;
 	}
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Global function responsible to create the base of the temple using slabs.
 	/// @brief Global function to create the temple stairs.
-	/// @param[out] parentObj			Object provided to store created geometry. @callerOwnsPointed{base object}
-	/// @param[in] baseUnit				Base value for geometry construction.
-	/// @param[in] objSize				Bounding box radius vector.
-	/// @param[in] objSegsPtr			Segmentation array.
-	/// @return										True if building process succeeds.
-	//------------------------------------------------------------------------------------------------
+	/// @param[out] parentObj					Object provided to store created geometry. @callerOwnsPointed{base object}
+	/// @param[in] baseUnit						Base value for geometry construction.
+	/// @param[in] objSize						Bounding box radius vector.
+	/// @param[in] objSegsPtr					Segmentation array.
+	/// @return												True if building process succeeds.
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<void> CreateTempleBase(BaseObject* &parentObj, const Float& baseUnit, const Vector& objSize, const Int32* objSegsPtr = nullptr, const Int32 stairsCount = 3);
 	static maxon::Result<void> CreateTempleBase(BaseObject* &parentObj, const Float& baseUnit, const Vector& objSize, const Int32* objSegsPtr /*= nullptr*/, const Int32 stairsCount /*=3*/)
 	{
@@ -134,14 +134,14 @@ namespace GreekTempleHelpers
 		return maxon::OK;
 	}
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Global function responsible to create the roof temple booleans decorations
-	/// @param[out] roofNullObjPtr			Object provided to store created geometry. @callerOwnsPointed{base object}
+	/// @param[out] roofNullObjPtr		Object provided to store created geometry. @callerOwnsPointed{base object}
 	/// @param[in] extrudeRoofGenRelPtr	Extruded roof object. @callerOwnsPointed{base object}
-	/// @param[in] baseUnit							Base value for geometry construction.
-	/// @param[in] objSize							Bounding box radius vector.
-	/// @return													True if building process succeeds.
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] baseUnit						Base value for geometry construction.
+	/// @param[in] objSize						Bounding box radius vector.
+	/// @return												True if building process succeeds.
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<void> PerformBooleanSubtraction(BaseObject* roofNullObjPtr, BaseObject* extrudeRoofGenRelPtr, const Float& baseUnit, const Vector& objSize);
 	static maxon::Result<void> PerformBooleanSubtraction(BaseObject* roofNullObjPtr, BaseObject* extrudeRoofGenRelPtr, const Float& baseUnit, const Vector& objSize)
 	{
@@ -223,16 +223,16 @@ namespace GreekTempleHelpers
 		return maxon::OK;
 	}
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Global function responsible to create the roof of the temple using a basic
 	/// triangular shape and an extrusion operator.
 	/// @brief Global function to create the temple roof.
-	/// @param[out] parentObj			Object provided to store created geometry. @callerOwnsPointed{base object}
-	/// @param[in] baseUnit				Base value for geometry construction.
-	/// @param[in] objSize				Bounding box radius vector.
-	/// @param[in] objSegsPtr			Segmentation array.
-	/// @return										True if building process succeeds.
-	//------------------------------------------------------------------------------------------------
+	/// @param[out] parentObj					Object provided to store created geometry. @callerOwnsPointed{base object}
+	/// @param[in] baseUnit						Base value for geometry construction.
+	/// @param[in] objSize						Bounding box radius vector.
+	/// @param[in] objSegsPtr					Segmentation array.
+	/// @return												True if building process succeeds.
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<void> CreateTempleRoof(BaseObject* &parentObj, const Float& baseUnit, const Vector& objSize, const Int32* objSegsPtr = nullptr);
 	static maxon::Result<void> CreateTempleRoof(BaseObject* &parentObj, const Float& baseUnit, const Vector& objSize, const Int32* objSegsPtr /*= nullptr*/)
 	{
@@ -305,15 +305,15 @@ namespace GreekTempleHelpers
 		return maxon::OK;
 	}
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Global function responsible to create the capital of the temple column.
 	/// @brief Function responsible to create the capital of the temple column.
-	/// @param[out] columnCapitalRelPtr		Column capital object pointer. @callerOwnsPointed{base object}
-	/// @param[in] capitalHeightRatio			Capital height ratio.
+	/// @param[out] columnCapitalRelPtr	Column capital object pointer. @callerOwnsPointed{base object}
+	/// @param[in] capitalHeightRatio	Capital height ratio.
 	/// @param[in] capitalSideHeightRatio	Capital side/height ratio.
-	/// @param[in] objSegsPtr							Segmentation array.
-	/// @return														True if building process succeeds.
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] objSegsPtr					Segmentation array.
+	/// @return												True if building process succeeds.
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<void> CreateColumnCapital(BaseObject* &columnCapitalRelPtr, const Float &capitalHeightRatio, const Float &capitalSideHeightRatio, const Int32* objSegsPtr = nullptr);
 	static maxon::Result<void> CreateColumnCapital(BaseObject* &columnCapitalRelPtr, const Float &capitalHeightRatio, const Float &capitalSideHeightRatio, const Int32* objSegsPtr /*= nullptr*/)
 	{
@@ -356,15 +356,15 @@ namespace GreekTempleHelpers
 		return maxon::OK;
 	}
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Global function responsible to create the base of the temple column.
 	/// @brief Function responsible to create the base of the temple column.
-	/// @param[out] columnBaseRelPtr			Column base object pointer. @callerOwnsPointed{base object}
-	/// @param[in] baseHeightRatio				Base height ratio.
+	/// @param[out] columnBaseRelPtr	Column base object pointer. @callerOwnsPointed{base object}
+	/// @param[in] baseHeightRatio		Base height ratio.
 	/// @param[in] baseRadiusHeightRatio	Base side/height ratio.
-	/// @param[in] objSegsPtr							Segmentation array.
-	/// @return														True if building process succeeds.
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] objSegsPtr					Segmentation array.
+	/// @return												True if building process succeeds.
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<void> CreateColumnBase(BaseObject* &columnBaseRelPtr, const Float &baseHeightRatio, const Float &baseRadiusHeightRatio, const Int32* objSegsPtr = nullptr);
 	static maxon::Result<void> CreateColumnBase(BaseObject* &columnBaseRelPtr, const Float &baseHeightRatio, const Float &baseRadiusHeightRatio, const Int32* objSegsPtr /*= nullptr*/)
 	{
@@ -396,15 +396,15 @@ namespace GreekTempleHelpers
 		return maxon::OK;
 	}
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Global function responsible to create the stem of the temple column.
 	/// @brief Function responsible to create the stem of the temple column.
-	/// @param[out] columnStemRelPtr			Column stem object pointer. @callerOwnsPointed{base object}
-	/// @param[in] stemHeightRatio				Stem height ratio.
+	/// @param[out] columnStemRelPtr	Column stem object pointer. @callerOwnsPointed{base object}
+	/// @param[in] stemHeightRatio		Stem height ratio.
 	/// @param[in] stemRadiusHeightRatio	Stem side/height ratio.
-	/// @param[in] objSegsPtr							Segmentation array.
-	/// @return														True if building process succeeds.
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] objSegsPtr					Segmentation array.
+	/// @return												True if building process succeeds.
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<void> CreateColumnStem(BaseObject* &columnStemRelPtr, const Float &stemHeightRatio, const Float &stemRadiusHeightRatio, const Int32* objSegsPtr = nullptr);
 	static maxon::Result<void> CreateColumnStem(BaseObject* &columnStemRelPtr, const Float &stemHeightRatio, const Float &stemRadiusHeightRatio, const Int32* objSegsPtr /*= nullptr*/)
 	{
@@ -447,22 +447,22 @@ namespace GreekTempleHelpers
 		return maxon::OK;
 	}
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Global function responsible to create the colonnade of the temple using cylinders and bent
 	/// cubes and responsible for managing the columns grid arrangement.
 	/// @brief Global function to create the temple colonnade managing columns grid arrangement.
 	/// @param[out] colonnadeNullRelPtr	Colonnade object. @callerOwnsPointed{base object}
-	/// @param[in] columnNullRelPtr			Column object to be instanced.
-	/// @param[in] topStepWidth					Width of the top-most step.
-	/// @param[in] topStepHeight				Height of the top-most step.
-	/// @param[in] topStepBLVertexPos		Position of the bottom-left vertex of the top-most step.
-	/// @param[in] columnRadius					Column bounding-box sizes.
-	/// @param[in] columnScaleVector		Scaling factor based on the overall temple sizes.
-	/// @param[in] xSpace								Space between columns along the x-axis.
-	/// @param[in] zSpace								Space between columns along the z-axis.
-	/// @param[in] hhPtr								A hierarchy helper for the operation. @callerOwnsPointed{hierarchy helper}
-	/// @return													True if instancing process succeeds.
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] columnNullRelPtr		Column object to be instanced.
+	/// @param[in] topStepWidth				Width of the top-most step.
+	/// @param[in] topStepHeight			Height of the top-most step.
+	/// @param[in] topStepBLVertexPos	Position of the bottom-left vertex of the top-most step.
+	/// @param[in] columnRadius				Column bounding-box sizes.
+	/// @param[in] columnScaleVector	Scaling factor based on the overall temple sizes.
+	/// @param[in] xSpace							Space between columns along the x-axis.
+	/// @param[in] zSpace							Space between columns along the z-axis.
+	/// @param[in] hhPtr							A hierarchy helper for the operation. @callerOwnsPointed{hierarchy helper}
+	/// @return												True if instancing process succeeds.
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<void> PerformeColumnsInstancing(BaseObject* &colonnadeNullRelPtr, BaseObject* columnNullRelPtr, const Float& topStepWidth, const Float& topStepHeight, const Vector& topStepBLVertexPos, const Vector& columnRadius, const Vector& columnScaleVector, const Float xSpace = 0, const Float zSpace = 0, HierarchyHelp* hhPtr = nullptr);
 	static maxon::Result<void> PerformeColumnsInstancing(BaseObject* &colonnadeNullRelPtr, BaseObject* columnNullRelPtr, const Float& topStepWidth, const Float& topStepHeight, const Vector& topStepBLVertexPos, const Vector& columnRadius, const Vector& columnScaleVector, const Float xSpace /*= 0*/, const Float zSpace /*= 0*/, HierarchyHelp* hhPtr /*= nullptr*/)
 	{
@@ -564,19 +564,19 @@ namespace GreekTempleHelpers
 		return maxon::OK;
 	}
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Global function responsible to create the colonnade of the temple using cylinders and bent
 	/// cubes and responsible for managing the columns grid arrangement.
 	/// @brief Global function to create the temple colonnade managing columns grid arrangement.
-	/// @param[out] parentObj			Object provided to store created geometry. @callerOwnsPointed{base object}
-	/// @param[in] baseUnit				Base value for geometry construction.
-	/// @param[in] objSize				Bounding box radius vector.
-	/// @param[in] objSegsPtr			Segmentation array.
-	/// @param[in] xSpace					Space between columns along the x-axis.
-	/// @param[in] zSpace					Space between columns along the z-axis.
-	/// @param[in] hhPtr					A hierarchy helper for the operation. @callerOwnsPointed{hierarchy helper}
-	/// @return										True if building process succeeds.
-	//------------------------------------------------------------------------------------------------
+	/// @param[out] parentObj					Object provided to store created geometry. @callerOwnsPointed{base object}
+	/// @param[in] baseUnit						Base value for geometry construction.
+	/// @param[in] objSize						Bounding box radius vector.
+	/// @param[in] objSegsPtr					Segmentation array.
+	/// @param[in] xSpace							Space between columns along the x-axis.
+	/// @param[in] zSpace							Space between columns along the z-axis.
+	/// @param[in] hhPtr							A hierarchy helper for the operation. @callerOwnsPointed{hierarchy helper}
+	/// @return												True if building process succeeds.
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<void> CreateTempleColonnade(BaseObject* &parentObj, const Float& baseUnit, const Vector& objSize, const Int32* objSegsPtr = nullptr, const Float xSpace = 0, const Float zSpace = 0, HierarchyHelp* hhPtr = nullptr);
 	static maxon::Result<void> CreateTempleColonnade(BaseObject* &parentObj, const Float& baseUnit, const Vector& objSize, const Int32* objSegsPtr /*= nullptr*/, const Float xSpace /*= 0*/, const Float zSpace /*= 0*/, HierarchyHelp* hhPtr /*= nullptr*/)
 	{

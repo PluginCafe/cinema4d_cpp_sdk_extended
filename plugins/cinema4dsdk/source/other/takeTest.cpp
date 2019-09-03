@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////
-// CINEMA 4D SDK                                           //
+// Cinema 4D SDK                                           //
 /////////////////////////////////////////////////////////////
 // (c) MAXON Computer GmbH, all rights reserved            //
 /////////////////////////////////////////////////////////////
@@ -22,20 +22,20 @@ class TakeTestCommmand : public CommandData
 public:
   explicit TakeTestCommmand(Int32 commandID) : _commandID(commandID) { }
 
-  virtual Int32 GetState(BaseDocument* doc);
-  virtual Bool Execute(BaseDocument* doc);
+  virtual Int32 GetState(BaseDocument* doc, GeDialog* parentManager);
+  virtual Bool Execute(BaseDocument* doc, GeDialog* parentManager);
 
 private:
   Int32 _commandID;
 };
 
 
-Int32 TakeTestCommmand::GetState(BaseDocument* doc)
+Int32 TakeTestCommmand::GetState(BaseDocument* doc, GeDialog* parentManager)
 {
   return CMD_ENABLED;
 }
 
-Bool TakeTestCommmand::Execute(BaseDocument* doc)
+Bool TakeTestCommmand::Execute(BaseDocument* doc, GeDialog* parentManager)
 {
   if (!doc)
     return false;

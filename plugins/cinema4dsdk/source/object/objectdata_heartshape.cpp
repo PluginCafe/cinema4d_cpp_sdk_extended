@@ -16,13 +16,13 @@ static const Int32 ID_SDKEXAMPLE_OBJECTDATA_HEARTSHAPE = 1038224;
 
 namespace HeartShapeHelpers
 {
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Global function responsible to create an heart shape.
 	/// @brief Global function responsible to create an heart shape.
-	/// @param[out] splineObj         Polygon object provided to store created geometry. @callerOwnsPointed{base object}
-	/// @param[in] radiusValue        Radius of the circle circumscribing the polygonal curve.
+	/// @param[out] splineObj					Polygon object provided to store created geometry. @callerOwnsPointed{base object}
+	/// @param[in] radiusValue				Radius of the circle circumscribing the polygonal curve.
 	/// @return												True if creation process succeeds.
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<void> CreateHeartShape(SplineObject& splineObj, const Float& radiusValue);
 	static maxon::Result<void> CreateHeartShape(SplineObject& splineObj, const Float& radiusValue)
 	{

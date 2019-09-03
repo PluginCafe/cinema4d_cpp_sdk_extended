@@ -5,14 +5,6 @@ STRINGTABLE
 {
   IDS_GRADIENTTITLE "Power Gradient";
   IDS_TYPE "Type";
-  IDS_U "U";
-  IDS_V "V";
-  IDS_DIAGONAL "Diagonal";
-  IDS_RADIAL "Radial";
-  IDS_CIRCULAR "Circular";
-  IDS_BOX "Box";
-  IDS_STAR "Star";
-  IDS_4CORNER "Four Corner";
   IDS_INTERPOLATION "Interpolation";
   IDS_NONE "None";
   IDS_LINEAR "Linear";
@@ -24,19 +16,10 @@ STRINGTABLE
   IDS_PARTICLEVOLUME_LOW_DENSITY "Low Density";
 
   IDS_POSITION "Position";
-  IDS_TURBULENCE "Turbulence";
-  IDS_OCTAVES "Octaves";
-  IDS_SCALE "Scale";
-  IDS_FREQ "Frequency";
-  IDS_ABSOLUTE "Absolute";
 	IDS_ATOM_POINT "Point";
 	IDS_ATOM_EDGE "Edge";
 	IDS_APPLY_FILTER "Applying Filter...";
 
-	IDS_MORPHNAME					"Object '#'";
-	IDS_MORPHRECORD				"Record";
-	IDS_MORPHSTRENGTH			"Strength";
-	IDS_MORPHIMPORT				"Magpie Pro import...";
 	IDS_MORPHSELECT				"Select Magpie Pro file";
 	IDS_IMPORTFAILED			"Wrong data format|Magpie Pro import failed!";
 

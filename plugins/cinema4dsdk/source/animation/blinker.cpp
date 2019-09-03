@@ -76,7 +76,7 @@ Bool BlinkerTrack::FillKey(CTrack* track, BaseDocument* doc, BaseList2D* bl, CKe
 
 Bool BlinkerTrack::Animate(CTrack* track, const CAnimInfo* info, Bool* chg, void* data)
 {
-	if ((!info->k1 && !info->k2) || !info->op->IsInstanceOf(Obase))
+	if (!info->k1 || !info->k2 || !info->op->IsInstanceOf(Obase))
 		return true;
 
 	GeData	 res;

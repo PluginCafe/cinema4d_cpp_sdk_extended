@@ -19,7 +19,7 @@ class PGPTest : public CommandData
 #endif
 
 public:
-	virtual Bool Execute(BaseDocument* doc)
+	virtual Bool Execute(BaseDocument* doc, GeDialog* parentManager)
 	{
 		return DoPGPTest() == OK;
 	}

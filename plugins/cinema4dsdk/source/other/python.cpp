@@ -10,7 +10,7 @@ class PythonRegexCommand : public CommandData
 {
 public:
 
-	virtual Bool Execute(BaseDocument* doc)
+	virtual Bool Execute(BaseDocument* doc, GeDialog* parentManager)
 	{
 		iferr_scope_handler
 		{

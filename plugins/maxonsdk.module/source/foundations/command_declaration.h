@@ -3,8 +3,8 @@
 /// These objects declare settings, a default context and two command implementations.
 // ------------------------------------------------------------------------
 
-#ifndef MAXONSDK_COMMANDS_H__
-#define MAXONSDK_COMMANDS_H__
+#ifndef COMMAND_DECLARATION_H__
+#define COMMAND_DECLARATION_H__
 
 // MAXON API header file
 #include "maxon/commandbase.h"
@@ -48,6 +48,6 @@ namespace CommandClasses
 #include "command_declaration1.hxx"
 #include "command_declaration2.hxx"
 
-#endif
+#endif // COMMAND_DECLARATION_H__
 
 

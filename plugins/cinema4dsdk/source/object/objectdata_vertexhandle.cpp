@@ -35,12 +35,12 @@ public:
 	virtual DRAWRESULT Draw(BaseObject* op, DRAWPASS type, BaseDraw* bd, BaseDrawHelp* bh);
 
 private:
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Private method to calculate the angle between the x-axis and the line connecting the origin with the vertex referenced by the passed index.
 	/// @brief Calculate the angle between the x-axis and the line between origin and i-th vertex.
-	/// @param[in] vertexIdx  The value of the vertex index.
-	/// @return               The value of the angle in radians.
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] vertexIdx					The value of the vertex index.
+	/// @return												The value of the angle in radians.
+	//----------------------------------------------------------------------------------------
 	maxon::Result<Float> GetCurrentAngle(const Int32& vertexIdx);
 };
 
@@ -265,7 +265,7 @@ DRAWRESULT VertexHandle::Draw(BaseObject* op, DRAWPASS drawpass, BaseDraw* bd, B
 		else
 		{
 			// Just draw the handle.
-			bd->SetPen(GetViewColor(VIEWCOLOR_ACTIVEPOINT));
+			bd->SetPen(GetViewColor(VIEWCOLOR_HANDLES));
 			bd->DrawHandle(handleInfo.position, DRAWHANDLE::BIG, 0);
 		}
 	}

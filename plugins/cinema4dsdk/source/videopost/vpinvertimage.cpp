@@ -235,8 +235,7 @@ VIDEOPOST_GLINFO InvertData::GetGlInfo(BaseVideoPost* node, BaseDocument* doc, B
 Bool InvertData::RenderEngineCheck(BaseVideoPost* node, Int32 id)
 {
 	// the following render engines are not supported by this effect
-	if (id == RDATA_RENDERENGINE_PREVIEWSOFTWARE ||
-			id == RDATA_RENDERENGINE_CINEMAN)
+	if (id == RDATA_RENDERENGINE_CINEMAN)
 		return false;
 
 	return true;

@@ -762,7 +762,7 @@ void ExampleDialog::AddDynamicElement(const int selection)
 			if (linkGUI != nullptr)
 			{
 				const String link = "http://www.maxon.net";
-				const String text = "MAXON Homepage";
+				const String text = "Maxon Homepage";
 
 				linkGUI->SetLinkString(&link, &text);
 			}
@@ -1376,7 +1376,7 @@ class OpenExampleDialogCommand: public CommandData
 
 public:
 
-	virtual Bool Execute(BaseDocument* doc);
+	virtual Bool Execute(BaseDocument* doc, GeDialog* parentManager);
 	virtual Bool RestoreLayout(void* secret);
 
 	static OpenExampleDialogCommand* Alloc() { return NewObjClear(OpenExampleDialogCommand); }
@@ -1386,7 +1386,7 @@ private:
 
 };
 
-Bool OpenExampleDialogCommand::Execute(BaseDocument* doc)
+Bool OpenExampleDialogCommand::Execute(BaseDocument* doc, GeDialog* parentManager)
 {
 	if (_dialog.IsOpen() == false)
 		_dialog.Open(DLG_TYPE::ASYNC, ID_SDK_EXAMPLE_DIALOG_COMMAND, -1, -1, 400, 400);

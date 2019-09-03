@@ -104,11 +104,11 @@ public:
 class VertexColorImpl : public Component<VertexColorImpl, CustomDataTagClassInterface>
 {
 	MAXON_COMPONENT();
-	MAXON_CUSTOMDATATAG(ID_CUSTOMDATA_TAG_VC, "Vertex Color"_s, ""_s, Id("net.maxonexample.mesh_misc.customdatatagdisplay.vertexcolor"), 0, 4);
+	MAXON_CUSTOMDATATAG(ID_CUSTOMDATA_TAG_VC, "Vertex Color"_s, ""_s, Id("net.maxonexample.mesh_misc.customdatatagdisplay.vertexcolor"), 0, 4, TAG_VISIBLE | TAG_MULTIPLE);
 
 public:
 
-	MAXON_METHOD const DataType* GetDataType() const
+	MAXON_METHOD const DataType& GetDataType() const
 	{
 		return maxon::GetDataType<VERTEXCOLOR_MESHATTRIBUTE>();
 	}
@@ -420,11 +420,11 @@ private:
 class VertexFloatImpl : public Component<VertexFloatImpl, CustomDataTagClassInterface>
 {
 	MAXON_COMPONENT();
-	MAXON_CUSTOMDATATAG(ID_CUSTOMDATA_TAG_FL, "Float Test"_s, "tfloatc"_s, Id("net.maxonexample.mesh_misc.customdatatagdisplay.float"), 0, 1);
+	MAXON_CUSTOMDATATAG(ID_CUSTOMDATA_TAG_FL, "Float Test"_s, "tfloatc"_s, Id("net.maxonexample.mesh_misc.customdatatagdisplay.float"), 0, 1, TAG_VISIBLE | TAG_MULTIPLE);
 
 public:
 
-	MAXON_METHOD const DataType* GetDataType() const
+	MAXON_METHOD const DataType& GetDataType() const
 	{
 		return maxon::GetDataType<FLOATTYPE_MESHATTRIBUTE>();
 	}
@@ -603,14 +603,311 @@ MAXON_COMPONENT_CLASS_REGISTER(VertexFloatDisplayImpl, CustomDataTagDisplayClass
 
 MAXON_COMPONENT_OBJECT_REGISTER(VertexColorImpl, CustomDataTagClasses::VC)
 MAXON_COMPONENT_CLASS_REGISTER(VertexColorDisplayImpl, CustomDataTagDisplayClasses, "net.maxonexample.mesh_misc.customdatatagdisplay.vertexcolor");
-	
+
+// data types registration
+MAXON_DATATYPE_REGISTER(PointIndex);
+MAXON_DATATYPE_REGISTER(POINTINDEX_MESHATTRIBUTE);
+
+// This is the custom data tag implementation, to emulate a point index map we don't need to implement interpolations and arithmetic
+// In this implementation whenever a point is deleted from the object the last point in the object will take its place,
+// if a point is added will be added at end with and the value will be NOTOK.
+class PointIndexImpl : public Component<PointIndexImpl, CustomDataTagClassInterface>
+{
+	MAXON_COMPONENT();
+	MAXON_CUSTOMDATATAG(ID_POINT_INDEX_TAG, "Point Index"_s, ""_s, CustomDataTagClasses::POINTINDEX.GetId(), 0, NOTOK, 0); // notice the last value is 0, this mean the tag is not VISIBLE and not multiple
+
+public:
+
+	MAXON_METHOD const DataType& GetDataType() const
+	{
+		return maxon::GetDataType<POINTINDEX_MESHATTRIBUTE>();
+	}
+
+	MAXON_METHOD void InterpolateLinear(void* data1, const void* data2, Float blendValue) const {	}
+
+	MAXON_METHOD void InterpolateInOutline(void* data, const Block<void*>& outline, const Block<Float>& weights) const { }
+
+	MAXON_METHOD void GetDefaultValue(void* data) const
+	{
+		if (!data)
+			return;
+
+		PointIndex* v = static_cast<PointIndex*>(data);
+		if (v)
+		{
+			v->_index = NOTOK;
+			v->_privateBuffer = 0;
+		}
+	}
+
+	MAXON_METHOD Bool AtrLessThen(const void* data1, const void* data2) const
+	{
+		const PointIndex* a = static_cast<const PointIndex*>(data1);
+		const PointIndex* b = static_cast<const PointIndex*>(data2);
+		return a < b;
+	}
+
+	MAXON_METHOD Bool AtrIsEqual(const void* data1, const void* data2) const
+	{
+		const PointIndex* a = static_cast<const PointIndex*>(data1);
+		const PointIndex* b = static_cast<const PointIndex*>(data2);
+		return a == b;
+	}
+
+	MAXON_METHOD void AtrAdd(void* data1, const void* data2) const { }
+
+	MAXON_METHOD void AtrSubstract(void* data1, const void* data2) const { }
+
+	MAXON_METHOD void AtrMultiply(void* data1, const void* data2) const { }
+
+	MAXON_METHOD void AtrMultiply(void* data, Float value) const { }
+
+	MAXON_METHOD void AtrDivide(void* data1, const void* data2) const { }
+
+	MAXON_METHOD void AtrDivide(void* data, Float value) const { }
+
+	MAXON_METHOD String AtrToString(const void* data, const FormatStatement* formatStatement) const
+	{
+		const PointIndex* v = static_cast<const PointIndex*>(data);
+		return FormatString("(@)", v->_index);
+	}
+
+	MAXON_METHOD Result<void> Read(void* data, HyperFile* hf, Int32 level) const
+	{
+		if (!hf || !data)
+			return IllegalArgumentError(MAXON_SOURCE_LOCATION);
+
+		PointIndex* dataPtr = static_cast<PointIndex*>(data);
+		if (!dataPtr)
+			return OutOfMemoryError(MAXON_SOURCE_LOCATION);
+
+		if (!hf->ReadInt32(&dataPtr->_index))
+			return IllegalStateError(MAXON_SOURCE_LOCATION);
+
+		if (!hf->ReadInt32(&dataPtr->_privateBuffer))
+			return IllegalStateError(MAXON_SOURCE_LOCATION);
+
+		return OK;
+	}
+
+	MAXON_METHOD Result<void> Write(const void* data, HyperFile* hf) const
+	{
+		if (!data || !hf)
+			return IllegalArgumentError(MAXON_SOURCE_LOCATION);
+
+		const PointIndex* dataPtr = static_cast<const PointIndex*>(data);
+		if (!dataPtr)
+			return OutOfMemoryError(MAXON_SOURCE_LOCATION);
+
+		if (!hf->WriteInt32(dataPtr->_index))
+			return IllegalStateError(MAXON_SOURCE_LOCATION);
+
+		if (!hf->WriteInt32(dataPtr->_privateBuffer))
+			return IllegalStateError(MAXON_SOURCE_LOCATION);
+
+		return OK;
+	}
+
+	MAXON_METHOD Int32 GetIcon(Bool perPolyVertex) const
+	{
+		return Olight;
+	}
+};
+
+// Register the custom data tag implementation
+MAXON_COMPONENT_OBJECT_REGISTER(PointIndexImpl, CustomDataTagClasses::POINTINDEX);
+
 } // namespace maxon
+
+#include "c4d_objectdata.h"
+
+// PointIndexImpl usage example in a simple polygon object to track the point changes
+class MyPolyObject : public ObjectData
+{
+	INSTANCEOF(MyPolyObject, ObjectData);
+
+public:
+
+	MyPolyObject() 	{ }
+	~MyPolyObject() 	{ }
+
+	virtual Bool Init(GeListNode* node)
+	{
+		if (!node)
+			return false;
+		PolygonObject* polyOp = static_cast<PolygonObject*>(node);
+
+		if (!polyOp->GetTag(Tpolygon) && !polyOp->GetTag(Tpoint))
+		{
+			polyOp->MakeTag(Tpolygon);
+			polyOp->MakeTag(Tpoint);
+
+			if (!polyOp->ResizeObject(8, 0))
+				return false;
+
+			Vector* 	points = polyOp->GetPointW();
+
+			if (!points)
+				return false;
+
+			points[0] = Vector(0.0);
+			points[1] = Vector(0.0, 10.0, 0.0);
+			points[2] = Vector(0.0, 20.0, 0.0);
+			points[3] = Vector(0.0, 30.0, 0.0);
+			points[4] = Vector(0.0, 40.0, 0.0);
+			points[5] = Vector(0.0, 50.0, 0.0);
+			points[6] = Vector(0.0, 60.0, 0.0);
+			points[7] = Vector(0.0, 70.0, 0.0);
+
+			// we create the new point map tag
+			BaseTag* newDataTag = CustomDataTag::Alloc(ID_POINT_INDEX_TAG);
+			if (!newDataTag)
+				return false;
+
+			polyOp->InsertTag(newDataTag);
+
+			CustomDataTag* customDataTag = static_cast<CustomDataTag*>(newDataTag);
+
+			iferr (customDataTag->InitData())
+			{
+				err.DbgStop();
+				return false;
+			}
+
+			// set the map mode to vertex mode
+			customDataTag->SetMode(CUSTOMDATATAG_MODE::VERTEX);
+
+			Int32 vertexCount = ToPoly(polyOp)->GetPointCount();
+			iferr (customDataTag->Resize(vertexCount))
+			{
+				err.DbgStop();
+				return false;
+			}
+
+			for (Int32 vertexIndex = 0; vertexIndex < vertexCount; ++vertexIndex)
+			{
+				customDataTag->SetVertexData<maxon::PointIndex>(vertexIndex, vertexIndex);
+			}
+
+			// check the vertex index and the value in the map are in sync
+			// the output will be:
+			//			[0], 0
+			//			[1], 1
+			//			[2], 2
+			//			[3], 3
+			//			[4], 4
+			//			[5], 5
+			//			[6], 6
+			//			[7], 7
+
+			for (Int32 vertexIndex = 0; vertexIndex < vertexCount; ++vertexIndex)
+			{
+				const maxon::PointIndex index = customDataTag->GetVertexData<maxon::PointIndex>(vertexIndex);
+				DiagnosticOutput("[@], @", vertexIndex, index);
+			}
+
+			_lastVertexCount = vertexCount;
+		}
+
+		return SUPER::Init(node);
+	}
+
+	virtual Bool Message(GeListNode* node, Int32 type, void* data)
+	{
+		if (type == MSG_UPDATE)
+		{
+			SUPER::Message(node, type, data);
+			PolygonObject* polyOp = static_cast<PolygonObject*>(node);
+			if (!polyOp)
+				return false;
+
+			Int32 currentVertexCount = polyOp->GetPointCount();
+			if (currentVertexCount == _lastVertexCount) // nothing to do here.
+				return true;
+
+			// here you will find your map
+			BaseTag* pointMapTag = polyOp->GetTag(ID_POINT_INDEX_TAG);
+			if (pointMapTag)
+			{
+				CustomDataTag* customDataTag = static_cast<CustomDataTag*>(pointMapTag);
+				if (!customDataTag)
+					return false;
+
+				Int32 valueCount = (Int32)customDataTag->GetComponentCount(); // must be equal to the new object point count
+
+				if (valueCount != polyOp->GetPointCount())
+				{
+					CriticalStop();
+					return false;
+				}
+
+				// Something changed in the point count so the content of the custom data tag show how to map data
+				// if we delete point 4 the output will be:
+				//			[0], 0
+				//			[1], 1
+				//			[2], 2
+				//			[3], 3
+				//			[4], 7
+				//			[5], 5
+				//			[6], 6
+
+				// else if we add a new point the output will be:
+				//			[0], 0
+				//			[1], 1
+				//			[2], 2
+				//			[3], 3
+				//			[4], 4
+				//			[5], 5
+				//			[6], 6
+				//			[7], 7
+				//			[8], -1 (NOTOK)
+				for (Int32 vertexIndex = 0; vertexIndex < valueCount; ++vertexIndex)
+				{
+					const maxon::PointIndex& index = customDataTag->GetVertexData<maxon::PointIndex>(vertexIndex);
+
+					// edit your own data here
+					DiagnosticOutput("[@], @", vertexIndex, index._index);
+
+					// reallign indices in the point map for the next edit
+					customDataTag->SetVertexData<maxon::PointIndex>(vertexIndex, vertexIndex);
+				}
+
+				_lastVertexCount = valueCount;
+			}
+			return true;
+		}
+		return SUPER::Message(node, type, data);
+	}
+
+	DRAWRESULT Draw(BaseObject* op, DRAWPASS drawpass, BaseDraw* bd, BaseDrawHelp* bh)
+	{
+		if (bd->TestBreak())
+			return DRAWRESULT::SKIP;
+
+		bd->SetMatrix_Matrix(op, op->GetMg());
+
+		return bd->DrawPolygonObject(bh, ToPoly(op), DRAWOBJECT::FORCEBASE);
+	}
+
+	static NodeData* Alloc()
+	{
+		return NewObjClear(MyPolyObject);
+	}
+
+private:
+	Int32 _lastVertexCount = 0; // stores the last point count.
+};
+
+Bool RegisterPolyExample()
+{
+	return RegisterObjectPlugin(ID_POINT_INDEX_TAG, "Poly test"_s, OBJECT_POLYGONOBJECT | OBJECT_POINTOBJECT, MyPolyObject::Alloc, ""_s, nullptr, 0);
+}
 
 class ConvertToCustomdataTagCommand : public CommandData
 {
 public:
 
-	virtual Bool Execute(BaseDocument* doc)
+	virtual Bool Execute(BaseDocument* doc, GeDialog* parentManager)
 	{
 		if (!doc)
 			return false;

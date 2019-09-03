@@ -16,7 +16,7 @@ class BitmapSaverTest : public CommandData
 	INSTANCEOF(BitmapSaverTest, CommandData)
 
 public:
-	virtual Bool Execute(BaseDocument* doc);
+	virtual Bool Execute(BaseDocument* doc, GeDialog* parentManager);
 
 	static BitmapSaverTest* Alloc() { return NewObjClear(BitmapSaverTest); }
 };
@@ -101,7 +101,7 @@ static void ExportImage(PaintTexture* tex, BitmapSaverPlugin* bp, COLORMODE colo
 	SendPainterCommand(PAINTER_FORCECLOSETEXTURE, nullptr, copy, nullptr);
 }
 
-Bool BitmapSaverTest::Execute(BaseDocument* doc)
+Bool BitmapSaverTest::Execute(BaseDocument* doc, GeDialog* parentManager)
 {
 	/*
 		AutoAlloc<BaseBitmap> bmp;

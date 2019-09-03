@@ -4,8 +4,6 @@
 /// "ExampleDataImpl" is an standard implementation of a context.
 /// "MeanAverageCommandImpl" is an implementation calculating the average value of a given array.
 /// "MeanMedianCommandImpl" is an implementation calculating the median value of a given array.
-/// "MeanCommandsUnitTest" is the implementation of a unit test that
-/// checks above implementations.
 // ------------------------------------------------------------------------
 
 // MAXON API header files

@@ -152,11 +152,13 @@ public:
 		return OK;
 	}
 	// ------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Saves the image data to the given file.
-	/// @param[in] file			Url of the target file.
-	/// @param[in] props		Media stream properties
-	/// @return							OK on success.
+	/// @param[in] file								Url of the target file.
+	/// @param[in] props							Media stream properties
+	/// @return												OK on success.
 	// ------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	Result<void> SaveImageToFile(const Url& file, const MediaStreamProperties& props)
 	{
 		iferr_scope;
@@ -201,12 +203,14 @@ public:
 	}
 
 	// ------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Writes the header of the image file.
-	/// @param[in] fileStream				FileStream to write into.
-	/// @param[in] width						Image width.
-	/// @param[in] height						Image height.
-	/// @return											OK on success.
+	/// @param[in] fileStream					FileStream to write into.
+	/// @param[in] width							Image width.
+	/// @param[in] height							Image height.
+	/// @return												OK on success.
 	// ------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	Result<void> WriteHeader(const OutputStreamRef& fileStream, Int width, Int height)
 	{
 		iferr_scope;
@@ -237,11 +241,13 @@ public:
 	}
 
 	// ------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Writes a line into the file
-	/// @param[in] row						RGB U8 pixel data.
-	/// @param[in] fileStream			FileStream to write into.
-	/// @return										OK on success.
+	/// @param[in] row								RGB U8 pixel data.
+	/// @param[in] fileStream					FileStream to write into.
+	/// @return												OK on success.
 	// ------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	Result<void> WriteLine(BaseArray<UChar>& row, const OutputStreamRef& fileStream)
 	{
 		iferr_scope;

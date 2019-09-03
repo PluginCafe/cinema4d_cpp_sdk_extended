@@ -260,14 +260,20 @@ static Bool BuildTree(DebugNode* parent, DebugArray& oldlist, DebugArray& newlis
 
 	if (node->IsInstanceOf(Obase))
 	{
-		BaseObject* cc = ((BaseObject*)node)->GetCache(nullptr);
+		BaseObject* obj = static_cast<BaseObject*>(node);
+		BaseObject* cc = obj->GetCache(nullptr);
 		if (cc)
 			if (!BuildTree(n, oldlist, newlist, cc, String("CACHE: ")))
 				return false;
 
-		cc = ((BaseObject*)node)->GetDeformCache();
+		cc = obj->GetDeformCache();
 		if (cc)
 			if (!BuildTree(n, oldlist, newlist, cc, String("DEFORM: ")))
+				return false;
+
+		cc = obj->GetIsoparm();
+		if (cc)
+			if (!BuildTree(n, oldlist, newlist, cc, String("ISOPARM: ")))
 				return false;
 	}
 
@@ -516,7 +522,7 @@ public:
 				if (icon.flags & ICONDATAFLAGS::APPLYCOLORPROFILE)
 					drawflags |= BMP_APPLY_COLORPROFILE;
 				if (icon.flags & ICONDATAFLAGS::DISABLED)
-					drawflags |= BMP_EMBOSSED;
+					drawflags |= BMP_GRAYEDOUT;
 				drawinfo->frame->DrawSetPen(bgColor);
 				drawinfo->frame->DrawBitmap(icon.bmp, wx, wy, ww, wh, icon.x, icon.y, icon.w, icon.h, drawflags);
 			}
@@ -756,12 +762,12 @@ class ActiveObjectDialogCommand : public CommandData
 public:
 	ActiveObjectDialog dlg;
 
-	virtual Bool Execute(BaseDocument* doc)
+	virtual Bool Execute(BaseDocument* doc, GeDialog* parentManager)
 	{
 		return dlg.Open(DLG_TYPE::ASYNC, ID_ACTIVEOBJECT, -1, -1, 500, 300);
 	}
 
-	virtual Int32 GetState(BaseDocument* doc)
+	virtual Int32 GetState(BaseDocument* doc, GeDialog* parentManager)
 	{
 		return CMD_ENABLED;
 	}

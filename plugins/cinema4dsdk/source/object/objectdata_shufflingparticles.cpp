@@ -17,12 +17,12 @@ static const Int32 ID_SDKEXAMPLE_OBJECTDATA_SHUFFLINGPARTICLES = 1038238;
 
 namespace ShufflingParticlesHelpers
 {
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Global helper function to draw a cube.
 	/// @brief Global helper function to draw a cube.
-	/// @param[in] bd         The passed BaseDraw instance.
-	/// @param[in] cubeSizes  The vector containing the cube sizes.
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] bd									The passed BaseDraw instance.
+	/// @param[in] cubeSizes					The vector containing the cube sizes.
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<void> DrawCube(BaseDraw *bd, const Vector *cubeSizes);
 	static maxon::Result<void> DrawCube(BaseDraw *bd, const Vector *cubeSizes)
 	{
@@ -69,14 +69,14 @@ namespace ShufflingParticlesHelpers
 		return maxon::OK;
 	}
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Global helper function to draw a cube.
 	/// @brief Global helper function to draw a cube.
-	/// @param[in] partModGlobalMatrixInv		The reference to the modifier inverted global matrix.
-	/// @param[in] particleGlobalPosition		The vector containing the global particle position.
-	/// @param[in] partModSizes							The reference to the vector representing the modifier's size.
-	/// @return 														True if particle is contained in the modifier box.
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] partModGlobalMatrixInv	The reference to the modifier inverted global matrix.
+	/// @param[in] particleGlobalPosition	The vector containing the global particle position.
+	/// @param[in] partModSizes				The reference to the vector representing the modifier's size.
+	/// @return												True if particle is contained in the modifier box.
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<Bool> IsParticleInObjectBoundaries(const Matrix& partModGlobalMatrixInv, const Vector& particleGlobalPosition, const Vector& partModSizes);
 	static maxon::Result<Bool> IsParticleInObjectBoundaries(const Matrix& partModGlobalMatrixInv, const Vector& particleGlobalPosition, const Vector& partModSizes)
 	{

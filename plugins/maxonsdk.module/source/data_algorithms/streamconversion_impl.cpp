@@ -24,13 +24,13 @@ public:
 		return OK;
 	}
 
-	MAXON_METHOD const DataType* GetSourceType() const
+	MAXON_METHOD const DataType& GetSourceType() const
 	{
 		// Caesar chiper supports only Char
 		return GetDataType<Char>();
 	}
 
-	MAXON_METHOD const DataType* GetDestinationType() const
+	MAXON_METHOD const DataType& GetDestinationType() const
 	{
 		// Caesar chiper supports only Char
 		return GetDataType<Char>();

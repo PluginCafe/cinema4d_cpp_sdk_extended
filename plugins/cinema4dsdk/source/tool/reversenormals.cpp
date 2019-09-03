@@ -124,7 +124,7 @@ error:
 class ReverseNormalsCommand : public CommandData
 {
 public:
-	Int32 GetState(BaseDocument* doc)
+	Int32 GetState(BaseDocument* doc, GeDialog* parentManager)
 	{
 		AutoAlloc<AtomArray> arr;
 		if (!doc || !arr)
@@ -137,7 +137,7 @@ public:
 		return CMD_ENABLED;
 	}
 
-	Bool Execute(BaseDocument* doc)
+	Bool Execute(BaseDocument* doc, GeDialog* parentManager)
 	{
 		AutoAlloc<AtomArray> arr;
 		if (!doc || !arr)

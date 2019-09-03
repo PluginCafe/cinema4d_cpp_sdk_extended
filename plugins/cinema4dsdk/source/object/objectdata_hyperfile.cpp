@@ -104,7 +104,7 @@ static Bool PrintFileError(const Filename& fn, const HyperFile* const hf, const 
 
 	if (verbose)
 		ApplicationOutput("  " + String::IntToString(ERROR_NAME) + ": " + FileErrorToString(hf)); // FileErrorToString() is a custom function.
-	return (err == FILEERROR::NONE);
+	return err == FILEERROR::NONE;
 }
 
 

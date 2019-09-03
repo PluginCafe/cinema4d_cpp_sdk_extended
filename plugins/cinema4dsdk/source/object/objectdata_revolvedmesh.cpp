@@ -17,7 +17,7 @@ static const Int32 ID_SDKEXAMPLE_OBJECTDATA_REVOLVEDMESH = 1038750;
 
 namespace RevolvedMeshHelpers
 {
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Global helper function to populate PolygonObject vertices array and polygon indices array
 	/// with the data contained in a 2-dim array of vector listing the vertices space position.
 	/// @brief Global helper function to populate PolygonObject with data from 2-dim array of positions.
@@ -29,7 +29,7 @@ namespace RevolvedMeshHelpers
 	/// @param[in] closedS						The reference to the boolean closure status along S-direction.
 	/// @param[in] closedT						The reference to the boolean closure status along T-direction.
 	/// @return												@trueIfOtherwiseFalse{successful}
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<void> FillPolygonObjectData(PolygonObject& polyObj, const Int32& verticesAlongS, const Int32& verticesAlongT, HierarchyHelp* hh, const maxon::BaseArray<maxon::BaseArray<Vector>>& verticesBA, const Bool& closedS = false, const Bool& closedT = false);
 	static maxon::Result<void> FillPolygonObjectData(PolygonObject& polyObj, const Int32& verticesAlongS, const Int32& verticesAlongT, HierarchyHelp* hh, const maxon::BaseArray<maxon::BaseArray<Vector>>& verticesBA, const Bool& closedS/*= false*/, const Bool& closedT/*= false*/)
 	{
@@ -117,7 +117,7 @@ namespace RevolvedMeshHelpers
 		return maxon::OK;
 	}
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Global helper function to resize the BaseArray of BaseArray of vector for storing points pos.
 	/// @brief Global helper function to create, init and return a 2-dim BaseArray of vector.
 	/// @param[in] verticesBA					The 2-dim BaseArray storing the vertices position.
@@ -126,7 +126,7 @@ namespace RevolvedMeshHelpers
 	/// @param[in] closedA						The reference to the boolean closure status along S-direction.
 	/// @param[in] closedB						The reference to the boolean closure status along T-direction.
 	/// @return												@trueIfOtherwiseFalse{successful}
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<void> ResizeverticesBaseArray(maxon::BaseArray<maxon::BaseArray<Vector>>& verticesBA, const Int32& sizeA, const Int32& sizeB, const Bool& closedA = false, const Bool& closedB = false);
 	static maxon::Result<void> ResizeverticesBaseArray(maxon::BaseArray<maxon::BaseArray<Vector>>& verticesBA, const Int32& sizeA, const Int32& sizeB, const Bool& closedA/*= false*/, const Bool& closedB/*= false*/)
 	{
@@ -168,28 +168,28 @@ public:
 	virtual Bool Message(GeListNode* node, Int32 type, void* data);
 
 private:
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Method filling the 2-dim BaseArray responsible for storing the vertices position.
 	/// @brief Method to populate the 2-dim BaseArray responsible for storing the vertices position.
-	/// @param[in] verticesData		The reference to the 2-dim BaseArray instance.
-	/// @param[in] stepsS					The reference to the number of segments on S.
-	/// @param[in] stepsT					The reference to the number of segments on T.
-	/// @param[in] axis						The reference to the vector defining the spinning axis.
-	/// @param[in] angleStart			The reference to the start spinning angle value.
-	/// @param[in] angleEnd				The reference to the end spinning angle value.
-	/// @param[in] closedS				The reference to the boolean closure status along S-direction.
-	/// @param[in] closedT				The reference to the boolean closure status along T-direction.
-	/// @return										@trueIfOtherwiseFalse{successful}
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] verticesData				The reference to the 2-dim BaseArray instance.
+	/// @param[in] stepsS							The reference to the number of segments on S.
+	/// @param[in] stepsT							The reference to the number of segments on T.
+	/// @param[in] axis								The reference to the vector defining the spinning axis.
+	/// @param[in] angleStart					The reference to the start spinning angle value.
+	/// @param[in] angleEnd						The reference to the end spinning angle value.
+	/// @param[in] closedS						The reference to the boolean closure status along S-direction.
+	/// @param[in] closedT						The reference to the boolean closure status along T-direction.
+	/// @return												@trueIfOtherwiseFalse{successful}
+	//----------------------------------------------------------------------------------------
 	maxon::Result<void> FillverticesPosition(maxon::BaseArray<maxon::BaseArray<Vector>>& verticesData, const Int32& stepsS, const Int32& stepsT, const Vector& axis = Vector(0, 1, 0), const Float& angleStart = 0, const Float& angleEnd = 360, const Bool& closedS = false, const Bool& closedT = false);
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Method checking and setting the Phong tag for the returned PolygonObject.
 	/// @brief Method to check and set the Phong tag for the returned PolygonObject.
-	/// @param[in] op							The pointer to the BaseObject instance. @callerOwnsPointed{hierarchy helper}.
-	/// @param[in] polyObj				The pointer to the PolygonObject instance. @callerOwnsPointed{polygon object}.
-	/// @return										@trueIfOtherwiseFalse{successful}
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] op									The pointer to the BaseObject instance. @callerOwnsPointed{hierarchy helper}.
+	/// @param[in] polyObj						The pointer to the PolygonObject instance. @callerOwnsPointed{polygon object}.
+	/// @return												@trueIfOtherwiseFalse{successful}
+	//----------------------------------------------------------------------------------------
 	maxon::Result<void> CheckAndSetPhongTag(BaseObject* op, PolygonObject* polyObj);
 
 private:

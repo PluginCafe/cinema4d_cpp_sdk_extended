@@ -15,16 +15,16 @@ class BlendFunctionStepUnitTest : public UnitTestComponent<BlendFunctionStepUnit
 {
 	MAXON_COMPONENT();
 
-	// ------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Internal utility function to perform the blend operation and to compare
 	/// the result to the expected value.
-	/// @param[in] step				BlendFunctionRef object
-	/// @param[in] start			Start value
-	/// @param[in] end				End value
-	/// @param[in] x					Interpolation position
-	/// @param[in] expected		Expected result value
-	/// @return								OK if the result equals the expected value.
-	// ------------------------------------------------------------------------
+	/// @param[in] step								BlendFunctionRef object
+	/// @param[in] start							Start value
+	/// @param[in] end								End value
+	/// @param[in] x									Interpolation position
+	/// @param[in] expected						Expected result value
+	/// @return												OK if the result equals the expected value.
+	//----------------------------------------------------------------------------------------
 	Result<void> CompareFloatUnitTest(const BlendFunctionRef& step, Float32 start, Float32 end, Float32 x, Float32 expected)
 	{
 		iferr_scope;

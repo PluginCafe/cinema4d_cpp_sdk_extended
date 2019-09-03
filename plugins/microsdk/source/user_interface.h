@@ -10,5 +10,5 @@ namespace microsdk
 void RegisterCubeCommand();
 }
 
-#endif
+#endif // USER_INTERFACE_H__
 

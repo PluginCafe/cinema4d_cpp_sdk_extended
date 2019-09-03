@@ -14,14 +14,14 @@ class CaesarCipherUnitTest : public UnitTestComponent<CaesarCipherUnitTest>
 {
 	MAXON_COMPONENT();
 
-	// ------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Internal utility function to encode the given string and compare it to
 	/// the expected result.
-	/// @param[in] shift			Caesar cipher shift value.
-	/// @param[in] source			Input string. Must be upper case letters.
-	/// @param[in] expected		Expected result of the encryption.
-	/// @return								OK if the result equals the expected value.
-	// ------------------------------------------------------------------------
+	/// @param[in] shift							Caesar cipher shift value.
+	/// @param[in] source							Input string. Must be upper case letters.
+	/// @param[in] expected						Expected result of the encryption.
+	/// @return												OK if the result equals the expected value.
+	//----------------------------------------------------------------------------------------
 	Result<void> EncryptAndTest(Int32 shift, const String& source, const String& expected)
 	{
 		iferr_scope;

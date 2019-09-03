@@ -16,7 +16,7 @@ static const Int32 ID_SDKEXAMPLE_OBJECTDATA_RULEDMESH = 1038251;
 
 namespace RuledMeshHelpers
 {
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Global helper function to populate PolygonObject vertices array and polygon indexes array
 	/// with the data contained in a 2-dim array of vector listing the vertices space position.
 	/// @brief Global helper function to populate PolygonObject with data from 2-dim array of positions.
@@ -28,7 +28,7 @@ namespace RuledMeshHelpers
 	/// @param[in] closedS						The reference to the boolean closure status along S-direction.
 	/// @param[in] closedT						The reference to the boolean closure status along T-direction.
 	/// @return												True if operation completes successfully, false otherwise.
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<void> FillPolygonObjectData(PolygonObject &polyObj, const Int32 &verticesAlongS, const Int32& verticesAlongT, HierarchyHelp* hh, const maxon::BaseArray<maxon::BaseArray<Vector>> &verticesBA, const Bool& closedS = false, const Bool& closedT = false);
 	static maxon::Result<void> FillPolygonObjectData(PolygonObject &polyObj, const Int32 &verticesAlongS, const Int32& verticesAlongT, HierarchyHelp* hh, const maxon::BaseArray<maxon::BaseArray<Vector>> &verticesBA, const Bool& closedS /*= false*/, const Bool& closedT /*= false*/)
 	{
@@ -117,7 +117,7 @@ namespace RuledMeshHelpers
 		return maxon::OK;
 	}
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Global helper function to resize the BaseArray of BaseArray of vector for storing points pos.
 	/// @brief Global helper function to create, init and return a 2-dim BaseArray of vector.
 	/// @param[in] verticesBA					The 2-dim BaseArray storing the vertices position.
@@ -126,7 +126,7 @@ namespace RuledMeshHelpers
 	/// @param[in] closedA						The reference to the boolean closure status along S-direction.
 	/// @param[in] closedB						The reference to the boolean closure status along T-direction.
 	/// @return												True if resize successfully occurs, false otherwise.
-	//------------------------------------------------------------------------------------------------	
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<void> ResizeVerticesBaseArray(maxon::BaseArray<maxon::BaseArray<Vector>> &verticesBA, const Int32 &sizeA, const Int32 &sizeB, const Bool& closedA = false, const Bool& closedB = false);
 	static maxon::Result<void> ResizeVerticesBaseArray(maxon::BaseArray<maxon::BaseArray<Vector>> &verticesBA, const Int32 &sizeA, const Int32 &sizeB, const Bool& closedA /*= false*/, const Bool& closedB /*= false*/)
 	{
@@ -168,52 +168,52 @@ public:
 	virtual Bool Message(GeListNode* node, Int32 type, void* data);
 
 private:
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Private method to check the dirty status and clone (eventually) the input objects.
 	/// @brief Method to check the dirty status and clone (eventually) the input objects.
-	/// @param[in] op							The pointer to the BaseObject instance. @callerOwnsPointed{hierarchy helper}.
-	/// @param[in] hh							The pointer to the HierarchyHelp isntance. @callerOwnsPointed{object}.
-	/// @param[in] dirtyFlag			The reference to the Bool dirty flag.
-	/// @param[in] firstChild			The pointer to the first input object to start the clone from. @callerOwnsPointed{object}.
-	/// @return										True if successful, false otherwise.
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] op									The pointer to the BaseObject instance. @callerOwnsPointed{hierarchy helper}.
+	/// @param[in] hh									The pointer to the HierarchyHelp isntance. @callerOwnsPointed{object}.
+	/// @param[in] dirtyFlag					The reference to the Bool dirty flag.
+	/// @param[in] firstChild					The pointer to the first input object to start the clone from. @callerOwnsPointed{object}.
+	/// @return												True if successful, false otherwise.
+	//----------------------------------------------------------------------------------------
 	maxon::Result<void> GetFirstAndSecondClonedCurves(BaseObject* op, HierarchyHelp* hh, Bool &dirtyFlag, BaseObject* firstChild);
 	
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Private method to populate the 2-dim BAseArray responsible for storing the vertices position.
 	/// @brief Method to populate the 2-dim BAseArray responsible for storing the vertices position.
-	/// @param[in] verticesData		The reference to the 2-dim BaseArray instance.
-	/// @param[in] stepsS					The reference to the number of segments on S.
-	/// @param[in] stepsT					The reference to the number of segments on T.
-	/// @param[in] firstFlip			The reference to the invert direction flag on the first curve.
-	/// @param[in] secondFlip			The reference to the invert direction flag on the second curve.
-	/// @param[in] paramFirst			The reference to the parametrization type on the first curve.
-	/// @param[in] paramSecond		The reference to the parametrization type on the second curve.
-	/// @return										True if successful, false otherwise.
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] verticesData				The reference to the 2-dim BaseArray instance.
+	/// @param[in] stepsS							The reference to the number of segments on S.
+	/// @param[in] stepsT							The reference to the number of segments on T.
+	/// @param[in] firstFlip					The reference to the invert direction flag on the first curve.
+	/// @param[in] secondFlip					The reference to the invert direction flag on the second curve.
+	/// @param[in] paramFirst					The reference to the parametrization type on the first curve.
+	/// @param[in] paramSecond				The reference to the parametrization type on the second curve.
+	/// @return												True if successful, false otherwise.
+	//----------------------------------------------------------------------------------------
 	maxon::Result<void> FillVerticesPosition(maxon::BaseArray<maxon::BaseArray<Vector>> &verticesData, const Int32 &stepsS, const Int32 &stepsT, const Bool &firstFlip, const Bool &secondFlip, const Int32 &paramFirst, const Int32 &paramSecond);
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Private method to check and set the Phong tag for the returned PolygonObject.
 	/// @brief Method to check and set the Phong tag for the returned PolygonObject.
-	/// @param[in] op							The pointer to the BaseObject instance. @callerOwnsPointed{hierarchy helper}.
-	/// @param[in] polyObj				The pointer to the PolygonOjbect isntance. @callerOwnsPointed{polygon object}.
-	/// @return										True if successful, false otherwise.
-	//------------------------------------------------------------------------------------------------
+	/// @param[in] op									The pointer to the BaseObject instance. @callerOwnsPointed{hierarchy helper}.
+	/// @param[in] polyObj						The pointer to the PolygonOjbect isntance. @callerOwnsPointed{polygon object}.
+	/// @return												True if successful, false otherwise.
+	//----------------------------------------------------------------------------------------
 	maxon::Result<void> CheckAndSetPhongTag(BaseObject *op, PolygonObject *polyObj);
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Private method to allocate the SplingLengthHelper() instances.
 	/// @brief Method to allocate the SplingLengthHelper() instances.
-	/// @return										True if successful, false otherwise.
-	//------------------------------------------------------------------------------------------------
+	/// @return												True if successful, false otherwise.
+	//----------------------------------------------------------------------------------------
 	maxon::Result<void> AllocateSplineHelpers();
 
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Private method used before returning from GVO to release all the allocated resources.
 	/// @brief Method used before returning from GVO to release all the allocated resources.
-	/// @return										True if successful, false otherwise.
-	//------------------------------------------------------------------------------------------------
+	/// @return												True if successful, false otherwise.
+	//----------------------------------------------------------------------------------------
 	maxon::Result<void> FreeResources();
 
 private:

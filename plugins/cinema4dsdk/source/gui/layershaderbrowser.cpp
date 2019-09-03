@@ -323,7 +323,7 @@ public:
 	{
 		DeleteObj(dlg);
 	}
-	virtual Bool Execute(BaseDocument* doc)
+	virtual Bool Execute(BaseDocument* doc, GeDialog* parentManager)
 	{
 		if (!dlg)
 			dlg = NewObjClear(LayerShaderBrowser);
@@ -332,7 +332,7 @@ public:
 		dlg->Open(DLG_TYPE::ASYNC, LAYER_SHADER_BROWSER_ID);
 		return true;
 	}
-	virtual Int32 GetState(BaseDocument* doc)
+	virtual Int32 GetState(BaseDocument* doc, GeDialog* parentManager)
 	{
 		return CMD_ENABLED;
 	}

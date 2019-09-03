@@ -626,20 +626,20 @@ private:
 	AsyncDialog dlg;
 
 public:
-	virtual Bool Execute(BaseDocument* doc);
-	virtual Int32 GetState(BaseDocument* doc);
+	virtual Bool Execute(BaseDocument* doc, GeDialog* parentManager);
+	virtual Int32 GetState(BaseDocument* doc, GeDialog* parentManager);
 	virtual Bool RestoreLayout(void* secret);
 
 	//		virtual Bool ExecuteSubID(BaseDocument *doc, Int32 subid);
 	//		virtual Bool GetSubContainer(BaseDocument *doc, BaseContainer &submenu);
 };
 
-Int32 AsyncTest::GetState(BaseDocument* doc)
+Int32 AsyncTest::GetState(BaseDocument* doc, GeDialog* parentManager)
 {
 	return CMD_ENABLED;
 }
 
-Bool AsyncTest::Execute(BaseDocument* doc)
+Bool AsyncTest::Execute(BaseDocument* doc, GeDialog* parentManager)
 {
 	return dlg.Open(DLG_TYPE::ASYNC_FULLSCREEN_MONITOR, ID_ASYNCTEST, 0, 0);
 }

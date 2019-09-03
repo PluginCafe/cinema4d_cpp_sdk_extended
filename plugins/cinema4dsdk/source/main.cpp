@@ -1,4 +1,4 @@
-// This is the main file of the CINEMA 4D SDK
+// This is the main file of the Cinema 4D SDK
 //
 // When you create your own projects much less code is needed (this file is rather long as it tries to show all kinds of different uses).
 //
@@ -27,8 +27,6 @@
 
 Bool PluginStart()
 {
-	VERSIONTYPE versionType = GeGetVersionType();
-
 	// shader plugin examples
 	if (!RegisterGradient())
 		return false;
@@ -98,7 +96,7 @@ Bool PluginStart()
 		return false;
 
 	// sculpting tool examples
-	if ((versionType ==  VERSIONTYPE::STUDIO) || (versionType ==  VERSIONTYPE::BODYPAINT))
+	if (HasFullFeatureSet())
 	{
 		if (!RegisterSculptDrawPolyTool())
 			return false;
@@ -158,7 +156,7 @@ Bool PluginStart()
 		return false;
 
 	// effector plugin examples, can only be loaded if MoGfx is installed
-	if ((versionType ==  VERSIONTYPE::BROADCAST) || (versionType ==  VERSIONTYPE::STUDIO))
+	if (HasFullFeatureSet())
 	{
 		if (!RegisterNoiseEffector())
 			return false;
@@ -275,6 +273,15 @@ Bool PluginStart()
 	// conversion command for custom data tag
 	if (!RegisterCustomDataTagCommand())
 		return false;
+
+	if (!RegisterPaintTool())
+		return false;
+	
+	if (!RegisterPaintObject())
+		return false;
+
+	if (!RegisterPolyExample())
+		return false;
 	
 	return true;
 }
@@ -282,7 +289,6 @@ Bool PluginStart()
 void PluginEnd()
 {
 	FreeGLTestObject();
-	FreeExampleSNHook();
 	FreePaintAdvanced();
 }
 

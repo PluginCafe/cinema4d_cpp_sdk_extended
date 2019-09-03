@@ -59,7 +59,6 @@ Bool RegisterStylingTag();
 Bool RegisterRenderingTag();
 Bool RegisterGeneratorObject();
 Bool RegisterExampleSNHook();
-void FreeExampleSNHook();
 Bool RegisterStereoVideoPost();
 void MiscTest();
 void MiscDelegateTest();
@@ -103,6 +102,10 @@ Bool RegisterVertexHandle();
 Bool RegisterCustomDataTagDescription();
 Bool RegisterCustomDataTagCommand();
 
+Bool RegisterPaintTool();
+Bool RegisterPaintObject();
+
+Bool RegisterPolyExample();
 void CommandLineRendering(C4DPL_CommandLineArgs* args);
 
 #endif // MAIN_H__

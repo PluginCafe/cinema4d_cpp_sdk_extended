@@ -4,8 +4,8 @@
 /// BlendFunctionInterface.
 // ------------------------------------------------------------------------
 
-#ifndef MAXONSDK_BLENDFUNCTION_H__
-#define MAXONSDK_BLENDFUNCTION_H__
+#ifndef BLENDFUNCTION_DECLARATIONS_H__
+#define BLENDFUNCTION_DECLARATIONS_H__
 
 // MAXON API header file
 #include "maxon/blend_function.h"
@@ -22,4 +22,4 @@ namespace BlendFunctions
 }
 }
 
-#endif
+#endif // BLENDFUNCTION_DECLARATIONS_H__

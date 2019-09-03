@@ -5,8 +5,8 @@
 /// of that interface.
 // ------------------------------------------------------------------------
 
-#ifndef MAXONSDK_STREAMCONVERSION_H__
-#define MAXONSDK_STREAMCONVERSION_H__
+#ifndef STREAMCONVERSION_DECLARATIONS_H__
+#define STREAMCONVERSION_DECLARATIONS_H__
 
 // MAXON API header file
 #include "maxon/streamconversion.h"
@@ -34,5 +34,5 @@ namespace StreamConversions
 #include "streamconversion_declarations1.hxx"
 #include "streamconversion_declarations2.hxx"
 }
-#endif
+#endif // STREAMCONVERSION_DECLARATIONS_H__
 

@@ -105,7 +105,7 @@ DRAWRESULT Spherify::Draw(BaseObject* op, DRAWPASS drawpass, BaseDraw* bd, BaseD
 		Int32			 hitid = op->GetHighlightHandle(bd);
 		HandleInfo info;
 
-		bd->SetPen(GetViewColor(VIEWCOLOR_ACTIVEPOINT));
+		bd->SetPen(GetViewColor(VIEWCOLOR_HANDLES));
 		bd->SetMatrix_Matrix(op, bh->GetMg());
 		for (i = 0; i < HANDLE_CNT; i++)
 		{
@@ -113,12 +113,12 @@ DRAWRESULT Spherify::Draw(BaseObject* op, DRAWPASS drawpass, BaseDraw* bd, BaseD
 			if (hitid == i)
 				bd->SetPen(GetViewColor(VIEWCOLOR_SELECTION_PREVIEW));
 			else
-				bd->SetPen(GetViewColor(VIEWCOLOR_ACTIVEPOINT));
+				bd->SetPen(GetViewColor(VIEWCOLOR_HANDLES));
 			bd->DrawHandle(info.position, DRAWHANDLE::BIG, 0);
 		}
 
 		GetHandle(op, 1, info);
-		bd->SetPen(GetViewColor(VIEWCOLOR_ACTIVEPOINT));
+		bd->SetPen(GetViewColor(VIEWCOLOR_HANDLES));
 		bd->DrawLine(info.position, Vector(0.0), 0);
 	}
 	return DRAWRESULT::OK;

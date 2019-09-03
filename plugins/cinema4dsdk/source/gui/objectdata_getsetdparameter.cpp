@@ -603,14 +603,28 @@ Bool GetSetDParameterExample::LinkGetDParameter(GeListNode* node, const DescID& 
 	if (d.GetType() == DA_NIL) // If the link does not get properly initialized, you need to take care for this situation
 	{
 		AutoAlloc<BaseLink> bl;
-
+		
+		// check the BaseLink returned pointer
+		if (!bl)
+		{
+			flags |= DESCFLAGS_GET::PARAM_GET;
+			return SUPER::GetDParameter(node, id, t_data, flags);
+		}
+		
 		bl->SetLink(nullptr);
 		t_data.SetBaseLink(bl);
 	}
 	else
 	{
 		BaseLink* const bl = d.GetBaseLink();
-
+		
+		// check the BaseLink returned pointer
+		if (!bl)
+		{
+			flags |= DESCFLAGS_GET::PARAM_GET;
+			return SUPER::GetDParameter(node, id, t_data, flags);
+		}
+		
 		t_data.SetBaseLink(*bl);
 	}
 	flags |= DESCFLAGS_GET::PARAM_GET;

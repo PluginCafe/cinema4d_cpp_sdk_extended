@@ -16,7 +16,7 @@ static const Int32 ID_SDKEXAMPLE_OBJECTDATA_PLANEBYPOLYGONS = 1038223;
 
 namespace PlaneByPolygonsHelpers
 {
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	/// Global function responsible to create a plane composed by polygons.
 	/// @brief Global function responsible to create a plane composed by polygons.
 	/// @param[out] polygonObj				Polygon object provided to store created geometry. @callerOwnsPointed{base object}
@@ -26,7 +26,7 @@ namespace PlaneByPolygonsHelpers
 	/// @param[in] planeHeightSegs		Space between columns along the x-axis.
 	/// @param[in] hhPtr							A hierarchy helper for the operation. @callerOwnsPointed{hierarchy helper}
 	/// @return												True if creation process succeeds.
-	//------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
 	static maxon::Result<void> CreatePlaneByPolygons(PolygonObject& polygonObj, const Float& planeWidth, const Float& planeHeight, const Int32& planeWidthSegs, const Int32& planeHeightSegs, HierarchyHelp* hhPtr = nullptr);
 	static maxon::Result<void> CreatePlaneByPolygons(PolygonObject& polygonObj, const Float& planeWidth, const Float& planeHeight, const Int32& planeWidthSegs, const Int32& planeHeightSegs, HierarchyHelp* hhPtr /*= nullptr*/)
 	{

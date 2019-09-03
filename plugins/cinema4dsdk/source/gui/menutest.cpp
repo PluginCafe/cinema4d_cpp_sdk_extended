@@ -7,10 +7,10 @@
 class MenuTest : public CommandData
 {
 public:
-	virtual Bool Execute(BaseDocument* doc);
+	virtual Bool Execute(BaseDocument* doc, GeDialog* parentManager);
 };
 
-Bool MenuTest::Execute(BaseDocument* doc)
+Bool MenuTest::Execute(BaseDocument* doc, GeDialog* parentManager)
 {
 	GeShowMouse(MOUSE_BUSY);
 

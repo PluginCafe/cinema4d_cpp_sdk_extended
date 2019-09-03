@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////
-// CINEMA 4D SDK                                           //
+// Cinema 4D SDK                                           //
 /////////////////////////////////////////////////////////////
 // (c) 1989-2013 MAXON Computer GmbH, all rights reserved  //
 /////////////////////////////////////////////////////////////
@@ -13,7 +13,7 @@ To use C4D in a batch script write e.g. the following (you need to adapt the pat
 C4D returns the RENDERRESULT enumeration value as error code.
 
 == == BATCH SCRIPT on Windows == ==
-start /b /wait "parentconsole" "CINEMA 4D 64 Bit.exe" -nogui -sdk_render cube.c4d -sdk_oimage test.tif
+start /b /wait "parentconsole" "Cinema 4D 64 Bit.exe" -nogui -sdk_render cube.c4d -sdk_oimage test.tif
 
 IF ERRORLEVEL 1 ECHO Error Detected
 IF ERRORLEVEL 1000 IF NOT ERRORLEVEL 1001 ECHO Error Message: Project not found

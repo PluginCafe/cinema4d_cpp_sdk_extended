@@ -4,8 +4,8 @@
 /// MediaOutputUrlInterface.
 // ------------------------------------------------------------------------
 
-#ifndef MAXONSDK_IMAGE_EXPORT_H__
-#define MAXONSDK_IMAGE_EXPORT_H__
+#ifndef MEDIAOUTPUT_DECLARATIONS_H__
+#define MEDIAOUTPUT_DECLARATIONS_H__
 
 // MAXON API header file
 #include "maxon/mediasession_image_export.h"
@@ -21,4 +21,4 @@ namespace ImageSaverClasses
 }
 }
 
-#endif
+#endif // MEDIAOUTPUT_DECLARATIONS_H__
