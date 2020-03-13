@@ -1,0 +1,14 @@
+// Supported platforms - can be [Win64;OSX;Linux]  
+Platform=Win64;OSX
+
+// Type of project - can be [Lib;DLL;App]
+Type=Lib
+
+// API dependencies
+APIS=core.framework
+
+// Enable use of combined use of classic and new (MAXON) API 
+c4d=false
+
+// Module ID definition (should be unique!)
+ModuleId=net.maxonexample.example.customerror.framework

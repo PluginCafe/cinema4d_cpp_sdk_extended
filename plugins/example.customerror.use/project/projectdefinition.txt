@@ -1,0 +1,17 @@
+// Supported platforms - can be [Win64;OSX]  
+Platform=Win64;OSX
+
+// Type of project - can be [Lib;DLL;App]
+Type=DLL
+
+// API dependencies
+APIS=cinema.framework;core.framework;example.customerror.framework
+
+// C4D component
+C4D=true
+
+stylecheck.level=3 // must be set after c4d=true
+stylecheck.enum-registration=false
+stylecheck.enum-class=false
+
+ModuleId=net.maxonexample.example.customerror.use
