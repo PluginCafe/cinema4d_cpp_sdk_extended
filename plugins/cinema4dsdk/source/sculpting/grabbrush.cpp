@@ -195,5 +195,5 @@ Bool RegisterSculptGrabBrush()
 	pParams->SetMovePointFunc(&ExampleSculptGrabBrush::MovePointsFunc);
 
 	// Register the tool with Cinema4D.
-	return RegisterToolPlugin(SCULPTGRABBRUSH_SDK_EXAMPLE, GeLoadString(IDS_SCULPTGRABBRUSH_TOOL), PLUGINFLAG_TOOL_SCULPTBRUSH | PLUGINFLAG_TOOL_NO_OBJECTOUTLINE, nullptr, GeLoadString(IDS_SCULPTGRABBRUSH_TOOL), NewObjClear(ExampleSculptGrabBrush, pParams));
+	return RegisterToolPlugin(SCULPTGRABBRUSH_SDK_EXAMPLE, GeLoadString(IDS_SCULPTGRABBRUSH_TOOL), PLUGINFLAG_TOOL_SCULPTBRUSH | PLUGINFLAG_TOOL_NO_OBJECTOUTLINE | PLUGINFLAG_TOOL_NO_TOPOLOGY_EDIT, nullptr, GeLoadString(IDS_SCULPTGRABBRUSH_TOOL), NewObjClear(ExampleSculptGrabBrush, pParams));
 }

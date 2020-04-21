@@ -148,5 +148,5 @@ Bool RegisterSculptPullBrush()
 	pParams->SetMovePointFunc(&ExampleSculptPullBrush::MovePointsFunc);
 
 	// Register the tool with Cinema4D.
-	return RegisterToolPlugin(SCULPTPULLBRUSH_SDK_EXAMPLE, GeLoadString(IDS_SCULPTPULLBRUSH_TOOL), PLUGINFLAG_TOOL_SCULPTBRUSH | PLUGINFLAG_TOOL_NO_OBJECTOUTLINE, nullptr, GeLoadString(IDS_SCULPTPULLBRUSH_TOOL), NewObjClear(ExampleSculptPullBrush, pParams));
+	return RegisterToolPlugin(SCULPTPULLBRUSH_SDK_EXAMPLE, GeLoadString(IDS_SCULPTPULLBRUSH_TOOL), PLUGINFLAG_TOOL_SCULPTBRUSH | PLUGINFLAG_TOOL_NO_OBJECTOUTLINE | PLUGINFLAG_TOOL_NO_TOPOLOGY_EDIT, nullptr, GeLoadString(IDS_SCULPTPULLBRUSH_TOOL), NewObjClear(ExampleSculptPullBrush, pParams));
 }

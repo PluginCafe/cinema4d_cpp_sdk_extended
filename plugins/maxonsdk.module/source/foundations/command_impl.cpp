@@ -12,6 +12,7 @@
 
 // local header files
 #include "command_declaration.h"
+#include "maxon/commandobservable.h"
 
 namespace maxonsdk
 {

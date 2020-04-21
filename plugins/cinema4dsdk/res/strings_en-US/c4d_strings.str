@@ -29,10 +29,8 @@ STRINGTABLE
 	IDS_ATOM							"C++ SDK - Atom";
 	IDS_CIRCLE						"C++ SDK - Double Circle";
 	IDS_TRIANGULATE				"C++ SDK - Triangulate";
-	IDS_GL_TEST_OBJECT		"C++ SDK - OpenGL test object";
 	IDS_LOOKATCAMERA			"C++ SDK - Look At Camera";
 	IDS_SIMPLEMATERIAL		"C++ SDK - Simple Material";
-	IDS_FUNKY_GL_MATERIAL	"C++ SDK - Funky OpenGL material";
 	IDS_PARTICLEVOLUME		"C++ SDK - Particle Volume";
 	IDS_MANDELBROT				"C++ SDK - Mandelbrot";
 	IDS_SDKGRADIENT				"C++ SDK - SDK Gradient";
@@ -53,11 +51,9 @@ STRINGTABLE
 	IDS_PRIMITIVETOOL			"C++ SDK - Liquid Painting Tool";
 	IDS_SUBDIALOG					"C++ SDK - Sub-Dialog Example";
 	IDS_VPINVERTIMAGE     "C++ SDK - Invert Image";
-	IDS_VPVISUALIZE_CHANNEL	"C++ SDK - Visualize Channel";
 	IDS_MORPHMIXER				"C++ SDK - Morph Mixer";
 	IDS_VPVISUALIZEPOST		"C++ SDK - Visualize Normals";
 	IDS_VPRECONSTRUCT			"C++ SDK - Reconstruct Image";
-	IDS_VPSTEREO				"C++ SDK - Stereoscopic";
 	IDS_SERIAL_HOOK				"C++ SDK - Example Serial Hook";
 
 	IDS_HLP_EDGECUT_SDK   "C++ SDK - Edge Cut";

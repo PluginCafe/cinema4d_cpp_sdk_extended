@@ -127,5 +127,5 @@ Bool RegisterPaintBrushBase()
 	String name = GeLoadString(IDS_PAINT_BRUSH_BASE); 
 	if (!name.IsPopulated()) 
 		return true;
-	return RegisterToolPlugin(ID_PAINT_BRUSH_BASE, name, PLUGINFLAG_TOOL_SCULPTBRUSH|PLUGINFLAG_TOOL_NO_OBJECTOUTLINE, nullptr, GeLoadString(IDS_PAINT_BRUSH_BASE_HELP), NewObjClear(PaintBrushBase, pParams));
+	return RegisterToolPlugin(ID_PAINT_BRUSH_BASE, name, PLUGINFLAG_TOOL_SCULPTBRUSH|PLUGINFLAG_TOOL_NO_OBJECTOUTLINE | PLUGINFLAG_TOOL_NO_TOPOLOGY_EDIT, nullptr, GeLoadString(IDS_PAINT_BRUSH_BASE_HELP), NewObjClear(PaintBrushBase, pParams));
 }

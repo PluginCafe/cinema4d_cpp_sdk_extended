@@ -72,10 +72,6 @@ Bool PluginStart()
 		return false;
 	if (!RegisterCircle())
 		return false;
-	if (!RegisterGLTestObject())
-		return false;
-	if (!RegisterGLTestMaterial())
-		return false;
 	if (!RegisterTriangulate())
 		return false;
 	if (!RegisterMorphMixer())
@@ -140,10 +136,6 @@ Bool PluginStart()
 	if (!RegisterVPVisualizeNormals())
 		return false;
 	if (!RegisterVPReconstruct())
-		return false;
-	if (!RegisterVPVisualizeChannel())
-		return false;
-	if (!RegisterStereoVideoPost())
 		return false;
 
 	if (!RegisterMemoryStat())
@@ -288,7 +280,6 @@ Bool PluginStart()
 
 void PluginEnd()
 {
-	FreeGLTestObject();
 	FreePaintAdvanced();
 }
 

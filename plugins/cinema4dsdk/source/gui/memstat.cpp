@@ -58,9 +58,9 @@ Bool MemStatDialog::CreateLayout()
 		AddStaticText(0, BFH_FIT, 0, 0, "Memory Peak"_s, 0); AddStaticText(IDC_MEMORY_STAT_MEMORY_PEAK, BFH_SCALEFIT, SizeChr(140), 0, String(), 0);
 		AddStaticText(0, BFH_FIT, 0, 0, "Number of Allocations (Current)"_s, 0); AddStaticText(IDC_MEMORY_STAT_NO_OF_ALLOCATIONS_CURRENT, BFH_SCALEFIT, SizeChr(100), 0, String(), 0);
 		AddStaticText(0, BFH_FIT, 0, 0, "Number of Allocations (Total)"_s, 0); AddStaticText(IDC_MEMORY_STAT_NO_OF_ALLOCATIONS_TOTAL, BFH_SCALEFIT, SizeChr(100), 0, String(), 0);
-		AddStaticText(0, BFH_FIT, 0, 0, "OpenGL memory (total/free) MiB"_s, 0); AddStaticText(IDC_MEMORY_STAT_OGL_MEMORY, BFH_SCALEFIT, SizeChr(100), 0, String(), 0);
-		AddStaticText(0, BFH_FIT, 0, 0, "EOGL Texture Cache"_s, 0); AddStaticText(IDC_MEMORY_STAT_EOGL_TEXBUFFER, BFH_SCALEFIT, SizeChr(100), 0, String(), 0);
-		AddStaticText(0, BFH_FIT, 0, 0, "EOGL VBO Cache"_s, 0); AddStaticText(IDC_MEMORY_STAT_EOGL_VERTEXBUFFER, BFH_SCALEFIT, SizeChr(100), 0, String(), 0);
+		AddStaticText(0, BFH_FIT, 0, 0, "Viewport memory (allocated/used) MiB"_s, 0); AddStaticText(IDC_MEMORY_STAT_OGL_MEMORY, BFH_SCALEFIT, SizeChr(100), 0, String(), 0);
+		// AddStaticText(0, BFH_FIT, 0, 0, "EOGL Texture Cache"_s, 0); AddStaticText(IDC_MEMORY_STAT_EOGL_TEXBUFFER, BFH_SCALEFIT, SizeChr(100), 0, String(), 0);
+		// AddStaticText(0, BFH_FIT, 0, 0, "EOGL VBO Cache"_s, 0); AddStaticText(IDC_MEMORY_STAT_EOGL_VERTEXBUFFER, BFH_SCALEFIT, SizeChr(100), 0, String(), 0);
 	}
 	GroupEnd();
 
@@ -100,16 +100,16 @@ Bool MemStatDialog::InitValues()
 
 	BaseContainer stat;
 	// since this function is slow we have to tell Cinema that we need this information by setting 1
-	stat.SetInt32(C4D_MEMORY_STAT_OPENGL_TOTAL, 1);
+	stat.SetInt32(C4D_MEMORY_STAT_OPENGL_ALLOCATED, 1);
 	GeGetMemoryStat(stat);
 
 	SetString(IDC_MEMORY_STAT_MEMORY_INUSE, String::MemoryToString(stat.GetInt64(C4D_MEMORY_STAT_MEMORY_INUSE)));
 	SetString(IDC_MEMORY_STAT_MEMORY_PEAK, String::MemoryToString(stat.GetInt64(C4D_MEMORY_STAT_MEMORY_PEAK)));
 	SetString(IDC_MEMORY_STAT_NO_OF_ALLOCATIONS_TOTAL, GetNoOfAllocationsString(stat.GetInt64(C4D_MEMORY_STAT_NO_OF_ALLOCATIONS_TOTAL)));
 	SetString(IDC_MEMORY_STAT_NO_OF_ALLOCATIONS_CURRENT, GetNoOfAllocationsString(stat.GetInt64(C4D_MEMORY_STAT_NO_OF_ALLOCATIONS_CURRENT)));
-	SetString(IDC_MEMORY_STAT_OGL_MEMORY, GetOGLMemoryString(stat.GetInt32(C4D_MEMORY_STAT_OPENGL_TOTAL)) + " / " + GetOGLMemoryString(stat.GetInt32(C4D_MEMORY_STAT_OPENGL_FREE)));
-	SetString(IDC_MEMORY_STAT_EOGL_TEXBUFFER, String::MemoryToString(stat.GetInt64(C4D_MEMORY_STAT_EOGL_TEXBUFFER)) + String(" (") + String::IntToString(stat.GetInt32(C4D_MEMORY_STAT_EOGL_TEXTUREBUFFER_CNT)) + String(")"));
-	SetString(IDC_MEMORY_STAT_EOGL_VERTEXBUFFER, String::MemoryToString(stat.GetInt64(C4D_MEMORY_STAT_EOGL_VERTEXBUFFER)) + String(" (") + String::IntToString(stat.GetInt32(C4D_MEMORY_STAT_EOGL_VERTEXBUFFER_CNT)) + String(")"));
+	SetString(IDC_MEMORY_STAT_OGL_MEMORY, GetOGLMemoryString(stat.GetInt32(C4D_MEMORY_STAT_OPENGL_ALLOCATED)) + " / " + GetOGLMemoryString(stat.GetInt32(C4D_MEMORY_STAT_OPENGL_USED)));
+	//SetString(IDC_MEMORY_STAT_EOGL_TEXBUFFER, String::MemoryToString(stat.GetInt64(C4D_MEMORY_STAT_EOGL_TEXBUFFER)) + String(" (") + String::IntToString(stat.GetInt32(C4D_MEMORY_STAT_EOGL_TEXTUREBUFFER_CNT)) + String(")"));
+	//SetString(IDC_MEMORY_STAT_EOGL_VERTEXBUFFER, String::MemoryToString(stat.GetInt64(C4D_MEMORY_STAT_EOGL_VERTEXBUFFER)) + String(" (") + String::IntToString(stat.GetInt32(C4D_MEMORY_STAT_EOGL_VERTEXBUFFER_CNT)) + String(")"));
 
 	return true;
 }

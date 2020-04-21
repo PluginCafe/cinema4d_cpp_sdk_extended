@@ -1,6 +1,8 @@
-#include "maxon/cryptography.h"
 #include "maxon/big_integer.h"
+#include "maxon/crc32c.h"
+#include "maxon/cryptography.h"
 #include "maxon/datacompression.h"
+#include "maxon/errortypes.h"
 #include "c4d.h"
 #include "c4d_symbols.h"
 #include "main.h"
@@ -96,7 +98,7 @@ public:
 
 		Bool ok = (origCRC == newCRC && signatureOK1 && !signatureOK2);
 		::String error;
-		if (!ok)
+		if (ok)
 		{
 			error = "PGP test succeeded";
 		}

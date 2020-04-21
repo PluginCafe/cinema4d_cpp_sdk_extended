@@ -1108,12 +1108,10 @@ DRAWRESULT LatticePlaneModifier::Draw(BaseObject* op, DRAWPASS drawpass, BaseDra
 	// Update the BaseDraw instance's parameters based on the DRAWPASS type.
 	if (drawpass == DRAWPASS::HIGHLIGHTS)
 	{
-
 		Vector col(DC);
 		if (!bd->GetHighlightPassColor(*bh, true, col))
 			return DRAWRESULT::SKIP;
 		bd->SetPen(col);
-		bd->GetHighlightFramebuffer();
 	}
 	else
 	{

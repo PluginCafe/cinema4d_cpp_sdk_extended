@@ -28,7 +28,6 @@ Int32 LiquidToolData::GetState(BaseDocument* doc)
 Bool LiquidToolData::KeyboardInput(BaseDocument* doc, BaseContainer& data, BaseDraw* bd, EditorWindow* win, const BaseContainer& msg)
 {
 	Int32	 key = msg.GetData(BFM_INPUT_CHANNEL).GetInt32();
-	String str = msg.GetData(BFM_INPUT_ASC).GetString();
 	if (key == KEY_ESC)
 	{
 		// do what you want

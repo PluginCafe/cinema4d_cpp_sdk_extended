@@ -136,5 +136,5 @@ Bool RegisterSculptBrushTwist()
 	pParams->SetUndoType(SCULPTBRUSHDATATYPE::POINT);
 	pParams->SetMovePointFunc(&SculptBrushTwist::MovePointsFunc);
 
-	return RegisterToolPlugin(ID_SCULPT_BRUSH_TWIST, name, PLUGINFLAG_HIDEPLUGINMENU | PLUGINFLAG_TOOL_SCULPTBRUSH | PLUGINFLAG_TOOL_NO_OBJECTOUTLINE, nullptr, String(), NewObjClear(SculptBrushTwist, pParams));
+	return RegisterToolPlugin(ID_SCULPT_BRUSH_TWIST, name, PLUGINFLAG_HIDEPLUGINMENU | PLUGINFLAG_TOOL_SCULPTBRUSH | PLUGINFLAG_TOOL_NO_OBJECTOUTLINE | PLUGINFLAG_TOOL_NO_TOPOLOGY_EDIT, nullptr, String(), NewObjClear(SculptBrushTwist, pParams));
 }

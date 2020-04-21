@@ -6,6 +6,8 @@
 #include "c4d.h"
 #include "c4d_symbols.h"
 #include "main.h"
+#include <stdarg.h>
+#include "maxon/utilities/sprintf_safe.h"
 
 struct TestData
 {

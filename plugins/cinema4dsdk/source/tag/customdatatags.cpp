@@ -39,7 +39,7 @@ public:
 		return OK;
 	}
 
-	MAXON_METHOD Result<void> DisplayControl(BaseTag* tag, BaseDocument* doc, BaseObject* op, BaseDraw* bd, BaseDrawHelp* bh, ControlDisplayStruct& cds)
+	MAXON_METHOD Result<void> DisplayControl(BaseTag* tag, BaseDocument* doc, BaseObject* op, BaseDraw* bd, BaseDrawHelp* bh, ControlDisplayStruct& cds) const
 	{
 		iferr_scope;
 
@@ -56,24 +56,24 @@ public:
 			case CUSTOMDATATAG_MODE::VERTEX:
 			{
 				Int32 pointCount = ToPoint(op)->GetPointCount();
-				cds.vertex_color = NewMem(Vector32, pointCount) iferr_return;
+				cds.vertex_color = NewMem(maxon::Color32, pointCount) iferr_return;
 				for (Int32 vertexIndex = 0; vertexIndex < pointCount; ++vertexIndex)
 				{
 					const ColorA32 col = customtag->GetVertexData<ColorA32>(vertexIndex);
-					cds.vertex_color[vertexIndex] = col.GetVector().GetVector3();
+					cds.vertex_color[vertexIndex] = col.GetColor3();
 				}
 				break;
 			}
 			case CUSTOMDATATAG_MODE::POLYVERTEX:
 			{
 				Int32 polygonCount = ToPoly(op)->GetPolygonCount();
-				cds.vertex_color = NewMem(Vector32, polygonCount * 4) iferr_return;
+				cds.vertex_color = NewMem(maxon::Color32, polygonCount * 4) iferr_return;
 				for (Int32 polygonIndex = 0; polygonIndex < polygonCount; ++polygonIndex)
 				{
 					for (Int32 i = 0; i < 4; ++i)
 					{
 						const ColorA32& color = customtag->GetPolyVertexData<ColorA32>(polygonIndex, i);
-						cds.vertex_color[4 * polygonIndex + i] = color.GetVector().GetVector3();
+						cds.vertex_color[4 * polygonIndex + i] = color.GetColor3();
 					}
 				}
 				break;
@@ -293,7 +293,13 @@ public:
 			return Ocone;
 		return Osky;
 	}
+	
 
+	MAXON_METHOD Bool Message(GeListNode* node, Int32 type, void* data) const
+	{
+		return true;
+	}
+	
 };
 
 class VertexFloatDisplayImpl : public Component<VertexFloatDisplayImpl, CustomDataTagDisplayInterface>
@@ -338,7 +344,7 @@ public:
 		return OK;
 	}
 
-	MAXON_METHOD Result<void> DisplayControl(BaseTag* tag, BaseDocument* doc, BaseObject* op, BaseDraw* bd, BaseDrawHelp* bh, ControlDisplayStruct& cds)
+	MAXON_METHOD Result<void> DisplayControl(BaseTag* tag, BaseDocument* doc, BaseObject* op, BaseDraw* bd, BaseDrawHelp* bh, ControlDisplayStruct& cds) const
 	{
 		iferr_scope;
 
@@ -356,25 +362,25 @@ public:
 				case CUSTOMDATATAG_MODE::VERTEX:
 				{
 					Int32 pointCount = ToPoint(op)->GetPointCount();
-					cds.vertex_color = NewMem(Vector32, pointCount) iferr_return;
+					cds.vertex_color = NewMem(maxon::Color32, pointCount) iferr_return;
 					for (Int32 vertexIndex = 0; vertexIndex < pointCount; ++vertexIndex)
 					{
 						const Float w = customtag->GetVertexData<Float>(vertexIndex);
-						cds.vertex_color[vertexIndex] = (Vector32)_gradient->CalcGradientPixel(w);
+						cds.vertex_color[vertexIndex] = (maxon::Color32)_gradient->CalcGradientPixel(w);
 					}
 					break;
 				}
 				case CUSTOMDATATAG_MODE::POLYVERTEX:
 				{
 					Int32 polygonCount = ToPoly(op)->GetPolygonCount();
-					cds.vertex_color = NewMem(Vector32, polygonCount * 4) iferr_return;
+					cds.vertex_color = NewMem(maxon::Color32, polygonCount * 4) iferr_return;
 
 					for (Int32 polygonIndex = 0; polygonIndex < polygonCount; ++polygonIndex)
 					{
 						for (Int32 i = 0; i < 4; ++i)
 						{
 							const Float& v = customtag->GetPolyVertexData<Float>(polygonIndex, i);
-							cds.vertex_color[4 * polygonIndex + i] = (Vector32)_gradient->CalcGradientPixel(v);
+							cds.vertex_color[4 * polygonIndex + i] = (maxon::Color32)_gradient->CalcGradientPixel(v);
 						}
 					}
 					break;
@@ -596,6 +602,11 @@ public:
 			return Ocube;
 		return Olight;
 	}
+	
+	MAXON_METHOD Bool Message(GeListNode* node, Int32 type, void* data) const
+	{
+		return true;
+	}
 };
 
 MAXON_COMPONENT_OBJECT_REGISTER(VertexFloatImpl, CustomDataTagClasses::FLOAT)
@@ -651,7 +662,7 @@ public:
 	{
 		const PointIndex* a = static_cast<const PointIndex*>(data1);
 		const PointIndex* b = static_cast<const PointIndex*>(data2);
-		return a == b;
+		return *a == *b;
 	}
 
 	MAXON_METHOD void AtrAdd(void* data1, const void* data2) const { }
@@ -712,6 +723,12 @@ public:
 	{
 		return Olight;
 	}
+	
+	MAXON_METHOD Bool Message(GeListNode* node, Int32 type, void* data) const
+	{
+		return true;
+	}
+	
 };
 
 // Register the custom data tag implementation

@@ -1,3 +1,4 @@
+#include "maxon/threadservices.h"
 #include "c4d_baseobject.h"
 #include "c4d_general.h"
 #include "c4d_includes.h"

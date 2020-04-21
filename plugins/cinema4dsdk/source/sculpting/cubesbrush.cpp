@@ -146,5 +146,5 @@ Bool RegisterSculptCubesBrush()
 	pParams->SetMovePointFunc(&SculptCubesBrush::MovePointsFunc);
 
 	// Register the tool with Cinema4D.
-	return RegisterToolPlugin(SCULPTCUBESBRUSH_SDK_EXAMPLE, GeLoadString(IDS_SCULPTCUBESBRUSH_TOOL), PLUGINFLAG_TOOL_SCULPTBRUSH | PLUGINFLAG_TOOL_NO_OBJECTOUTLINE, nullptr, GeLoadString(IDS_SCULPTCUBESBRUSH_TOOL), NewObjClear(SculptCubesBrush, pParams));
+	return RegisterToolPlugin(SCULPTCUBESBRUSH_SDK_EXAMPLE, GeLoadString(IDS_SCULPTCUBESBRUSH_TOOL), PLUGINFLAG_TOOL_SCULPTBRUSH | PLUGINFLAG_TOOL_NO_OBJECTOUTLINE | PLUGINFLAG_TOOL_NO_TOPOLOGY_EDIT, nullptr, GeLoadString(IDS_SCULPTCUBESBRUSH_TOOL), NewObjClear(SculptCubesBrush, pParams));
 }

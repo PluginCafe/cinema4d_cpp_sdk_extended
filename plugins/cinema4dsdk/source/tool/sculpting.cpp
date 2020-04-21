@@ -3,6 +3,8 @@
 #include "c4d_symbols.h"
 #include "main.h"
 
+#if 0
+
 //#define USE_TIMER
 
 #define ID_SCULPTING_TOOL	450000250
@@ -334,8 +336,10 @@ void SculptingTool::UpdateObject(Vector* pvPoints, Float rMouseX, Float rMouseY,
 #endif
 }
 
+#endif
 
 Bool RegisterSculptingTool()
 {
-	return RegisterToolPlugin(ID_SCULPTING_TOOL, GeLoadString(IDS_SCULPTING_TOOL), PLUGINFLAG_TOOL_NO_WIREFRAME, nullptr, GeLoadString(IDS_SCULPTING_TOOL), NewObjClear(SculptingTool));
+	return true;
+	//return RegisterToolPlugin(ID_SCULPTING_TOOL, GeLoadString(IDS_SCULPTING_TOOL), PLUGINFLAG_TOOL_NO_WIREFRAME, nullptr, GeLoadString(IDS_SCULPTING_TOOL), NewObjClear(SculptingTool));
 }

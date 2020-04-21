@@ -5,6 +5,7 @@
 #include "fsdkstlimport.h"
 #include "fsdkstlexport.h"
 #include "main.h"
+#include <stdio.h>
 
 class STLLoaderData : public SceneLoaderData
 {

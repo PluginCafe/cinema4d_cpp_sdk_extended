@@ -42,33 +42,7 @@ public:
 };
 
 // We choose pure registration, because the node has no lazy evaluation (and is evaluated from left to right).
-	MAXON_CORENODE_REGISTER_PURE(ExampleCoreNode, maxonexample::NODE_CORENODE::SIMPLECORENODE::GetId());
-
-static maxon::Result<void> HandleCoreNodeDescriptions(const maxon::Id& databaseId)
-{
-	iferr_scope;
-
-	maxon::BaseArray<maxon::IdAndVersion> ids = maxon::DataDescriptionDefinitionDatabaseInterface::GetRegisteredDescriptions(g_corenodesDatabaseId, maxon::DATADESCRIPTION_CATEGORY_DATA, maxon::LanguageRef()) iferr_return;
-	for (const maxon::IdAndVersion& id : ids)
-	{
-		maxon::DataDescription description = maxon::DataDescriptionDatabaseInterface::LoadDescription(maxon::DATADESCRIPTION_CATEGORY_DATA, maxon::LanguageRef(), id.first) iferr_return;
-
-		maxon::DataDictionary info = description.GetInfo();
-
-		maxon::Id builderId = info.Get(maxon::DESCRIPTION::DATA::INFO::PROCESSOR, maxon::Id());
-		if (builderId.IsPopulated())
-		{
-			const maxon::DescriptionProcessor& processor = maxon::DescriptionProcessors::Get(builderId);
-			if (processor)
-			{
-				maxon::GenericData d = processor.Process(id.first, description) iferr_return;
-				g_coreNodeDescriptions.Append(std::move(d)) iferr_return;
-			}
-		}
-	}
-
-	return maxon::OK;
-}
+MAXON_CORENODE_REGISTER_PURE(ExampleCoreNode, maxonexample::NODE_CORENODE::SIMPLECORENODE::GetId());
 
 static maxon::Result<void> HandleInitializeModule()
 {
@@ -87,8 +61,6 @@ static maxon::Result<void> HandleInitializeModule()
 
 	// Load core node descriptions (they register automatically).
 	maxon::DataDescriptionDefinitionDatabaseInterface::RegisterDatabaseWithUrl(g_corenodesDatabaseId, coreNodesResourceUrl) iferr_return;
-	// Register the core nodes.
-	HandleCoreNodeDescriptions(g_corenodesDatabaseId) iferr_return;
 
 	return maxon::OK;
 }

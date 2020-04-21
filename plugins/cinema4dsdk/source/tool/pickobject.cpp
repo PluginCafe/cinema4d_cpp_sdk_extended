@@ -1,7 +1,8 @@
 #include "c4d.h"
 #include "c4d_symbols.h"
-#include "toolpickobjectsdk.h"
 #include "main.h"
+#include "toolpickobjectsdk.h"
+#include <stdio.h>
 
 #define ID_SAMPLE_PICK_OBJECT_TOOL 450000263
 
@@ -19,7 +20,8 @@ public:
 	virtual Bool GetDDescription(BaseDocument* doc, BaseContainer& data, Description* description, DESCFLAGS_DESC& flags);
 
 private:
-	Vector GetWorldCoordinates(BaseDraw* bd, const Matrix4d& m, Float x, Float y, Float z);
+	Vector4d GetClipCoordinates(BaseDraw* bd, Float x, Float y, Float z, Int32 sampleLocation);
+	Vector GetWorldCoordinates(BaseDraw* bd, const maxon::SquareMatrix4d& m, Float x, Float y, Float z, Int32 sampleLocation, Vector4d& clipCoodinates);
 
 	BaseDraw* _lastBaseDraw;
 	Int32			_mouseX, _mouseY;
@@ -103,35 +105,26 @@ Int32 PickObjectTool::GetState(BaseDocument* doc)
 	return CMD_ENABLED;
 }
 
-Vector PickObjectTool::GetWorldCoordinates(BaseDraw* bd, const Matrix4d& m, Float x, Float y, Float z)
+Vector4d PickObjectTool::GetClipCoordinates(BaseDraw* bd, Float x, Float y, Float z, Int32 sampleLocation)
 {
-	// pick object returns the view-projection matrix. This transforms a point in camera space into clip space.
+	return bd->ScreenToClipSpace(Vector(x, y, z), sampleLocation);
+}
 
-	Int32		 l, t, r, b, w, h;
-	Vector4d pos;
-	Vector	 posWorld;
+Vector PickObjectTool::GetWorldCoordinates(BaseDraw* bd, const maxon::SquareMatrix4d& m, Float x, Float y, Float z, Int32 sampleLocation, Vector4d& clipCoodinates)
+{
+	// Pick object returns the view-projection matrix. This transforms a point in camera space into clip space.
+	Vector4d pos = GetClipCoordinates(bd, x, y, z, sampleLocation);
+	clipCoodinates = pos;
+	Vector posWorld;
 
-	bd->GetFrame(&l, &t, &r, &b);
-	if (l == r || b == t)
-		return Vector(0.0);
+	// Apply the inverse view transform
+	maxon::SquareMatrix4d im = ~m;
+	pos = im * pos;
 
-	w = r - l;
-	h = b - t;
-
-	// first, transform the points into clip space
-	pos.x = (x - Float(l)) / Float(w);
-	pos.y = (y - Float(t)) / Float(h);
-	pos.z = z;
-	pos.w = 1.0;
-	pos = pos * 2.0f - Vector4d(1.0f);
-	pos.y = -pos.y;
-
-	// apply the inverse view transform
-	Matrix4d im = GetGlInverseMatrix(m);
-	pos = GlMultiply(im, pos);
+	// Divide by w.
 	pos.NormalizeW();
 
-	// convert it into a 3-tuple
+	// Convert it into a 3-tuple and multiply with the view matrix to get the world coordinates.
 	posWorld = bd->GetMg() * pos.GetVector3();
 
 	return posWorld;
@@ -153,22 +146,27 @@ Bool PickObjectTool::GetCursorInfo(BaseDocument* doc, BaseContainer& data, BaseD
 		if (list)
 		{
 			// get the z position of the topmost object. The z range for objects is from -1 to 1.
-			Float		 z = 1.0;
-			String	 str;
-			Matrix4d m;
-			ViewportSelect::PickObject(bd, doc, _mouseX, _mouseY, 1, VIEWPORT_PICK_FLAGS::ALLOW_OGL | VIEWPORT_PICK_FLAGS::USE_SEL_FILTER | VIEWPORT_PICK_FLAGS::OGL_ONLY_TOPMOST, nullptr, list, &m);
+			Float z = 1.0;
+			maxon::String str;
+			maxon::SquareMatrix4d m;
+			Int32 sampleLocation = 0;
+			ViewportSelect::PickObject(bd, doc, _mouseX, _mouseY, 1, VIEWPORT_PICK_FLAGS::ALLOW_OGL | VIEWPORT_PICK_FLAGS::USE_SEL_FILTER | VIEWPORT_PICK_FLAGS::OGL_ONLY_TOPMOST, nullptr, list, &m, &sampleLocation);
 			if (list->GetCount() > 0)
 				z = list->GetZ(0);
 			if (z < 1.0)
 			{
-				Vector v = GetWorldCoordinates(bd, m, x, y, z);
-				char	 ch[200];
-				sprintf(ch, "Mouse coordinates: (%d, %d), world coordinates: (%.4f, %.4f, %.4f)", _mouseX, _mouseY, v.x, v.y, v.z);
-				str = ch;
+				Vector4d clipCoordinates;
+				Vector v = GetWorldCoordinates(bd, m, x, y, z, sampleLocation, clipCoordinates);
+				clipCoordinates.NormalizeW();
+				str = FormatString("Mouse coordinates: (@, @, @{.6}), normalized clip coordinates: (@{.4}, @{.4}, @{.6}), world coordinates: (@{.4}, @{.4}, @{.4})", 
+					_mouseX, _mouseY, z, clipCoordinates.x, clipCoordinates.y, clipCoordinates.z, v.x, v.y, v.z);
 			}
 			else
 			{
-				str = "Mouse cursor is not over an object";
+				Vector4d clipCoordinates = GetClipCoordinates(bd, x, y, 1.0, sampleLocation);
+				clipCoordinates.NormalizeW();
+				str = FormatString("Mouse coordinates: (@, @), normalized clip coordinates: (@{.4}, @{.4}) - Mouse is not over an object", 
+					_mouseX, _mouseY, clipCoordinates.x, clipCoordinates.y);
 			}
 			StatusSetText(str);
 		}

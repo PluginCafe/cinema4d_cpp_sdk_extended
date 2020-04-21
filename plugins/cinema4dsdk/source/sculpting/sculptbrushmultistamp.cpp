@@ -213,5 +213,5 @@ Bool RegisterSculptBrushMultiStamp()
 	pParams->SetUndoType(SCULPTBRUSHDATATYPE::POINT);
 	pParams->SetMovePointFunc(&SculptBrushMultiStamp::MovePointsFunc);
 
-	return RegisterToolPlugin(ID_SCULPT_BRUSH_MULTISTAMP, name, PLUGINFLAG_HIDEPLUGINMENU | PLUGINFLAG_TOOL_SCULPTBRUSH | PLUGINFLAG_TOOL_NO_OBJECTOUTLINE, nullptr, String(), NewObjClear(SculptBrushMultiStamp, pParams));
+	return RegisterToolPlugin(ID_SCULPT_BRUSH_MULTISTAMP, name, PLUGINFLAG_HIDEPLUGINMENU | PLUGINFLAG_TOOL_SCULPTBRUSH | PLUGINFLAG_TOOL_NO_OBJECTOUTLINE | PLUGINFLAG_TOOL_NO_TOPOLOGY_EDIT, nullptr, String(), NewObjClear(SculptBrushMultiStamp, pParams));
 }
