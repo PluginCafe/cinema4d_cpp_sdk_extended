@@ -258,6 +258,23 @@ static Bool BuildTree(DebugNode* parent, DebugArray& oldlist, DebugArray& newlis
 	n->diff[i] = n->hdirty[(Int32)HDIRTY_ID::MAX] != sum;
 	n->hdirty[(Int32)HDIRTY_ID::MAX] = sum;
 
+	// Handle Scene Nodes.
+	// See in the plugin Project Hooks -> Scene Nodes -> CLASSIC_REPRESENTATION:
+	static constexpr Int32 SCENEHOOK_NODE_SCENE_ID = 1054188;
+	static constexpr Int32 MSG_UPDATE_LEGACY_OBJECTS = 180420109;
+
+	if (node->GetType() == SCENEHOOK_NODE_SCENE_ID)
+	{
+		// Request Legacy Object representation
+		BaseObject* sceneNodeRoot = nullptr;
+		node->Message(MSG_UPDATE_LEGACY_OBJECTS, &sceneNodeRoot);
+		if (sceneNodeRoot == nullptr)
+			return false;
+
+		if (!BuildTree(n, oldlist, newlist, sceneNodeRoot, String("CLASSIC_REPRESENTATION: ")))
+			return false;
+	}
+
 	if (node->IsInstanceOf(Obase))
 	{
 		BaseObject* obj = static_cast<BaseObject*>(node);
@@ -601,6 +618,76 @@ public:
 			}
 		}
 	}
+
+	virtual void CreateContextMenu(void* root, void* userdata, void* obj, Int32 lColumn, BaseContainer* bc)
+	{
+		bc->FlushAll();
+
+		DebugNode* node = (DebugNode*)obj;
+		C4DAtomGoal* link = node->link->GetLinkAtom(nullptr);
+		if (!link)
+			return;
+
+		switch (lColumn)
+		{
+			case 'tree':
+				if (link->IsInstanceOf(Obase))
+				{
+					bc->InsData(EXTRACT_OBJECT_TO_SCENE, GeData("Extract to scene"));
+				}
+				break;
+		}
+	}
+
+	Bool ContextMenuCall(void* root, void* userdata, void* obj, Int32 lColumn, Int32 lCommand)
+	{
+		DebugNode* node = (DebugNode*)obj;
+		C4DAtomGoal* link = node->link->GetLinkAtom(nullptr);
+		if (!link)
+			return true;
+
+		switch (lCommand)
+		{
+			case EXTRACT_OBJECT_TO_SCENE:
+			{
+				Bool needsEventAdd = false;
+				if (link->IsInstanceOf(Obase))
+				{
+					BaseObject* object = static_cast<BaseObject*>(link);
+					C4DAtom* clone = object->GetClone(COPYFLAGS::NONE, nullptr);
+					if (clone)
+					{
+						BaseDocument* document = object->GetDocument();
+						if (!document)
+						{
+							BaseObject* cacheParent = object->GetCacheTopParent();
+							if (cacheParent)
+								document = cacheParent->GetDocument();
+						}
+						if (!document)
+							document = GetActiveDocument();
+
+						if (document)
+						{
+							document->InsertObject(static_cast<BaseObject*>(clone), nullptr, nullptr);
+							needsEventAdd = true;
+						}
+					}
+				}
+				if (needsEventAdd)
+				{
+					EventAdd();
+				}
+
+				break;
+			}
+		}
+
+		return true;
+	}
+
+private:
+	static const Int32 EXTRACT_OBJECT_TO_SCENE = ID_TREEVIEW_FIRST_NEW_ID + 1;
 };
 
 Function2 g_functable;

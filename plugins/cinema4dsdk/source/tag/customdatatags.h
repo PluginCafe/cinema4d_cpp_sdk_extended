@@ -89,6 +89,9 @@ namespace CustomDataTagClasses
 	MAXON_DECLARATION(CustomDataTagClasses::EntryType, POINTINDEX, "net.maxonexample.mesh_misc.customdatatagclass.pointindex");
 }
 
+#include "customdatatags1.hxx"
+#include "customdatatags2.hxx"
+
 } // namespace maxon
 
 Bool RegisterCustomDataTagDescription();

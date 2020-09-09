@@ -154,7 +154,7 @@ Bool GetSetDParameterExample::SplineGetDDescription(GeListNode *node, Descriptio
 		bcSpline.SetFloat(SPLINECONTROL_OPTIMAL_Y_MAX, 0.8);
 		// Custom color for spline
 		bcSpline.SetBool(SPLINECONTROL_CUSTOMCOLOR_SET, true); // Default is false
-		bcSpline.SetVector(SPLINECONTROL_CUSTOMCOLOR_COL, Vector(150, 255, 150)); // Value range 0 to 255
+		bcSpline.SetVector(SPLINECONTROL_CUSTOMCOLOR_COL, Vector(0.6, 1.0, 0.6)); // Value range 0.0 to 1.0
 
 		if (!description->SetParameter(cid, bcSpline, DescLevel(ID_OBJECTPROPERTIES)))
 			return false;

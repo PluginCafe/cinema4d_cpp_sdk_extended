@@ -219,7 +219,7 @@ static LineObject* BuildIsoHull(PolygonObject* op, const Matrix& ml, Float srad,
 																Float lod, Neighbor* n, BaseThread* bt)
 {
 	Int32						poff, soff, i, j, a = 0, b = 0, side;
-	Vector*					rpadr = nullptr, off, pa, pb;
+	Vector*					rpadr = nullptr, pa, pb;
 	Segment*				rsadr = nullptr;
 	const Vector*		padr	= op->GetPointR();
 	const CPolygon* vadr	= op->GetPolygonR();

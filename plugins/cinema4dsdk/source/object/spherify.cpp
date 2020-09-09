@@ -157,7 +157,6 @@ Int32 Spherify::DetectHandle(BaseObject* op, BaseDraw* bd, Int32 x, Int32 y, QUA
 	HandleInfo info;
 	Matrix		 mg = op->GetMg();
 	Int32			 i, ret = NOTOK;
-	Vector		 p;
 
 	for (i = 0; i < HANDLE_CNT; i++)
 	{

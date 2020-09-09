@@ -1,6 +1,7 @@
 ﻿{
 	"identification": "net.maxon.fileid.descriptiondefinition",
 	"content": {
+		"_descriptionsVersion": 6,
 		"_descriptions": [
 			"net.maxonexample.node_corenode.simplecorenode",
 			{
@@ -161,6 +162,7 @@
 				]
 			}
 		],
+		"_guiDescriptionsVersion": 6,
 		"_guiDescriptions": [
 			"net.maxonexample.node_corenode.simplecorenode",
 			{

@@ -93,7 +93,7 @@ Bool NullSnap::Snap(const Vector& p, const SnapStruct& ss, SnapPoint& result)
 
 
 	// start search for the nearest null object
-	Float64 minDistance = LIMIT<Float64>::Max();
+	Float64 minDistance = LIMIT<Float64>::MAX;
 	_targetObject = nullptr;
 
 
