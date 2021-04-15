@@ -1,8 +1,9 @@
 // MAXON API header files
-#include "maxon/unittest.h"
-#include "maxon/iomemory.h"
+#include "maxon/gfx_image.h"
 #include "maxon/gfx_image_storage.h"
+#include "maxon/iomemory.h"
 #include "maxon/mediasession_fileformats.h"
+#include "maxon/unittest.h"
 
 namespace maxon
 {

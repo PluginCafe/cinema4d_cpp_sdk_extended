@@ -917,7 +917,8 @@ private:
 
 Bool RegisterPolyExample()
 {
-	return RegisterObjectPlugin(ID_POINT_INDEX_TAG, "Poly test"_s, OBJECT_POLYGONOBJECT | OBJECT_POINTOBJECT, MyPolyObject::Alloc, ""_s, nullptr, 0);
+	String name = "Poly test"_s;
+	return RegisterObjectPlugin(ID_POINT_INDEX_TAG, name, OBJECT_POLYGONOBJECT | OBJECT_POINTOBJECT, MyPolyObject::Alloc, ""_s, nullptr, 0);
 }
 
 class ConvertToCustomdataTagCommand : public CommandData

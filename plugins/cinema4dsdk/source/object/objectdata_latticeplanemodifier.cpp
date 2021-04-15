@@ -72,7 +72,7 @@ namespace LatticePlaneModifierHelper
 		Float res = 1.0f;
 
 		for (Int32 i = 1; i <= k; i++)
-			res *= (n - (k - i)) / (float)i;
+			res *= Float((n - (k - i)) / (Float)i);
 
 		return res;
 	}

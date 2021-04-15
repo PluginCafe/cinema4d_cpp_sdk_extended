@@ -277,6 +277,9 @@ namespace GreekTempleHelpers
 		triangleShapePtr->SetAbsScale(Vector(1, yScaleComponent, 1));
 		triangleShapePtr.Release()->InsertUnder(extrudeRoofGenPtr);
 
+		// Set the Extrude mode to absolute
+		extrudeRoofGenPtr->SetParameter(EXTRUDEOBJECT_DIRECTION, EXTRUDEOBJECT_DIRECTION_ABSOLUTE, DESCFLAGS_SET::NONE);
+
 		// Create a translate vector to set the extrusion length of the roof.
 		const Vector extrusionVector = Vector(0, 0, objSize.z);
 		extrudeRoofGenPtr->SetParameter(EXTRUDEOBJECT_MOVE, extrusionVector, DESCFLAGS_SET::NONE);

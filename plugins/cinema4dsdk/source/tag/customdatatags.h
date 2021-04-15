@@ -66,7 +66,7 @@ public:
 
 	MAXON_OPERATOR_COMPARISON(PointIndex);
 
-	inline String ToString(const FormatStatement* formatStatement) const
+	inline String ToString(const FormatStatement* formatStatement = nullptr) const
 	{
 		return String::IntToString((Int32)_index);
 	}

@@ -228,7 +228,7 @@ inline void SetPixel(COLORMODE colorMode, UInt &idx, UChar *pBuffer, Float32 fal
 		{
 			if (pBitmap) 
 				pBitmap->GetPixelCnt(sourceX, sourceY, 1, (UChar*)colBuffer, 1, COLORMODE::GRAY, PIXELCNT::NONE);
-			pBuffer[idx] = (UChar)(pBuffer[idx] * (falloffInterp) + colBuffer[0] * falloff);
+			pBuffer[idx] = (UChar)(Float32(pBuffer[idx]) * (falloffInterp) +Float32(colBuffer[0]) * falloff);
 			idx += 1;
 			break;
 		}
@@ -236,8 +236,8 @@ inline void SetPixel(COLORMODE colorMode, UInt &idx, UChar *pBuffer, Float32 fal
 		{
 			if (pBitmap) 
 				pBitmap->GetPixelCnt(sourceX, sourceY, 1, (UChar*)colBuffer, 1, COLORMODE::AGRAY, PIXELCNT::NONE);
-			pBuffer[idx] = (UChar)(pBuffer[idx] * (falloffInterp) + colBuffer[0] * falloff);
-			pBuffer[idx+1] = (UChar)(pBuffer[idx+1] * (falloffInterp) + colBuffer[1] * falloff);
+			pBuffer[idx]   = (UChar)(Float32(pBuffer[idx])   * (falloffInterp) + Float32(colBuffer[0]) * falloff);
+			pBuffer[idx+1] = (UChar)(Float32(pBuffer[idx+1]) * (falloffInterp) + Float32(colBuffer[1]) * falloff);
 			idx += 2;
 			break;
 		}
@@ -245,9 +245,9 @@ inline void SetPixel(COLORMODE colorMode, UInt &idx, UChar *pBuffer, Float32 fal
 		{
 			if (pBitmap) 
 				pBitmap->GetPixelCnt(sourceX, sourceY, 1, (UChar*)colBuffer, 3, COLORMODE::RGB, PIXELCNT::NONE);
-			pBuffer[idx] = (UChar)(pBuffer[idx] * (falloffInterp) + colBuffer[0] * falloff);
-			pBuffer[idx+1] = (UChar)(pBuffer[idx+1] * (falloffInterp) + colBuffer[1] * falloff);
-			pBuffer[idx+2] = (UChar)(pBuffer[idx+2] * (falloffInterp) + colBuffer[2] * falloff);
+			pBuffer[idx]   = (UChar)(Float32(pBuffer[idx])   * (falloffInterp) + Float32(colBuffer[0]) * falloff);
+			pBuffer[idx+1] = (UChar)(Float32(pBuffer[idx+1]) * (falloffInterp) + Float32(colBuffer[1]) * falloff);
+			pBuffer[idx+2] = (UChar)(Float32(pBuffer[idx+2]) * (falloffInterp) + Float32(colBuffer[2]) * falloff);
 			idx += 3;
 			break;
 		}
@@ -255,10 +255,10 @@ inline void SetPixel(COLORMODE colorMode, UInt &idx, UChar *pBuffer, Float32 fal
 		{
 			if (pBitmap) 
 				pBitmap->GetPixelCnt(sourceX, sourceY, 1, (UChar*)colBuffer, 3, COLORMODE::ARGB, PIXELCNT::NONE);
-			pBuffer[idx] = (UChar)(pBuffer[idx] * (falloffInterp) + colBuffer[0]* falloff);
-			pBuffer[idx+1] = (UChar)(pBuffer[idx+1] * (falloffInterp) + colBuffer[1] * falloff);
-			pBuffer[idx+2] = (UChar)(pBuffer[idx+2] * (falloffInterp) + colBuffer[2] * falloff);
-			pBuffer[idx+3] = (UChar)(pBuffer[idx+3] * (falloffInterp) + colBuffer[3] * falloff);
+			pBuffer[idx]   = (UChar)(Float32(pBuffer[idx]) * (falloffInterp) + Float32(colBuffer[0]) * falloff);
+			pBuffer[idx+1] = (UChar)(Float32(pBuffer[idx+1]) * (falloffInterp) + Float32(colBuffer[1]) * falloff);
+			pBuffer[idx+2] = (UChar)(Float32(pBuffer[idx+2]) * (falloffInterp) + Float32(colBuffer[2]) * falloff);
+			pBuffer[idx+3] = (UChar)(Float32(pBuffer[idx+3]) * (falloffInterp) + Float32(colBuffer[3]) * falloff);
 			idx += 4;
 			break;
 		}
@@ -276,7 +276,7 @@ inline void SetPixel(COLORMODE colorMode, UInt &idx, UChar *pBuffer, Float32 fal
 				pBitmap->GetPixelCnt(sourceX, sourceY, 1, (UChar*)colBuffer, 2, COLORMODE::GRAYw, PIXELCNT::NONE);
 			UInt16 *colBuf = (UInt16*)colBuffer;
 			UInt16 *destBuf = (UInt16*)&pBuffer[idx];
-			destBuf[0] = (UInt16)(destBuf[0] * (falloffInterp) + colBuf[0] * falloff);
+			destBuf[0] = (UInt16)(Float32(destBuf[0]) * (falloffInterp) + Float32(colBuf[0]) * falloff);
 			idx += 2;
 			break;
 		}
@@ -286,8 +286,8 @@ inline void SetPixel(COLORMODE colorMode, UInt &idx, UChar *pBuffer, Float32 fal
 				pBitmap->GetPixelCnt(sourceX, sourceY, 1, (UChar*)colBuffer, 2, COLORMODE::AGRAYw, PIXELCNT::NONE);
 			UInt16 *colBuf = (UInt16*)colBuffer;
 			UInt16 *destBuf = (UInt16*)&pBuffer[idx];
-			destBuf[0] = (UInt16)(destBuf[0] * (falloffInterp) + colBuf[0] * falloff);
-			destBuf[1] = (UInt16)(destBuf[1] * (falloffInterp) + colBuf[1] * falloff);
+			destBuf[0] = (UInt16)(Float32(destBuf[0]) * (falloffInterp) + Float32(colBuf[0]) * falloff);
+			destBuf[1] = (UInt16)(Float32(destBuf[1]) * (falloffInterp) + Float32(colBuf[1]) * falloff);
 			idx += 4;
 			break;
 		}
@@ -297,9 +297,9 @@ inline void SetPixel(COLORMODE colorMode, UInt &idx, UChar *pBuffer, Float32 fal
 				pBitmap->GetPixelCnt(sourceX, sourceY, 1, (UChar*)colBuffer, 6, COLORMODE::RGBw, PIXELCNT::NONE);
 			UInt16 *colBuf = (UInt16*)colBuffer;
 			UInt16 *destBuf = (UInt16*)&pBuffer[idx];
-			destBuf[0] = (UInt16)(destBuf[0] * (falloffInterp) + colBuf[0] * falloff);
-			destBuf[1] = (UInt16)(destBuf[1] * (falloffInterp) + colBuf[1] * falloff);
-			destBuf[2] = (UInt16)(destBuf[2] * (falloffInterp) + colBuf[2] * falloff);
+			destBuf[0] = (UInt16)(Float32(destBuf[0]) * (falloffInterp) + Float32(colBuf[0]) * falloff);
+			destBuf[1] = (UInt16)(Float32(destBuf[1]) * (falloffInterp) + Float32(colBuf[1]) * falloff);
+			destBuf[2] = (UInt16)(Float32(destBuf[2]) * (falloffInterp) + Float32(colBuf[2]) * falloff);
 			idx += 6;
 			break;
 		}
@@ -309,10 +309,10 @@ inline void SetPixel(COLORMODE colorMode, UInt &idx, UChar *pBuffer, Float32 fal
 				pBitmap->GetPixelCnt(sourceX, sourceY, 1, (UChar*)colBuffer, 6, COLORMODE::ARGBw, PIXELCNT::NONE);
 			UInt16 *colBuf = (UInt16*)colBuffer;
 			UInt16 *destBuf = (UInt16*)&pBuffer[idx];
-			destBuf[0] = (UInt16)(destBuf[0] * (falloffInterp) + colBuf[0] * falloff);
-			destBuf[1] = (UInt16)(destBuf[1] * (falloffInterp) + colBuf[1] * falloff);
-			destBuf[2] = (UInt16)(destBuf[2] * (falloffInterp) + colBuf[2] * falloff);
-			destBuf[3] = (UInt16)(destBuf[3] * (falloffInterp) + colBuf[3] * falloff);
+			destBuf[0] = (UInt16)(Float32(destBuf[0]) * (falloffInterp) + Float32(colBuf[0]) * falloff);
+			destBuf[1] = (UInt16)(Float32(destBuf[1]) * (falloffInterp) + Float32(colBuf[1]) * falloff);
+			destBuf[2] = (UInt16)(Float32(destBuf[2]) * (falloffInterp) + Float32(colBuf[2]) * falloff);
+			destBuf[3] = (UInt16)(Float32(destBuf[3]) * (falloffInterp) + Float32(colBuf[3]) * falloff);
 			idx += 8;
 			break;
 		}
@@ -328,7 +328,7 @@ inline void SetPixel(COLORMODE colorMode, UInt &idx, UChar *pBuffer, Float32 fal
 				pBitmap->GetPixelCnt(sourceX, sourceY, 1, (UChar*)colBuffer, 4, COLORMODE::GRAYf, PIXELCNT::NONE);
 			Float32 *colBuf = (Float32*)colBuffer;
 			Float32 *destBuf = (Float32*)&pBuffer[idx];
-			destBuf[0] = destBuf[0] * (falloffInterp) + colBuf[0] * falloff;
+			destBuf[0] = Float32(destBuf[0]) * (falloffInterp) +Float32(colBuf[0]) * falloff;
 			idx += 4;
 			break;
 		}
@@ -338,8 +338,8 @@ inline void SetPixel(COLORMODE colorMode, UInt &idx, UChar *pBuffer, Float32 fal
 				pBitmap->GetPixelCnt(sourceX, sourceY, 1, (UChar*)colBuffer, 4, COLORMODE::AGRAYf, PIXELCNT::NONE);
 			Float32 *colBuf = (Float32*)colBuffer;
 			Float32 *destBuf = (Float32*)&pBuffer[idx];
-			destBuf[0] = destBuf[0] * (falloffInterp) + colBuf[0] * falloff;
-			destBuf[1] = destBuf[1] * (falloffInterp) + colBuf[1] * falloff;
+			destBuf[0] = Float32(destBuf[0]) * (falloffInterp) + Float32(colBuf[0]) * falloff;
+			destBuf[1] = Float32(destBuf[1]) * (falloffInterp) + Float32(colBuf[1]) * falloff;
 			idx += 8;
 			break;
 		}
@@ -349,9 +349,9 @@ inline void SetPixel(COLORMODE colorMode, UInt &idx, UChar *pBuffer, Float32 fal
 				pBitmap->GetPixelCnt(sourceX, sourceY, 1, (UChar*)colBuffer, 12, COLORMODE::RGBf, PIXELCNT::NONE);
 			Float32 *colBuf = (Float32*)colBuffer;
 			Float32 *destBuf = (Float32*)&pBuffer[idx];
-			destBuf[0] = destBuf[0] * (falloffInterp) + colBuf[0] * falloff;
-			destBuf[1] = destBuf[1] * (falloffInterp) + colBuf[1] * falloff;
-			destBuf[2] = destBuf[2] * (falloffInterp) + colBuf[2] * falloff;
+			destBuf[0] = Float32(destBuf[0]) * (falloffInterp) + Float32(colBuf[0]) * falloff;
+			destBuf[1] = Float32(destBuf[1]) * (falloffInterp) + Float32(colBuf[1]) * falloff;
+			destBuf[2] = Float32(destBuf[2]) * (falloffInterp) + Float32(colBuf[2]) * falloff;
 			idx += 12;
 			break;
 		}
@@ -361,10 +361,10 @@ inline void SetPixel(COLORMODE colorMode, UInt &idx, UChar *pBuffer, Float32 fal
 				pBitmap->GetPixelCnt(sourceX, sourceY, 1, (UChar*)colBuffer, 12, COLORMODE::ARGBf, PIXELCNT::NONE);
 			Float32 *colBuf = (Float32*)colBuffer;
 			Float32 *destBuf = (Float32*)&pBuffer[idx];
-			destBuf[0] = destBuf[0] * (falloffInterp) + colBuf[0] * falloff;
-			destBuf[1] = destBuf[1] * (falloffInterp) + colBuf[1] * falloff;
-			destBuf[2] = destBuf[2] * (falloffInterp) + colBuf[2] * falloff;
-			destBuf[3] = destBuf[3] * (falloffInterp) + colBuf[3] * falloff;
+			destBuf[0] = Float32(destBuf[0]) * (falloffInterp) + Float32(colBuf[0]) * falloff;
+			destBuf[1] = Float32(destBuf[1]) * (falloffInterp) + Float32(colBuf[1]) * falloff;
+			destBuf[2] = Float32(destBuf[2]) * (falloffInterp) + Float32(colBuf[2]) * falloff;
+			destBuf[3] = Float32(destBuf[3]) * (falloffInterp) + Float32(colBuf[3]) * falloff;
 			idx += 16;
 			break;
 		}

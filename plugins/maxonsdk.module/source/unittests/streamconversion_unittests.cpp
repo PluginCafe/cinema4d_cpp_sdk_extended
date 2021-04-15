@@ -103,7 +103,7 @@ public:
 					const String			 expected("");
 					const Result<void> res = EncryptAndTest(0, source, expected);
 					const Result<void> testRes	= (res == OK) ? UnitTestError(MAXON_SOURCE_LOCATION, "No error on illegal character."_s) : OK;
-					const String			 testName = FormatString("Test illegal character: \"@\" (@)", source, chr);
+					const String			 testName = FormatString("Test illegal character: \"@\" (@)", chr >= ' ' ? source : "."_s, chr);
 					self.AddResult(testName, testRes);
 				}
 			}

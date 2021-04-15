@@ -65,7 +65,7 @@ void SculptBrushMultiStamp::InitStamps(const Filename &folder)
 
 	AutoAlloc<BrowseFiles> files;
 	files->Init(folder, 0);
-	Float count = 0;
+	Int count = 0;
 	Int i = 0;
 	while (files->GetNext())
 	{

@@ -47,7 +47,7 @@ public:
 		// sample blend function
 		for (maxon::Int i = 0; i <= count; ++i)
 		{
-			const maxon::Float inputValue = i * stepSize;
+			const maxon::Float inputValue = maxon::Float(i) * stepSize;
 
 			const maxon::Data		 res = step.MapValue(inputValue, maxon::Data(start), maxon::Data(end)) iferr_return;
 			const maxon::Float32 outputValue = res.Get<maxon::Float32>() iferr_return;

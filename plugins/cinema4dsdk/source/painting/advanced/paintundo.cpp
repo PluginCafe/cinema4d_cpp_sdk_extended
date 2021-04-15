@@ -53,8 +53,8 @@ Bool PaintUndoTile::Init(PaintLayerBmp *pBitmap, Int x, Int y)
 		return false;
 	}
 
-	m_xTile = (int)(x * PAINTTILEINV);
-	m_yTile = (int)(y * PAINTTILEINV);
+	m_xTile = (Int)(x * Int(PAINTTILEINV));
+	m_yTile = (Int)(y * Int(PAINTTILEINV));
 
 	m_x = m_xTile * PAINTTILESIZE;
 	m_y = m_yTile * PAINTTILESIZE;
@@ -147,8 +147,8 @@ void PaintUndoStroke::Init(PaintUndoStroke *pStroke)
 
 inline Int GetTileHash(Int x, Int y)
 {
-	Int xx = (Int)(x * PAINTTILEINV);
-	Int yy = (Int)(y * PAINTTILEINV);
+	Int xx = (Int)(x * Int(PAINTTILEINV));
+	Int yy = (Int)(y * Int(PAINTTILEINV));
 	return xx + PAINTTILESIZE * yy;
 }
 

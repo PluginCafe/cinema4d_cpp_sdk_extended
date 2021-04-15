@@ -48,7 +48,7 @@ public:
 			return maxon::OK;
 		};
 
-		MAXON_WARN_MUTE_UNUSED executeVm(MAXON_CPYTHON37VM(), maxon::Loggers::Get(maxon::ID_LOGGER_PYTHON));
+		MAXON_WARN_MUTE_UNUSED executeVm(MAXON_CPYTHON3VM(), maxon::Loggers::Get(maxon::ID_LOGGER_PYTHON));
 
 		return true;
 	}

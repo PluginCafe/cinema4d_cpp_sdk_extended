@@ -299,11 +299,13 @@ public:
 
 Bool RegisterPaintObject()
 {
-	return RegisterObjectPlugin(maxon::ID_PAINT_OBJECT, "Paint Object"_s, 0 , maxon::PaintObject::Alloc, ""_s, nullptr, 0);
+	String name = "Paint Object"_s;
+	return RegisterObjectPlugin(maxon::ID_PAINT_OBJECT, name, 0 , maxon::PaintObject::Alloc, ""_s, nullptr, 0);
 }
 
 Bool RegisterPaintTool()
 {
-	return RegisterToolPlugin(ID_PAINT_TOOL, "Paint Tool"_s, 0, nullptr, ""_s, NewObjClear(PaintTool));
+	String name = "Paint Tool"_s;
+	return RegisterToolPlugin(ID_PAINT_TOOL, name, 0, nullptr, ""_s, NewObjClear(PaintTool));
 }
 

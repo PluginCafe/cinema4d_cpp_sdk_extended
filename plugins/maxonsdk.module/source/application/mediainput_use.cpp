@@ -1,12 +1,13 @@
 // MAXON API header files
-#include "maxon/execution.h"
 #include "maxon/configuration.h"
-#include "maxon/url.h"
-#include "maxon/gfx_image_storage.h"
-#include "maxon/mediasession_image_export_png.h"
-#include "maxon/lib_math.h"
+#include "maxon/execution.h"
+#include "maxon/gfx_image.h"
 #include "maxon/gfx_image_pixelformats.h"
+#include "maxon/gfx_image_storage.h"
+#include "maxon/lib_math.h"
+#include "maxon/mediasession_image_export_png.h"
 #include "maxon/mediasession_input.h"
+#include "maxon/url.h"
 
 namespace maxonsdk
 {

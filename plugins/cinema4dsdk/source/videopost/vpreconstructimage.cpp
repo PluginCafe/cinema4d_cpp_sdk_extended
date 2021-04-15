@@ -61,7 +61,7 @@ RENDERRESULT ReconstructData::Execute(BaseVideoPost* node, VideoPostStruct* vps)
 			Vector32		col = Vector32(0.0);
 			const VPFragment* f;
 			for (f = (*ind); f; f = f->next)
-				col += f->weight * f->color;
+				col += Float32(f->weight) * f->color;
 
 			if (!(*ind))
 				continue;		// unchanged background pixel

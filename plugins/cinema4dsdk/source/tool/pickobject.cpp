@@ -115,19 +115,14 @@ Vector PickObjectTool::GetWorldCoordinates(BaseDraw* bd, const maxon::SquareMatr
 	// Pick object returns the view-projection matrix. This transforms a point in camera space into clip space.
 	Vector4d pos = GetClipCoordinates(bd, x, y, z, sampleLocation);
 	clipCoodinates = pos;
-	Vector posWorld;
 
-	// Apply the inverse view transform
+	// Apply the inverse view transform and multiply with the view matrix to calculate the world coordinates.
 	maxon::SquareMatrix4d im = ~m;
-	pos = im * pos;
 
-	// Divide by w.
+	pos = (maxon::SquareMatrix4d(bd->GetMg()) * im) * pos;
 	pos.NormalizeW();
 
-	// Convert it into a 3-tuple and multiply with the view matrix to get the world coordinates.
-	posWorld = bd->GetMg() * pos.GetVector3();
-
-	return posWorld;
+	return pos.GetVector3();
 }
 
 Bool PickObjectTool::GetCursorInfo(BaseDocument* doc, BaseContainer& data, BaseDraw* bd, Float x, Float y, BaseContainer& bc)
@@ -145,14 +140,18 @@ Bool PickObjectTool::GetCursorInfo(BaseDocument* doc, BaseContainer& data, BaseD
 		AutoAlloc<C4DObjectList> list;
 		if (list)
 		{
-			// get the z position of the topmost object. The z range for objects is from -1 to 1.
+			// Get the z position of the topmost object.
+			// We set VIEWPORT_PICK_FLAGS::NO_DEPTH_CORRECTION so that the Z value from ScreenToClipSpace can be used directly.
 			Float z = 1.0;
 			maxon::String str;
 			maxon::SquareMatrix4d m;
 			Int32 sampleLocation = 0;
-			ViewportSelect::PickObject(bd, doc, _mouseX, _mouseY, 1, VIEWPORT_PICK_FLAGS::ALLOW_OGL | VIEWPORT_PICK_FLAGS::USE_SEL_FILTER | VIEWPORT_PICK_FLAGS::OGL_ONLY_TOPMOST, nullptr, list, &m, &sampleLocation);
+			ViewportSelect::PickObject(bd, doc, _mouseX, _mouseY, 0, 
+				VIEWPORT_PICK_FLAGS::ALLOW_OGL | VIEWPORT_PICK_FLAGS::USE_SEL_FILTER | VIEWPORT_PICK_FLAGS::OGL_ONLY_TOPMOST | VIEWPORT_PICK_FLAGS::NO_DEPTH_CORRECTION, 
+				nullptr, list, &m, &sampleLocation);
 			if (list->GetCount() > 0)
 				z = list->GetZ(0);
+
 			if (z < 1.0)
 			{
 				Vector4d clipCoordinates;

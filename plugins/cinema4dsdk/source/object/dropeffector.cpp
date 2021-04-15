@@ -88,8 +88,14 @@ void DropEffector::ModifyPoints(BaseObject* op, BaseObject* gen, BaseDocument* d
 		return;
 
 	C4D_Falloff* falloff = GetFalloff();
+	FieldOutput* fieldSample = nullptr;
+
 	if (!falloff)
-		return;
+	{
+		fieldSample = CalcFields(doc, gen, md, FIELDSAMPLE_FLAG::VALUE);
+		if (!fieldSample || !fieldSample->_value.IsPopulated())
+			return;
+	}
 
 	Int32	 i = 0;
 	Float	 fall	 = 0.0;
@@ -116,7 +122,14 @@ void DropEffector::ModifyPoints(BaseObject* op, BaseObject* gen, BaseDocument* d
 		off = ed.genmg * off;
 
 		// Sample the falloff
-		falloff->Sample(off, &fall, true, weight_array[i]);
+		if (falloff)
+		{
+			falloff->Sample(off, &fall, true, weight_array[i]);
+		}
+		else
+		{
+			fall = fieldSample->_value[i];
+		}
 		if (fall == 0.0)
 			continue;
 

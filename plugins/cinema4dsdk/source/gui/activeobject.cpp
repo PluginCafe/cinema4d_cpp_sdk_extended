@@ -7,6 +7,7 @@
 #include "c4d_symbols.h"
 #include "main.h"
 #include "maxon/sortedarray.h"
+#include "maxon/utilities/sprintf_safe.h"
 
 static void ShowObjectProps(BaseList2D* obj);
 
@@ -244,6 +245,56 @@ static Bool BuildTree(DebugNode* parent, DebugArray& oldlist, DebugArray& newlis
 	else
 		n->name = defname;
 
+	// UIDs
+	if (node->IsInstanceOf(Tbaselist2d))
+	{
+		const Char* mem = nullptr;
+		Int32				uID = 0;
+		Int					bytes = 0;
+		Char				cTxt[3];
+
+		// go through all available UIDs
+		for (Int32 uIdx = 0; uIdx < ((BaseList2D*)node)->GetUniqueIDCount(); uIdx++)
+		{
+			iferr (DebugNode* uidNode = NewObj(DebugNode))
+				return false;
+
+			if (!uidNode)
+				return false;
+
+			uidNode->open = FALSE;
+
+			// get the UID (size and data)
+			if (((BaseList2D*)node)->GetUniqueIDIndex(uIdx, uID, mem, bytes))
+			{
+				uidNode->name = "UID [APPID " + String::IntToString( uID ) + "] - [";
+
+				for (Int32 pos = 0; mem && pos < bytes; pos++)
+				{
+					Char cVal = mem[pos];
+
+					// print as 2 digit hex value
+					sprintf_safe(cTxt, sizeof(cTxt), "%02X", (UChar)cVal );
+					uidNode->name += String(cTxt);
+
+					// add "-" after 4 digits
+					if (((pos + 1) % 2) == 0 && pos + 1 < bytes)
+						uidNode->name += "-";
+				}
+				uidNode->name += "]";
+			}
+			else
+			{
+				uidNode->name = "UID <not found at index " + String::IntToString(uIdx) + ">";
+			}
+
+			iferr (newlist.Append(uidNode))
+				return false;
+
+			n->down.AddObj(uidNode);
+		}
+	}
+
 	Int32	 i;
 	UInt32 sum = 0;
 	for (i = 0; i < (Int32)HDIRTY_ID::MAX; i++)
@@ -268,11 +319,13 @@ static Bool BuildTree(DebugNode* parent, DebugArray& oldlist, DebugArray& newlis
 		// Request Legacy Object representation
 		BaseObject* sceneNodeRoot = nullptr;
 		node->Message(MSG_UPDATE_LEGACY_OBJECTS, &sceneNodeRoot);
-		if (sceneNodeRoot == nullptr)
-			return false;
 
-		if (!BuildTree(n, oldlist, newlist, sceneNodeRoot, String("CLASSIC_REPRESENTATION: ")))
-			return false;
+		// To have a nullptr here is no error, there's just no node scene graph.
+		if (sceneNodeRoot != nullptr)
+		{
+			if (!BuildTree(n, oldlist, newlist, sceneNodeRoot, String("CLASSIC_REPRESENTATION: ")))
+				return false;
+		}
 	}
 
 	if (node->IsInstanceOf(Obase))
@@ -669,7 +722,11 @@ public:
 
 						if (document)
 						{
-							document->InsertObject(static_cast<BaseObject*>(clone), nullptr, nullptr);
+							BaseObject* cloneObject = static_cast<BaseObject*>(clone);
+							// BIT_EDITOBJECT is set internally to hide the polygon object in certain cases (e.g. if the object is under a SDS). 
+							// Remove the flag here, otherwise the clone would not be visible in the viewport.
+							cloneObject->DelBit(BIT_EDITOBJECT);
+							document->InsertObject(cloneObject, nullptr, nullptr);
 							needsEventAdd = true;
 						}
 					}

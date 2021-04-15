@@ -2,6 +2,7 @@ Platform=Win64;OSX
 Type=Solution
 Solution=\
 	plugins/cinema4dsdk;\
+	plugins/example.nodes;\
 	plugins/maxonsdk.module;\
 	plugins/microsdk
 	

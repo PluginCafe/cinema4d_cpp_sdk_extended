@@ -179,7 +179,7 @@ inline void DoTextureLineBary(BrushDabData *dab, PaintChannels *channels, const 
 
 			// Skip the stamp if it is outside of it.
 			Bool skip = false;
-			if (sourcePos.x < 0 || sourcePos.x >= sourceWidth || sourcePos.y < 0 || sourcePos.y >= sourceHeight)
+			if (sourcePos.x < 0 || sourcePos.x >= Float32(sourceWidth) || sourcePos.y < 0 || sourcePos.y >= Float32(sourceHeight))
 			{
 				if (channels->useStamp)
 				{
@@ -189,10 +189,10 @@ inline void DoTextureLineBary(BrushDabData *dab, PaintChannels *channels, const 
 				{
 					if (stencilTileX)
 					{
-						if (sourcePos.x < 0) 
-							sourcePos.x = sourceWidth + sourcePos.x;
-						if (sourcePos.x >= sourceWidth) 
-							sourcePos.x = sourcePos.x - sourceWidth;
+						if (sourcePos.x < 0)
+							sourcePos.x = Float32(sourceWidth) + sourcePos.x;
+						if (sourcePos.x >= Float32(sourceWidth))
+							sourcePos.x = sourcePos.x - Float32(sourceWidth);
 					}
 					else
 					{
@@ -200,10 +200,10 @@ inline void DoTextureLineBary(BrushDabData *dab, PaintChannels *channels, const 
 					}
 					if (stencilTileY)
 					{
-						if (sourcePos.y < 0) 
-							sourcePos.y = sourceHeight + sourcePos.y;
-						if (sourcePos.y >= sourceHeight) 
-							sourcePos.y = sourcePos.y - sourceHeight;
+						if (sourcePos.y < 0)
+							sourcePos.y = Float32(sourceHeight) + sourcePos.y;
+						if (sourcePos.y >= Float32(sourceHeight))
+							sourcePos.y = sourcePos.y - Float32(sourceHeight);
 					}
 					else
 					{

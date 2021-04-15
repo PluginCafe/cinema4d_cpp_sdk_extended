@@ -48,7 +48,7 @@ public:
 		iferr_scope_handler
 		{
 			// if an error occurred, show a pop-up message
-			const maxon::String errString = err.ToString(nullptr);
+			const maxon::String errString = err.ToString();
 			::MessageDialog(errString);
 			return false;
 		};
