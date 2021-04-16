@@ -22,14 +22,30 @@ extern CheckLicense* g_checkLic;
 Bool BLW_SimpleGenerator::Init(GeListNode* node)
 {
 	// OPTIONAL CHECK required when certain features might be tested during the plugin execution
-	DiagnosticOutput("BLW >> SimpleGenerator has valid license [@]", g_checkLic->AnalyzeLicense());
+	iferr (g_checkLic->AnalyzeLicense())
+	{
+		return false;
+	}
+	
+	DiagnosticOutput("BLW >> SimpleGenerator has valid license [@]", g_checkLic->IsLicensed());
+	if (!g_checkLic->IsLicensed())
+		return false;
+	
 	return true;
 }
 
 void BLW_SimpleGenerator::GetDimension(BaseObject* op, Vector* mp, Vector* rad)
 {
 	// OPTIONAL CHECK required when certain features might be tested during the plugin execution
-	DiagnosticOutput("BLW >> SimpleGenerator has valid license [@]", g_checkLic->AnalyzeLicense());
+	iferr (g_checkLic->AnalyzeLicense())
+	{
+		return;
+	}
+	
+	DiagnosticOutput("BLW >> SimpleGenerator has valid license [@]", g_checkLic->IsLicensed());
+	
+	if (!g_checkLic->IsLicensed())
+		return;
 	
 	mp->SetZero();
 	rad->SetZero();
@@ -48,9 +64,15 @@ void BLW_SimpleGenerator::GetDimension(BaseObject* op, Vector* mp, Vector* rad)
 BaseObject* BLW_SimpleGenerator::GetVirtualObjects(BaseObject* op, HierarchyHelp* hh)
 {
 	// OPTIONAL CHECK required when certain features might be tested during the plugin execution
-	DiagnosticOutput("BLW >> SimpleGenerator has valid license [@]", g_checkLic->AnalyzeLicense());
+	iferr (g_checkLic->AnalyzeLicense())
+	{
+		return nullptr;
+	}
+	
+	// OPTIONAL CHECK required when certain features might be tested during the plugin execution
+	DiagnosticOutput("BLW >> SimpleGenerator has valid license [@]", g_checkLic->IsLicensed());
 
-	if (nullptr == op)
+	if (nullptr == op || !g_checkLic->IsLicensed())
 		return BaseObject::Alloc(Onull);
 	
 	Bool isDirty = op->CheckCache(hh) || op->IsDirty(DIRTYFLAGS::DATA);
@@ -104,6 +126,7 @@ BaseObject* BLW_SimpleGenerator::GetVirtualObjects(BaseObject* op, HierarchyHelp
 	return polyObj;
 }
 
+Bool RegisterBLWSimpleGenerator();
 Bool RegisterBLWSimpleGenerator()
 {
 	return RegisterObjectPlugin(ID_SDKEXAMPLE_BLW_SIMPLEGEN, "BLW_SimpleGenerator"_s, OBJECT_GENERATOR, BLW_SimpleGenerator::Alloc, ""_s, nullptr, 0);

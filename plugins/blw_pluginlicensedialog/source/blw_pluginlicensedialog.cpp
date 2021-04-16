@@ -663,6 +663,7 @@ Bool BLW_PluginLicenseDialog::RestoreLayout(void* secret)
 	return _dialog.RestoreLayout(ID_SDKEXAMPLE_BLW_PLGLICDLG_DLG, 0, secret);
 }
 
+Bool RegisterBLWPluginLicenseDialog();
 Bool RegisterBLWPluginLicenseDialog()
 {
 	return RegisterCommandPlugin(ID_SDKEXAMPLE_BLW_PLGLICDLG, "BLW_PluginLicenseDialog"_s, PLUGINFLAG_COMMAND_HOTKEY, nullptr, ""_s, BLW_PluginLicenseDialog::Alloc());

@@ -170,16 +170,25 @@ maxon::Result<void> CheckLicense::AnalyzeLicense()
 		// check  the current system ID is equal to system ID found on license file
 		if (licSysID.IsEqual(sysID) || licSysID.IsEmpty())
 		{
-			const maxon::Bool isConfigAllowed = allowedConfigs.Get<maxon::Bool>(prodID) iferr_return;
-			// check the current C4D configuration is among those allowed in the license file
-			if (isConfigAllowed)
+			const maxon::Bool isKeyInAllowedConfigsDict = allowedConfigs.Contains(prodID);
+			if (isKeyInAllowedConfigsDict)
 			{
-				ApplicationOutput("BLW >> SimpleGenerator license is valid");
-				_isLicensed = true;
+				const maxon::Bool isConfigAllowed = allowedConfigs.Get<maxon::Bool>(prodID) iferr_return;
+				// check the current C4D configuration is among those allowed in the license file
+				if (isConfigAllowed)
+				{
+					ApplicationOutput("BLW >> SimpleGenerator license is valid");
+					_isLicensed = true;
+				}
+				else
+				{
+					WarningOutput("BLW >> SimpleGenerator license is invalid: product ID not matching");
+						_isLicensed = false;
+				}
 			}
 			else
 			{
-				WarningOutput("BLW >> SimpleGenerator license is invalid: product ID not matching");
+				WarningOutput("BLW >> SimpleGenerator license is invalid: product ID not found");
 				_isLicensed = false;
 			}
 		}
