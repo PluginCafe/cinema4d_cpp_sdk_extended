@@ -3,6 +3,7 @@
 
 #include "customnode-customnodespace_descriptions.h"
 #include "maxon/node_spaces.h"
+#include "maxon/nodesystem_class.h"
 
 namespace maxonsdk
 {
@@ -15,7 +16,7 @@ class NodeSpaceExample : public maxon::Component<NodeSpaceExample, maxon::nodes:
 	
 public:
 	
-	static maxon::Result<void> CreateMaterialGraph(maxon::nodes::NodesGraphModelRef& graph);
+	static maxon::Result<void> CreateMaterialGraph(const maxon::nodes::NodesGraphModelRef& graph);
 	
 	static maxon::Result<void> ConfigurePreviewImageRequest(maxon::DataDictionaryObjectRef request);
 

@@ -1,5 +1,7 @@
 #include "nodesystemclass_impl.h"
 
+#include "maxon/nodetemplate.h"
+
 namespace maxonsdk
 {
 	

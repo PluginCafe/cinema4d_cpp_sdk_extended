@@ -8,13 +8,14 @@
 #include "nodespaceviewportmaterial_impl.h"
 #include "nodematerialexport_impl.h"
 
-#include "maxon/datadescription_nodes.h"
+#include "maxon/definitions/nodes_utility.h"
 #include "maxon/nodes_corenodes_base.h"
+#include "maxon/nodeslib.h"
 
 namespace maxonsdk
 {
 		
-maxon::Result<void> NodeSpaceExample::CreateMaterialGraph(maxon::nodes::NodesGraphModelRef& graph)
+maxon::Result<void> NodeSpaceExample::CreateMaterialGraph(const maxon::nodes::NodesGraphModelRef& graph)
 {
 	iferr_scope;
 	

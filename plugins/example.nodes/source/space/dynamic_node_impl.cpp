@@ -5,6 +5,7 @@
 #include "space/customnode-customnodespace_descriptions.h"
 #include "nodesystemclass_impl.h"
 #include "maxon/stringresource.h"
+#include "maxon/nodetemplate.h"
 
 namespace maxonsdk
 {
@@ -30,6 +31,12 @@ public:
 
 		maxon::nodes::MutableRoot root = parent.GetNodeSystemClass().CreateNodeSystem() iferr_return;
 
+		// Create an output port.
+		maxon::nodes::MutablePort output = root.GetOutputs().AddPort(maxonexample::NODE::DYNAMICNODE::RESULT) iferr_return;
+		output.SetType<maxon::Color>() iferr_return;
+		// Mark the output port as dynamic. This means that its value is computed by shader evaluation.
+		output.SetValue<decltype(maxon::nodes::Dynamic)>(true) iferr_return;
+
 		// Add the template parameter port.
 		maxon::nodes::MutablePort codePort = root.GetInputs().AddPort(maxonexample::NODE::DYNAMICNODE::CODE) iferr_return;
 		codePort.SetType<maxon::String>() iferr_return;
@@ -41,7 +48,7 @@ public:
 
 		// Parse code, here we just split the code into its comma-separated parts and create a port for each part.
 		code.Split(","_s, true,
-			[&root, &order] (const maxon::String& part) -> maxon::Result<maxon::Bool>
+			[&root, &order, &output] (const maxon::String& part) -> maxon::Result<maxon::Bool>
 			{
 				iferr_scope;
 				if (part.IsPopulated())
@@ -50,6 +57,9 @@ public:
 					portId.Init(part) iferr_return;
 					// Add port for part.
 					maxon::nodes::MutablePort port = root.GetInputs().AddPort(portId) iferr_return;
+					// Make a dependency connection from input to output. This tells the system which
+					// ports are needed for the shader evaluation of the output port.
+					port.Connect(output, maxon::Wires(maxon::Wires::DEPENDENCY)) iferr_return;
 					if (part[0] == 'i')
 					{
 						// Create a port of type Int.
@@ -95,8 +105,6 @@ public:
 				}
 				return true;
 			}) iferr_return;
-
-		root.GetOutputs().AddPort(maxonexample::NODE::DYNAMICNODE::RESULT) iferr_return;
 
 		root.SetTemplate(parent, self, args) iferr_return;
 

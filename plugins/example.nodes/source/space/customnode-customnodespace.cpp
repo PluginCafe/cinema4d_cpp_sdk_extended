@@ -1,6 +1,8 @@
 #include "maxon/application.h"
 #include "maxon/datadescriptiondatabase.h"
 #include "maxon/nodes_corenodes_base.h"
+#include "maxon/nodeslib.h"
+#include "maxon/datadescriptiondefinitiondatabase.h"
 
 #include "customnode-customnodespace_descriptions.h"
 #include "nodespaceviewportmaterial_impl.h"

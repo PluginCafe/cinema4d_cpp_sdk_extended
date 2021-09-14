@@ -303,7 +303,7 @@ void NodeSystemObserverManager::_RemoveMonitor(maxon::UInt64 nodeSystemId)
 
 maxon::UInt64 NodeSystemObserverManager::GetNodeSystemId(const maxon::nodes::NodesGraphModelRef& graph)
 {
-	const void* nodeSystemPointer = &graph.GetNodeSystem();
+	const void* nodeSystemPointer = graph.GetManager().GetPointer();
 	return maxon::UInt64(nodeSystemPointer);
 }
 

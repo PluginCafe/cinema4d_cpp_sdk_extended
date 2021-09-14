@@ -346,7 +346,7 @@ Bool BLW_PluginLicenseDialog_Dialog::Command(Int32 id, const BaseContainer & msg
 			const maxon::String hashedKey = CreateMD5FromString(KEYSTRING) iferr_return;
 			
 			// create the JSON representation of the plugin license
-			const maxon::JsonParserRef jsonparser = maxon::JsonParserRef::Create() iferr_return;
+			const maxon::ParserRef jsonparser = maxon::ParserClasses::JsonParser().Create() iferr_return;
 			maxon::String pluginLicString;
 			
 			// check if multiple plugin license files should be generated

@@ -28,7 +28,7 @@ private:
 
 	static maxon::Result<void> ApplyLavaPreset(maxon::GraphNode& inputs);
 
-	maxon::TimeStamp _lastTimeStamp;
+	maxon::TimeStamp _lastTimeStamp = 0;
 };
 
 } // namespace maxonsdk

@@ -29,7 +29,6 @@ namespace NODE_CORENODE
 		// supports MAXON::NODE::BASE::DISPLAYCOMMENT
 		// supports MAXON::NODE::BASE::COMMENT
 		// supports MAXON::NODE::BASE::FILTERTAGS
-		// supports MAXON::NODE::BASE::HIDDENINEDITOR
 		// supports MAXON::NODE::BASE::CATEGORY
 		// supports MAXON::NODE::BASE::ICON
 		// supports MAXON::NODE::BASE::UPDATEPOLICY

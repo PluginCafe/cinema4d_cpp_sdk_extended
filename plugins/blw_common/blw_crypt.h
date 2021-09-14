@@ -4,7 +4,7 @@
 #include "maxon/cryptography_hash.h"
 #include "maxon/file_utilities.h"
 #include "maxon/iobrowse.h"
-#include "maxon/parser_json.h"
+#include "maxon/parser.h"
 #include "maxon/valuereceiver.h"
 #include "maxon/secure_random.h"
 #include "maxon/streamconversion.h"
@@ -136,7 +136,7 @@ static maxon::Result<maxon::DataDictionary> ImportJSONFromUrl(const maxon::Url &
 		return maxon::IllegalArgumentError(MAXON_SOURCE_LOCATION, "Passed URL doesn't point to a file."_s);
 	
 	// create a JSONParser object
-	const maxon::JsonParserRef jsonParser = maxon::JsonParserRef::Create() iferr_return;
+	const maxon::ParserRef jsonParser = maxon::ParserClasses::JsonParser().Create() iferr_return;
 	
 	// create an InputStreamRef given the passed Url
 	maxon::InputStreamRef in = in_url.OpenInputStream() iferr_return;
@@ -145,7 +145,7 @@ static maxon::Result<maxon::DataDictionary> ImportJSONFromUrl(const maxon::Url &
 	maxon::SingleValueReceiver<const maxon::DataDictionary&> readData;
 	
 	// read the file and check it's containing a valid JSON structure
-	iferr (jsonParser.Read(in, maxon::JSONPARSERFLAGS::NONE, maxon::StringDecodingRef(), readData))
+	iferr (jsonParser.Read(in, maxon::PARSERFLAGS::NONE, maxon::StringDecodingRef(), readData))
 	{
 		// selected file is not containing a valid JSON structure
 		DiagnosticOutput("BLW >> Invalid JSON file [@]", maxon::String(in_url.GetPath()));
@@ -169,13 +169,13 @@ static maxon::Result<maxon::DataDictionary> ImportJSONFromString(const maxon::St
 		return maxon::IllegalArgumentError(MAXON_SOURCE_LOCATION, "Passed string is empty."_s);
 	
 	// create a JSONParser reference
-	const maxon::JsonParserRef jsonParser = maxon::JsonParserRef::Create() iferr_return;
+	const maxon::ParserRef jsonParser = maxon::ParserClasses::JsonParser().Create() iferr_return;
 	
 	// allocate a SingleValueReceiver to store the data read from the JSONParser;
 	maxon::SingleValueReceiver<const maxon::DataDictionary&> readData;
 
 	// parse the string  and check it's containing a valid JSON structure
-	iferr (jsonParser.Read(in_string, maxon::JSONPARSERFLAGS::NONE, readData))
+	iferr (jsonParser.ReadString(in_string, maxon::PARSERFLAGS::NONE, maxon::GetUtf8DefaultDecoder(), readData))
 	{
 		// provided string is not containing a valid JSON structure
 		DiagnosticOutput("BLW >> Invalid JSON string [@]");

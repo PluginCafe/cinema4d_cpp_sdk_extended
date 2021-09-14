@@ -28,7 +28,7 @@
 								"content": {
 									"referenceDataType": "net.maxon.interface.url-C",
 									"_scheme": "relative",
-									"_path": "plugins/intern.nodes/source/space/customnode-customnodespace_descriptions.h",
+									"_path": "plugins/example.nodes/source/space/customnode-customnodespace_descriptions.h",
 									"_authority": {},
 									"_data": {}
 								}
@@ -363,7 +363,7 @@
 								"content": {
 									"referenceDataType": "net.maxon.interface.url-C",
 									"_scheme": "relative",
-									"_path": "plugins/intern.nodes/source/space/customnode-customnodespace_descriptions.h",
+									"_path": "plugins/example.nodes/source/space/customnode-customnodespace_descriptions.h",
 									"_authority": {},
 									"_data": {}
 								}
@@ -536,7 +536,7 @@
 								"content": {
 									"referenceDataType": "net.maxon.interface.url-C",
 									"_scheme": "relative",
-									"_path": "plugins/intern.nodes/source/plugin_strings.h",
+									"_path": "plugins/example.nodes/source/plugin_strings.h",
 									"_authority": {},
 									"_data": {}
 								}
@@ -566,7 +566,7 @@
 								"content": {
 									"referenceDataType": "net.maxon.interface.url-C",
 									"_scheme": "relative",
-									"_path": "plugins/intern.nodes/source/space/customnode-customnodespace_descriptions.h",
+									"_path": "plugins/example.nodes/source/space/customnode-customnodespace_descriptions.h",
 									"_authority": {},
 									"_data": {}
 								}
@@ -860,7 +860,7 @@
 								"content": {
 									"referenceDataType": "net.maxon.interface.url-C",
 									"_scheme": "relative",
-									"_path": "plugins/intern.nodes/source/space/customnode-customnodespace_descriptions.h",
+									"_path": "plugins/example.nodes/source/space/customnode-customnodespace_descriptions.h",
 									"_authority": {},
 									"_data": {}
 								}
@@ -978,7 +978,7 @@
 								"content": {
 									"referenceDataType": "net.maxon.interface.url-C",
 									"_scheme": "relative",
-									"_path": "plugins/intern.nodes/source/space/customnode-customnodespace_descriptions.h",
+									"_path": "plugins/example.nodes/source/space/customnode-customnodespace_descriptions.h",
 									"_authority": {},
 									"_data": {}
 								}
@@ -1704,7 +1704,7 @@
 								"content": {
 									"referenceDataType": "net.maxon.interface.url-C",
 									"_scheme": "relative",
-									"_path": "plugins/intern.nodes/source/space/customnode-customnodespace_descriptions.h",
+									"_path": "plugins/example.nodes/source/space/customnode-customnodespace_descriptions.h",
 									"_authority": {},
 									"_data": {}
 								}
@@ -1958,7 +1958,7 @@
 								"content": {
 									"referenceDataType": "net.maxon.interface.url-C",
 									"_scheme": "relative",
-									"_path": "plugins/intern.nodes/source/space/customnode-customnodespace_descriptions.h",
+									"_path": "plugins/example.nodes/source/space/customnode-customnodespace_descriptions.h",
 									"_authority": {},
 									"_data": {}
 								}
@@ -2171,7 +2171,7 @@
 								"content": {
 									"referenceDataType": "net.maxon.interface.url-C",
 									"_scheme": "relative",
-									"_path": "plugins/intern.nodes/source/space/customnode-customnodespace_descriptions.h",
+									"_path": "plugins/example.nodes/source/space/customnode-customnodespace_descriptions.h",
 									"_authority": {},
 									"_data": {}
 								}
