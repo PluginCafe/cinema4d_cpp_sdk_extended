@@ -71,6 +71,11 @@ public:
 		return String::IntToString((Int32)_index);
 	}
 
+	HashInt GetHashCode() const
+	{
+		return MAXON_HASHCODE(_index);
+	}
+
 	Int32 _privateBuffer = 0;
 	Int32 _index = NOTOK; // this is the point index.
 };

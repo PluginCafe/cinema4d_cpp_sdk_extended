@@ -503,7 +503,7 @@ FILEERROR STLSaverData::Save(BaseSceneSaver* node, const Filename& name, BaseDoc
 Bool RegisterSTL()
 {
 	String name = GeLoadString(IDS_STL);
-	if (!RegisterSceneLoaderPlugin(1000984, name, 0, STLLoaderData::Alloc, "Fsdkstlimport"_s))
+	if (!RegisterSceneLoaderPlugin(1000984, name, PLUGINFLAG_SCENELOADER_URL_AWARE | PLUGINFLAG_SCENELOADER_SUPPORT_ASYNC | PLUGINFLAG_SCENELOADER_SUPPORT_MERGED_OPTIONS, STLLoaderData::Alloc, "Fsdkstlimport"_s))
 		return false;
 	if (!RegisterSceneSaverPlugin(1000958, name, 0, STLSaverData::Alloc, "Fsdkstlexport"_s, "stl"_s))
 		return false;

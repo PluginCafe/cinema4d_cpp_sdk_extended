@@ -40,6 +40,8 @@ Bool PluginStart()
 		return false;
 
 	// menu plugin examples
+	if (!RegisterProgressTest())
+		return false;	
 	if (!RegisterMenuTest())
 		return false;
 	if (!RegisterAsyncTest())

@@ -3,3 +3,4 @@
 *.pbxproj
 *.filters
 *.sln
+*.vcxproj.user

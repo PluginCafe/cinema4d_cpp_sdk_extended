@@ -112,7 +112,7 @@ maxon::Result<void> CustomNodeCommand::CommandExecute(const maxon::DataDictionar
 				valuePort.TouchValue(maxon::DESCRIPTION::DATA::BASE::DEFAULTVALUE.Get()) iferr_return;
 				transaction.Commit() iferr_return;
 
-			}, false);
+			}, maxon::WAITMODE::DONT_WAIT);
 
 			return maxon::OK;
 		}) iferr_return;

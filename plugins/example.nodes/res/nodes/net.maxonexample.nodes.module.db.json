@@ -640,7 +640,7 @@
 									"dataType": "bool",
 									"content": true
 								},
-								"net.maxon.description.data.base.variadiccommands",
+								"net.maxon.description.data.base.commands",
 								{
 									"dataType": "net.maxon.datatype.id",
 									"isArray": true,
@@ -685,7 +685,7 @@
 									"dataType": "bool",
 									"content": true
 								},
-								"net.maxon.description.data.base.variadiccommands",
+								"net.maxon.description.data.base.commands",
 								{
 									"dataType": "net.maxon.datatype.id",
 									"isArray": true,
@@ -730,7 +730,7 @@
 									"dataType": "bool",
 									"content": false
 								},
-								"net.maxon.description.data.base.variadiccommands",
+								"net.maxon.description.data.base.commands",
 								{
 									"dataType": "net.maxon.datatype.id",
 									"isArray": true,
@@ -775,7 +775,7 @@
 									"dataType": "bool",
 									"content": false
 								},
-								"net.maxon.description.data.base.variadiccommands",
+								"net.maxon.description.data.base.commands",
 								{
 									"dataType": "net.maxon.datatype.id",
 									"isArray": true,
@@ -1778,7 +1778,7 @@
 									"dataType": "bool",
 									"content": true
 								},
-								"net.maxon.description.data.base.variadiccommands",
+								"net.maxon.description.data.base.commands",
 								{
 									"dataType": "net.maxon.datatype.id",
 									"isArray": true,
@@ -1870,7 +1870,7 @@
 									"dataType": "bool",
 									"content": true
 								},
-								"net.maxon.description.data.base.variadiccommands",
+								"net.maxon.description.data.base.commands",
 								{
 									"dataType": "net.maxon.datatype.id",
 									"isArray": true,

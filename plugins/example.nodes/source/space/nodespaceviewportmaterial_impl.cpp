@@ -66,7 +66,7 @@ maxon::Result<maxon::DataDictionary> NodeSpaceViewportMaterialExample::GetMateri
 
 	const maxon::GraphNode rootNode = _graph.GetNode(rootNodePath);
 
-	const maxon::IdAndVersion& rootNodeIdAndVersion = rootNode.GetValue<decltype(maxon::NODE::ATTRIBUTE::ASSETID)>().GetValueOrNull() iferr_return;
+	const maxon::IdAndVersion& rootNodeIdAndVersion = rootNode.GetValue(maxon::NODE::ATTRIBUTE::ASSETID).GetValueOrNull() iferr_return;
 	const maxon::Id& rootNodeId = rootNodeIdAndVersion.Get<0>();
 
 	_isValueDynamic = !_isValueDynamic;

@@ -310,7 +310,7 @@ public:
 		if (subscribed == 0)
 			return OK;
 
-		const MediaSessionProgressRef progress = self.GetSession().GetProgress();
+		const ProgressRef progress = self.GetSession().GetProgress();
 		_progressIndex = progress.AddProgressJob(_width * _height, "MaxonSDK Image"_s) iferr_return;
 
 		return OK;
@@ -362,7 +362,7 @@ public:
 		SetPixelHandlerStruct setPixel = stream.SetPixelStream(props, channelOffsets, SETPIXELHANDLERFLAGS::NONE) iferr_return;
 
 		// prepare progress
-		const MediaSessionProgressRef progress = self.GetSession().GetProgress();
+		const ProgressRef progress = self.GetSession().GetProgress();
 
 		// prepare memory
 

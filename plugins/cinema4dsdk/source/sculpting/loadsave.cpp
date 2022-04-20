@@ -472,7 +472,7 @@ FILEERROR SculptSaverData::Save(BaseSceneSaver* node, const Filename& name, Base
 Bool RegisterSculpt()
 {
 	String name = GeLoadString(IDS_SCULPT);
-	if (!RegisterSceneLoaderPlugin(1027977, name, 0, SculptLoaderData::Alloc, String()))
+	if (!RegisterSceneLoaderPlugin(1027977, name, PLUGINFLAG_SCENELOADER_SUPPORT_MERGED_OPTIONS, SculptLoaderData::Alloc, String()))
 		return false;
 	if (!RegisterSceneSaverPlugin(1027978, name, 0, SculptSaverData::Alloc, String(), "scp"_s))
 		return false;

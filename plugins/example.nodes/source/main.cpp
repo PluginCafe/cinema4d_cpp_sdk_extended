@@ -17,6 +17,12 @@
 #include "nodespaceviewportmaterial_impl.h"
 #include "nodespace_impl.h"
 
+// Forward declaration
+namespace maxonsdk
+{
+Bool RegisterCreateMaterialExample();
+}
+
 Bool PluginStart()
 {
 	iferr_scope_handler
@@ -49,6 +55,9 @@ Bool PluginStart()
 	maxonsdk::MaterialImportCommand::Register() iferr_return;
 	maxonsdk::MaterialExportCommand::Register() iferr_return;
 
+	// register the command to create a node material
+	if (!maxonsdk::RegisterCreateMaterialExample())
+		return false;
 	return true;
 }
 

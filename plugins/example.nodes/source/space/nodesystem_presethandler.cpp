@@ -45,7 +45,7 @@ maxon::Result<void> NodeSystemPresetChangedHandler::HandleGraphChanged(const max
 		if (isDataAttribute == false)
 			return true;
 
-		const maxon::IdAndVersion assetId = node.GetValue<decltype(maxon::NODE::ATTRIBUTE::ASSETID)>().GetValueOrNull() iferr_return;
+		const maxon::IdAndVersion assetId = node.GetValue(maxon::NODE::ATTRIBUTE::ASSETID).GetValueOrNull() iferr_return;
 		const maxon::Id& nodeId = assetId.Get<0>();
 		if (nodeId != maxonexample::NODE::ENDNODE::GetId())
 			return true;

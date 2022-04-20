@@ -104,14 +104,9 @@ public:
 class VertexColorImpl : public Component<VertexColorImpl, CustomDataTagClassInterface>
 {
 	MAXON_COMPONENT();
-	MAXON_CUSTOMDATATAG(ID_CUSTOMDATA_TAG_VC, "Vertex Color"_s, ""_s, Id("net.maxonexample.mesh_misc.customdatatagdisplay.vertexcolor"), 0, 4, TAG_VISIBLE | TAG_MULTIPLE);
+	MAXON_CUSTOMDATATAG(ID_CUSTOMDATA_TAG_VC, "Vertex Color"_s, ""_s, Id("net.maxonexample.mesh_misc.customdatatagdisplay.vertexcolor"), 0, 4, TAG_VISIBLE | TAG_MULTIPLE, VERTEXCOLOR_MESHATTRIBUTE);
 
 public:
-
-	MAXON_METHOD const DataType& GetDataType() const
-	{
-		return maxon::GetDataType<VERTEXCOLOR_MESHATTRIBUTE>();
-	}
 
 	MAXON_METHOD void InterpolateLinear(void* data1, const void* data2, Float blendValue) const
 	{
@@ -426,14 +421,9 @@ private:
 class VertexFloatImpl : public Component<VertexFloatImpl, CustomDataTagClassInterface>
 {
 	MAXON_COMPONENT();
-	MAXON_CUSTOMDATATAG(ID_CUSTOMDATA_TAG_FL, "Float Test"_s, "tfloatc"_s, Id("net.maxonexample.mesh_misc.customdatatagdisplay.float"), 0, 1, TAG_VISIBLE | TAG_MULTIPLE);
+	MAXON_CUSTOMDATATAG(ID_CUSTOMDATA_TAG_FL, "Float Test"_s, "tfloatc"_s, Id("net.maxonexample.mesh_misc.customdatatagdisplay.float"), 0, 1, TAG_VISIBLE | TAG_MULTIPLE, FLOATTYPE_MESHATTRIBUTE);
 
 public:
-
-	MAXON_METHOD const DataType& GetDataType() const
-	{
-		return maxon::GetDataType<FLOATTYPE_MESHATTRIBUTE>();
-	}
 
 	MAXON_METHOD void InterpolateLinear(void* data1, const void* data2, Float blendValue) const
 	{
@@ -625,14 +615,9 @@ MAXON_DATATYPE_REGISTER(POINTINDEX_MESHATTRIBUTE);
 class PointIndexImpl : public Component<PointIndexImpl, CustomDataTagClassInterface>
 {
 	MAXON_COMPONENT();
-	MAXON_CUSTOMDATATAG(ID_POINT_INDEX_TAG, "Point Index"_s, ""_s, CustomDataTagClasses::POINTINDEX.GetId(), 0, NOTOK, 0); // notice the last value is 0, this mean the tag is not VISIBLE and not multiple
+	MAXON_CUSTOMDATATAG(ID_POINT_INDEX_TAG, "Point Index"_s, ""_s, CustomDataTagClasses::POINTINDEX.GetId(), 0, NOTOK, 0, POINTINDEX_MESHATTRIBUTE); // notice the last value is 0, this mean the tag is not VISIBLE and not multiple
 
 public:
-
-	MAXON_METHOD const DataType& GetDataType() const
-	{
-		return maxon::GetDataType<POINTINDEX_MESHATTRIBUTE>();
-	}
 
 	MAXON_METHOD void InterpolateLinear(void* data1, const void* data2, Float blendValue) const {	}
 

@@ -13,6 +13,7 @@ Bool RegisterBitmap();
 Bool RegisterMandelbrot();
 Bool RegisterSimpleMaterial();
 Bool RegisterParticleVolume();
+Bool RegisterProgressTest();
 Bool RegisterMenuTest();
 Bool RegisterAsyncTest();
 Bool RegisterActiveObjectDlg();

@@ -35,12 +35,12 @@ public:
 		maxon::nodes::MutablePort output = root.GetOutputs().AddPort(maxonexample::NODE::DYNAMICNODE::RESULT) iferr_return;
 		output.SetType<maxon::Color>() iferr_return;
 		// Mark the output port as dynamic. This means that its value is computed by shader evaluation.
-		output.SetValue<decltype(maxon::nodes::Dynamic)>(true) iferr_return;
+		output.SetValue(maxon::nodes::Dynamic, true) iferr_return;
 
 		// Add the template parameter port.
 		maxon::nodes::MutablePort codePort = root.GetInputs().AddPort(maxonexample::NODE::DYNAMICNODE::CODE) iferr_return;
 		codePort.SetType<maxon::String>() iferr_return;
-		codePort.SetValue<decltype(maxon::nodes::TemplateParameter)>(true) iferr_return;
+		codePort.SetValue(maxon::nodes::TemplateParameter, true) iferr_return;
 
 		// Get the template argument for the code.
 		const String& code = args.GetValueArgument<String>(codePort).GetValueOrNull();
@@ -65,13 +65,20 @@ public:
 						// Create a port of type Int.
 						port.SetType<maxon::Int>() iferr_return;
 						// Directly set the name.
-						port.SetValue<decltype(maxon::NODE::BASE::NAME)>(part) iferr_return;
+						port.SetValue(maxon::NODE::BASE::NAME, part) iferr_return;
 					}
 					else if (part[0] == 's')
 					{
 						// Create a port of type String.
 						port.SetType<maxon::String>() iferr_return;
-						port.SetValue<decltype(maxon::NODE::BASE::NAME)>(part) iferr_return;
+						port.SetValue(maxon::NODE::BASE::NAME, part) iferr_return;
+					}
+					else if (part[0] == 'c')
+					{
+						// Create a port of type Color. Also make it expect a constant.
+						port.SetType<maxon::Color>() iferr_return;
+						port.SetValue(maxon::NODE::BASE::NAME, part) iferr_return;
+						port.SetValue(maxon::nodes::ConstantParameter, true) iferr_return;
 					}
 					else
 					{
@@ -81,7 +88,7 @@ public:
 						// This shows how to set up UI properties dynamically, in this case we configure a slider.
 						maxon::DataDictionary data;
 						data.Set(maxon::DESCRIPTION::DATA::BASE::DATATYPE, maxon::GetDataType<maxon::AFloat>().GetId()) iferr_return;
-						port.SetValue<decltype(maxon::nodes::PortDescriptionData)>(std::move(data)) iferr_return;
+						port.SetValue(maxon::nodes::PortDescriptionData, std::move(data)) iferr_return;
 
 						maxon::DataDictionary ui;
 						ui.Set(maxon::DESCRIPTION::UI::BASE::GUITYPEID, maxon::Id("net.maxon.ui.number")) iferr_return;
@@ -90,7 +97,7 @@ public:
 						ui.Set(maxon::DESCRIPTION::UI::BASE::ADDMINMAX::MINVALUE, maxon::Data(maxon::Float(0.0_f))) iferr_return;
 						ui.Set(maxon::DESCRIPTION::UI::BASE::ADDMINMAX::MAXVALUE, maxon::Data(maxon::Float(10.0_f))) iferr_return;
 						ui.Set(maxon::DESCRIPTION::UI::BASE::ADDMINMAX::STEPVALUE, maxon::Data(maxon::Float(0.1_f))) iferr_return;
-						port.SetValue<decltype(maxon::nodes::PortDescriptionUi)>(std::move(ui)) iferr_return;
+						port.SetValue(maxon::nodes::PortDescriptionUi, std::move(ui)) iferr_return;
 
 						// This shows how to use localization for dynamically created ports.
 						maxon::LazyLanguageDictionary languageDict;
@@ -99,9 +106,9 @@ public:
 						english.Set(maxon::DESCRIPTION::STRING::BASE::TRANSLATEDSTRING, "Localized port name for "_s + part) iferr_return;
 						languageDict.Set(maxon::LANGUAGE_ENGLISH_ID, english) iferr_return;
 
-						port.SetValue<decltype(maxon::nodes::PortDescriptionStringLazy)>(std::move(languageDict)) iferr_return;
+						port.SetValue(maxon::nodes::PortDescriptionStringLazy, std::move(languageDict)) iferr_return;
 					}
-					port.SetValue<decltype(maxon::NODE::ATTRIBUTE::ORDERINDEX)>(++order) iferr_return;
+					port.SetValue(maxon::NODE::ATTRIBUTE::ORDERINDEX, ++order) iferr_return;
 				}
 				return true;
 			}) iferr_return;
