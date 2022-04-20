@@ -6,12 +6,19 @@ APIS=\
 asset.framework;\
 cinema.framework;\
 cinema_hybrid.framework;\
-core.framework;
+core.framework;\
+corenodes.framework;\
+crypt.framework;\
+graph.framework;\
+image.framework;\
+neutron.framework;\
+nodes.framework;\
+nodespace.framework;\
 
 // C4D component
 C4D=true
 
-stylecheck.level=3
+stylecheck.level=3 
 
 // Custom ID
-ModuleId=net.maxonexample.assets.basic
+ModuleId=net.maxonexample.assets

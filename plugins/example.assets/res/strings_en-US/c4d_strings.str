@@ -1,0 +1,153 @@
+STRINGTABLE
+{
+    
+    // Asset API Examples
+
+    IDS_NME_ASSET_API_EXAMPLES            "C++ SDK - Asset API Examples";
+    IDS_HLP_ASSET_API_EXAMPLES            "Demonstrates how to carry out basic operations with the Asset API.";
+
+    IDS_HLP_DEFAULT_1                     "Select an example category from the drop down at the top of this dialog. The categories align with the Asset API manual and the examples shown there. Press the ? button in the top left corner to open the corresponding Asset API manual page for the selected category.";
+
+    IDS_HLP_DEFAULT_2                     "Select one of the examples in the list view below the categories to see a description of what the example does in this text box. Press the 'Run Example' button with an example being selected to execute the example. Most examples will output messages or errors to the console. Some examples require a certain scene state to be run, as for example having an object selected.";
+
+    IDS_HLP_DEFAULT_3                     "The examples will explain these requirements their description and also output errors to the console indicating what went wrong when running an example failed. With the 'Load Example Scene' button a scene meeting all these requirements can be loaded. Pressing the console button next to the ? button at the top will toggle clearing the console each time when an example is being run.";
+
+    IDS_HLP_CLEAR_CONSOLE                 "Toggle automatically clearing the console each time an example is invoked";
+    IDS_HLP_OPEN_HANDBOOK                 "Opens the C++ SDK Documentation - Asset API Handbook on the topic of the currently selected category";
+    IDS_HLP_LOAD_SCENE                    "Loads a scene meeting the requirements of all Asset API examples";
+
+    IDS_URL_HANDBOOK_DATABASES            "https://developers.maxon.net/docs/Cinema4DCPPSDK/html/page_handbook_assetapi_databases.html";
+    IDS_URL_HANDBOOK_ASSETTYPES           "https://developers.maxon.net/docs/Cinema4DCPPSDK/html/page_handbook_assetapi_asset_types.html";
+    IDS_URL_HANDBOOK_METADATA             "https://developers.maxon.net/docs/Cinema4DCPPSDK/html/page_handbook_assetapi_metadata.html";
+    IDS_URL_HANDBOOK_IMPL_PRESET_ASSET    "https://developers.maxon.net/docs/Cinema4DCPPSDK/html/page_handbook_assetapi_implement_preset_asset_type.html";
+
+    IDS_LBL_ADD_DATABASE                  "Add User Database";
+    IDS_HLP_ADD_DATABASE                  "Opens a directory dialog to add a user database. Select an empty directory of your choosing. When the selected location contains an already existing database, the database will wrap around that content. When not, the necessary data for a new database will be created in that location.";
+
+    IDS_LBL_REMOVE_DATABASE               "Remove User Database";
+    IDS_HLP_REMOVE_DATABASE               "Opens a directory dialog to remove a user database. Select any of the locations previously added by 'Add User Database'. The example will throw an error when the selected path is not one of an mounted database.";
+
+    IDS_LBL_ACTIVATE_DATABASE             "Activate User Database";
+    IDS_HLP_ACTIVATE_DATABASE             "Opens a directory dialog to activate a user database. Select any of the locations previously added by 'Add User Database'. The example will throw an error when the selected path is not one of an mounted and inactive database.";
+
+    IDS_LBL_DEACTIVATE_DATABASE           "Deactivate User Database";
+    IDS_HLP_DEACTIVATE_DATABASE           "Opens a directory dialog to deactivate a user database. Select any of the locations previously added by 'Add User Database'. The example will throw an error when the selected path is not one of an mounted and active database.";
+
+    IDS_LBL_ACCESS_USER_DATABASES         "Access User Databases";
+    IDS_HLP_ACCESS_USER_DATABASES         "Iterates over all mounted user database and reports some of their properties to the console.";
+
+    IDS_LBL_CREATE_REPOSITORIES           "Create User Database Repositories";
+    IDS_HLP_CREATE_REPOSITORIES           "Creates repositories for all currently mounted user databases that are folders and reports some of their properties to the console.";
+
+    IDS_LBL_ACCESS_IMPORTANT_REPOSITORIES "Access Important Repositories";
+    IDS_HLP_ACCESS_IMPORTANT_REPOSITORIES "Accesses the builtin, application, user preferences and document repositories and reports some of their properties to the console. The user preferences repository contains the vast majority of asset data and is the common interface to access asset data.";
+
+    IDS_LBL_ATTACH_OBESERVERS             "Attach Observers";
+    IDS_HLP_ATTACH_OBESERVERS             "Attaches observers for adding assets and modifying asset metadata to the user preferences repository. Try adding a new asset or modifying the metadata of an asset in the information panel of Asset Browser after invoking this example. The console will then report these events.";
+
+    IDS_LBL_DETACH_OBSERVERS              "Detach Observers";
+    IDS_HLP_DETACH_OBSERVERS              "Detaches observers form the user preferences repository that have been previously attached with the 'Attach Observers' example.";
+
+    IDS_LBL_COPY_ASSET                    "Copy Asset";
+    IDS_HLP_COPY_ASSET                    "Copies the 'SDK Cube' asset into the 'Asset API Examples' category. The new asset will be revealed in the Asset Browser.";
+
+    IDS_LBL_ERASE_ASSET                   "Erase Asset";
+    IDS_HLP_ERASE_ASSET                   "Erases the first file asset found in the 'SDK/C++/Asset API Examples' category. Either run the asset creation examples to create a file asset in this category or manually create one. The easiest one way to create a file asset is to drag an object from the object manager into the that category in the Asset Browser. Open the Asset Browser and navigate to that category to see that asset being removed before running this example.";
+
+    IDS_LBL_SIMPLE_ASSET_SEARCH           "Simple Asset Search";
+    IDS_HLP_SIMPLE_ASSET_SEARCH           "Searches in the user preferences repository for all category assets and then searches for the 'Toy Plane 01' asset.";
+
+    IDS_LBL_FILTERED_ASSET_SEARCH         "Filtered Asset Search";
+    IDS_HLP_FILTERED_ASSET_SEARCH         "Searches in the user preferences repository for all file assets of subtype object, using a lambda. Then seraches for all keywords assets and passes the results through a delegate function.";
+
+    IDS_LBL_SORTED_ASSET_SEARCH           "Sorted Asset Search";
+    IDS_HLP_SORTED_ASSET_SEARCH           "Searches in the user preferences repository for all keywords with a data structure which sorts them by name and version. Then prints out the first ten assets found.";
+
+    IDS_LBL_CREATE_MATERIAL_ASSET         "Create Material Asset";
+    IDS_HLP_CREATE_MATERIAL_ASSET         "Creates a file asset of subtype material for the material that is currently selected in the Material Manager and reveals the asset in the asset Browser. Will throw an error when there is no selected material. The new asset will be revealed in the Asset Browser.";
+    
+    IDS_LBL_CREATE_MATERIAL_NODE_ASSET    "Create Material Node Asset";
+    IDS_HLP_CREATE_MATERIAL_NODE_ASSET    "Creates a node template asset for the standard Material Nodes node space from the first node material in the Material Manager. The example will group the currently selected nodes in that material graph into a node group, then store that group as a node template asset and replace the original group with that asset. Will throw an error when there is no node material present or the first node material in the Material Manager has no selected nodes in its graph. The new asset will be revealed in the Asset Browser.";
+    
+    IDS_LBL_CREATE_OBJECT_ASSET           "Create Object Asset";
+    IDS_HLP_CREATE_OBJECT_ASSET           "Creates a file asset of subtype object for the object that is currently selected in the Object Manager and reveals the asset in the Asset Browser. Will throw an error when there is no selected object. The new asset will be revealed in the Asset Browser.";
+    
+    IDS_LBL_CREATE_SCENE_NODE_ASSET       "Create Scene Node Asset";
+    IDS_HLP_CREATE_SCENE_NODE_ASSET       "Creates a node template asset for the Scene Nodes node space. The example will group the currently selected nodes in the scene node graph of the active document into a node group, then store that group as a node template asset and replace the original group with that asset. Will throw an error when there are no selected nodes in the Scene Nodes graph of the active document. The new asset will be revealed in the Asset Browser.";
+    
+    IDS_LBL_CREATE_SCENE_ASSET            "Create Scene Asset";
+    IDS_HLP_CREATE_SCENE_ASSET            "Creates a file asset of subtype scene for the active document and reveals the asset in the Asset Browser. The new asset will be revealed in the Asset Browser.";
+    
+    IDS_LBL_CREATE_MEDIA_FILE_ASSET       "Create Image or Movie Asset";
+    IDS_HLP_CREATE_MEDIA_FILE_ASSET       "Opens a file selection dialog to select a bmp, jpg, png, psd, avi or mov file. The selected file url is then stored as a file asset of either subtype media image or media movie and revealed in the Asset Browser. The new asset will be revealed in the Asset Browser.";
+    
+    IDS_LBL_CREATE_ARBITRARY_FILE_ASSET   "Create Arbitrary File Asset";
+    IDS_HLP_CREATE_ARBITRARY_FILE_ASSET   "Opens a file selection dialog to select any file. The selected file url is then stored as a file asset with no subtype and revealed in the Asset Browser. The difference between a plain file asset and one with a specific sub type is that the sub type assets handle their preview image and have an action when they are double clicked in the asset browser, while plain file assets have a generic file asset preview image and not necessarily a click action. File formats that have a dedicated subtype should be wrapped by file assets of that subtype. The new asset will be revealed in the Asset Browser.";
+    
+    IDS_LBL_CREATE_CATEGORY_ASSET         "Create Category Asset";
+    IDS_HLP_CREATE_CATEGORY_ASSET         "Opens an input dialog asking for a category name. Then creates a category asset for that name in the user preferences repository. The new asset will be revealed in the Asset Browser.";
+    
+    IDS_LBL_CREATE_KEYWORD_ASSET          "Create Keyword Asset";
+    IDS_HLP_CREATE_KEYWORD_ASSET          "Opens an input dialog asking for a keyword name. Then creates a keyword asset for that name in the user preferences repository. The new asset will be revealed in the Asset Browser.";
+    
+    IDS_LBL_LOAD_MATERIAL_ASSET           "Load Material Asset";
+    IDS_HLP_LOAD_MATERIAL_ASSET           "Loads all material assets from the category 'Materials/Car Paint' into the active document.";
+    
+    IDS_LBL_LOAD_MATERIAL_NODE_ASSET      "Load Material Node Asset";
+    IDS_HLP_LOAD_MATERIAL_NODE_ASSET      "Creates a new node material with a standard Material Nodes node space and inserts the material node template for the checkerboard generator node and the material node template stored in the SDK database.";
+    
+    IDS_LBL_LOAD_OBJECT_ASSET             "Load Object Asset";
+    IDS_HLP_LOAD_OBJECT_ASSET             "Loads the 'Toy Plan 01' asset from the 'Objects/Toys' category into the active document.";
+    
+    IDS_LBL_LOAD_SCENE_NODE_ASSET         "Load Scene Node Asset";
+    IDS_HLP_LOAD_SCENE_NODE_ASSET         "Inserts the cube primitive node template asset and the Scene Nodes node template stored in the SDK database into the scene nodes graph of the active document.";
+    
+    IDS_LBL_LOAD_SCENE_ASSET              "Load Scene Asset";
+    IDS_HLP_LOAD_SCENE_ASSET              "Loads the 'Lake House' asset from the 'Example Scenes/Disciplines/Architectural Visualization/01 Scenes' category into a new document.";
+    
+    IDS_LBL_LINK_MEDIA_ASSET              "Link Media Asset in Material";
+    IDS_HLP_LINK_MEDIA_ASSET              "Creates a standard material for the first five image assets found in the category 'tex/Surfaces/Wood' and links the Url of these assets in the color channel of a material. The asset which has been inspected will be revealed in the Asset Browser.";
+
+    IDS_LBL_ACCESS_ASSETDESCRIPTION_DATA  "Access Asset Description Data";
+    IDS_HLP_ACCESS_ASSETDESCRIPTION_DATA  "Accesses important properties of the asset description for the 'SDK-Cube' asset stored in the SDK database and prints them to the console. The asset which has been inspected will be revealed in the Asset Browser.";
+
+    IDS_LBL_ADD_ASSET_VERSION             "Add Versions to Assets";
+    IDS_HLP_ADD_ASSET_VERSION             "Creates a copy of the 'SDK-Cube' asset, inserts the copy into the user preferences repository, and then adds an asset version to the copy containing only a parametric sphere. The new asset will be revealed in the Asset Browser. Open then info panel of the Asset Browser and navigate to the 'Versions' tab to see both versions of the asset.";
+
+    IDS_LBL_READ_ASSETMETADATA            "Read Asset Metadata";
+    IDS_HLP_READ_ASSETMETADATA            "Reads commonly used properties in the asset metadata for the 'SDK-Cube' asset stored in the SDK database and prints them to the console. The asset which has been inspected will be revealed in the Asset Browser.";
+
+    IDS_LBL_WRITE_ASSETMETADATA           "Write Asset Metadata";
+    IDS_HLP_WRITE_ASSETMETADATA           "Creates a copy of the 'SDK-Cube' asset, inserts the copy into the user preferences repository, and then writes the metadata of that asset copy. Then runs the 'Read Asset Metadata' example on the copy. The new asset will be revealed in the Asset Browser.";
+
+    IDS_LBL_GENERATE_ASSET_IDENTIFIERS    "Generate Asset Identifiers";
+    IDS_HLP_GENERATE_ASSET_IDENTIFIERS    "Demonstrates the difference between UUID based asset identifiers and such where the identifier has been manually hashed with reproducibility in mind.";
+    
+    IDS_LBL_ITERATE_ASSET_METADATA        "Iterate over Asset Metadata";
+    IDS_HLP_ITERATE_ASSET_METADATA        "Iterates over all existing metadata of the 'Lake House' and 'Toy Plane 01' file assets that were subject of the scene and object asset loading examples and prints out the values. When the examples for creating scene and material node templates have been run before invoking this example, their metadata will also be printed out.";
+    
+    IDS_LBL_FIND_CATEGORY_BY_NAME         "Find Category By Name";
+    IDS_HLP_FIND_CATEGORY_BY_NAME         "Opens an input dialog asking for category name and then prints out all category assets with a name matching that input.";
+
+    IDS_LBL_FIND_CATEGORY_BY_PATH         "Find Category By Path";
+    IDS_HLP_FIND_CATEGORY_BY_PATH         "Opens an input dialog asking for category path and then prints out all category assets with a path matching that input. The category path must be separated by forward slashes, e.g., Objects/Food/Fruits.";
+
+    // Dots Preset Asset
+
+    IDS_DOTS_DATATYPE                     "C++ SDK - Dots Datatype (Asset API)";
+    IDS_DOTS_GUI                          "C++ SDK - Dots GUI (Asset API)";
+
+    IDS_DOTS_ASSET                        "C++ SDK - Dots Preset Asset";
+
+    IDS_LBL_DOTS_ADD_NULL                 "Create DotsData Null Object";
+    IDS_HLP_DOTS_ADD_NULL                 "Adds a null object to the active document containing a DotsData user data parameter. This null object can be used to create or load assets or to receive dots preset drag and drop events from the Asset Browser.";
+
+    IDS_LBL_DOTS_INSTANTIATE              "Instantiate Dots Preset Asset";
+    IDS_HLP_DOTS_INSTANTIATE              "Instantiates a dots preset asset and inserts it into the user preferences repository. The new asset will be revealed in the Asset Browser.";
+
+    IDS_LBL_DOTS_INCREASE_SCALE           "Increase Preview Image Dots Scale";
+    IDS_HLP_DOTS_INCREASE_SCALE           "Increases the dot scale for all dots preset asset preview images. This will only affect the already existing assets, as this is based on the custom metadata attribute DOTS_SCALE introduced with the dots preset asset implementation. All dots preset assets instantiated after running this example will be rendered with their default size. All dots preset assets that have been modified will be revealed in the Asset Browser.";
+
+    IDS_LBL_DOTS_DECREASE_SCALE           "Decrease Preview Image Dots Scale";
+    IDS_HLP_DOTS_DECREASE_SCALE           "Decreases the dot scale for all dots preset asset preview images. This will only affect the already existing assets, as this is based on the custom metadata attribute DOTS_SCALE introduced with the dots preset asset implementation. All dots preset assets instantiated after running this example will be rendered with their default size. All dots preset assets that have been modified will be revealed in the Asset Browser.";
+}

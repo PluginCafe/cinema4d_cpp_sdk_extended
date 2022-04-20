@@ -19,10 +19,13 @@
 
 // Forward declaration
 Bool RegisterAssetApiBasics();
+Bool RegisterDotsDataAndGui();
 
 Bool PluginStart()
 {
   if (!RegisterAssetApiBasics())
+    return false;
+  if (!RegisterDotsDataAndGui())
     return false;
 	return true;
 }
