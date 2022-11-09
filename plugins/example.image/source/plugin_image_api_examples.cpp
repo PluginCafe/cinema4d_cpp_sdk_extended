@@ -37,13 +37,12 @@ Bool ColorManagementExamplesCommand::Execute(BaseDocument* doc, GeDialog* parent
 
 	OpenFlushConsole();
 
-	// The hash map to pass around (String, maxon::ColorProfile) pairs produced and used by the
-	// examples below.
-	ColorProfileCollection collection;
+	// Container used by the examples below to pass around (label, profile) pairs.
+	maxon::HashMap<maxon::String, maxon::ColorProfile> collection;
 
 	// Run all color management examples.
-	GetBuiltinColorProfiles(collection) iferr_return;
-	LoadColorProfilesFromFile(collection) iferr_return;
+	GetColorProfilesFromColorSpaces(collection) iferr_return;
+	GetColorProfilesFromFile(collection) iferr_return;
 	GetColorProfileMetadata(collection) iferr_return;
 	WriteColorProfileToFile() iferr_return;
 	GetPixelFormats() iferr_return;

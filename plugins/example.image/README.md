@@ -16,9 +16,9 @@ extended SDK has been compiled and loaded.
 
 | Function | Description |
 | :- | :- |
-| GetBuiltinColorProfiles | Instantiate color profiles from the builtin color spaces and pixel formats. |
-| LoadColorProfilesFromFile | Instantiate color profiles from ICC color profile files and the builtin pixel formats. |
-| GetColorProfileMetadata | Instantiate color profiles from ICC color profile files and the builtin pixel formats. |
+| GetColorProfilesFromColorSpaces | Instantiate color profiles from the builtin color spaces and pixel formats. |
+| GetColorProfilesFromFile | Instantiate color profiles from ICC color profile files and the builtin pixel formats. |
+| GetColorProfileMetadata | Read color profile metadata such as description strings and supported pixel formats. |
 | WriteColorProfileToFile | Write a color profile object to an ICC color profile file on disk. |
 | GetPixelFormats | Access builtin pixel formats and their associated metadata, such as formatting groups, number of channels, and memory layout per channel. |
 | ConvertSinglePixelWithColorProfile | Convert color data pixel by pixel with color profiles and/or pixel formats. |

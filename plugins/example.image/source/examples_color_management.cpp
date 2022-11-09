@@ -18,8 +18,9 @@
 #include "examples_color_management.h"
 
 
-//! [GetBuiltinColorProfiles]
-maxon::Result<void> GetBuiltinColorProfiles(ColorProfileCollection& collection)
+//! [GetColorProfilesFromColorSpaces]
+maxon::Result<void> GetColorProfilesFromColorSpaces(
+	maxon::HashMap<maxon::String, maxon::ColorProfile>& collection)
 {
 	iferr_scope;
 
@@ -46,10 +47,11 @@ maxon::Result<void> GetBuiltinColorProfiles(ColorProfileCollection& collection)
 
 	return maxon::OK;
 }
-//! [GetBuiltinColorProfiles]
+//! [GetColorProfilesFromColorSpaces]
 
-//! [LoadColorProfilesFromFile]
-maxon::Result<void> LoadColorProfilesFromFile(ColorProfileCollection& collection)
+//! [GetColorProfilesFromFile]
+maxon::Result<void> GetColorProfilesFromFile(
+	maxon::HashMap<maxon::String, maxon::ColorProfile>& collection)
 {
 	iferr_scope;
 
@@ -87,10 +89,11 @@ maxon::Result<void> LoadColorProfilesFromFile(ColorProfileCollection& collection
 
 	return maxon::OK;
 }
-//! [LoadColorProfilesFromFile]
+//! [GetColorProfilesFromFile]
 
 //! [GetColorProfileMetadata]
-maxon::Result<void> GetColorProfileMetadata(const ColorProfileCollection& collection)
+maxon::Result<void> GetColorProfileMetadata(
+	const maxon::HashMap<maxon::String, maxon::ColorProfile>& collection)
 {
 	iferr_scope;
 
@@ -163,8 +166,9 @@ maxon::Result<void> GetPixelFormats()
 {
 	iferr_scope;
 
-	// Color profiles can support multiple pixel formats. A color in the RGB space can for example be 
-	// expressed as a tuple of 16 or 32 bit floating point numbers among other formats.
+	// Color profiles can support multiple pixel formats which primarily express a memory layout for 
+	// pixel data. A color in the RGB space can for example be expressed as a tuple of 16 or 32 bit 
+	// floating point numbers among other formats.
 	// 
 	// Pixel formats can be accessed via the maxon::PixelFormats namespace to which namespace groups 
 	// for the principal color formats, e.g., RGB, are attached. Each of these groups then contains 
@@ -230,7 +234,8 @@ maxon::Result<void> GetPixelFormats()
 //! [GetPixelFormats]
 
 //! [ConvertSinglePixelWithColorProfile]
-maxon::Result<void> ConvertSinglePixelWithColorProfile(const ColorProfileCollection& collection)
+maxon::Result<void> ConvertSinglePixelWithColorProfile(
+	const maxon::HashMap<maxon::String, maxon::ColorProfile>& collection)
 {
 	iferr_scope;
 
@@ -361,7 +366,8 @@ maxon::Result<void> ConvertManyPixelWithColorProfile()
 //! [ConvertManyPixelWithColorProfile]
 
 //! [ConvertTextureWithColorProfile]
-maxon::Result<void> ConvertTextureWithColorProfile(const ColorProfileCollection& collection)
+maxon::Result<void> ConvertTextureWithColorProfile(
+	const maxon::HashMap<maxon::String, maxon::ColorProfile>& collection)
 {
 	iferr_scope;
 

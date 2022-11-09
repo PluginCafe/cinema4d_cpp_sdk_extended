@@ -6,7 +6,7 @@
 	Date: 02/11/2022
 	SDK: 2023.100
 
-	Demonstrates how interact with the OCIO settings and color spaces in an OCIO document.
+	Demonstrates how to interact with the OCIO settings and color spaces in an OCIO document.
 */
 
 #ifndef EXAMPLES_OCIO_H__

@@ -114,20 +114,20 @@ maxon::Result<void> ConvertOcioColors(BaseDocument* doc)
 	const maxon::Vector64 colorInput { 1, 0, 0 };
 
 	// Convert the color from sRGB space to render space. With the default OCIO settings of Cinema 
-	// 4D 2023.2, this will convert to ACEScg space. Doing this is only necessary when computation
+	// 4D 2023.1, this will convert to ACEScg space. Doing this is only necessary when computation
 	// results or color definitions are explicitly outside of the render space.
 	const maxon::Vector64 colorRender = converter->TransformColor(
 		colorInput, COLORSPACETRANSFORMATION::OCIO_SRGB_TO_RENDERING);
 
 	// Convert the color from render space to display space, i.e., the space the physical display 
-	// device operates in. With the default OCIO settings of Cinema 4D 2023.2, this will convert 
+	// device operates in. With the default OCIO settings of Cinema 4D 2023.1, this will convert 
 	// from ACEScg to sRGB space.
 	const maxon::Vector64 colorDisplay = converter->TransformColor(
 		colorRender, COLORSPACETRANSFORMATION::OCIO_RENDERING_TO_DISPLAY);
 
 	// Convert a color from render space to view transform (space), i.e., to the value which
 	// will be finally shown on screen to the user. With the default OCIO settings of Cinema 4D 
-	// 2023.2, this will convert from ACEScg to ACES 1.0 SDR-video space.
+	// 2023.1, this will convert from ACEScg to ACES 1.0 SDR-video space.
 	const maxon::Vector64 colorView = converter->TransformColor(
 		colorRender, COLORSPACETRANSFORMATION::OCIO_RENDERING_TO_VIEW);
 
