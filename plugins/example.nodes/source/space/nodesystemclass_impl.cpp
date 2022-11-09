@@ -24,7 +24,7 @@ MAXON_METHOD maxon::Result<maxon::nodes::NodeSystem> NodeSystemClassExample::Ins
 	const Id& id = templ.GetId();
 	if (id == Id("net.maxon.node.arithmetic"))
 	{
-		MutableRoot root = sys.BeginModification(false) iferr_return;
+		MutableRoot root = sys.BeginModification(parent.GetLookupRepository()) iferr_return;
 		root.SetTemplate(parent, templ, args) iferr_return;
 		Tuple<Id, Data> enumerators[2];
 		enumerators[0].first = Id("float");

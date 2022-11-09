@@ -77,7 +77,6 @@ Bool PluginMessage(Int32 id, void* data)
 	{
 		case C4DPL_INIT_SYS:
 		{
-			((OperatingSystem*)data)->St->LLongToStringExEx = nullptr; // secret code
 			return true;
 		}
 	}

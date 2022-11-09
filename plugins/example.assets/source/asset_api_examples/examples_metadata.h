@@ -1,12 +1,12 @@
 /*
-  Asset API Examples - Metadata
-  Copyright (C) 2022 MAXON Computer GmbH
+	Asset API Examples - Metadata
+	Copyright (C) 2022 MAXON Computer GmbH
 
-  Author: Ferdinand Hoppe
-  Date: 01/04/2022
-  SDK: R26
+	Author: Ferdinand Hoppe
+	Date: 01/04/2022
+	SDK: R26
 
-  Contains the Asset API examples related to the topic of metadata.
+	Contains the Asset API examples related to the topic of metadata.
 */
 #ifndef EXAMPLES_METADATA_H__
 #define EXAMPLES_METADATA_H__
@@ -21,7 +21,7 @@
 #include "examples_metadata1.hxx"
 namespace maxon::ASSETMETADATA
 {
-  MAXON_ATTRIBUTE(maxon::Bool, SDK_TOUCHED, "net.maxonexample.asset.sdk_touched");
+	MAXON_ATTRIBUTE(maxon::Bool, SDK_TOUCHED, "net.maxonexample.asset.sdk_touched");
 };
 #include "examples_metadata2.hxx"
 //! [declare_custom_metadata_attribute]
@@ -64,9 +64,9 @@ maxon::Result<maxon::AssetDescription> AddAssetVersion(const maxon::AssetDescrip
 /// @param[in] category        The parent category to match.
 /// @param[in] testCategory    If to test for parent category.
 maxon::Result<void> FindCategoryAssetsByName(
-  const maxon::AssetRepositoryRef& repository, maxon::BaseArray<maxon::AssetDescription>& results,
-  const maxon::String& serachName, const maxon::Id& category = maxon::Id(),
-  const maxon::Bool& testCategory = false);
+	const maxon::AssetRepositoryRef& repository, maxon::BaseArray<maxon::AssetDescription>& results,
+	const maxon::String& serachName, const maxon::Id& category = maxon::Id(),
+	const maxon::Bool& testCategory = false);
 
 
 /// Finds all category assets that match a given category path.
@@ -88,8 +88,8 @@ maxon::Result<void> FindCategoryAssetsByName(
 ///                            search always does start at the root.
 
 maxon::Result<void> FindCategoryAssetsByPath(
-  const maxon::AssetRepositoryRef& repository, maxon::BaseArray<maxon::AssetDescription>& results,
-  const maxon::String& categoryPath, const maxon::Bool& relativePath = false);
+	const maxon::AssetRepositoryRef& repository, maxon::BaseArray<maxon::AssetDescription>& results,
+	const maxon::String& categoryPath, const maxon::Bool& relativePath = false);
 
 
 /// Demonstrates how to generate asset identifiers.

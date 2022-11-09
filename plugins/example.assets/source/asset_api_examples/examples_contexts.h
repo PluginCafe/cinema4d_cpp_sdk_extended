@@ -1,37 +1,37 @@
 /*
-  Asset API Examples - Execution Contexts
-  Copyright (C) 2022 MAXON Computer GmbH
+	Asset API Examples - Execution Contexts
+	Copyright (C) 2022 MAXON Computer GmbH
 
-  Author: Ferdinand Hoppe
-  Date: 01/04/2022
-  SDK: R26
+	Author: Ferdinand Hoppe
+	Date: 01/04/2022
+	SDK: R26
 
-  Contains execution contexts showcasing how to use the examples shown in the manuals.
+	Contains execution contexts showcasing how to use the examples shown in the manuals.
 
-  An execution context is a function showcasing how the inputs for an abstracted example can be
-  gathered. An execution context has deliberately no inputs to remove any ambiguity about how to
-  accomplish a certain task; with the excecption of the repository observer examples, as these
-  two examples must pass data between each other. There is at least one execution context for 
-  each example shown in the manuals, but in some cases there are multiple as for example for 
-  loading and storing node template assets which both have dedicated execution contexts for 
-  scene and material nodes.
+	An execution context is a function showcasing how the inputs for an abstracted example can be
+	gathered. An execution context has deliberately no inputs to remove any ambiguity about how to
+	accomplish a certain task; with the excecption of the repository observer examples, as these
+	two examples must pass data between each other. There is at least one execution context for 
+	each example shown in the manuals, but in some cases there are multiple as for example for 
+	loading and storing node template assets which both have dedicated execution contexts for 
+	scene and material nodes.
 
-  The contexts are named with the scheme "Run{ExampleFunction}", e.g., the execution context for
-  the example function "AddDatabase()" in examples_databases.h is "RunAddDatabase()". An exception
-  to that rule are the cases where more than one execution context does exist for an example. The
-  special cases are:
+	The contexts are named with the scheme "Run{ExampleFunction}", e.g., the execution context for
+	the example function "AddDatabase()" in examples_databases.h is "RunAddDatabase()". An exception
+	to that rule are the cases where more than one execution context does exist for an example. The
+	special cases are:
 
-  Example                           Contexts
-  --------------------------------------------------------------------------------------------------
-  LoadFileAssets()                  RunLoadMaterialAssets()
-                                    RunLoadObjectAssets()
-                                    RunLoadSceneAsset()
-  --------------------------------------------------------------------------------------------------
-  CreateNodeTemplateAsset()         RunCreateMaterialNodeAsset()
-                                    RunCreateSceneNodeAsset()
-  --------------------------------------------------------------------------------------------------
-  LoadNodeTemplateAssets()          RunLoadMaterialNodeAssets()
-                                    RunLoadSceneNodeAssets()
+	Example														Contexts
+	--------------------------------------------------------------------------------------------------
+	LoadFileAssets()									RunLoadMaterialAssets()
+																		RunLoadObjectAssets()
+																		RunLoadSceneAsset()
+	--------------------------------------------------------------------------------------------------
+	CreateNodeTemplateAsset()					RunCreateMaterialNodeAsset()
+																		RunCreateSceneNodeAsset()
+	--------------------------------------------------------------------------------------------------
+	LoadNodeTemplateAssets()					RunLoadMaterialNodeAssets()
+																		RunLoadSceneNodeAssets()
 */
 #ifndef EXAMPLES_CONTEXTS_H__
 #define EXAMPLES_CONTEXTS_H__
@@ -64,7 +64,7 @@ maxon::Result<void> RunAddDatabase();
 ///                            repository observers. The data is passed and hold by the dialog 
 ///                            executing these example functions.
 maxon::Result<void> RunAttachRepositoryObservers(
-  maxon::HashMap<maxon::String, maxon::FunctionBaseRef>& observerData);
+	maxon::HashMap<maxon::String, maxon::FunctionBaseRef>& observerData);
 
 
 /// Runs the CreateRepositories() example.
@@ -81,7 +81,7 @@ maxon::Result<void> RunDeactivateDatabase();
 ///                                 attaching repository observers. The data is passed and hold by 
 ///                                 the dialog executing these example functions.
 maxon::Result<void> RunDetachRepositoryObservers(
-  maxon::HashMap<maxon::String, maxon::FunctionBaseRef>& observerData);
+	maxon::HashMap<maxon::String, maxon::FunctionBaseRef>& observerData);
 
 
 /// Runs the RemoveDatabase() example.

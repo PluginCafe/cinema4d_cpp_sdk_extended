@@ -1,0 +1,24 @@
+Platform=Win64;OSX
+Type=DLL
+
+// API dependencies
+APIS=\
+asset.framework;\
+cinema.framework;\
+cinema_hybrid.framework;\
+core.framework;\
+corenodes.framework;\
+crypt.framework;\
+graph.framework;\
+image.framework;\
+neutron.framework;\
+nodes.framework;\
+nodespace.framework;\
+
+// C4D component
+C4D=true
+
+stylecheck.level=3 
+
+// Custom ID
+ModuleId=net.maxonexample.image

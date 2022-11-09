@@ -3,6 +3,7 @@ Type=Solution
 Solution=\
 	plugins/cinema4dsdk;\
 	plugins/example.assets;\
+	plugins/example.image;\
 	plugins/example.nodes;\
 	plugins/maxonsdk.module;\
 	plugins/microsdk

@@ -14,6 +14,7 @@ static const Int32 ID_CUSTOMDATA_TAG_COMMAND = 1039842;
 
 static const Int32 ID_POLYOBJ = 1052873;
 static const Int32 ID_POINT_INDEX_TAG = 1052874;
+static const Int32 ID_POINT_INDEX_OBJECT_EXAMPLE = 1060109;
 
 namespace maxon
 {

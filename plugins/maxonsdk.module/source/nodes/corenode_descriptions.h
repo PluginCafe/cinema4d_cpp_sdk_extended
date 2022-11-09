@@ -19,6 +19,7 @@ namespace NODE_CORENODE
 	{
 		MAXON_RESOURCE_DATABASE_SCOPE("net.maxonexample.node_corenode.simplecorenode");
 
+		// supports MAXON::NODE::BASE::FILTERTAGS
 		// supports MAXON::NODE::BASE::NODEPREVIEWIMAGE
 		// supports MAXON::NODE::BASE::MATERIALPREVIEWIMAGE
 		// supports MAXON::NODE::BASE::NAME
@@ -28,7 +29,6 @@ namespace NODE_CORENODE
 		// supports MAXON::NODE::BASE::DISPLAYPREVIEW
 		// supports MAXON::NODE::BASE::DISPLAYCOMMENT
 		// supports MAXON::NODE::BASE::COMMENT
-		// supports MAXON::NODE::BASE::FILTERTAGS
 		// supports MAXON::NODE::BASE::CATEGORY
 		// supports MAXON::NODE::BASE::ICON
 		// supports MAXON::NODE::BASE::UPDATEPOLICY

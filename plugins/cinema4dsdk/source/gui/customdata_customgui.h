@@ -15,6 +15,8 @@
   type. It creates an iExampleCustomGUIDots dialog that realizes the GUI for that data type. The
   dialog includes the GeUserArea implementation DotsUserArea which handles the rendering of the
   custom data in a GUI.
+
+  This example have been modified to be used a node inside the node editor.
 */
 #ifndef CUSTOMDATA_CUSTOMGUI_H__
 #define CUSTOMDATA_CUSTOMGUI_H__
@@ -40,26 +42,27 @@ public:
 	explicit iCustomDataTypeDots(const maxon::BaseArray<Vector> &points);
 
 	//---------------------------
-	// The example "how to use a Classic API UI and Datatype inside the node editor" need some extra code.
-	// In order to use the Classic API data type and its UI in the node editor, we need a copy constructor, 
-	// an assignment operator and the DescribeIO function or we will not be able to save the data to the
-	// cinema4D's project file.
+	// The example "how to use a Classic API UI and Datatype inside the node editor" 
+	// need some extra code.
+	// In order to use the Classic API data type and its UI in the node editor, 
+	// a copy constructor is mandatory, an assignment operator, and 
+	// the DescribeIO function or the data will not be properly saved to the cinema4D's project file.
 	
 	iCustomDataTypeDots(const iCustomDataTypeDots& cdtd);
 	
 	void operator =(const iCustomDataTypeDots& b)
 	{
 		_points.Flush();
-		_points.CopyFrom(b._points) iferr_ignore("we simply ignore"_s);
+		_points.CopyFrom(b._points) iferr_ignore("Simply ignore copy from error"_s);
 	}
 		
 	MAXON_OPERATOR_EQUALITY(iCustomDataTypeDots, _points);
 
-	/// DescribeIO is mandatory if we want to be able to save the c4d file. Otherwise, maxon Data can't be saved.
+	/// DescribeIO is mandatory otherwise, maxon Data cannot be saved.
 	static maxon::Result<void> DescribeIO(const maxon::DataSerializeInterface& stream);
 	//---------------------------
 	
-	// The accessors that we use in several functions.
+	// The accessors that will be used in several functions.
 	maxon::BaseArray<Vector> GetValue() const;
 	void SetValue(const maxon::BaseArray<Vector> &value);
 
@@ -68,7 +71,7 @@ public:
 	maxon::BaseArray<Vector> _points;
 
 };
-// For the Node API example, we need to register the customDataTypeDot as a Maxon Data.
+// For the Node API example, customDataTypeDot need to be registered as a Maxon Data.
 MAXON_DATATYPE(iCustomDataTypeDots, "net.maxonsdk.datatype.iCustomDataTypeDots");
 
 

@@ -1,36 +1,36 @@
 /*
-  Dots CustomDataType & CustomGui Example
-  (C) 2022 MAXON Computer GmbH
+	Dots CustomDataType & CustomGui Example
+	(C) 2022 MAXON Computer GmbH
 
-  Author: Sebastian Bach, Ferdinand Hoppe
-  Date: 01/04/2022
-  SDK: R26
+	Author: Sebastian Bach, Ferdinand Hoppe
+	Date: 01/04/2022
+	SDK: R26
 
-  Implements a custom datatype with a custom GUI that can be saved as a preset asset.
+	Implements a custom datatype with a custom GUI that can be saved as a preset asset.
 
-  The core elements of this implementation are DotsData and DotsGui. DotsData implements the
-  custom data type and DotsGui a dialog that is used to render that data type as a parameter
-  in the Attribute Manger.
+	The core elements of this implementation are DotsData and DotsGui. DotsData implements the
+	custom data type and DotsGui a dialog that is used to render that data type as a parameter
+	in the Attribute Manger.
 
-  DotsGui is a iCustomGui which inherits from GeDialog and attaches three gadgets to itself.
+	DotsGui is a iCustomGui which inherits from GeDialog and attaches three gadgets to itself.
 
-    1. A DotsUserArea instance, which renders a preview of the DotsData attached to the DotsGui.
-    2. A "Load Preset ..." button to load a preset asset of type DotsPresetAsset with the help of
-       a popup dialog.
-    3. A "Save Preset ..." button to save the DotsData shown in the DotsGui as a DotsPresetAsset 
-		   which is exposed by the Asset Browser.
+		1. A DotsUserArea instance, which renders a preview of the DotsData attached to the DotsGui.
+		2. A "Load Preset ..." button to load a preset asset of type DotsPresetAsset with the help of
+			 a popup dialog.
+		3. A "Save Preset ..." button to save the DotsData shown in the DotsGui as a DotsPresetAsset 
+			 which is exposed by the Asset Browser.
 
-  Both the DotsData and DotsGui implementation are exposed as plugin interfaces to the classic API,
-  handling the data type and its GUI. For DotsData it is DotsDataClass and for DotsGui it is
-  DotsGuiData. These types are then used to register the data type and its GUI as plugins with
-  Cinema 4D.
+	Both the DotsData and DotsGui implementation are exposed as plugin interfaces to the classic API,
+	handling the data type and its GUI. For DotsData it is DotsDataClass and for DotsGui it is
+	DotsGuiData. These types are then used to register the data type and its GUI as plugins with
+	Cinema 4D.
 
-  This example also showcases the bindings of a custom GUI and data type to the Asset API, so that
-  users can save and load preset assets from within the GUI of the data type. This is primarily
-  realized with the two buttons in the custom GUI, the "Load Preset..." and "Save Preset..."
-  buttons. In DotsGui::Command() the click messages for these buttons are then handled and DotsData
-  is being sent to or retrieved from the Asset API DotsPresetAsset type implementation. Asset drag
-  and drop events are being handled in a similar fashion in DotsGui::Message().
+	This example also showcases the bindings of a custom GUI and data type to the Asset API, so that
+	users can save and load preset assets from within the GUI of the data type. This is primarily
+	realized with the two buttons in the custom GUI, the "Load Preset..." and "Save Preset..."
+	buttons. In DotsGui::Command() the click messages for these buttons are then handled and DotsData
+	is being sent to or retrieved from the Asset API DotsPresetAsset type implementation. Asset drag
+	and drop events are being handled in a similar fashion in DotsGui::Message().
 */
 //! [declaration]
 #ifndef CUSTOMDATA_CUSTOMGUI_H__
@@ -80,12 +80,12 @@ public:
 	DotsUserArea();
 	virtual ~DotsUserArea();
 
-  virtual Bool Init();
-  virtual Bool InitValues();
-  virtual Bool GetMinSize(Int32& w, Int32& h);
+	virtual Bool Init();
+	virtual Bool InitValues();
+	virtual Bool GetMinSize(Int32& w, Int32& h);
 
-  virtual void DrawMsg(Int32 x1, Int32 y1, Int32 x2, Int32 y2, const BaseContainer& msg);
-  virtual Bool InputEvent(const BaseContainer& msg);
+	virtual void DrawMsg(Int32 x1, Int32 y1, Int32 x2, Int32 y2, const BaseContainer& msg);
+	virtual Bool InputEvent(const BaseContainer& msg);
 
 	DotsData* _data;
 };
@@ -126,7 +126,7 @@ public:
 
 	// Receives messages sent to the iCustomGui dialog.
 	// 
-  // Used in this example to handle asset drag and drop events onto the custom GUI. Receives data 
+	// Used in this example to handle asset drag and drop events onto the custom GUI. Receives data 
 	// from the Asset API in form of DndAsset tuples and then sends data to the Asset API to load
 	// unpack the DotsData wrapped by the dragged asset into this DotsGui instance.
 	// 
@@ -145,9 +145,9 @@ public:
 	// @param[in] assetDescription    The asset to load into the GUI.
 	maxon::Result<void> LoadAsset(const maxon::AssetDescription& assetDescription);
 
-  // Handles saving assets from the current state of the GUI. This method is not an overload of
+	// Handles saving assets from the current state of the GUI. This method is not an overload of
 	// 
-  // Saved will be _data of the GUI instance. This method is not an overload of iCustomGui and 
+	// Saved will be _data of the GUI instance. This method is not an overload of iCustomGui and 
 	// things must not be implemented in this way, but it is the approach chosen here to abstract 
 	// the process of asset saving.
 	maxon::Result<void> SaveAsset();
@@ -164,11 +164,11 @@ class DotsGuiData : public CustomGuiData
 {
 public:
 	virtual Int32 GetId();
-  virtual CDialog* Alloc(const BaseContainer& settings);
-  virtual void Free(CDialog* dlg, void* userdata);
-  virtual const Char* GetResourceSym();
-  virtual CustomProperty* GetProperties();
-  virtual Int32 GetResourceDataType(Int32*& table);
+	virtual CDialog* Alloc(const BaseContainer& settings);
+	virtual void Free(CDialog* dlg, void* userdata);
+	virtual const Char* GetResourceSym();
+	virtual CustomProperty* GetProperties();
+	virtual Int32 GetResourceDataType(Int32*& table);
 
 };
 
@@ -178,18 +178,18 @@ public:
 // This does not contain any code relevant for the Asset API.
 class DotsDataClass : public CustomDataTypeClass
 {
-  INSTANCEOF(DotsDataClass, CustomDataTypeClass)
+	INSTANCEOF(DotsDataClass, CustomDataTypeClass)
 
 public:
-  virtual Int32 GetId();
-  virtual CustomDataType* AllocData();
-  virtual void FreeData(CustomDataType* data);
-  virtual Bool CopyData(const CustomDataType* src, CustomDataType* dst, AliasTrans* aliastrans);
-  virtual Int32 Compare(const CustomDataType* d1, const CustomDataType* d2);
-  virtual Bool WriteData(const CustomDataType* t_d, HyperFile* hf);
-  virtual Bool ReadData(CustomDataType* t_d, HyperFile* hf, Int32 level);
-  virtual const Char* GetResourceSym();
-  virtual void GetDefaultProperties(BaseContainer& data);
+	virtual Int32 GetId();
+	virtual CustomDataType* AllocData();
+	virtual void FreeData(CustomDataType* data);
+	virtual Bool CopyData(const CustomDataType* src, CustomDataType* dst, AliasTrans* aliastrans);
+	virtual Int32 Compare(const CustomDataType* d1, const CustomDataType* d2);
+	virtual Bool WriteData(const CustomDataType* t_d, HyperFile* hf);
+	virtual Bool ReadData(CustomDataType* t_d, HyperFile* hf, Int32 level);
+	virtual const Char* GetResourceSym();
+	virtual void GetDefaultProperties(BaseContainer& data);
 };
 
 

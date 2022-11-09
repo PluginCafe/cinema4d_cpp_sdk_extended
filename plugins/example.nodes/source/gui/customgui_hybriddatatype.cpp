@@ -182,7 +182,7 @@ maxon::Result<void> HybridDataTypeGuiConversion::CreateC4DDescription(const maxo
 	const maxon::DataDictionary& dataEntry, const maxon::DataDictionary& guiEntry, const maxon::DataDescription& mainDataDescription, const maxon::DataDescription& stringDescription, const DescID& mainId,
 	const DescID& groupId, const maxon::PatchC4DDescriptionEntryDelegate& patchEntryFunc, maxon::DescTranslation& translateIds,
 	const maxon::BaseArray<maxon::InternedId>& parentIds, const DescID& parentFoldId, const maxon::GetDataCallbackType& getDataCallback,
-	const maxon::GetExtraDataCallbackType& getExtraDataDelegate) const
+	const maxon::GetExtraDataCallbackType& getExtraDataDelegate, BaseDocument* doc) const
 {
 	iferr_scope;
 
@@ -195,7 +195,7 @@ maxon::Result<void> HybridDataTypeGuiConversion::CreateC4DDescription(const maxo
 
 	HybridDataType defaultData = dataEntry.Get(maxon::DESCRIPTION::DATA::BASE::DEFAULTVALUE.Get(), HybridDataType());
 	GeData value;
-	ConvertToC4D(value, dataType, maxon::Data(defaultData), DescID(), dataEntry, guiEntry, maxon::GetExtraDataCallbackType()) iferr_return;
+	ConvertToC4D(value, dataType, maxon::Data(defaultData), DescID(), dataEntry, guiEntry, maxon::GetExtraDataCallbackType(), doc) iferr_return;
 	param.SetData(DESC_DEFAULT, value);
 	// We do not have to set DESC_CUSTOMGUI explicitly, because set up in HybridDataTypeClass::GetDefaultProperties(). 
 
@@ -206,7 +206,7 @@ maxon::Result<void> HybridDataTypeGuiConversion::CreateC4DDescription(const maxo
 }
 
 maxon::Result<void> HybridDataTypeGuiConversion::ConvertToC4D(GeData& output, const maxon::DataType& dataType, const maxon::Data& data, const DescID& descIdSuffix,
-	const maxon::DataDictionary& dataEntry, const maxon::DataDictionary& guiEntry, const maxon::GetExtraDataCallbackType& extraDataDelegate) const
+	const maxon::DataDictionary& dataEntry, const maxon::DataDictionary& guiEntry, const maxon::GetExtraDataCallbackType& extraDataDelegate, BaseDocument* doc) const
 {
 	iferr_scope;
 
@@ -218,7 +218,7 @@ maxon::Result<void> HybridDataTypeGuiConversion::ConvertToC4D(GeData& output, co
 
 maxon::Result<maxon::Tuple<maxon::Data, maxon::Bool>> HybridDataTypeGuiConversion::ConvertToCore(const maxon::DataType& dataType, const GeData& data, const DescID& descIdSuffix,
 	const maxon::DataDictionary& dataEntry, const maxon::DataDictionary& guiEntry, const maxon::Data& oldData,
-	const maxon::GetExtraDataCallbackType& extraDataDelegate) const
+	const maxon::GetExtraDataCallbackType& extraDataDelegate, BaseDocument* doc) const
 {
 	// We transport the data type from 'classical' to 'new', i.e. from gui to node.
 	const HybridDataType& value = *static_cast<const HybridDataType*>(data.GetCustomDataType(HYBRIDDATATYPE_ID));

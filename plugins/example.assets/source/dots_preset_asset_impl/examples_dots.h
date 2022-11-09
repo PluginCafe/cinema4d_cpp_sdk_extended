@@ -1,12 +1,12 @@
 /*
-  Asset API Examples - Dots Preset Asset Type
-  Copyright (C) 2022 MAXON Computer GmbH
+	Asset API Examples - Dots Preset Asset Type
+	Copyright (C) 2022 MAXON Computer GmbH
 
-  Author: Ferdinand Hoppe
-  Date: 01/04/2022
-  SDK: R26
+	Author: Ferdinand Hoppe
+	Date: 01/04/2022
+	SDK: R26
 
-  Contains the Asset API examples related to Dots preset asset implementation.
+	Contains the Asset API examples related to Dots preset asset implementation.
 */
 #ifndef EXAMPLES_DOTS_H__
 #define EXAMPLES_DOTS_H__
@@ -48,6 +48,6 @@ maxon::Result<maxon::AssetDescription> InstantiateDotsPresetAsset();
 ///                                     negative values for decreasing the scale and positive values
 ///                                     for increasing it.
 maxon::Result<void> UpdatePreviewThumbnail(
-  maxon::AssetDescription& assetDescription, maxon::Float32 dotScaleDelta);
+	maxon::AssetDescription& assetDescription, maxon::Float32 dotScaleDelta);
 
 #endif // EXAMPLES_DOTS_H__

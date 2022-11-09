@@ -1,12 +1,12 @@
 /*
-  Asset API Examples - Databases
-  Copyright (C) 2022 MAXON Computer GmbH
+	Asset API Examples - Databases
+	Copyright (C) 2022 MAXON Computer GmbH
 
-  Author: Ferdinand Hoppe
-  Date: 01/04/2022
-  SDK: R26
+	Author: Ferdinand Hoppe
+	Date: 01/04/2022
+	SDK: R26
 
-  Contains the Asset API examples related to the topic of databases.
+	Contains the Asset API examples related to the topic of databases.
 */
 #ifndef EXAMPLES_DATABASES_H__
 #define EXAMPLES_DATABASES_H__
@@ -22,7 +22,7 @@
 ///
 /// @param[out] results    The provided repositories.
 maxon::Result<void> AccessImportantRepositories(
-  maxon::BaseArray<maxon::AssetRepositoryRef>& results);
+	maxon::BaseArray<maxon::AssetRepositoryRef>& results);
 
 
 /// Accesses the data structures representing the asset user databases.
@@ -73,7 +73,7 @@ maxon::Result<maxon::AssetDatabaseStruct> AddOrGetDatabase(const maxon::Url& url
 /// @param[out] observerData    The container to store the function references of the attached 
 ///                             observers in.
 maxon::Result<void> AttachRepositoryObservers(const maxon::AssetRepositoryRef& repository,
-  maxon::HashMap<maxon::String, maxon::FunctionBaseRef>& observerData);
+	maxon::HashMap<maxon::String, maxon::FunctionBaseRef>& observerData);
 
 
 /// Creates repositories for a passed collection of databases.
@@ -86,8 +86,8 @@ maxon::Result<void> AttachRepositoryObservers(const maxon::AssetRepositoryRef& r
 /// @param[in] databaseCollection    The databases to provide repositories for.
 /// @param[out] results              The provided repositories.
 maxon::Result<void> CreateRepositories(
-  const maxon::BaseArray<maxon::AssetDatabaseStruct>& databaseCollection,
-  maxon::BaseArray<maxon::AssetRepositoryRef>& results);
+	const maxon::BaseArray<maxon::AssetDatabaseStruct>& databaseCollection,
+	maxon::BaseArray<maxon::AssetRepositoryRef>& results);
 
 
 /// Deactivates a user database to make its assets inaccessible.
@@ -111,7 +111,7 @@ maxon::Result<void> DeactivateDatabase(const maxon::Url& url);
 ///                                 attached observers. When run successfully, all entires will be 
 ///                                 removed.
 maxon::Result<void> DetachRepositoryObservers(const maxon::AssetRepositoryRef& repository,
-  maxon::HashMap<maxon::String, maxon::FunctionBaseRef>& observerData);
+	maxon::HashMap<maxon::String, maxon::FunctionBaseRef>& observerData);
 
 
 /// Attempts to remove a user databases from of the running Cinema 4D instance.
@@ -133,7 +133,7 @@ maxon::Result<void> RemoveDatabase(const maxon::Url& url);
 /// 
 /// @return                  The asset description of the copied asset.
 maxon::Result<maxon::AssetDescription> CopyAsset(const maxon::AssetRepositoryRef& repository, 
-  const maxon::AssetDescription& asset, const maxon::Id& categoryId);
+	const maxon::AssetDescription& asset, const maxon::Id& categoryId);
 
 
 /// Removes the passed asset from the passed repository.
@@ -143,7 +143,7 @@ maxon::Result<maxon::AssetDescription> CopyAsset(const maxon::AssetRepositoryRef
 /// @param[in] repository    The repository to erase the asset from.
 /// @param[in] asset         The asset to erase.
 maxon::Result<void> EraseAsset(
-  const maxon::AssetRepositoryRef& repository, const maxon::AssetDescription& asset);
+	const maxon::AssetRepositoryRef& repository, const maxon::AssetDescription& asset);
 
 
 /// Performs a simple search operation for assets by their type, id or version.

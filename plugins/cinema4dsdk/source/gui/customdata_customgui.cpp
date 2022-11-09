@@ -16,14 +16,15 @@
   dialog includes the GeUserArea implementation DotsUserArea which handles the rendering of the
   custom data in a GUI.
 */
-#include "maxon/apibase.h"
-#include "maxon/dataserialize.h"
+
 
 #include "c4d.h"
+#include "c4d_gui.h"
 #include "c4d_symbols.h"
 #include "customdata_customgui.h"
-#include "c4d_gui.h"
 
+#include "maxon/dataserialize.h"
+#include "maxon/apibase.h"
 
 //---------------------------
 /// The user area used to display the custom datatype
@@ -203,17 +204,17 @@ TriState<GeData> iExampleCustomGUIDots::GetData()
 iCustomDataTypeDots::iCustomDataTypeDots(const maxon::BaseArray<Vector> &points)
 {
 	iferr_scope;
-	_points.CopyFrom(points) iferr_ignore("we don't return any error inside the constructor"_s);
+	_points.CopyFrom(points) iferr_ignore("do not return any error inside the constructor"_s);
 };
 
 //------------
-// this code is only needed if we want to use this Classi API data/UI in the node Editor and need
+// this code is only needed if this Classic API data/UI have to be used in the node Editor and need
 // to converted to a Maxon Data.
 
 iCustomDataTypeDots::iCustomDataTypeDots(const iCustomDataTypeDots& cdtd)
 {
 	iferr_scope;
-	_points.CopyFrom(cdtd._points) iferr_ignore("we don't return any error inside the constructor"_s);
+	_points.CopyFrom(cdtd._points) iferr_ignore("do not return any error inside the constructor"_s);
 };
 
 maxon::Result<void> iCustomDataTypeDots::DescribeIO(const maxon::DataSerializeInterface& stream)
@@ -242,7 +243,7 @@ void iCustomDataTypeDots::SetValue(const maxon::BaseArray<Vector> &value)
 	_points.CopyFrom(value) iferr_ignore("the array is already empty."_s);
 }
 
-// For the Node API example, we need to register the customDataTypeDot as a Maxon Data.
+// Register the customDataTypeDot as a Maxon Data for the Node API example.
 MAXON_DATATYPE_REGISTER(iCustomDataTypeDots);
 //---------------------
 /// custom GUI data
@@ -278,7 +279,7 @@ void SDKExampleCustomGUIDots::Free(CDialog* dlg, void* userdata)
 
 const Char* SDKExampleCustomGUIDots::GetResourceSym()
 {
-	// the symbol used in resource files
+	// The symbol used in resource files
 	return "CUSTOMGUIDOTS";
 };
 
@@ -289,7 +290,7 @@ CustomProperty* SDKExampleCustomGUIDots::GetProperties()
 
 Int32 SDKExampleCustomGUIDots::GetResourceDataType(Int32*& table)
 {
-	// returns the list of data types this GUI can work with
+	// Returns the list of data types this GUI can work with
 	table = g_stringtable; 
 	return sizeof(g_stringtable)/sizeof(Int32);
 };

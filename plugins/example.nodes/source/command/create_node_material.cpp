@@ -246,9 +246,8 @@ static maxon::Result<void> ManipulatingNodeMaterial(maxon::Tuple<NodeMaterial*, 
 	selection.Append(colorGraphNode2) iferr_return;
 	selection.Append(blendGraphNode) iferr_return;
 	graphTransaction = nodeGraph.BeginTransaction() iferr_return;
-	maxon::nodes::MutableRoot emptyNodeGroup;
 	String groupName = "My nodes grouped"_s;
-	maxon::GraphNode myGroup = nodeGraph.MoveToGroup(emptyNodeGroup, maxon::Id("thisismygroup"), selection) iferr_return;
+	maxon::GraphNode myGroup = nodeGraph.MoveToGroup(maxon::nodes::NodeSystem(), maxon::Id("thisismygroup"), selection) iferr_return;
 	myGroup.SetValue(maxon::NODE::BASE::NAME, groupName) iferr_return;
 	graphTransaction.Commit() iferr_return;
 	

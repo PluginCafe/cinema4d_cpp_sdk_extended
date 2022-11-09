@@ -65,7 +65,7 @@ namespace LoftedMeshHelpers
 					// Check from time to time (every 64 segments) if a user break has been requested.
 					BaseThread* btPtr = hh->GetThread();
 					if (btPtr && !(t & 63) && btPtr->TestBreak())
-						return maxon::ThreadCancelledError(MAXON_SOURCE_LOCATION);
+						return maxon::OperationCancelledError(MAXON_SOURCE_LOCATION);
 				}
 
 				const Int32 vtxIdx = s * vertsAlongT + t;

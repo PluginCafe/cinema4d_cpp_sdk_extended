@@ -66,7 +66,7 @@ public:
 		return OK;
 	}
 
-	MAXON_METHOD Result<Bool> Detect(const Url& url, const InputStreamRef& probeStream) const
+	MAXON_METHOD Result<Bool> Detect(const Url& url, const InputStreamRef& probeStream, FILEFORMATDETECTIONFLAGS flags) const
 	{
 		iferr_scope;
 

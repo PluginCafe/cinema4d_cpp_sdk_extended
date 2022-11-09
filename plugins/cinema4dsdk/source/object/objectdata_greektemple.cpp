@@ -532,7 +532,7 @@ namespace GreekTempleHelpers
 					if (runningThreadPtr->TestBreak())
 					{
 						ApplicationOutput("Object generation halted by user interaction."_s);
-						return maxon::ThreadCancelledError(MAXON_SOURCE_LOCATION);
+						return maxon::OperationCancelledError(MAXON_SOURCE_LOCATION);
 					}
 				}
 

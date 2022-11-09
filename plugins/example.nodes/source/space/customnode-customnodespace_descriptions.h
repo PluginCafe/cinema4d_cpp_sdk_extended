@@ -54,6 +54,7 @@ namespace NODE
 	{
 		MAXON_RESOURCE_DATABASE_SCOPE("net.maxonexample.node.bundlenode");
 
+		// supports MAXON::NODE::BASE::FILTERTAGS
 		// supports MAXON::NODE::BASE::NODEPREVIEWIMAGE
 		// supports MAXON::NODE::BASE::MATERIALPREVIEWIMAGE
 		// supports MAXON::NODE::BASE::NAME
@@ -63,7 +64,6 @@ namespace NODE
 		// supports MAXON::NODE::BASE::DISPLAYPREVIEW
 		// supports MAXON::NODE::BASE::DISPLAYCOMMENT
 		// supports MAXON::NODE::BASE::COMMENT
-		// supports MAXON::NODE::BASE::FILTERTAGS
 		// supports MAXON::NODE::BASE::CATEGORY
 		// supports MAXON::NODE::BASE::ICON
 		// supports MAXON::NODE::BASE::UPDATEPOLICY
@@ -84,6 +84,7 @@ namespace NODE
 	{
 		MAXON_RESOURCE_DATABASE_SCOPE("net.maxonexample.node.dynamicnode");
 
+		// supports MAXON::NODE::BASE::FILTERTAGS
 		// supports MAXON::NODE::BASE::NODEPREVIEWIMAGE
 		// supports MAXON::NODE::BASE::MATERIALPREVIEWIMAGE
 		// supports MAXON::NODE::BASE::NAME
@@ -93,7 +94,6 @@ namespace NODE
 		// supports MAXON::NODE::BASE::DISPLAYPREVIEW
 		// supports MAXON::NODE::BASE::DISPLAYCOMMENT
 		// supports MAXON::NODE::BASE::COMMENT
-		// supports MAXON::NODE::BASE::FILTERTAGS
 		// supports MAXON::NODE::BASE::CATEGORY
 		// supports MAXON::NODE::BASE::ICON
 		// supports MAXON::NODE::BASE::UPDATEPOLICY
@@ -108,6 +108,7 @@ namespace NODE
 	{
 		MAXON_RESOURCE_DATABASE_SCOPE("net.maxonexample.node.endnode");
 
+		// supports MAXON::NODE::BASE::FILTERTAGS
 		// supports MAXON::NODE::BASE::NODEPREVIEWIMAGE
 		// supports MAXON::NODE::BASE::MATERIALPREVIEWIMAGE
 		// supports MAXON::NODE::BASE::NAME
@@ -117,7 +118,6 @@ namespace NODE
 		// supports MAXON::NODE::BASE::DISPLAYPREVIEW
 		// supports MAXON::NODE::BASE::DISPLAYCOMMENT
 		// supports MAXON::NODE::BASE::COMMENT
-		// supports MAXON::NODE::BASE::FILTERTAGS
 		// supports MAXON::NODE::BASE::CATEGORY
 		// supports MAXON::NODE::BASE::ICON
 		// supports MAXON::NODE::BASE::UPDATEPOLICY
@@ -159,6 +159,7 @@ namespace NODE
 	{
 		MAXON_RESOURCE_DATABASE_SCOPE("net.maxonexample.node.gradientnode");
 
+		// supports MAXON::NODE::BASE::FILTERTAGS
 		// supports MAXON::NODE::BASE::NODEPREVIEWIMAGE
 		// supports MAXON::NODE::BASE::MATERIALPREVIEWIMAGE
 		// supports MAXON::NODE::BASE::NAME
@@ -168,7 +169,6 @@ namespace NODE
 		// supports MAXON::NODE::BASE::DISPLAYPREVIEW
 		// supports MAXON::NODE::BASE::DISPLAYCOMMENT
 		// supports MAXON::NODE::BASE::COMMENT
-		// supports MAXON::NODE::BASE::FILTERTAGS
 		// supports MAXON::NODE::BASE::CATEGORY
 		// supports MAXON::NODE::BASE::ICON
 		// supports MAXON::NODE::BASE::UPDATEPOLICY
@@ -187,6 +187,7 @@ namespace NODE
 	{
 		MAXON_RESOURCE_DATABASE_SCOPE("net.maxonexample.node.usernode");
 
+		// supports MAXON::NODE::BASE::FILTERTAGS
 		// supports MAXON::NODE::BASE::NODEPREVIEWIMAGE
 		// supports MAXON::NODE::BASE::MATERIALPREVIEWIMAGE
 		// supports MAXON::NODE::BASE::NAME
@@ -196,7 +197,6 @@ namespace NODE
 		// supports MAXON::NODE::BASE::DISPLAYPREVIEW
 		// supports MAXON::NODE::BASE::DISPLAYCOMMENT
 		// supports MAXON::NODE::BASE::COMMENT
-		// supports MAXON::NODE::BASE::FILTERTAGS
 		// supports MAXON::NODE::BASE::CATEGORY
 		// supports MAXON::NODE::BASE::ICON
 		// supports MAXON::NODE::BASE::UPDATEPOLICY

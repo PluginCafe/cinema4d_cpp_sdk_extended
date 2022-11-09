@@ -1,36 +1,36 @@
 /*
-  Dots CustomDataType & CustomGui Example
-  (C) 2022 MAXON Computer GmbH
+	Dots CustomDataType & CustomGui Example
+	(C) 2022 MAXON Computer GmbH
 
-  Author: Sebastian Bach, Ferdinand Hoppe
-  Date: 01/04/2022
-  SDK: R26
+	Author: Sebastian Bach, Ferdinand Hoppe
+	Date: 01/04/2022
+	SDK: R26
 
-  Implements a custom datatype with a custom GUI that can be saved as a preset asset.
+	Implements a custom datatype with a custom GUI that can be saved as a preset asset.
 
-  The core elements of this implementation are DotsData and DotsGui. DotsData implements the
-  custom data type and DotsGui a dialog that is used to render that data type as a parameter
-  in the Attribute Manger.
+	The core elements of this implementation are DotsData and DotsGui. DotsData implements the
+	custom data type and DotsGui a dialog that is used to render that data type as a parameter
+	in the Attribute Manger.
 
-  DotsGui is a iCustomGui which inherits from GeDialog and attaches three gadgets to itself.
+	DotsGui is a iCustomGui which inherits from GeDialog and attaches three gadgets to itself.
 
-    1. A DotsUserArea instance, which renders a preview of the DotsData attached to the DotsGui.
-    2. A "Load Preset ..." button to load a preset asset of type DotsPresetAsset with the help of
-       a popup dialog.
-    3. A "Save Preset ..." button to save the DotsData shown in the DotsGui as a DotsPresetAsset 
+		1. A DotsUserArea instance, which renders a preview of the DotsData attached to the DotsGui.
+		2. A "Load Preset ..." button to load a preset asset of type DotsPresetAsset with the help of
+			 a popup dialog.
+		3. A "Save Preset ..." button to save the DotsData shown in the DotsGui as a DotsPresetAsset 
 		which is exposed by the Asset Browser.
 
-  Both the DotsData and DotsGui implementation are exposed as plugin interfaces to the classic API,
-  handling the data type and its GUI. For DotsData it is DotsDataClass and for DotsGui it is
-  DotsGuiData. These types are then used to register the data type and its GUI as plugins with
-  Cinema 4D.
+	Both the DotsData and DotsGui implementation are exposed as plugin interfaces to the classic API,
+	handling the data type and its GUI. For DotsData it is DotsDataClass and for DotsGui it is
+	DotsGuiData. These types are then used to register the data type and its GUI as plugins with
+	Cinema 4D.
 
-  This example also showcases the bindings of a custom GUI and data type to the Asset API, so that
-  users can save and load preset assets from within the GUI of the data type. This is primarily
-  realized with the two buttons in the custom GUI, the "Load Preset..." and "Save Preset..."
-  buttons. In DotsGui::Command() the click messages for these buttons are then handled and DotsData
-  is being sent to or retrieved from the Asset API DotsPresetAsset type implementation. Asset drag
-  and drop events are being handled in a similar fashion in DotsGui::Message().
+	This example also showcases the bindings of a custom GUI and data type to the Asset API, so that
+	users can save and load preset assets from within the GUI of the data type. This is primarily
+	realized with the two buttons in the custom GUI, the "Load Preset..." and "Save Preset..."
+	buttons. In DotsGui::Command() the click messages for these buttons are then handled and DotsData
+	is being sent to or retrieved from the Asset API DotsPresetAsset type implementation. Asset drag
+	and drop events are being handled in a similar fashion in DotsGui::Message().
 */
 //! [definition]
 #include "c4d.h"
@@ -105,7 +105,7 @@ void DotsUserArea::DrawMsg(Int32 x1, Int32 y1, Int32 x2, Int32 y2, const BaseCon
 		{
 			const Vector vec = _data->points[i];
 			this->DrawRectangle(SAFEINT32(vec.x)-5, SAFEINT32(vec.y)-5, 
-				                  SAFEINT32(vec.x) + 5, SAFEINT32(vec.y) + 5);
+													SAFEINT32(vec.x) + 5, SAFEINT32(vec.y) + 5);
 		}
 	}
 }
@@ -125,7 +125,7 @@ Bool DotsUserArea::InputEvent(const BaseContainer& msg)
 
 			// add the new position to the data
 			iferr (_data->points.Append(Vector(mx, my, 0)))
-        return false;
+				return false;
 
 			// inform the parent that the data has changed
 			BaseContainer m(BFM_ACTION);
@@ -200,7 +200,7 @@ maxon::Result<void> DotsGui::LoadAsset(const maxon::AssetDescription& assetDescr
 
 	// Prepare the PresetLoadArgs to send to the DotsPresetAssetImpl to load the data. The arguments 
 	// will point to #this GUI, so that the DotsPresetAssetImpl can load the asset into it.
-  maxon::PresetLoadArgs dataContainer;
+	maxon::PresetLoadArgs dataContainer;
 	dataContainer.SetPointer(this) iferr_return;
 
 	// Call the dots asset type implementation to load #preset into #this GUI.
@@ -214,24 +214,24 @@ maxon::Result<void> DotsGui::LoadAsset(const maxon::AssetDescription& assetDescr
 //! [save_asset]
 maxon::Result<void> DotsGui::SaveAsset()
 {
-  iferr_scope;
+	iferr_scope;
 
 	// Create an instance PresetSaveArgs and point to _data, the instance of DotsData attached to this
 	// GUI, in it.
-  maxon::PresetSaveArgs data(&_data, 0);
+	maxon::PresetSaveArgs data(&_data, 0);
 
 	// The strings for the asset type name and asset name. #SaveBrowserPreset will allow the user to
 	// modify the asset name.
-  const maxon::String typeName = maxon::AssetTypes::DotsPresetAsset().GetName();
-  const maxon::String assetName("Dots Preset");
+	const maxon::String typeName = maxon::AssetTypes::DotsPresetAsset().GetName();
+	const maxon::String assetName("Dots Preset");
 
 	// Call #AssetCreationInterface::SaveBrowserPreset for the type #DotsPresetAsset and the prepared
 	// PresetSaveArgs. It will cause the DotsPresetAssetTypeImpl to be called to save the asset with
 	// the given PresetSaveArgs #data wrapping the instance of DotsData of this GUI.
-  maxon::AssetCreationInterface::SaveBrowserPreset(maxon::AssetTypes::DotsPresetAsset(), 
+	maxon::AssetCreationInterface::SaveBrowserPreset(maxon::AssetTypes::DotsPresetAsset(), 
 		data, typeName, assetName, false, false, false) iferr_return;
 
-  return maxon::OK;
+	return maxon::OK;
 }
 //! [save_asset]
 
@@ -258,11 +258,11 @@ Bool DotsGui::Command(Int32 id, const BaseContainer &msg)
 			return true;
 		}
 		// The "Load Preset ..." button has been pressed.
-    case ID_BTN_LOAD_PRESET:
+		case ID_BTN_LOAD_PRESET:
 		{
 			// The selection filter over the name of an asset type. This will cause the #OpenPopup
 			// call below to only show Dots assets.
-      maxon::String filterString ("type:dot");
+			maxon::String filterString ("type:dot");
 
 			// Open a selection menu for the user to select a preset. The last argument is a delegate
 			// which handles the selected content once the user finalizes the selection. #OpenPopup is
@@ -273,12 +273,12 @@ Bool DotsGui::Command(Int32 id, const BaseContainer &msg)
 			// approach with a lambda was chosen, so that an abstracted DotsGui::LoadAsset could be used. 
 			// It handles both "Load Asset ..." button and drag-and-drop asset loading events with an
 			// asset description as an input.
-      maxon::AssetManagerInterface::OpenPopup(maxon::ASSETPOPUPOPTIONS::POPUPMODE,
-        maxon::MASTERFILTER::ALL, filterString, {},
-        maxon::GetZeroRef<maxon::GraphModelPresenterRef>(),
+			maxon::AssetManagerInterface::OpenPopup(maxon::ASSETPOPUPOPTIONS::POPUPMODE,
+				maxon::MASTERFILTER::ALL, filterString, {},
+				maxon::GetZeroRef<maxon::GraphModelPresenterRef>(),
 				maxon::GetZeroRef<maxon::nodes::NodesGraphModelRef>(), "Select Dots Preset"_s, {},
-        [this](const maxon::DragAndDropDataAssetArray& selected) -> void
-        {
+				[this](const maxon::DragAndDropDataAssetArray& selected) -> void
+				{
 					iferr_scope_handler
 					{
 						return;
@@ -295,20 +295,20 @@ Bool DotsGui::Command(Int32 id, const BaseContainer &msg)
 					// Call the asset loading method for this instance.
 					this->LoadAsset(selectedAsset) iferr_return;
 
-          return;
-        }) iferr_return;
+					return;
+				}) iferr_return;
 
 			return true;
 		}
 		// The "Save Preset ..." button has been pressed.
-    case ID_BTN_SAVE_PRESET:
+		case ID_BTN_SAVE_PRESET:
 		{
 			// Call the asset saving method for this instance.
 			SaveAsset() iferr_return;
 			return true;
 		}
-    default:
-      break;
+		default:
+			break;
 	}
 	return SUPER::Command(id, msg);
 }
@@ -382,8 +382,8 @@ maxon::Int32 DotsGui::Message(const BaseContainer& msg, BaseContainer& result)
 			LoadAsset(asset) iferr_return;
 			return true;
 		}
-    default:
-      break;
+		default:
+			break;
 	}
 	return iCustomGui::Message(msg, result);
 }
@@ -398,7 +398,7 @@ Bool DotsGui::SetData(const TriState<GeData> &tristate)
 	{
 		_data.points.Flush();
 		iferr (_data.points.CopyFrom(data->points))
-      return false;
+			return false;
 
 		_dotsUserArea.Redraw();	
 	}
@@ -427,13 +427,13 @@ CDialog* DotsGuiData::Alloc(const BaseContainer& settings)
 
 	iferr (DotsGui* const dlg = NewObj(DotsGui, settings, GetPlugin()))
 		return nullptr;
-  
-  CDialog *cdlg = dlg->Get();
+	
+	CDialog *cdlg = dlg->Get();
 
-  if (!cdlg) 
+	if (!cdlg) 
 		return nullptr;
-    
-  return cdlg;
+		
+	return cdlg;
 };
 
 void DotsGuiData::Free(CDialog* dlg, void* userdata)
@@ -441,8 +441,8 @@ void DotsGuiData::Free(CDialog* dlg, void* userdata)
 	if (!dlg || !userdata) 
 		return;
 
-  DotsGui* sub = static_cast<DotsGui*>(userdata);
-  DeleteObj(sub);
+	DotsGui* sub = static_cast<DotsGui*>(userdata);
+	DeleteObj(sub);
 };
 
 const Char* DotsGuiData::GetResourceSym()
@@ -467,7 +467,7 @@ Int32 DotsGuiData::GetResourceDataType(Int32*& table)
 
 Int32 DotsDataClass::GetId()
 {
-  return PID_CUSTOMDATATYPE_DOTS;
+	return PID_CUSTOMDATATYPE_DOTS;
 }
 
 CustomDataType* DotsDataClass::AllocData()
@@ -495,7 +495,7 @@ Bool DotsDataClass::CopyData(
 
 	d->points.Flush();
 	iferr (d->points.CopyFrom(s->points))
-    return false;
+		return false;
 
 	return true;
 }
@@ -564,7 +564,7 @@ Bool DotsDataClass::ReadData(CustomDataType* t_d, HyperFile* hf, Int32 level)
 				if (hf->ReadVector(&vec))
 				{
 					iferr (d->points.Append(vec))
-            return false;
+						return false;
 				}
 			}
 		}		

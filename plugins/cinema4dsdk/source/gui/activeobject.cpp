@@ -9,9 +9,12 @@
 #include "maxon/sortedarray.h"
 #include "maxon/utilities/sprintf_safe.h"
 
-static void ShowObjectProps(BaseList2D* obj);
-
 class ListHeader;
+class ActiveObjectDialog;
+
+static void ShowObjectProps(BaseList2D* obj);
+static void UpdateDialog(ActiveObjectDialog* dlg);
+
 //---------------------------------------------
 class ListObj
 {
@@ -373,6 +376,23 @@ static Bool BuildTree(DebugNode* parent, DebugArray& oldlist, DebugArray& newlis
 		}
 	}
 
+	if (node->IsInstanceOf(Tbasedocument))
+	{
+		static constexpr Int32 NEUTRON_SCENEHOOK_ID = 1054188;
+		static constexpr Int32 NEUTRON_MSG_GET_LEGACY_VIEWPORT_OBJECTS = 180420110;
+
+		BaseObject* neutronRoot = nullptr;
+		BaseDocument* doc = static_cast<BaseDocument*>(node);
+		BaseSceneHook* neutron = doc->FindSceneHook(NEUTRON_SCENEHOOK_ID);
+		if (neutron)
+			neutron->Message(NEUTRON_MSG_GET_LEGACY_VIEWPORT_OBJECTS, &neutronRoot);
+		if (neutronRoot)
+		{
+			if (!BuildTree(n, oldlist, newlist, neutronRoot, String("Neutron objects")))
+				return false;
+		}
+	}
+
 	return true;
 }
 
@@ -680,12 +700,18 @@ public:
 		C4DAtomGoal* link = node->link->GetLinkAtom(nullptr);
 		if (!link)
 			return;
+		link->GetType();
 
 		switch (lColumn)
 		{
 			case 'tree':
-				if (link->IsInstanceOf(Obase))
+				if (link->GetType() == ID_LISTHEAD)
 				{
+					bc->InsData(REFRESH_TREE, GeData("Refresh Tree"));
+				}
+				else if (link->IsInstanceOf(Obase))
+				{
+					bc->InsData(SHOW_OBJECT_INFORMATION, GeData("Show object information..."));
 					bc->InsData(EXTRACT_OBJECT_TO_SCENE, GeData("Extract to scene"));
 				}
 				break;
@@ -701,6 +727,27 @@ public:
 
 		switch (lCommand)
 		{
+			case REFRESH_TREE:
+			{
+				ActiveObjectDialog* dlg = static_cast<ActiveObjectDialog*>(userdata);
+				UpdateDialog(dlg);
+				break;
+			}
+			case SHOW_OBJECT_INFORMATION:
+			{
+				if (link->IsInstanceOf(Obase))
+				{
+					BaseObject* object = static_cast<BaseObject*>(link);
+					String messageString = FormatString("Type: @", object->GetType());
+					messageString += FormatString("\nName: @", object->GetName());
+					if (object->IsInstanceOf(Opoint))
+						messageString += FormatString("\nPoint Count: @", ToPoint(object)->GetPointCount());
+					if (object->IsInstanceOf(Opolygon))
+						messageString += FormatString("\nPolygon Count: @", ToPoly(object)->GetPolygonCount());
+					GeOutString(messageString, GEMB::OK);
+				}
+				break;
+			}
 			case EXTRACT_OBJECT_TO_SCENE:
 			{
 				Bool needsEventAdd = false;
@@ -744,7 +791,9 @@ public:
 	}
 
 private:
-	static const Int32 EXTRACT_OBJECT_TO_SCENE = ID_TREEVIEW_FIRST_NEW_ID + 1;
+	static const Int32 REFRESH_TREE = ID_TREEVIEW_FIRST_NEW_ID + 1;
+	static const Int32 SHOW_OBJECT_INFORMATION = ID_TREEVIEW_FIRST_NEW_ID + 2;
+	static const Int32 EXTRACT_OBJECT_TO_SCENE = ID_TREEVIEW_FIRST_NEW_ID + 3;
 };
 
 Function2 g_functable;
@@ -778,6 +827,8 @@ public:
 	virtual void DestroyWindow();
 	virtual Bool Command(Int32 id, const BaseContainer& msg);
 	virtual Bool CoreMessage(Int32 id, const BaseContainer& msg);
+
+	Bool FillTree();
 };
 
 void ActiveObjectDialog::DestroyWindow()
@@ -851,21 +902,7 @@ Bool ActiveObjectDialog::InitValues()
 	if (!GeDialog::InitValues())
 		return false;
 
-	if (tree)
-	{
-		root_of_docs.down.FreeList(false);
-
-		DebugArray newlist;
-		BuildTree(&root_of_docs, oldlist, newlist, GetActiveDocument()->GetListHead(), String("Documents"));
-		oldlist.FlushAll();
-		iferr (oldlist.CopyFrom(newlist))
-      return false;
-		oldlist.Sort();
-		tree->SetRoot(&root_of_docs, &g_functable, nullptr);
-		tree->Refresh();
-	}
-
-	return true;
+	return FillTree();
 }
 
 Bool ActiveObjectDialog::Command(Int32 id, const BaseContainer& msg)
@@ -879,8 +916,6 @@ Bool ActiveObjectDialog::Command(Int32 id, const BaseContainer& msg)
 	}
 	return GeDialog::Command(id, msg);
 }
-
-
 
 Bool ActiveObjectDialog::CoreMessage(Int32 id, const BaseContainer& msg)
 {
@@ -899,7 +934,29 @@ Bool ActiveObjectDialog::CoreMessage(Int32 id, const BaseContainer& msg)
 	return GeDialog::CoreMessage(id, msg);
 }
 
+Bool ActiveObjectDialog::FillTree()
+{
+	if (tree)
+	{
+		root_of_docs.down.FreeList(false);
 
+		DebugArray newlist;
+		BuildTree(&root_of_docs, oldlist, newlist, GetActiveDocument()->GetListHead(), String("Documents"));
+		oldlist.FlushAll();
+		iferr (oldlist.CopyFrom(newlist))
+			return false;
+		oldlist.Sort();
+		tree->SetRoot(&root_of_docs, &g_functable, this);
+		tree->Refresh();
+	}
+	return true;
+}
+
+void UpdateDialog(ActiveObjectDialog* dlg)
+{
+	if (dlg)
+		dlg->FillTree();
+}
 
 class ActiveObjectDialogCommand : public CommandData
 {

@@ -29,7 +29,7 @@ public:
 	{
 		iferr_scope;
 
-		maxon::nodes::MutableRoot root = parent.GetNodeSystemClass().CreateNodeSystem() iferr_return;
+		maxon::nodes::MutableRoot root = parent.CreateNodeSystem() iferr_return;
 
 		// Create an output port.
 		maxon::nodes::MutablePort output = root.GetOutputs().AddPort(maxonexample::NODE::DYNAMICNODE::RESULT) iferr_return;

@@ -1,12 +1,12 @@
 /*
-  Asset API Examples - Assets
-  Copyright (C) 2022 MAXON Computer GmbH
+	Asset API Examples - Assets
+	Copyright (C) 2022 MAXON Computer GmbH
 
-  Author: Ferdinand Hoppe
-  Date: 01/04/2022
-  SDK: R26
+	Author: Ferdinand Hoppe
+	Date: 01/04/2022
+	SDK: R26
 
-  Contains the Asset API examples related to the topic of assets.
+	Contains the Asset API examples related to the topic of assets.
 */
 #ifndef EXAMPLES_ASSETS_H__
 #define EXAMPLES_ASSETS_H__
@@ -34,7 +34,7 @@
 /// 
 /// @return                  The asset description for the asset for the passed file Url.
 maxon::Result<maxon::AssetDescription> CreateArbitraryFileAsset(
-  const maxon::AssetRepositoryRef& repository, const maxon::Url& url, const maxon::Id& category);
+	const maxon::AssetRepositoryRef& repository, const maxon::Url& url, const maxon::Id& category);
 
 
 /// Stores a BaseMaterial as an asset.
@@ -48,7 +48,7 @@ maxon::Result<maxon::AssetDescription> CreateArbitraryFileAsset(
 /// 
 /// @return                  The asset description for the asset wrapping the passed material.
 maxon::Result<maxon::AssetDescription> CreateMaterialAsset(
-  const maxon::AssetRepositoryRef& repository, BaseMaterial* mat, const maxon::Id& category);
+	const maxon::AssetRepositoryRef& repository, BaseMaterial* mat, const maxon::Id& category);
 
 
 /// Stores a texture or video file as as a media asset.
@@ -62,7 +62,7 @@ maxon::Result<maxon::AssetDescription> CreateMaterialAsset(
 /// 
 /// @return                  The asset description for the asset wrapping the passed media file.
 maxon::Result<maxon::AssetDescription> CreateMediaFileAsset(
-  const maxon::AssetRepositoryRef& repository, const maxon::Url& url, const maxon::Id& category);
+	const maxon::AssetRepositoryRef& repository, const maxon::Url& url, const maxon::Id& category);
 
 
 /// Transforms the active selection of nodes in a node graph into an asset.
@@ -78,8 +78,8 @@ maxon::Result<maxon::AssetDescription> CreateMediaFileAsset(
 /// 
 /// @return                  The asset description for the asset wrapping the passed node.
 maxon::Result<maxon::AssetDescription> CreateNodeTemplateAsset(
-  const maxon::AssetRepositoryRef& repository, const maxon::nodes::NodesGraphModelRef& graph, 
-  const maxon::String& name, const maxon::Id& category);
+	const maxon::AssetRepositoryRef& repository, const maxon::nodes::NodesGraphModelRef& graph, 
+	const maxon::String& name, const maxon::Id& category);
 
 
 /// Stores a BaseObject as an asset.
@@ -94,7 +94,7 @@ maxon::Result<maxon::AssetDescription> CreateNodeTemplateAsset(
 /// 
 /// @return                  The asset description for the asset wrapping the passed object.
 maxon::Result<maxon::AssetDescription> CreateObjectAsset(
-  const maxon::AssetRepositoryRef& repository, BaseObject* obj, const maxon::Id& category);
+	const maxon::AssetRepositoryRef& repository, BaseObject* obj, const maxon::Id& category);
 
 
 /// Creates a category asset.
@@ -109,8 +109,8 @@ maxon::Result<maxon::AssetDescription> CreateObjectAsset(
 /// 
 /// @return                  The asset id for the created or retrieved category.
 maxon::Result<maxon::AssetDescription> CreateCategoryAsset(
-  const maxon::AssetRepositoryRef& repository, const maxon::String& name, 
-  const maxon::Id& category);
+	const maxon::AssetRepositoryRef& repository, const maxon::String& name, 
+	const maxon::Id& category);
 
 
 /// Creates a keyword asset.
@@ -125,8 +125,8 @@ maxon::Result<maxon::AssetDescription> CreateCategoryAsset(
 /// 
 /// @return                  The asset for the created or retrieved keyword.
 maxon::Result<maxon::AssetDescription> CreateKeywordAsset(
-  const maxon::AssetRepositoryRef& repository, const maxon::String& name, 
-  const maxon::Id& category);
+	const maxon::AssetRepositoryRef& repository, const maxon::String& name, 
+	const maxon::Id& category);
 
 
 /// Stores a BaseDocument as an asset.
@@ -141,7 +141,7 @@ maxon::Result<maxon::AssetDescription> CreateKeywordAsset(
 /// 
 /// @return                  The asset description for the asset wrapping the passed document.
 maxon::Result<maxon::AssetDescription> CreateSceneAsset(
-  const maxon::AssetRepositoryRef& repository, BaseDocument* doc, const maxon::Id& category);
+	const maxon::AssetRepositoryRef& repository, BaseDocument* doc, const maxon::Id& category);
 
 
 /// Loads the passed media assets as materials into the passed document.
@@ -154,7 +154,7 @@ maxon::Result<maxon::AssetDescription> CreateSceneAsset(
 /// @param[in, out] doc           The document to load the assets as materials into.
 /// @param[in] assetCollection    The assets to load.
 maxon::Result<void> LinkMediaAssets(
-  BaseDocument* doc, const maxon::BaseArray<maxon::AssetDescription>& assetCollection);
+	BaseDocument* doc, const maxon::BaseArray<maxon::AssetDescription>& assetCollection);
 
 
 /// Loads any asset type back into the active document.
@@ -192,7 +192,7 @@ maxon::Result<void> LoadFileAssetsManually(
 /// @param[in] assetIdCollection    The identifiers of the node templates to load.
 /// @param[out] nodes               The GraphNodes that were created.
 maxon::Result<void> LoadNodeTemplateAssetsManually(
-  const maxon::AssetRepositoryRef& repository, const maxon::nodes::NodesGraphModelRef& graph,
-  const maxon::BaseArray<maxon::Id>& assetIdCollection, maxon::BaseArray<maxon::GraphNode>& nodes);
+	const maxon::AssetRepositoryRef& repository, const maxon::nodes::NodesGraphModelRef& graph,
+	const maxon::BaseArray<maxon::Id>& assetIdCollection, maxon::BaseArray<maxon::GraphNode>& nodes);
 
 #endif // EXAMPLES_ASSETS_H__
