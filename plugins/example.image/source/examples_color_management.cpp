@@ -55,10 +55,9 @@ maxon::Result<void> GetColorProfilesFromFile(
 {
 	iferr_scope;
 
-	// Color profiles can also be loaded from ICC files, memory, and OCIO configurations (with the
-	// last option effectively not being available for users of the public API). This example uses 
-	// two ICC reference color profiles, the 'sRGB2014' and the 'D65_XYZ' profile. Due to copyright
-	// restrictions, these files cannot be provided with the SDK.
+	// Color profiles can also be loaded from ICC files, memory, and OCIO configurations. This 
+	// example uses two ICC reference color profiles, the 'sRGB2014' and the 'D65_XYZ' profile. 
+	// Due to copyright restrictions, these files cannot be provided with the SDK.
 	//
 	//  "sRGB2014.icc": https://www.color.org/srgbprofiles.xalter
 	//  "D65_XYZ.icc": https://www.color.org/XYZprofiles.xalter
@@ -107,7 +106,7 @@ maxon::Result<void> GetColorProfileMetadata(
 
 	ApplicationOutput("\n@():", MAXON_FUNCTIONNAME);
 
-	// Iterate over all keys in the passed color profile collection.
+	// Iterate over all keys in the passed hashmap.
 	for (const maxon::String& key : collection.GetKeys())
 	{
 		// Get the profile associated with the key.
@@ -171,15 +170,15 @@ maxon::Result<void> GetPixelFormats()
 	// floating point numbers among other formats.
 	// 
 	// Pixel formats can be accessed via the maxon::PixelFormats namespace to which namespace groups 
-	// for the principal color formats, e.g., RGB, are attached. Each of these groups then contains 
-	// all the pixel formats for that are associated with that color format.
+	// for the principal color spaces, e.g., RGB, are attached. Each of these groups then contains 
+	// all the pixel formats associated with that color space.
 
-	// The (Float32, Float32, Float32) pixel format for the RGB format.
+	// The (Float32, Float32, Float32) pixel format for the RGB space.
 	maxon::PixelFormat pixRgbF32 = maxon::PixelFormats::RGB::F32();
 	// A pixel format is associated with one of the principal color spaces, RGBspace in this case.
 	const maxon::ColorSpace colorSpace = pixRgbF32.GetColorSpace();
-	// A pixel format has default color profile associated with it, in this case the default linear
-	// profile of the RGB space.
+	// A pixel format has a default color profile associated with it, in this case the default
+	// linear profile of the RGB space.
 	maxon::ColorProfile rgbDefaultProfile = pixRgbF32.GetDefaultColorProfile();
 
 	ApplicationOutput("\n@():", MAXON_FUNCTIONNAME);
@@ -243,9 +242,9 @@ maxon::Result<void> ConvertSinglePixelWithColorProfile(
 	maxon::ColorProfile srgbProfile = collection.FindValue("sRGB2014"_s).GetValue() iferr_return;
 	maxon::ColorProfile xyzProfile = collection.FindValue("D65_XYZ"_s).GetValue() iferr_return;
 
-	// Select a pixel format for the conversion, the XYZ profile operates internally in RGB space and
-	// in this case also no memory layout conversion is desired, so the same pixel format can be used
-	// for the in- and output buffer.
+	// Select a pixel format for the conversion, the XYZ profile operates internally in RGB format
+	// and in this case also no memory layout conversion is desired, so the same pixel format can be
+	// used for the in- and output buffer.
 	const maxon::PixelFormat rgbFormat = maxon::PixelFormats::RGB::F32();
 
 	// Construct a converter that converts from sRGB2014 to D65_XYZ space.
@@ -264,8 +263,8 @@ maxon::Result<void> ConvertSinglePixelWithColorProfile(
 
 	// Wrap the input and output buffers. A pointer to the first component of the to be converted 
 	// color is being passed as the buffer arguments. Since here only a conversion for single pixel
-	// is being carried out, the simple (buffer, pixel format) constructor of ImageBufferTemplate can 
-	// be used. For converting arrays of pixels, a more complex constructor must be used. See 
+	// is being carried out, the simple (buffer, pixel format) constructor of ImageBufferTemplate 
+	// can be used. For converting arrays of pixels, a more complex constructor must be used. See 
 	// ConvertPixelArrayWithColorProfile() for details.
 	maxon::ImageConstBuffer bufferIn = maxon::ImageConstBuffer(
 		(const maxon::Pix*)&input.r, maxon::PixelFormats::RGB::F32());
@@ -294,8 +293,8 @@ maxon::Result<void> ConvertManyPixelWithColorProfile()
 	// Retrieve GREY color space.
 	const maxon::ColorSpace greySpace = maxon::ColorSpaces::GREYspace();
 
-	// Get both the default linear and non-linear profile for the GREY space and the single precision
-	// float pixel format for the space.
+	// Get both the default linear and non-linear profile for the GREY space and the single
+	// precision floating point pixel format for the space.
 	const maxon::ColorProfile linGreyProfile = greySpace.GetDefaultLinearColorProfile();
 	const maxon::ColorProfile nonlinGreyProfile = greySpace.GetDefaultNonlinearColorProfile();
 	const maxon::PixelFormat greyFormat = maxon::PixelFormats::GREY::F32();
@@ -306,9 +305,9 @@ maxon::Result<void> ConvertManyPixelWithColorProfile()
 		maxon::COLORCONVERSIONINTENT::ABSOLUTE_COLORIMETRIC,
 		maxon::COLORCONVERSIONFLAGS::NONE) iferr_return;
 
-	// Initialize an input and output buffers for the conversion, #inBufferData holds the values 
+	// Initialize an input and output buffer for the conversion, #inBufferData holds the values 
 	// [0.1, 0.2, 0.5, 0.6] from the Color Management Manual example, the output buffer is just
-	// sized to match #inBufferData.
+	// resized to match the length of #inBufferData.
 	const maxon::Block<const maxon::Float32> inputBuffer { 0.1f, 0.2f, 0.5f, 0.6f };
 
 	maxon::BaseArray<maxon::Float32> nonLinOutputBuffer;
@@ -318,8 +317,8 @@ maxon::Result<void> ConvertManyPixelWithColorProfile()
 	// wraps read-only input buffers, while ImageMutableBuffer wraps read-write output buffers.
 
 	// Since other than in the ConvertPixelWithColorProfile() example not only a single pixel is
-	// being converted but an array of them, a more complex constructor for ImageBufferTemplate must 
-	// be used to wrap both buffers. Aside from the first argument for the start of the buffer, 
+	// being converted, but an array of them, a more complex constructor for ImageBufferTemplate 
+	// must be used to wrap both buffers. Aside from the first argument for the start of the buffer, 
 	// passed in is also the specific memory layout for the array of pixels. Which in this case is 
 	// taken from the PixelFormatInterface instances themselves. If so desired, the formats could be 
 	// customized, e.g., writing a single channel GREY space value to each fourth component of a 
@@ -433,8 +432,9 @@ maxon::Result<void> ConvertTextureWithColorProfile(
 		rgbFormat, rgbFormat.GetChannelOffsets(), srgbProfile,
 		maxon::SETPIXELHANDLERFLAGS::NONE) iferr_return;
 
-	// Iterate over the data line-by-line and write the data. maxon::ImagePos can define despite its
-	// name more than a single pixel location in an image, but is limited to addressing a single line.
+	// Iterate over the data row-by-row and write the data. maxon::ImagePos can define despite its
+	// name more than a single pixel location in an image, but is limited to addressing data within 
+	// one row.
 	for (Int i = 0; i < h; i++)
 	{
 		const maxon::ImagePos scope{ 0, i, w };
@@ -445,16 +445,16 @@ maxon::Result<void> ConvertTextureWithColorProfile(
 	// Set the color profile of the image to the ICC profile "sRGB2014".
 	image.Set(maxon::IMAGEPROPERTIES::IMAGE::COLORPROFILE, srgbProfile) iferr_return;
 
-	// Instantiate a PSD file format output handler, and define a storage URL next to this cpp file 
+	// Instantiate a PSD file format output handler and define a storage URL next to this cpp file 
 	// with the file name "texture.psd",
 	const maxon::MediaOutputUrlRef psdFormat = maxon::ImageSaverClasses::Psd().Create() iferr_return;
 	const maxon::Url url = (maxon::Url(maxon::String(__FILE__)).GetDirectory() + "texture.psd"_s) iferr_return;
 
-	// To store the ImageRef #image, it must be inserted below by a type instance in the 
-	// ImageInterface hierarchy that supports serialization, e.g., ImageTextureInterface.
+	// To store the ImageRef #image, it must be inserted below a type instance in the ImageInterface
+	// hierarchy that supports serialization, e.g., ImageTextureInterface.
 	const maxon::ImageTextureRef outTexture = maxon::ImageTextureClasses::TEXTURE().Create() iferr_return;
 
-	// Insert #image as child of #outTexture, and also set the color profile of #outTexture to the 
+	// Insert #image as a child of #outTexture, and also set the color profile of #outTexture to the 
 	// ICC profile "sRGB2014".
 	outTexture.AddChildren(maxon::IMAGEHIERARCHY::IMAGE, image, maxon::ImageBaseRef()) iferr_return;
 	outTexture.Set(maxon::IMAGEPROPERTIES::IMAGE::COLORPROFILE, srgbProfile) iferr_return;

@@ -39,8 +39,8 @@ maxon::Result<void> ConvertSceneOrElements(BaseDocument* doc)
 	maxon::CString renderSpaceName, _dummy;
 	doc->GetActiveOcioColorSpacesNames(renderSpaceName, _dummy, _dummy, _dummy);
 
-	// Allocate the converter and initialize the converter, currently it is not possible to retrieve
-	// the linear and non-linear input color space names input-low and input-high that are associated
+	// Allocate and initialize the converter, currently it is not possible to retrieve the linear 
+	// and non-linear input color space names "input-low" and "input-high" that are associated
 	// with an OCIO config file. Instead they must be hardcoded. Except for the the target render
 	// space, the Init call uses here the default values of the native dialog.
 	AutoAlloc<SceneColorConverter> converter;
@@ -55,7 +55,8 @@ maxon::Result<void> ConvertSceneOrElements(BaseDocument* doc)
 	maxon::HashSet<BaseList2D*> result;
 	converter->ConvertObject(doc, doc, result) iferr_return;
 
-	// When converting a whole document, we should mark it as already converted.
+	// When converting a whole document, one should mark it as already converted when the conversion
+	// did succeed.
 	doc->SetParameter(DOCUMENT_COLOR_MANAGEMENT_OCIO_CONVERTED, GeData(true), DESCFLAGS_SET::NONE);
 
 	ApplicationOutput("\n@():", MAXON_FUNCTIONNAME);
@@ -72,8 +73,9 @@ maxon::Result<void> CopyColorManagementSettings(BaseDocument* doc)
 	iferr_scope;
 
 	// Allocate a new document and copy over the settings from #doc to #newDoc. This is just a 
-	// convenient way to copy all color management settings from one document to another. This
-	// does NOT entail a conversion of scene elements to OCIO, see ConvertSceneOrElements() for that.
+	// convenient manner to copy all color management settings from one document to another. This
+	// does NOT entail a conversion of the colors of scene elements to OCIO, see 
+	// ConvertSceneOrElements() for that.
 	AutoAlloc<BaseDocument> newDoc;
 	BaseDocument::CopyLinearWorkflow(doc, newDoc, false);
 	newDoc->SetName(doc->GetName() + "(Copy)");
@@ -105,7 +107,8 @@ maxon::Result<void> ConvertOcioColors(BaseDocument* doc)
 	}
 
 	// Initialize an OcioConverter for #doc. OcioConverter is a helper interface to convert colors
-	// between the color spaces associated with the OCIO configuration of a document.
+	// between the color spaces associated with the OCIO configuration of a document, for its 
+	// initialization to succeed, the document must be in OCIO color management mode.
 	const OcioConverter* converter = OcioConverter::Init(doc) iferr_return;
 	if (!converter)
 		return maxon::NullptrError(MAXON_SOURCE_LOCATION, "Could not init OCIO converter for document."_s);
@@ -126,7 +129,7 @@ maxon::Result<void> ConvertOcioColors(BaseDocument* doc)
 		colorRender, COLORSPACETRANSFORMATION::OCIO_RENDERING_TO_DISPLAY);
 
 	// Convert a color from render space to view transform (space), i.e., to the value which
-	// will be finally shown on screen to the user. With the default OCIO settings of Cinema 4D 
+	// will be finally shown on the screen of a user. With the default OCIO settings of Cinema 4D 
 	// 2023.1, this will convert from ACEScg to ACES 1.0 SDR-video space.
 	const maxon::Vector64 colorView = converter->TransformColor(
 		colorRender, COLORSPACETRANSFORMATION::OCIO_RENDERING_TO_VIEW);
@@ -175,16 +178,16 @@ maxon::Result<void> GetSetColorManagementSettings(BaseDocument* doc)
 
 	// Since an OCIO configuration file can contain any combination of color spaces and transforms,
 	// the description IDs for the render space, display space, view transform, and view thumbnail
-	// transform parameters must be dynamic description IDs.
+	// transform parameters must be dynamic IDs.
 	for (maxon::CString s : doc->GetOCIORenderingColorSpaceNames())
 	{
-		ApplicationOutput("\t\tThe render transform label '@' corresponds to the id '@'.", 
+		ApplicationOutput("\t\tThe render transform label '@' corresponds to the ID '@'.", 
 			s, doc->GetColorSpaceIdFromName(DOCUMENT_OCIO_RENDER_COLORSPACE, s));
 	}
 
-	// So, this would be the pattern for example to set the render space to a specific space name,
-	// as for example the 'ACES2065 - 1' render space contained in the default OCIO 2.0 config file.
-	// The method GetColorSpaceIdFromName() will return NOTOK to indicate unknown space labels.
+	// So, this would be the pattern to set for example the render space to a specific space name,
+	// here the 'ACES2065 - 1' render space contained in the default OCIO 2.0 config file.
+	// The method GetColorSpaceIdFromName() will return #NOTOK to indicate unknown space labels.
 	maxon::Int32 id = doc->GetColorSpaceIdFromName(DOCUMENT_OCIO_RENDER_COLORSPACE, "ACES2065-1"_cs);
 	if (id == NOTOK)
 		return maxon::IllegalArgumentError(MAXON_SOURCE_LOCATION,
@@ -217,7 +220,7 @@ maxon::Result<void> GetSetColorValuesInOcioDocuments(BaseDocument* doc)
 
 	ApplicationOutput("\n@():", MAXON_FUNCTIONNAME);
 	
-	// Get then OCIO space names for #ApplicationOutput calls invoked below.
+	// Get the names of the active OCIO spaces in #doc for #ApplicationOutput calls invoked below.
 	maxon::CString renderSpace, viewTransform, _;
 	doc->GetActiveOcioColorSpacesNames(renderSpace, _, viewTransform, _);
 
@@ -304,7 +307,9 @@ maxon::Result<void> GetSetBitmapOcioProfiles(BaseDocument* doc)
 	}
 
 	// Get the Asset API user preferences repository to get the "HDR004.hdr" texture asset in 
-	// Textures/HDR/Legacy and retrieve its URL.
+	// Textures/HDR/Legacy and retrieve its URL. It is important to use here an HDR image (the
+	// dynamic range, not the necessarily the format), as the view transform is disabled for SDR
+	// content in the Picture Viewer (as of 2023.1, might change in future releases).
 	maxon::AssetRepositoryRef repository = maxon::AssetInterface::GetUserPrefsRepository();
 	if (MAXON_UNLIKELY(!repository))
 		return maxon::UnexpectedError(MAXON_SOURCE_LOCATION, "Could not retrieve user repository."_s);
