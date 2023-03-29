@@ -101,7 +101,7 @@ class DotsPresetAssetImpl:
 	// This is a BasePresetAssetInterface component which is final. It is always going to be the last 
 	// component in the component list of a BasePresetAssetInterface instance, and therefore its 
 	// methods cannot be overridden by other components.
-	MAXON_COMPONENT(FINAL, maxon::AssetBaseComponent);
+	MAXON_COMPONENT(FINAL, maxon::BasePresetAssetClass);
 
 public:
 

@@ -2,14 +2,20 @@
 #include "c4d_basematerial.h"
 #include "c4d_general.h"
 #include "c4d_shader.h"
+#include "c4d_videopost.h"
 #include "lib_description.h"
 #include "lib_scene_color_converter.h"
 
+#include "maxon/gfx_image.h"
+
 #include "maxon/assets.h"
 #include "maxon/gfx_image_colorprofile.h"
+#include "maxon/gfx_image_colorspaces.h"
+#include "maxon/gfx_image_pixelformats.h"
 #include "maxon/iostreams.h"
 
-#include "Mmaterial.h"
+#include "mmaterial.h"
+#include "vpocioawarerenderer.h"
 
 #include "examples_ocio.h"
 
@@ -36,8 +42,8 @@ maxon::Result<void> ConvertSceneOrElements(BaseDocument* doc)
 	}
 
 	// Get then OCIO render space name to convert to, we could also define it manually here.
-	maxon::CString renderSpaceName, _dummy;
-	doc->GetActiveOcioColorSpacesNames(renderSpaceName, _dummy, _dummy, _dummy);
+	maxon::CString renderSpaceName, _;
+	doc->GetActiveOcioColorSpacesNames(renderSpaceName, _, _, _);
 
 	// Allocate and initialize the converter, currently it is not possible to retrieve the linear 
 	// and non-linear input color space names "input-low" and "input-high" that are associated
@@ -45,7 +51,8 @@ maxon::Result<void> ConvertSceneOrElements(BaseDocument* doc)
 	// space, the Init call uses here the default values of the native dialog.
 	AutoAlloc<SceneColorConverter> converter;
 	if (!converter)
-		return maxon::OutOfMemoryError(MAXON_SOURCE_LOCATION, "Could not allocate converter interface."_s);
+		return maxon::OutOfMemoryError(
+			MAXON_SOURCE_LOCATION, "Could not allocate converter interface."_s);
 
 	converter->Init(doc, "sRGB"_cs, "scene-linear Rec.709-sRGB"_cs, renderSpaceName) iferr_return;
 
@@ -111,7 +118,8 @@ maxon::Result<void> ConvertOcioColors(BaseDocument* doc)
 	// initialization to succeed, the document must be in OCIO color management mode.
 	const OcioConverter* converter = OcioConverter::Init(doc) iferr_return;
 	if (!converter)
-		return maxon::NullptrError(MAXON_SOURCE_LOCATION, "Could not init OCIO converter for document."_s);
+		return maxon::NullptrError(
+			MAXON_SOURCE_LOCATION, "Could not init OCIO converter for document."_s);
 
 	// The to be converted color, it has no implicitly defined color space.
 	const maxon::Vector64 colorInput { 1, 0, 0 };
@@ -150,6 +158,97 @@ maxon::Result<void> ConvertOcioColors(BaseDocument* doc)
 	return maxon::OK;
 }
 //! [ConvertOcioColors]
+
+//! [ConvertOcioColorsArbitrarily]
+maxon::Result<void> ConvertOcioColorsArbitrarily(BaseDocument* doc)
+{
+	iferr_scope;
+
+	if (MAXON_UNLIKELY(!doc))
+		return maxon::NullptrError(MAXON_SOURCE_LOCATION, "Invalid document pointer"_s);
+
+	// Make sure that #doc is in OCIO color management mode.
+	BaseContainer* bc = doc->GetDataInstance();
+	if (bc->GetInt32(DOCUMENT_COLOR_MANAGEMENT) != DOCUMENT_COLOR_MANAGEMENT_OCIO)
+	{
+		bc->SetInt32(DOCUMENT_COLOR_MANAGEMENT, DOCUMENT_COLOR_MANAGEMENT_OCIO);
+		doc->UpdateOcioColorSpaces();
+		EventAdd();
+	}
+
+	// Load the "sRGB2014" ICC profile located next to this file.
+	const maxon::Url directory = maxon::Url(maxon::String(__FILE__)).GetDirectory();
+	const maxon::Url sRgb2014File = (directory + "sRGB2014.icc"_s) iferr_return;
+	if (sRgb2014File.IoDetect() == maxon::IODETECT::NONEXISTENT)
+		return maxon::IoError(
+			MAXON_SOURCE_LOCATION, sRgb2014File, "Could not access sRgb2014File.icc profile."_s);
+
+	const maxon::ColorProfile srgb2014Profile = maxon::ColorProfileInterface::OpenProfileFromFile(
+		sRgb2014File) iferr_return;
+
+	// Get the profile for the builtin linear RGB space. This profile is required because 
+	// conversions with OCIO profiles are only supported between profiles that originate from the 
+	// same OCIO config and the profiles for the builtin linear or non-linear sRGB space (given that
+	// the OCIO config file defines the sRGB space; which is the case for the Cinema 4D profiles). 
+	// For all other conversions, an intermediate step must be taken, e.g., in our case:
+	//
+	//		sRGB2014 -> lin-RGB -> Render space
+	//		Render space -> lin-RGB -> sRGB2014
+	const maxon::ColorProfile linearRgbSpaceProfile = maxon::ColorSpaces::RGBspace(
+		).GetDefaultLinearColorProfile();
+
+	// Get the profile and name for the active Render space in #doc.
+	maxon::ColorProfile renderSpaceProfile, _;
+	doc->GetOcioProfiles(renderSpaceProfile, _, _, _);
+	maxon::CString renderSpaceName, __;
+	doc->GetActiveOcioColorSpacesNames(renderSpaceName, __, __, __);
+
+	// Define the pixel format to operate with and check if it is supported by the profiles.
+	const maxon::PixelFormat rgbFormat = maxon::PixelFormats::RGB::F32();
+	if (!(srgb2014Profile.CheckCompatiblePixelFormat(rgbFormat) || 
+				linearRgbSpaceProfile.CheckCompatiblePixelFormat(rgbFormat) ||
+				renderSpaceProfile.CheckCompatiblePixelFormat(rgbFormat)))
+		return maxon::UnexpectedError(
+			MAXON_SOURCE_LOCATION, "Profile conversion path does not support RGB::F32 pixel format"_s);
+
+	// Construct two converters, one for converting from the ICC profile to the intermediate linear
+	// RGB space, and one for converting from that intermediate space to the Render space.
+	const maxon::ColorProfileConvert preConverter = maxon::ColorProfileConvertInterface::Init(
+		rgbFormat, srgb2014Profile, rgbFormat, linearRgbSpaceProfile,
+		maxon::COLORCONVERSIONINTENT::ABSOLUTE_COLORIMETRIC,
+		maxon::COLORCONVERSIONFLAGS::NONE) iferr_return;
+	const maxon::ColorProfileConvert ocioConverter = maxon::ColorProfileConvertInterface::Init(
+		rgbFormat, linearRgbSpaceProfile, rgbFormat, renderSpaceProfile,
+		maxon::COLORCONVERSIONINTENT::ABSOLUTE_COLORIMETRIC,
+		maxon::COLORCONVERSIONFLAGS::NONE) iferr_return;
+
+	// Initialize the data to convert, an input and an output buffer, as well as two buffer 
+	// handlers for them. This could also be done by using three buffers (in, intermediate, out) and
+	// four handlers (const in, const intermediate, mutable intermediate, mutable out) to avoid 
+	// having to copy data from the output buffer to the input buffer after the first conversion.
+	maxon::Color32 colorData ( 1, 0, 0 );
+	maxon::Color32 inputBuffer (colorData);
+	maxon::Color32 outputBuffer (0, 0, 0);
+
+	maxon::ImageConstBuffer inputBufferHandler = maxon::ImageConstBuffer(
+		(const maxon::Pix*)&inputBuffer.r, maxon::PixelFormats::RGB::F32());
+	maxon::ImageMutableBuffer outputBufferHandler = maxon::ImageMutableBuffer(
+		(maxon::Pix*)&outputBuffer.r, maxon::PixelFormats::RGB::F32());
+
+	// Carry out the conversion sRGB2014.icc -> linear-RGB -> Render space for the data (1, 0, 0).
+	preConverter.Convert(inputBufferHandler, outputBufferHandler, 1) iferr_return;
+	ApplicationOutput("\n@():", MAXON_FUNCTIONNAME);
+	ApplicationOutput("\tIn (@): @, Out (@): @", 
+										srgb2014Profile, colorData, linearRgbSpaceProfile, outputBuffer);
+
+	inputBuffer = outputBuffer;
+	ocioConverter.Convert(inputBufferHandler, outputBufferHandler, 1) iferr_return;
+	ApplicationOutput("\tIn (@): @, Out (@): @",
+										srgb2014Profile, colorData, renderSpaceName, outputBuffer);
+
+	return maxon::OK;
+}
+//! [ConvertOcioColorsArbitrarily]
 
 //! [GetSetColorManagementSettings]
 maxon::Result<void> GetSetColorManagementSettings(BaseDocument* doc)
@@ -349,3 +448,108 @@ maxon::Result<void> GetSetBitmapOcioProfiles(BaseDocument* doc)
 	return maxon::OK;
 }
 //! [GetSetBitmapOcioProfiles]
+
+
+Bool OcioAwareRenderer::Init(GeListNode* node)
+{
+	BaseList2D* const item = static_cast<BaseList2D*>(node);
+	if (!item)
+		return false;
+
+	BaseContainer* data = item->GetDataInstance();
+
+	data->SetVector(ID_RENDER_COLOR, Vector(.75, .25, .0));
+	data->SetBool(ID_PRETRANSFORM_OCIO_OUTPUT, true);
+	data->SetBool(ID_OVERWRITE_OCIO_DISPLAY_SPACE, false);
+	data->SetBool(ID_OVERWRITE_OCIO_VIEW_TRANSFORM, false);
+
+	return true; 
+}
+
+//! [OcioAwareRenderer]
+void OcioAwareRenderer::GetColorProfileInfo(
+	BaseVideoPost* node, VideoPostStruct* vps, ColorProfileInfo& info)
+{
+	if (!node)
+		return;
+
+	// GetColorProfileInfo allows us to react to or modify the color profiles of an upcoming OCIO 
+	// rendering.Here we use it to null the display and view transform by overwriting them with the
+	// render transform when so indicated, causing the rendered image to be treated as "raw".
+	BaseContainer* data = node->GetDataInstance();
+	if (data->GetBool(ID_OVERWRITE_OCIO_DISPLAY_SPACE))
+		info.displayColorSpace = info.renderingColorSpace;
+	if (data->GetBool(ID_OVERWRITE_OCIO_VIEW_TRANSFORM))
+		info.viewColorSpace = info.renderingColorSpace;
+}
+
+RENDERRESULT OcioAwareRenderer::Execute(BaseVideoPost* node, VideoPostStruct* vps)
+{
+	iferr_scope_handler
+	{
+		return RENDERRESULT::FAILED;
+	};
+
+	// Bail when important data is not accessible, a rendering error did occur, or the user did stop 
+	// the renderer.
+	if (!vps || !vps->doc || !vps->doc->GetDataInstance() || !vps->render)
+		return RENDERRESULT::OUTOFMEMORY;
+
+	if (*vps->error != RENDERRESULT::OK)
+		return RENDERRESULT::FAILED;
+
+	if (vps->thread && vps->thread->TestBreak())
+		return RENDERRESULT::USERBREAK;
+
+	// Skip all calls except for a full frame being finished.
+	if (vps->vp == VIDEOPOSTCALL::FRAME || vps->open)
+		return RENDERRESULT::OK;
+
+	// Get the RGBA buffer of the rendering.
+	VPBuffer* const rgbaBuffer = vps->render->GetBuffer(VPBUFFER_RGBA, NOTOK);
+	if (!rgbaBuffer)
+		return RENDERRESULT::OUTOFMEMORY;
+
+	if (rgbaBuffer->GetBt() != 32)
+		return RENDERRESULT::FAILED;
+
+	// Get the color to "render" from the VideoPost node.
+	BaseContainer* nodeData = node->GetDataInstance();
+	Vector color = nodeData->GetVector(ID_RENDER_COLOR);
+
+	// By default, just as in other places of the API, all color computations are implicitly in
+	// Render space once a document is in OCIO mode. When a video post plugin is not meant to operate
+	// in that space, all outputs must be transformed manually.
+	BaseContainer* docData = vps->doc->GetDataInstance();
+	if ((docData->GetInt32(DOCUMENT_COLOR_MANAGEMENT) == DOCUMENT_COLOR_MANAGEMENT_OCIO) &&
+			nodeData->GetBool(ID_PRETRANSFORM_OCIO_OUTPUT))
+	{
+		const OcioConverter* converter = OcioConverter::Init(vps->doc) iferr_return;
+		if (!converter)
+			return RENDERRESULT::OUTOFMEMORY;
+
+		// Convert the color chosen by the user from sRGB to Render space. I.e., the chosen color is 
+		// always interpreted as an sRGB value which is then converted to and written as a Render space
+		// value in the output buffer.
+		color = converter->TransformColor(color, COLORSPACETRANSFORMATION::OCIO_SRGB_TO_RENDERING);
+	}
+
+	// Fill the whole buffer with the color.
+	const Int32 width = rgbaBuffer->GetBw();
+	const Int32 height = rgbaBuffer->GetBh();
+	const Int32 bytesPerPixel = rgbaBuffer->GetCpp();
+
+	Float32* lineBuffer = NewMemClear(Float32, bytesPerPixel * width).GetPointer();
+	for (Int32 ix = 0; ix < width; ix++)
+	{
+		lineBuffer[ix*bytesPerPixel+0] = (Float32)color.x;
+		lineBuffer[ix*bytesPerPixel+1] = (Float32)color.y;
+		lineBuffer[ix*bytesPerPixel+2] = (Float32)color.z;
+	}
+	for (Int32 iy = 0; iy < height; iy++)
+		rgbaBuffer->SetLine(0, iy, width, lineBuffer, 32, false);
+	DeleteMem(lineBuffer);
+
+	return RENDERRESULT::OK;
+}
+//! [OcioAwareRenderer]

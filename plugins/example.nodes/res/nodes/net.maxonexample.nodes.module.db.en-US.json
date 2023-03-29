@@ -931,6 +931,54 @@
 								"net.maxon.description.base.command",
 								{
 									"dataType": "net.maxon.datatype.id",
+									"content": "string"
+								},
+								"net.maxon.description.base.identifier",
+								{
+									"dataType": "net.maxon.datatype.internedid",
+									"content": "materialpreset#enum#metal"
+								},
+								"net.maxon.description.string.base.translatedstring",
+								{
+									"dataType": "net.maxon.interface.string-C",
+									"content": "Metal"
+								}
+							]
+						}
+					},
+					{
+						"referenceDataType": "net.maxon.interface.datadictionary-C",
+						"_impl": {
+							"_mode": 1,
+							"_keyType": "net.maxon.datatype.internedid",
+							"_fastData": [
+								"net.maxon.description.base.command",
+								{
+									"dataType": "net.maxon.datatype.id",
+									"content": "string"
+								},
+								"net.maxon.description.base.identifier",
+								{
+									"dataType": "net.maxon.datatype.internedid",
+									"content": "materialpreset#enum#lava"
+								},
+								"net.maxon.description.string.base.translatedstring",
+								{
+									"dataType": "net.maxon.interface.string-C",
+									"content": "Lava"
+								}
+							]
+						}
+					},
+					{
+						"referenceDataType": "net.maxon.interface.datadictionary-C",
+						"_impl": {
+							"_mode": 1,
+							"_keyType": "net.maxon.datatype.internedid",
+							"_fastData": [
+								"net.maxon.description.base.command",
+								{
+									"dataType": "net.maxon.datatype.id",
 									"content": "attribute"
 								},
 								"net.maxon.description.base.identifier",
@@ -1254,54 +1302,6 @@
 								{
 									"dataType": "net.maxon.interface.string-C",
 									"content": "None"
-								}
-							]
-						}
-					},
-					{
-						"referenceDataType": "net.maxon.interface.datadictionary-C",
-						"_impl": {
-							"_mode": 1,
-							"_keyType": "net.maxon.datatype.internedid",
-							"_fastData": [
-								"net.maxon.description.base.command",
-								{
-									"dataType": "net.maxon.datatype.id",
-									"content": "string"
-								},
-								"net.maxon.description.base.identifier",
-								{
-									"dataType": "net.maxon.datatype.internedid",
-									"content": "materialpreset#enum#metal"
-								},
-								"net.maxon.description.string.base.translatedstring",
-								{
-									"dataType": "net.maxon.interface.string-C",
-									"content": "Metal"
-								}
-							]
-						}
-					},
-					{
-						"referenceDataType": "net.maxon.interface.datadictionary-C",
-						"_impl": {
-							"_mode": 1,
-							"_keyType": "net.maxon.datatype.internedid",
-							"_fastData": [
-								"net.maxon.description.base.command",
-								{
-									"dataType": "net.maxon.datatype.id",
-									"content": "string"
-								},
-								"net.maxon.description.base.identifier",
-								{
-									"dataType": "net.maxon.datatype.internedid",
-									"content": "materialpreset#enum#lava"
-								},
-								"net.maxon.description.string.base.translatedstring",
-								{
-									"dataType": "net.maxon.interface.string-C",
-									"content": "Lava"
 								}
 							]
 						}

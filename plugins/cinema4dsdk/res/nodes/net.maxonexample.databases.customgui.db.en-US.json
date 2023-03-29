@@ -164,30 +164,6 @@
 								"net.maxon.description.base.command",
 								{
 									"dataType": "net.maxon.datatype.id",
-									"content": "attribute"
-								},
-								"net.maxon.description.base.identifier",
-								{
-									"dataType": "net.maxon.datatype.internedid",
-									"content": "dotdata"
-								},
-								"net.maxon.description.string.base.translatedstring",
-								{
-									"dataType": "net.maxon.interface.string-C",
-									"content": "Dot Data Input"
-								}
-							]
-						}
-					},
-					{
-						"referenceDataType": "net.maxon.interface.datadictionary-C",
-						"_impl": {
-							"_mode": 1,
-							"_keyType": "net.maxon.datatype.internedid",
-							"_fastData": [
-								"net.maxon.description.base.command",
-								{
-									"dataType": "net.maxon.datatype.id",
 									"content": "group"
 								},
 								"net.maxon.description.base.identifier",
@@ -220,30 +196,6 @@
 								"net.maxon.description.base.command",
 								{
 									"dataType": "net.maxon.datatype.id",
-									"content": "attribute"
-								},
-								"net.maxon.description.base.identifier",
-								{
-									"dataType": "net.maxon.datatype.internedid",
-									"content": "result"
-								},
-								"net.maxon.description.string.base.translatedstring",
-								{
-									"dataType": "net.maxon.interface.string-C",
-									"content": "Result"
-								}
-							]
-						}
-					},
-					{
-						"referenceDataType": "net.maxon.interface.datadictionary-C",
-						"_impl": {
-							"_mode": 1,
-							"_keyType": "net.maxon.datatype.internedid",
-							"_fastData": [
-								"net.maxon.description.base.command",
-								{
-									"dataType": "net.maxon.datatype.id",
 									"content": "group"
 								},
 								"net.maxon.description.base.identifier",
@@ -263,6 +215,54 @@
 								{
 									"dataType": "net.maxon.interface.string-C",
 									"content": "Object"
+								}
+							]
+						}
+					},
+					{
+						"referenceDataType": "net.maxon.interface.datadictionary-C",
+						"_impl": {
+							"_mode": 1,
+							"_keyType": "net.maxon.datatype.internedid",
+							"_fastData": [
+								"net.maxon.description.base.command",
+								{
+									"dataType": "net.maxon.datatype.id",
+									"content": "attribute"
+								},
+								"net.maxon.description.base.identifier",
+								{
+									"dataType": "net.maxon.datatype.internedid",
+									"content": "dotdata"
+								},
+								"net.maxon.description.string.base.translatedstring",
+								{
+									"dataType": "net.maxon.interface.string-C",
+									"content": "Dot Data Input"
+								}
+							]
+						}
+					},
+					{
+						"referenceDataType": "net.maxon.interface.datadictionary-C",
+						"_impl": {
+							"_mode": 1,
+							"_keyType": "net.maxon.datatype.internedid",
+							"_fastData": [
+								"net.maxon.description.base.command",
+								{
+									"dataType": "net.maxon.datatype.id",
+									"content": "attribute"
+								},
+								"net.maxon.description.base.identifier",
+								{
+									"dataType": "net.maxon.datatype.internedid",
+									"content": "result"
+								},
+								"net.maxon.description.string.base.translatedstring",
+								{
+									"dataType": "net.maxon.interface.string-C",
+									"content": "Result"
 								}
 							]
 						}

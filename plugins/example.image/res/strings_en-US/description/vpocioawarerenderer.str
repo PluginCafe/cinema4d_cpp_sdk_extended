@@ -1,0 +1,8 @@
+STRINGTABLE VPocioawarerenderer
+{
+  VPocioawarerenderer              "Ocio Aware Renderer";
+  ID_RENDER_COLOR                  "Input Color";
+  ID_PRETRANSFORM_OCIO_OUTPUT      "Transfrom OCIO Outputs from sRGB";
+  ID_OVERWRITE_OCIO_DISPLAY_SPACE  "Overwrite OCIO Display Sapce";
+  ID_OVERWRITE_OCIO_VIEW_TRANSFORM "Overwrite OCIO View Transform";
+}

@@ -79,11 +79,11 @@ Bool PickObjectTool::MouseInput(BaseDocument* doc, BaseContainer& data, BaseDraw
 	}
 	if (ret)
 	{
-		sprintf(ch, "Picking region from (%d, %d), size (%d, %d)|", xr, yr, wr, hr);
+		snprintf(ch, sizeof(ch), "Picking region from (%d, %d), size (%d, %d)|", xr, yr, wr, hr);
 		str += ch;
 		for (l = 0; l < list->GetCount(); l++)
 		{
-			sprintf(ch, ", z = %.4f|", list->GetZ(l));
+			snprintf(ch, sizeof(ch), ", z = %.4f|", list->GetZ(l));
 			str += "Found Object " + list->GetObject(l)->GetName() + ch;
 		}
 	}
@@ -91,7 +91,7 @@ Bool PickObjectTool::MouseInput(BaseDocument* doc, BaseContainer& data, BaseDraw
 	{
 		str	= "PickObject failed";
 	}
-	sprintf(ch, "|Time: %.2f us", float(timer) * 1000.0f);
+	snprintf(ch, sizeof(ch), "|Time: %.2f us", float(timer) * 1000.0f);
 	str += ch;
 
 	DeleteMem(pix);

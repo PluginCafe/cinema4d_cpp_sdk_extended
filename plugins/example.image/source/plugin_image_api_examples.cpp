@@ -70,6 +70,7 @@ Bool OcioExamplesCommand::Execute(BaseDocument* doc, GeDialog* parentManager)
 	CopyColorManagementSettings(doc) iferr_return;
 	GetSetColorManagementSettings(doc) iferr_return;
 	ConvertOcioColors(doc) iferr_return;
+	ConvertOcioColorsArbitrarily(doc) iferr_return;
 	GetSetColorValuesInOcioDocuments(doc) iferr_return;
 	GetSetBitmapOcioProfiles(doc) iferr_return;
 
@@ -79,22 +80,19 @@ Bool OcioExamplesCommand::Execute(BaseDocument* doc, GeDialog* parentManager)
 Bool RegisterImageApiExamples()
 {
 	if (!RegisterCommandPlugin(
-		PID_COLOR_MANAGEMENT_EXAMPLES, 
-		GeLoadString(IDS_NME_COLOR_MANAGEMENT_EXAMPLES),
-		PLUGINFLAG_SMALLNODE, 
-		nullptr,
-		GeLoadString(IDS_HLP_COLOR_MANAGEMENT_EXAMPLES),
-		NewObjClear(ColorManagementExamplesCommand)))
+		PID_COLOR_MANAGEMENT_EXAMPLES, GeLoadString(IDS_NME_COLOR_MANAGEMENT_EXAMPLES), PLUGINFLAG_SMALLNODE, nullptr, 
+		GeLoadString(IDS_HLP_COLOR_MANAGEMENT_EXAMPLES), NewObjClear(ColorManagementExamplesCommand)))
 		ApplicationOutput("Failed to register: @", GeLoadString(IDS_NME_COLOR_MANAGEMENT_EXAMPLES));
 
 	if (!RegisterCommandPlugin(
-		PID_OCIO_EXAMPLES,
-		GeLoadString(IDS_NME_OCIO_EXAMPLES),
-		PLUGINFLAG_SMALLNODE,
-		nullptr,
-		GeLoadString(IDS_HLP_OCIO_EXAMPLES),
-		NewObjClear(OcioExamplesCommand)))
+		PID_OCIO_EXAMPLES, GeLoadString(IDS_NME_OCIO_EXAMPLES), PLUGINFLAG_SMALLNODE, nullptr,
+		GeLoadString(IDS_HLP_OCIO_EXAMPLES), NewObjClear(OcioExamplesCommand)))
 		ApplicationOutput("Failed to register: @", GeLoadString(IDS_NME_OCIO_EXAMPLES));
+
+	if (!RegisterVideoPostPlugin(
+		PID_OCIO_AWARE_VIDEOPOST, GeLoadString(IDS_NME_OCIO_AWARE_VIDEOPOST), PLUGINFLAG_VIDEOPOST_ISRENDERER,
+		OcioAwareRenderer::Alloc, "vpocioawarerenderer"_s, 0, 0))
+		ApplicationOutput("Failed to register: @", GeLoadString(IDS_NME_OCIO_AWARE_VIDEOPOST));
 
 	return true;
 }

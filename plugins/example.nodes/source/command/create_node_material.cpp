@@ -3,8 +3,8 @@
 //  Copyright © 2022 MAXON Computer GmbH. All rights reserved.
 //
 // This example show how to create a node material for the standard node space.
-// When creating a NodeMaterial, AddGraph can be called to add a NodeGraph for a specific node space.
-// AddGraph will automatically called a function that will define a default state of the nodeGraph.
+// When creating a NodeMaterial, CreateDefaultGraph can be called to add a NodeGraph for a specific node space.
+// CreateDefaultGraph will automatically called a function that will define a default state of the nodeGraph.
 // In the case of the Standard NodeSpace, it will create a "bsdf node" and an "End node" and connect them.
 // This example will create after that two color nodes and a mix node to mix them. The connections will be added.
 // After that, the example will group the color nodes and the mix node and create an input port for the group.
@@ -76,7 +76,7 @@ static maxon::Result<maxon::Tuple<NodeMaterial*, maxon::HomogenousTupleType<5, m
 	NodeMaterial* nodeMaterial = static_cast<NodeMaterial*>(BaseMaterial::Alloc(Mmaterial));
 	CheckState(nodeMaterial != nullptr);
 	const maxon::Id nodeSpaceID = maxon::nodes::MaterialNodeSpaces::Standard.GetId();
-	nodeMaterial->AddGraph(nodeSpaceID) iferr_return;
+	nodeMaterial->CreateDefaultGraph(nodeSpaceID) iferr_return;
 	BaseDocument* doc = GetActiveDocument();
 	if (doc == nullptr)
 		return maxon::NullptrError(MAXON_SOURCE_LOCATION);

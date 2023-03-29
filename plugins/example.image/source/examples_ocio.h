@@ -32,6 +32,9 @@ maxon::Result<void> GetSetColorManagementSettings(BaseDocument* doc);
 /// with a document.
 maxon::Result<void> ConvertOcioColors(BaseDocument* doc);
 
+/// @brief Convert colors from and to OCIO color spaces using arbitrary in- and output spaces.
+maxon::Result<void> ConvertOcioColorsArbitrarily(BaseDocument* doc);
+
 /// @brief Read and write color parameters in an OCIO document either in the native Render space of
 /// the document or other spaces.
 maxon::Result<void> GetSetColorValuesInOcioDocuments(BaseDocument* doc);
@@ -42,7 +45,18 @@ maxon::Result<void> GetSetColorValuesInOcioDocuments(BaseDocument* doc);
 /// singular bitmap when displayed in the Picture Viewer.
 maxon::Result<void> GetSetBitmapOcioProfiles(BaseDocument* doc);
 
+/// @brief Realizes a renderer which manipulates the OCIO profiles of an upcoming rendering.
+class OcioAwareRenderer : public VideoPostData
+{
+	INSTANCEOF(OcioAwareRenderer, VideoPostData)
 
+public:
+	static NodeData* Alloc() { return NewObjClear(OcioAwareRenderer); }
+	virtual Bool Init(GeListNode* node);
+
+	/// @brief Called by Cinema 4D to let a renderer modify the OCIO profiles of an upcoming rendering.
+	virtual void GetColorProfileInfo(BaseVideoPost* node, VideoPostStruct* vps, ColorProfileInfo& info);
+	/// @brief Called by Cinema 4D to execute the renderer.
+	virtual RENDERRESULT Execute(BaseVideoPost* node, VideoPostStruct* vps);
+};
 #endif // EXAMPLES_OCIO_H__
-
-

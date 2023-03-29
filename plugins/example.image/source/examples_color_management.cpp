@@ -211,6 +211,8 @@ maxon::Result<void> GetPixelFormats()
 	const maxon::Block<const maxon::BITS> channelSizes = pixRgbF32.GetChannelOffsets();
 	// The total size of a pixel in bits, i.e., the sum of GetChannelOffsets().
 	const maxon::BITS pixelSize = pixRgbF32.GetBitsPerPixel();
+	
+	ApplicationOutput("\t CannelCount: @, Offsets: @, BitsPerPixel: @", channelCount, channelSizes, pixelSize);
 
 	// A pixel format also provides access to image channels, a more precise description of each
 	// channel. In most cases accessing these from a pixel format is not required.
@@ -225,7 +227,7 @@ maxon::Result<void> GetPixelFormats()
 		const maxon::DataType dataType = channel.GetDataType();
 
 		ApplicationOutput("\t\tRGB::F32 channel '@' - Bits: @, ChannelType: @, DataType: @",
-			pixRgbF32, pixRgbF32, pixRgbF32, pixRgbF32);
+			channel, bits, channelType, dataType);
 	}
 
 	return maxon::OK;

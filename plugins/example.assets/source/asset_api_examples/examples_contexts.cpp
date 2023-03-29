@@ -940,7 +940,7 @@ maxon::Result<void> RunLoadMaterialNodeAssets()
 
 	// Get its graph for the standard material node space.
 	maxon::Id nodeSpace = maxon::nodes::MaterialNodeSpaces::Standard.GetId();
-	material->AddGraph(nodeSpace) iferr_return;
+	material->CreateDefaultGraph(nodeSpace) iferr_return;
 	const maxon::nodes::NodesGraphModelRef graph = material->GetGraph(nodeSpace) iferr_return;
 	if (graph.IsReadOnly())
 		return maxon::IllegalStateError(MAXON_SOURCE_LOCATION, "Material Node graph is read only."_s);
