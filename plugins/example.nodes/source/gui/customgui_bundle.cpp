@@ -275,7 +275,7 @@ maxon::Result<NodeData> BundleGui::CollectNodeData(const NodeDataContext& contex
 	data._nodePath = node.GetPath();
 	data._currentDocumentAddress = Int64(context._baseDocument);
 
-	const maxon::DescTranslation& translation = context._attributeManager.GetDescTranslation(*nodeObject) iferr_return;
+	const maxon::DescTranslationRef translation = context._attributeManager.GetDescTranslation(*nodeObject) iferr_return;
 
 	for (Int descIndex = 0; descIndex < context._replaceIds.GetCount(); ++descIndex)
 	{
@@ -283,7 +283,7 @@ maxon::Result<NodeData> BundleGui::CollectNodeData(const NodeDataContext& contex
 
 		NodeAttribute attribute;
 
-		const maxon::DescEntryStruct* descEntryPtr = translation._descIdMap.FindValue(descId);
+		const maxon::DescEntryStruct* descEntryPtr = translation->_descIdMap.FindValue(descId);
 		if (descEntryPtr != nullptr)
 		{
 			const maxon::DescEntryStruct& descEntry = *descEntryPtr;

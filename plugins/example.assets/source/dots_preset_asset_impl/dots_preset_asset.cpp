@@ -11,7 +11,7 @@
 	A preset asset wraps around a data type and handles the preview images for and access of preset 
 	asset data. The example is accompanied by a custom data type and custom GUI implementation which
 	stores a list of points, called Dots CustomDataType & CustomGui Example. The custom datatype
-	and gui example is almost identical to the example of the same name found in the cinema4dsdk,
+	and gui example is almost identical to the example of the same name found in the example.main,
 	only that is has been extended to accommodate the Asset API in this instance.
 
 	The preset asset type implementation must implement a component for the BasePresetAssetInterface 
@@ -155,7 +155,7 @@ maxon::Result<void> DotsPresetAssetImpl::Init(
 
 	// Extract the DotsData from the GeData container and copy them to the DotsData attached to the
 	// preset asset instance.
-	DotsData* data = (DotsData*)geData.GetCustomDataType(PID_CUSTOMDATATYPE_DOTS);
+	const DotsData* data = geData.GetCustomDataType<DotsData>();
 	data->CopyTo(_customData) iferr_return;
 
 	return maxon::OK;
@@ -219,7 +219,7 @@ MAXON_METHOD maxon::Result<void> DotsPresetAssetImpl::Serialize(
 
 	// Pack the custom data attached to the asset into GeData and write them into the HyperFile.
 	GeData geData;
-	geData.SetCustomDataType(PID_CUSTOMDATATYPE_DOTS, *_customData);
+	geData.SetCustomDataType(*_customData);
 	if (!hyperFile->WriteGeData(geData))
 		return maxon::UnexpectedError(MAXON_SOURCE_LOCATION, "Could not write to HyperFile."_s);
 	if (!hyperFile->Close())
@@ -295,7 +295,7 @@ MAXON_METHOD maxon::Bool DotsPresetAssetTypeImpl::LoadPreset(
 		return true;
 
 	// Attempt to instantiate the specific preset type and retrieve the custom data attached to it.
-	const DotsPresetAssetImpl* impl = DotsPresetAssetImpl::GetOrNull(preset);
+	const DotsPresetAssetImpl* impl = DotsPresetAssetImpl::GetOrDefault(preset);
 	if (!impl)
 		return false;
 
@@ -310,7 +310,7 @@ MAXON_METHOD maxon::Bool DotsPresetAssetTypeImpl::LoadPreset(
 		return false;
 
 	TriState<GeData> packedData;
-	packedData.Add(GeData(PID_CUSTOMDATATYPE_DOTS, *data));
+	packedData.Add(GeData(*data));
 
 	return targetGui->SetData(packedData);
 }

@@ -35,7 +35,7 @@ maxon::Result<void> NodeSpaceExample::CreateMaterialGraph(const maxon::nodes::No
 	
 		// Replace the default value for the first instance.
 		maxon::GraphNode valuePort = userGraphNode.GetInputs().FindChild(maxonexample::NODE::USERNODE::COLORA) iferr_return;
-		valuePort.SetDefaultValue(maxon::Data(maxon::ColorA(1.0, 1.0, 0.0, 1.0))) iferr_return;
+		valuePort.SetPortValue(maxon::Data(maxon::ColorA(1.0, 1.0, 0.0, 1.0))) iferr_return;
 	}
 
 	MAXON_SCOPE // Instantiate a gradient node and connect one of the knots.
@@ -45,9 +45,9 @@ maxon::Result<void> NodeSpaceExample::CreateMaterialGraph(const maxon::nodes::No
 		maxon::GraphNode colorNode = graph.AddChild(maxon::Id("Color node instance"), colorNodeSystem) iferr_return;
 
 		maxon::GraphNode datatypePort = colorNode.GetInputs().FindChild(maxon::NODE::TYPE::DATATYPE) iferr_return;
-		datatypePort.SetDefaultValue(maxon::Id("net.maxon.parametrictype.col<3,float>")) iferr_return;
+		datatypePort.SetPortValue(maxon::Id("net.maxon.parametrictype.col<3,float>")) iferr_return;
 		maxon::GraphNode valuePort = colorNode.GetInputs().FindChild(maxon::NODE::TYPE::IN) iferr_return;
-		valuePort.SetDefaultValue(maxon::Color(1, 0, 0)) iferr_return;
+		valuePort.SetPortValue(maxon::Color(1, 0, 0)) iferr_return;
 		maxon::GraphNode colorOutPort = colorNode.GetOutputs().FindChild(maxon::NODE::TYPE::OUT) iferr_return;
 
 		// Create the gradient.
@@ -85,14 +85,14 @@ MAXON_DECLARATION_REGISTER(maxon::nodes::DescriptionFinalizers, )
 		maxon::nodes::MutablePort firstKnot0 = root.GetInputs().FindPort(maxonexample::NODE::GRADIENTNODE::FIRSTBUNDLE).FindPort(maxon::Id("_0")) iferr_return;
 		if (firstKnot0)
 		{
-			firstKnot0.FindPort(maxonexample::DATATYPE::PORTBUNDLE::GRADIENT::COLOR).SetDefaultValue(maxon::ColorA()) iferr_return;
-			firstKnot0.FindPort(maxonexample::DATATYPE::PORTBUNDLE::GRADIENT::POSITION).SetDefaultValue(maxon::Float(0.0)) iferr_return;
+			firstKnot0.FindPort(maxonexample::DATATYPE::PORTBUNDLE::GRADIENT::COLOR).SetPortValue(maxon::ColorA()) iferr_return;
+			firstKnot0.FindPort(maxonexample::DATATYPE::PORTBUNDLE::GRADIENT::POSITION).SetPortValue(maxon::Float(0.0)) iferr_return;
 		}
 		maxon::nodes::MutablePort secondKnot0 = root.GetInputs().FindPort(maxonexample::NODE::GRADIENTNODE::SECONDBUNDLE).FindPort(maxon::Id("_0")) iferr_return;
 		if (secondKnot0)
 		{
-			secondKnot0.FindPort(maxonexample::DATATYPE::PORTBUNDLE::GRADIENT::COLOR).SetDefaultValue(maxon::ColorA()) iferr_return;
-			secondKnot0.FindPort(maxonexample::DATATYPE::PORTBUNDLE::GRADIENT::POSITION).SetDefaultValue(maxon::Float(0.0)) iferr_return;
+			secondKnot0.FindPort(maxonexample::DATATYPE::PORTBUNDLE::GRADIENT::COLOR).SetPortValue(maxon::ColorA()) iferr_return;
+			secondKnot0.FindPort(maxonexample::DATATYPE::PORTBUNDLE::GRADIENT::POSITION).SetPortValue(maxon::Float(0.0)) iferr_return;
 		}
 		return maxon::OK;
 	});

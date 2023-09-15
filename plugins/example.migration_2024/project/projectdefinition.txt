@@ -1,0 +1,16 @@
+Platform=Win64;OSX
+Type=DLL
+
+// API dependencies
+APIS=\
+cinema.framework;\
+cinema_hybrid.framework;\
+core.framework;
+
+// C4D component
+C4D=true
+
+stylecheck.level=3 
+
+// Custom ID
+ModuleId=net.maxonexample.migration_2024

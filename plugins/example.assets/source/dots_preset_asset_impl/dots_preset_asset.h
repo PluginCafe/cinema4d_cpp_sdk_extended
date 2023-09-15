@@ -11,7 +11,7 @@
 	A preset asset wraps around a data type and handles the preview images for and access of preset
 	asset data. The example is accompanied by a custom data type and custom GUI implementation which
 	stores a list of points, called Dots CustomDataType & CustomGui Example. The custom datatype
-	and gui example is almost identical to the example of the same name found in the cinema4dsdk,
+	and gui example is almost identical to the example of the same name found in the example.main,
 	only that is has been extended to accommodate the Asset API in this instance.
 
 	The preset asset type implementation must implement a component for the BasePresetAssetInterface

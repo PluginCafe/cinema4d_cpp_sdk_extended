@@ -288,8 +288,8 @@ maxon::Result<void> LinkMediaAssets(
 
 	// The file asset subtypes that form media assets.
 	maxon::HashSet<maxon::Id> mediaSubtypes;
-	mediaSubtypes.Append(maxon::ASSETMETADATA::SubType_ENUM_MediaImage) iferr_return;
-	mediaSubtypes.Append(maxon::ASSETMETADATA::SubType_ENUM_MediaMovie) iferr_return;
+	mediaSubtypes.Append(maxon::ASSETMETADATA::SubType_ENUM_MediaImage.GetId()) iferr_return;
+	mediaSubtypes.Append(maxon::ASSETMETADATA::SubType_ENUM_MediaMovie.GetId()) iferr_return;
 
 	// Load the media assets as textures into newly created materials in the document.
 	maxon::Int insertedMaterials = 0;
@@ -314,7 +314,7 @@ maxon::Result<void> LinkMediaAssets(
 			return maxon::OutOfMemoryError(MAXON_SOURCE_LOCATION, "Could not allocate shader."_s);
 
 		material->InsertShader(shader);
-		if (!material->SetParameter(DescID(MATERIAL_COLOR_SHADER), shader, DESCFLAGS_SET::NONE))
+		if (!material->SetParameter(ConstDescID(DescLevel(MATERIAL_COLOR_SHADER)), shader, DESCFLAGS_SET::NONE))
 			return maxon::IllegalStateError(MAXON_SOURCE_LOCATION, "Could not link shader."_s);
 
 		// Get the asset url and check if it is empty.
@@ -324,7 +324,7 @@ maxon::Result<void> LinkMediaAssets(
 		const Filename file = MaxonConvert(url);
 
 		// Set the asset url as the filename parameter of the bitmap shader.
-		if (!shader->SetParameter(DescID(BITMAPSHADER_FILENAME), file, DESCFLAGS_SET::NONE))
+		if (!shader->SetParameter(ConstDescID(DescLevel(BITMAPSHADER_FILENAME)), file, DESCFLAGS_SET::NONE))
 			return maxon::IllegalArgumentError(MAXON_SOURCE_LOCATION, "Could not set texture file."_s);
 
 		// Name the material after the asset and insert it into the document.

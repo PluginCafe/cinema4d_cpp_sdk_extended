@@ -1,4 +1,4 @@
-﻿{
+{
 	"identification": "net.maxon.fileid.descriptiondefinition",
 	"content": {
 		"_descriptionsVersion": 6,
@@ -1938,6 +1938,139 @@
 					}
 				]
 			},
+			"net.maxonexample.node.invertnode",
+			{
+				"referenceClassType": "net.maxon.class.datadescriptiondefinition",
+				"_info": {
+					"referenceDataType": "net.maxon.interface.datadictionary-C",
+					"_impl": {
+						"_mode": 1,
+						"_keyType": "net.maxon.datatype.internedid",
+						"_fastData": [
+							"net.maxon.description.data.info.classification",
+							{
+								"dataType": "net.maxon.datatype.id",
+								"content": "node"
+							},
+							"net.maxon.description.data.info.includefile",
+							{
+								"dataType": "net.maxon.interface.url-C",
+								"content": {
+									"referenceDataType": "net.maxon.interface.url-C",
+									"_scheme": "relative",
+									"_path": "plugins/example.nodes/source/space/customnode-customnodespace_descriptions.h",
+									"_authority": {},
+									"_data": {}
+								}
+							}
+						]
+					}
+				},
+				"_description": [
+					{
+						"referenceDataType": "net.maxon.interface.datadictionary-C",
+						"_impl": {
+							"_mode": 1,
+							"_keyType": "net.maxon.datatype.internedid",
+							"_fastData": [
+								"net.maxon.description.base.command",
+								{
+									"dataType": "net.maxon.datatype.id",
+									"content": "include"
+								},
+								"net.maxon.description.base.identifier",
+								{
+									"dataType": "net.maxon.datatype.internedid",
+									"content": "net.maxon.node.base"
+								},
+								"net.maxon.description.data.base.generateignoreheader",
+								{
+									"dataType": "bool",
+									"content": true
+								},
+								"net.maxon.description.data.base.include",
+								{
+									"dataType": "net.maxon.datatype.id",
+									"content": "net.maxon.node.base"
+								}
+							]
+						}
+					},
+					{
+						"referenceDataType": "net.maxon.interface.datadictionary-C",
+						"_impl": {
+							"_mode": 1,
+							"_keyType": "net.maxon.datatype.internedid",
+							"_fastData": [
+								"net.maxon.description.base.command",
+								{
+									"dataType": "net.maxon.datatype.id",
+									"content": "attribute"
+								},
+								"net.maxon.description.base.identifier",
+								{
+									"dataType": "net.maxon.datatype.internedid",
+									"content": "in"
+								},
+								"net.maxon.description.data.base.classification",
+								{
+									"dataType": "net.maxon.datatype.id",
+									"content": "input"
+								},
+								"net.maxon.description.data.base.datatype",
+								{
+									"dataType": "net.maxon.datatype.id",
+									"content": "net.maxon.parametrictype.col<3,float>"
+								},
+								"net.maxon.node.attribute.isconverterport",
+								{
+									"dataType": "bool",
+									"content": true
+								}
+							]
+						}
+					},
+					{
+						"referenceDataType": "net.maxon.interface.datadictionary-C",
+						"_impl": {
+							"_mode": 1,
+							"_keyType": "net.maxon.datatype.internedid",
+							"_fastData": [
+								"net.maxon.description.base.command",
+								{
+									"dataType": "net.maxon.datatype.id",
+									"content": "attribute"
+								},
+								"net.maxon.description.base.identifier",
+								{
+									"dataType": "net.maxon.datatype.internedid",
+									"content": "out"
+								},
+								"net.maxon.description.data.base.classification",
+								{
+									"dataType": "net.maxon.datatype.id",
+									"content": "output"
+								},
+								"net.maxon.description.data.base.datatype",
+								{
+									"dataType": "net.maxon.datatype.id",
+									"content": "net.maxon.parametrictype.col<3,float>"
+								},
+								"net.maxon.node.attribute.isconverterport",
+								{
+									"dataType": "bool",
+									"content": true
+								},
+								"net.maxon.node.attribute.ispreviewport",
+								{
+									"dataType": "bool",
+									"content": true
+								}
+							]
+						}
+					}
+				]
+			},
 			"net.maxonexample.node.usernode",
 			{
 				"referenceClassType": "net.maxon.class.datadescriptiondefinition",
@@ -3543,6 +3676,113 @@
 								{
 									"dataType": "net.maxon.datatype.id",
 									"content": "net.maxon.ui.coloralpha"
+								}
+							]
+						}
+					}
+				]
+			},
+			"net.maxonexample.node.invertnode",
+			{
+				"referenceClassType": "net.maxon.class.datadescriptiondefinition",
+				"_info": {
+					"referenceDataType": "net.maxon.interface.datadictionary-C",
+					"_impl": {
+						"_mode": 1,
+						"_keyType": "net.maxon.datatype.internedid",
+						"_fastData": [
+							"net.maxon.description.ui.info.menucategory",
+							{
+								"dataType": "net.maxon.datatype.id",
+								"content": "net.maxon.assetcategory.uncategorized"
+							}
+						]
+					}
+				},
+				"_description": [
+					{
+						"referenceDataType": "net.maxon.interface.datadictionary-C",
+						"_impl": {
+							"_mode": 1,
+							"_keyType": "net.maxon.datatype.internedid",
+							"_fastData": [
+								"net.maxon.description.base.command",
+								{
+									"dataType": "net.maxon.datatype.id",
+									"content": "include"
+								},
+								"net.maxon.description.base.identifier",
+								{
+									"dataType": "net.maxon.datatype.internedid",
+									"content": "net.maxon.node.base"
+								},
+								"net.maxon.description.data.base.generateignoreheader",
+								{
+									"dataType": "bool",
+									"content": true
+								},
+								"net.maxon.description.data.base.include",
+								{
+									"dataType": "net.maxon.datatype.id",
+									"content": "net.maxon.node.base"
+								}
+							]
+						}
+					},
+					{
+						"referenceDataType": "net.maxon.interface.datadictionary-C",
+						"_impl": {
+							"_mode": 1,
+							"_keyType": "net.maxon.datatype.internedid",
+							"_fastData": [
+								"net.maxon.description.base.command",
+								{
+									"dataType": "net.maxon.datatype.id",
+									"content": "attribute"
+								},
+								"net.maxon.description.base.identifier",
+								{
+									"dataType": "net.maxon.datatype.internedid",
+									"content": "in"
+								},
+								"net.maxon.description.ui.base.groupid",
+								{
+									"dataType": "net.maxon.datatype.internedid",
+									"content": "net.maxon.node.base.group.inputs"
+								},
+								"net.maxon.description.ui.base.guitypeid",
+								{
+									"dataType": "net.maxon.datatype.id",
+									"content": "net.maxon.ui.color"
+								}
+							]
+						}
+					},
+					{
+						"referenceDataType": "net.maxon.interface.datadictionary-C",
+						"_impl": {
+							"_mode": 1,
+							"_keyType": "net.maxon.datatype.internedid",
+							"_fastData": [
+								"net.maxon.description.base.command",
+								{
+									"dataType": "net.maxon.datatype.id",
+									"content": "attribute"
+								},
+								"net.maxon.description.base.identifier",
+								{
+									"dataType": "net.maxon.datatype.internedid",
+									"content": "out"
+								},
+								"net.maxon.description.ui.base.groupid",
+								{
+									"dataType": "net.maxon.datatype.internedid",
+									"content": "net.maxon.node.base.group.outputs"
+								},
+								"net.maxon.description.ui.base.guitypeid",
+								{
+									"dataType": "net.maxon.datatype.id",
+									"content": "net.maxon.ui.color"
 								}
 							]
 						}

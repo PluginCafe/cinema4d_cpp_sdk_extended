@@ -13,7 +13,7 @@ maxon::Result<BaseMaterial*> SimpleMaterialImport::CreateMaterial(const maxon::m
 {
 	iferr_scope;
 
-	// We extend the capabilities of SimpleMaterial in the cinema4dsdk.
+	// We extend the capabilities of SimpleMaterial in the example.main.
 	const Int32 ID_SIMPLEMAT = 1001164;
 	const Int32 SIMPLEMATERIAL_COLOR = 1000;
 

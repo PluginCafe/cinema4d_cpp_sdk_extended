@@ -51,7 +51,7 @@ maxon::Result<void> MaterialImportCommand::ImportMaterial(const maxon::Class<max
 {
 	iferr_scope;
 
-	const maxon::Id activeNodeSpaceId = C4DOS.Ge->GetActiveNodeSpaceId();
+	const maxon::Id activeNodeSpaceId = C4DOS_Ge->GetActiveNodeSpaceId();
 
 	maxon::DataDictionary config;
 	config.Set(maxon::material::IMPORT::CONFIG::NODESPACEID, activeNodeSpaceId) iferr_return;

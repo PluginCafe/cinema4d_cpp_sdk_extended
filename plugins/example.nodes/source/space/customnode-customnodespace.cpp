@@ -23,7 +23,7 @@ static maxon::nodes::NodeSystemClass g_nodeSystemClass;
 // This description processor has to be used for all nodes of the example namespace unless they register themselves at the BuiltinNodes registry (such as DynamicNode).
 MAXON_DECLARATION_REGISTER(maxon::DescriptionProcessors, "net.maxonexample.nodespace.descriptionprocessor")
 {
-	return maxon::nodes::NodesLib::CreateNodeDescriptionProcessor([] (const maxon::Id& descriptionId, const maxon::DataDescription& dataDescription) -> maxon::Result<maxon::nodes::NodeTemplate>
+	return maxon::nodes::NodesLib::CreateNodeDescriptionProcessor([] (const maxon::Id& descriptionId, const maxon::DataDescriptionDefinition& dataDef, const maxon::DataDescription& dataDescription) -> maxon::Result<maxon::nodes::NodeTemplate>
 	{
 		return maxon::nodes::NodesLib::CreateLazyTemplate(descriptionId,
 			[descriptionId]() -> maxon::Result<maxon::nodes::NodeTemplate>

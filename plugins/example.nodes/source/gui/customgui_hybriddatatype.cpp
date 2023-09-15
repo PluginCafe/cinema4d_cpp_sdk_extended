@@ -79,7 +79,7 @@ HybridDataTypeGui::HybridDataTypeGui(const BaseContainer &settings, CUSTOMGUIPLU
 	const GeData& data = settings.GetData(DESC_DEFAULT);
 	if (data.GetType() == HYBRIDDATATYPE_ID)
 	{
-		_defaultValue = *static_cast<const HybridDataType*>(data.GetCustomDataType(HYBRIDDATATYPE_ID));
+		_defaultValue = *data.GetCustomDataType<HybridDataType>();
 	}
 }
 
@@ -133,7 +133,7 @@ Bool HybridDataTypeGui::Command(Int32 id, const BaseContainer &msg)
 	{
 		BaseContainer m(msg);
 		m.SetInt32(BFM_ACTION_ID, GetId());
-		m.SetData(BFM_ACTION_VALUE, GeData(HYBRIDDATATYPE_ID, (const CustomDataType&)_value));
+		m.SetData(BFM_ACTION_VALUE, GeData(_value));
 		SendParentMessage(m);
 	}
 
@@ -143,7 +143,7 @@ Bool HybridDataTypeGui::Command(Int32 id, const BaseContainer &msg)
 TriState<GeData> HybridDataTypeGui::GetData()
 {
 	TriState<GeData> triState;
-	triState.Add(GeData(HYBRIDDATATYPE_ID, (const CustomDataType&)_value));
+	triState.Add(GeData(_value));
 	return triState;
 }
 
@@ -153,7 +153,7 @@ Bool HybridDataTypeGui::SetData(const TriState<GeData> &tristate)
 	if (data.GetType() != HYBRIDDATATYPE_ID)
 		return false;
 
-	const HybridDataType& value = *static_cast<const HybridDataType*>(tristate.GetValue().GetCustomDataType(HYBRIDDATATYPE_ID));
+	const HybridDataType& value = *tristate.GetValue().GetCustomDataType<HybridDataType>();
 	_value = value;
 	InitValues();
 	return true;
@@ -182,7 +182,7 @@ maxon::Result<void> HybridDataTypeGuiConversion::CreateC4DDescription(const maxo
 	const maxon::DataDictionary& dataEntry, const maxon::DataDictionary& guiEntry, const maxon::DataDescription& mainDataDescription, const maxon::DataDescription& stringDescription, const DescID& mainId,
 	const DescID& groupId, const maxon::PatchC4DDescriptionEntryDelegate& patchEntryFunc, maxon::DescTranslation& translateIds,
 	const maxon::BaseArray<maxon::InternedId>& parentIds, const DescID& parentFoldId, const maxon::GetDataCallbackType& getDataCallback,
-	const maxon::GetExtraDataCallbackType& getExtraDataDelegate, BaseDocument* doc) const
+	const maxon::GetExtraDataCallbackType& getExtraDataDelegate, const BaseDocument* doc) const
 {
 	iferr_scope;
 
@@ -206,22 +206,22 @@ maxon::Result<void> HybridDataTypeGuiConversion::CreateC4DDescription(const maxo
 }
 
 maxon::Result<void> HybridDataTypeGuiConversion::ConvertToC4D(GeData& output, const maxon::DataType& dataType, const maxon::Data& data, const DescID& descIdSuffix,
-	const maxon::DataDictionary& dataEntry, const maxon::DataDictionary& guiEntry, const maxon::GetExtraDataCallbackType& extraDataDelegate, BaseDocument* doc) const
+	const maxon::DataDictionary& dataEntry, const maxon::DataDictionary& guiEntry, const maxon::GetExtraDataCallbackType& extraDataDelegate, const BaseDocument* doc) const
 {
 	iferr_scope;
 
 	// We transport the data type from 'new' to 'classical', i.e. from node to gui.
 	HybridDataType value = data.Get<HybridDataType>() iferr_return;
-	output = GeData(HYBRIDDATATYPE_ID, (CustomDataType&)value);
+	output = GeData(value);
 	return maxon::OK;
 }
 
 maxon::Result<maxon::Tuple<maxon::Data, maxon::Bool>> HybridDataTypeGuiConversion::ConvertToCore(const maxon::DataType& dataType, const GeData& data, const DescID& descIdSuffix,
 	const maxon::DataDictionary& dataEntry, const maxon::DataDictionary& guiEntry, const maxon::Data& oldData,
-	const maxon::GetExtraDataCallbackType& extraDataDelegate, BaseDocument* doc) const
+	const maxon::GetExtraDataCallbackType& extraDataDelegate, const BaseDocument* doc) const
 {
 	// We transport the data type from 'classical' to 'new', i.e. from gui to node.
-	const HybridDataType& value = *static_cast<const HybridDataType*>(data.GetCustomDataType(HYBRIDDATATYPE_ID));
+	const HybridDataType& value = *data.GetCustomDataType<HybridDataType>();
 	return maxon::Tuple<maxon::Data, maxon::Bool>(maxon::Data(HybridDataType(value)), false);
 }
 

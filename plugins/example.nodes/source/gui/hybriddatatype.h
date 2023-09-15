@@ -22,7 +22,7 @@ MAXON_DEPENDENCY(HybridDataTypeRegistration);
 
 // This data type is a bit special: it's part of the 'classical' and 'new' APIs of Cinema4D.
 // Its purpose is to show how custom data types can be used in the context of nodes.
-class HybridDataType : public iCustomDataType<HybridDataType>
+class HybridDataType : public iCustomDataType<HybridDataType, HYBRIDDATATYPE_ID>
 {
 public:
 

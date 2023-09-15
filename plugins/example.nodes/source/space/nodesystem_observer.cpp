@@ -51,11 +51,11 @@ NodeSystemChangedMonitor::~NodeSystemChangedMonitor()
 	{
 		if (_systemChangedTicket != nullptr)
 		{
-			manager.ObservableTransactionCommitted().RemoveObserver(_systemChangedTicket) iferr_ignore("");
+			manager.ObservableTransactionCommitted(false).RemoveObserver(_systemChangedTicket);
 		}
 		if (_systemDestroyedTicket != nullptr)
 		{
-			manager.ObserverDestroyed().RemoveObserver(_systemDestroyedTicket) iferr_ignore("");
+			manager.ObserverDestroyed(false).RemoveObserver(_systemDestroyedTicket);
 		}
 	}
 }
@@ -68,7 +68,7 @@ maxon::Result<NodeSystemChangedMonitorRef> NodeSystemChangedMonitor::Create(maxo
 
 	maxon::nodes::NodeSystemManagerRef manager = graph.GetManager();
 
-	monitor->_systemChangedTicket = manager.ObservableTransactionCommitted().AddObserver(
+	monitor->_systemChangedTicket = manager.ObservableTransactionCommitted(true).AddObserver(
 	[weakMonitor](const maxon::nodes::NodeSystemManagerRef& manager, const maxon::DataDictionary&) -> void
 	{
 		NodeSystemChangedMonitorRef monitor = weakMonitor;
@@ -78,7 +78,7 @@ maxon::Result<NodeSystemChangedMonitorRef> NodeSystemChangedMonitor::Create(maxo
 		}
 	}) iferr_return;
 
-	monitor->_systemDestroyedTicket = manager.ObserverDestroyed().AddObserver(
+	monitor->_systemDestroyedTicket = manager.ObserverDestroyed(true).AddObserver(
 	[weakMonitor](maxon::ObserverObjectInterface* sender) -> void
 	{
 		NodeSystemChangedMonitorRef monitor = weakMonitor;

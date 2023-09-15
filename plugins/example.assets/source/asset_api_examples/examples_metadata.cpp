@@ -57,8 +57,7 @@ maxon::Result<void> AccessAssetDescriptionData(const maxon::AssetDescription& as
 	// assetdb scheme, e.g., "assetdb:///tex/Surfaces/Dirt Scratches & Smudges/RustPaint0291_M.jpg". 
 	// All three of the asset URLs mentioned here as examples reference the "RustPaint0291_M.jpg" 
 	// asset, but it is only #assetUrl which can be used when linking to that asset with a maxon::Url.
-	const maxon::String humanReadbleAssetUrlString = assetUrl.ConvertToUiNameWithRepository(
-		maxon::CONVERTTOUINAMEFLAGS::NONE, assetDescription.GetRepository()) iferr_return;
+	const maxon::String humanReadbleAssetUrlString = assetUrl.ConvertToUiName(maxon::CONVERTTOUINAMEFLAGS::NONE, assetDescription.GetRepository()) iferr_return;
 
 	ApplicationOutput("\tAsset Id: @", assetId);
 	ApplicationOutput("\tAsset Type Id: @", assetTypeId);
@@ -134,7 +133,7 @@ maxon::Result<maxon::AssetDescription> AddAssetVersion(
 
 	const maxon::AssetMetaData metadata = asset.GetMetaData();
 	const maxon::Id subtype = metadata.Get<
-		decltype(maxon::ASSETMETADATA::SubType)>().GetValueOrNull() iferr_return;
+		decltype(maxon::ASSETMETADATA::SubType)>().GetValueOrDefault() iferr_return;
 
 	if (subtype != maxon::ASSETMETADATA::SubType_ENUM_Object)
 		return maxon::UnexpectedError(MAXON_SOURCE_LOCATION, "Invalid asset sub-type."_s);
@@ -154,7 +153,7 @@ maxon::Result<maxon::AssetDescription> AddAssetVersion(
 
 	// Get the category the asset is parented to.
 	const  maxon::Id categoryId = metadata.Get<
-		decltype(maxon::ASSETMETADATA::Category)>().GetValueOrNull() iferr_return;
+		decltype(maxon::ASSETMETADATA::Category)>().GetValueOrDefault() iferr_return;
 
 	// The asset version, it could also be a string like "v1", but it is safer to use UUIDs.
 	const maxon::Id version = maxon::AssetInterface::MakeUuid("", true) iferr_return;
@@ -468,7 +467,7 @@ maxon::Result<void> ReadAssetMetadata(const maxon::AssetDescription& assetDescri
 
 	// Get the asset dependencies of the asset.
 	const maxon::Array<maxon::AssetDependencyStruct> dependencyCollection = metadata.Get<
-		decltype(maxon::ASSETMETADATA::Dependencies)>().GetValueOrNull() iferr_return;
+		decltype(maxon::ASSETMETADATA::Dependencies)>().GetValueOrDefault() iferr_return;
 	// The dependencies contain metadata about the assets that are used by the asset.
 	ApplicationOutput("\tAsset dependencies:");
 	for (maxon::AssetDependencyStruct dependency : dependencyCollection)
@@ -477,15 +476,15 @@ maxon::Result<void> ReadAssetMetadata(const maxon::AssetDescription& assetDescri
 	// Get the ids of the keyword assets associated with an asset. Keywords can be split over system 
 	// defined and user defined keywords. This applies to assets stored in read-only repositories.
 	const maxon::Array<maxon::Id>	keywords = metadata.Get<
-		decltype(maxon::ASSETMETADATA::Keywords)>().GetValueOrNull() iferr_return;
+		decltype(maxon::ASSETMETADATA::Keywords)>().GetValueOrDefault() iferr_return;
 	const maxon::Array<maxon::Id>	userKeywords = metadata.Get<
-		decltype(maxon::ASSETMETADATA::UserKeywords)>().GetValueOrNull() iferr_return;
+		decltype(maxon::ASSETMETADATA::UserKeywords)>().GetValueOrDefault() iferr_return;
 	ApplicationOutput("\tKeywords: @", keywords);
 	ApplicationOutput("\tUser-Keywords: @", userKeywords);
 
 	// Get the id of the category the asset is parented to.
 	const  maxon::Id category = metadata.Get<
-		decltype(maxon::ASSETMETADATA::Category)>().GetValueOrNull() iferr_return;
+		decltype(maxon::ASSETMETADATA::Category)>().GetValueOrDefault() iferr_return;
 	ApplicationOutput("\tCategory: @", category);
 
 	// When the name of an category or keyword is required, then the respective category or keyword 
@@ -506,7 +505,7 @@ maxon::Result<void> ReadAssetMetadata(const maxon::AssetDescription& assetDescri
 	// a file asset expresses if it holds an object, material, scene, media image or media movie
 	// asset, or if it is a plain file asset, e.g., a PDF.
 	const maxon::Id subtype = metadata.Get<
-		decltype(maxon::ASSETMETADATA::SubType)>().GetValueOrNull() iferr_return;
+		decltype(maxon::ASSETMETADATA::SubType)>().GetValueOrDefault() iferr_return;
 	ApplicationOutput("\tAsset Subtype: @", subtype);
 
 	// There is also a sub-container of metadata entries called the meta-properties of an asset. It

@@ -43,7 +43,7 @@ public:
 		codePort.SetValue(maxon::nodes::TemplateParameter, true) iferr_return;
 
 		// Get the template argument for the code.
-		const String& code = args.GetValueArgument<String>(codePort).GetValueOrNull();
+		const String& code = args.GetValueArgument<String>(codePort).GetValueOrDefault();
 		Int order = 0;
 
 		// Parse code, here we just split the code into its comma-separated parts and create a port for each part.
@@ -108,7 +108,7 @@ public:
 
 						port.SetValue(maxon::nodes::PortDescriptionStringLazy, std::move(languageDict)) iferr_return;
 					}
-					port.SetValue(maxon::NODE::ATTRIBUTE::ORDERINDEX, ++order) iferr_return;
+					port.SetValue(maxon::nodes::ReqOrderIndex, ++order) iferr_return;
 				}
 				return true;
 			}) iferr_return;
@@ -123,7 +123,7 @@ MAXON_COMPONENT_CLASS_REGISTER(DynamicNode, "net.maxonexample.class.dynamicnode"
 
 MAXON_DECLARATION_REGISTER(maxon::nodes::BuiltinNodes, maxonexample::NODE::DYNAMICNODE::GetId())
 {
-	return DynamicNode::GetClass().Create();
+	return DynamicNode::GetClass().Create().SetId({objectId, maxon::Id()}, 0, maxon::AssetInterface::GetBuiltinRepository());
 }
 
 } // namespace maxonsdk

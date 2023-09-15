@@ -110,25 +110,25 @@ static maxon::Result<maxon::Tuple<NodeMaterial*, maxon::HomogenousTupleType<5, m
 	maxon::nodes::NodeTemplate valueNodeTemplate = maxon::nodes::NodesLib::LoadTemplate(repository, maxon::NODE::TYPE::GetId()) iferr_return;
 	maxon::GraphNode colorGraphNode = nodeGraph.AddChild(maxon::Id("Color"), valueNodeTemplate) iferr_return;
 	maxon::GraphNode datatypePort = colorGraphNode.GetInputs().FindChild(maxon::NODE::TYPE::DATATYPE) iferr_return;
-	datatypePort.SetDefaultValue(maxon::Id("net.maxon.parametrictype.col<3,float>")) iferr_return;
+	datatypePort.SetPortValue(maxon::Id("net.maxon.parametrictype.col<3,float>")) iferr_return;
 	maxon::GraphNode valuePort = colorGraphNode.GetInputs().FindChild(maxon::NODE::TYPE::IN) iferr_return;
-	valuePort.SetDefaultValue(maxon::Color(0.5, 0.0, 0.0)) iferr_return;
+	valuePort.SetPortValue(maxon::Color(0.5, 0.0, 0.0)) iferr_return;
 	maxon::GraphModelHelper::SelectNode(colorGraphNode) iferr_return;
 	
 	// Add another color node and define a different color.
 	maxon::GraphNode colorGraphNode2 = nodeGraph.AddChild(maxon::Id("Color2"), valueNodeTemplate) iferr_return;
 	maxon::GraphNode datatypePort2 = colorGraphNode2.GetInputs().FindChild(maxon::NODE::TYPE::DATATYPE) iferr_return;
-	datatypePort2.SetDefaultValue(maxon::Id("net.maxon.parametrictype.col<3,float>")) iferr_return;
+	datatypePort2.SetPortValue(maxon::Id("net.maxon.parametrictype.col<3,float>")) iferr_return;
 	maxon::GraphNode valuePort2 = colorGraphNode2.GetInputs().FindChild(maxon::NODE::TYPE::IN) iferr_return;
-	valuePort2.SetDefaultValue(maxon::Color(0.0, 0.5, 0.0)) iferr_return;
+	valuePort2.SetPortValue(maxon::Color(0.0, 0.5, 0.0)) iferr_return;
 
 	// Add a Blend node and define the weight of the blend.
 	maxon::nodes::NodeTemplate blendNodeTemplate = maxon::nodes::NodesLib::LoadTemplate(repository, maxon::NODE::BLEND::GetId()) iferr_return;
 	maxon::GraphNode blendGraphNode = nodeGraph.AddChild(maxon::Id("Blend"), blendNodeTemplate) iferr_return;
 	maxon::GraphNode datatypeBlend = blendGraphNode.GetInputs().FindChild(maxon::NODE::BLEND::DATATYPE) iferr_return;
-	datatypeBlend.SetDefaultValue(maxon::Id("net.maxon.parametrictype.col<3,float>")) iferr_return;
+	datatypeBlend.SetPortValue(maxon::Id("net.maxon.parametrictype.col<3,float>")) iferr_return;
 	maxon::GraphNode blendValuePort = blendGraphNode.GetInputs().FindChild(maxon::NODE::BLEND::IN3) iferr_return;
-	blendValuePort.SetDefaultValue(Float(0.5)) iferr_return;
+	blendValuePort.SetPortValue(Float(0.5)) iferr_return;
 
 	// Wire Nodes, retrieve all the ports needed to connect the node between them.
 	maxon::GraphNode colorOutPort = colorGraphNode.GetOutputs().FindChild(maxon::NODE::TYPE::OUT) iferr_return;
@@ -166,7 +166,7 @@ static maxon::Result<void> ManipulatingNodeMaterial(maxon::Tuple<NodeMaterial*, 
 	maxon::GraphNode colorBlendIn1;
 	maxon::GraphNode blendGraphNode;
 	Tie(colorGraphNode, colorGraphNode2, colorOutPort, colorBlendIn1, blendGraphNode) = parameter.GetSecond();
-	if (! (colorGraphNode.IsValid() & colorGraphNode2.IsValid() & colorOutPort.IsValid() & colorBlendIn1.IsValid() & blendGraphNode.IsValid()))
+	if (! (colorGraphNode.IsValid() && colorGraphNode2.IsValid() && colorOutPort.IsValid() && colorBlendIn1.IsValid() && blendGraphNode.IsValid()))
 		return maxon::UnexpectedError(MAXON_SOURCE_LOCATION, "Some node are not valid"_s);
 	
 	const maxon::Id nodeSpaceID = maxon::nodes::MaterialNodeSpaces::Standard.GetId();
@@ -265,9 +265,9 @@ static maxon::Result<void> ManipulatingNodeMaterial(maxon::Tuple<NodeMaterial*, 
 	maxon::nodes::NodeTemplate blendFactorNodeTemplate = maxon::nodes::NodesLib::LoadTemplate(repository, maxon::NODE::TYPE::GetId()) iferr_return;
 	maxon::GraphNode blendFactorGraphNode = nodeGraph.AddChild(maxon::Id("BlendFactor"), blendFactorNodeTemplate) iferr_return;
 	maxon::GraphNode blendDataTypePort = blendFactorGraphNode.GetInputs().FindChild(maxon::NODE::TYPE::DATATYPE) iferr_return;
-	blendDataTypePort.SetDefaultValue(maxon::Id("float")) iferr_return;
+	blendDataTypePort.SetPortValue(maxon::Id("float")) iferr_return;
 	maxon::GraphNode blendFactorValuePort = blendFactorGraphNode.GetInputs().FindChild(maxon::NODE::TYPE::IN) iferr_return;
-	blendFactorValuePort.SetDefaultValue(Float(0.5)) iferr_return;
+	blendFactorValuePort.SetPortValue(Float(0.5)) iferr_return;
 	maxon::GraphNode blendFactorResult = blendFactorGraphNode.GetOutputs().FindChild(maxon::NODE::TYPE::OUT) iferr_return;
 	blendFactorResult.Connect(groupInputPort) iferr_return;
 	graphTransaction.Commit() iferr_return;

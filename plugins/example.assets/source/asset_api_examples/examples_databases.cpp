@@ -204,7 +204,7 @@ maxon::Result<void> AttachRepositoryObservers(const maxon::AssetRepositoryRef& r
 	// but it is usually more convenient to use lambdas as shown here. Note that an ObservableAsset-
 	// Stored event will also be followed by an ObservableMetaDataStored event, when the metadata is 
 	// being set for the newly created asset by the Asset API.
-	maxon::FunctionBaseRef assetStoredFunc = repository.ObservableAssetStored().AddObserver(
+	maxon::FunctionBaseRef assetStoredFunc = repository.ObservableAssetStored(true).AddObserver(
 		[](const maxon::AssetDescription& newAsset) -> void
 		{
 			iferr_scope_handler
@@ -232,7 +232,7 @@ maxon::Result<void> AttachRepositoryObservers(const maxon::AssetRepositoryRef& r
 
 	// Attach an observer to the ObservableMetaDataStored observer which is invoked when the metadata
 	// of an asset has changed in the repository.
-	maxon::FunctionBaseRef metadataStoredFunc = repository.ObservableMetaDataStored().AddObserver(
+	maxon::FunctionBaseRef metadataStoredFunc = repository.ObservableMetaDataStored(true).AddObserver(
 		[&repeat](const maxon::AssetDescription& asset, const maxon::InternedId& metaId,
 			maxon::AssetMetaDataInterface::KIND kind, const maxon::Data& prevData, 
 			const maxon::Data& newData) -> void
@@ -283,14 +283,14 @@ maxon::Result<void> DetachRepositoryObservers(const maxon::AssetRepositoryRef& r
 	// example and remove its entry in the HashMap to reflect the new state.
 	key = "ObservableAssetStored"_s;
 	func = observerData.FindValue(key).GetValue() iferr_return;
-	repository.ObservableAssetStored().RemoveObserver(func) iferr_return;
+	repository.ObservableAssetStored(false).RemoveObserver(func);
 	observerData.Erase(key) iferr_return;
 	ApplicationOutput(msg, func, key, repository.GetId());
 
 	// Do the same for the ObservableMetaDataStored observer.
 	key = "ObservableMetaDataStored"_s;
 	func = observerData.FindValue(key).GetValue() iferr_return;
-	repository.ObservableMetaDataStored().RemoveObserver(func) iferr_return;
+	repository.ObservableMetaDataStored(false).RemoveObserver(func);
 	observerData.Erase(key) iferr_return;
 	ApplicationOutput(msg, func, key, repository.GetId());
 

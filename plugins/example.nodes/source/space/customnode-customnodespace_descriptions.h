@@ -183,6 +183,30 @@ namespace NODE
 		MAXON_ATTRIBUTE(maxon::ColorA, RESULT, "result");
 	}
 
+	namespace INVERTNODE
+	{
+		MAXON_RESOURCE_DATABASE_SCOPE("net.maxonexample.node.invertnode");
+
+		// supports MAXON::NODE::BASE::FILTERTAGS
+		// supports MAXON::NODE::BASE::NODEPREVIEWIMAGE
+		// supports MAXON::NODE::BASE::MATERIALPREVIEWIMAGE
+		// supports MAXON::NODE::BASE::NAME
+		// supports MAXON::NODE::BASE::ASSETVERSION
+		// supports MAXON::NODE::BASE::COLOR
+		// supports MAXON::NODE::BASE::PORTDISPLAY
+		// supports MAXON::NODE::BASE::DISPLAYPREVIEW
+		// supports MAXON::NODE::BASE::DISPLAYCOMMENT
+		// supports MAXON::NODE::BASE::COMMENT
+		// supports MAXON::NODE::BASE::CATEGORY
+		// supports MAXON::NODE::BASE::ICON
+		// supports MAXON::NODE::BASE::UPDATEPOLICY
+		// supports MAXON::ASSET::BASE::PROTECTED
+
+		MAXON_ATTRIBUTE(maxon::Color, IN, "in");
+
+		MAXON_ATTRIBUTE(maxon::Color, OUT, "out");
+	}
+
 	namespace USERNODE
 	{
 		MAXON_RESOURCE_DATABASE_SCOPE("net.maxonexample.node.usernode");

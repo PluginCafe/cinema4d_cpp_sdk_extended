@@ -52,7 +52,7 @@ class OcioAwareRenderer : public VideoPostData
 
 public:
 	static NodeData* Alloc() { return NewObjClear(OcioAwareRenderer); }
-	virtual Bool Init(GeListNode* node);
+	virtual Bool Init(GeListNode* node, Bool isCloneInit);
 
 	/// @brief Called by Cinema 4D to let a renderer modify the OCIO profiles of an upcoming rendering.
 	virtual void GetColorProfileInfo(BaseVideoPost* node, VideoPostStruct* vps, ColorProfileInfo& info);

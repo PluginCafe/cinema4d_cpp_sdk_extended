@@ -71,7 +71,7 @@ BaseMaterial* MaterialExportCommand::GetSelectedMaterial(BaseDocument* baseDocum
 maxon::Result<maxon::material::MaterialExchangeData> MaterialExportCommand::ExportMaterial(const BaseMaterial& baseMaterial)
 {
 	iferr_scope;
-	const maxon::Id activeNodeSpaceId = C4DOS.Ge->GetActiveNodeSpaceId();
+	const maxon::Id activeNodeSpaceId = C4DOS_Ge->GetActiveNodeSpaceId();
 	const maxon::IntVector2d textureBakingResolution = maxon::IntVector2d(1024, 1024);
 
 	maxon::DataDictionary exportConfig;

@@ -34,7 +34,7 @@ maxon::Result<void> InsertDotsDataNull(BaseDocument* doc)
 	if (null == nullptr)
 		return maxon::OutOfMemoryError(MAXON_SOURCE_LOCATION, "Could not allocate null object."_s);
 
-	DynamicDescription* const userData = null->GetDynamicDescription();
+	DynamicDescription* userData = null->GetDynamicDescriptionWritable();
 	if (userData == nullptr)
 		return maxon::UnexpectedError(
 			MAXON_SOURCE_LOCATION, "Could not access dynamic description."_s);
@@ -62,7 +62,7 @@ maxon::Result<void> InsertDotsDataNull(BaseDocument* doc)
 
 	// Set the newly added parameter to the created dots data.
 	GeData data = GeData();
-	data.SetCustomDataType(PID_CUSTOMDATATYPE_DOTS, *dotsData);
+	data.SetCustomDataType(*dotsData);
 	if (!null->SetParameter(did, data, DESCFLAGS_SET::NONE))
 		return maxon::UnexpectedError(
 			MAXON_SOURCE_LOCATION, "Could not write DotsData parameter."_s);
@@ -141,7 +141,7 @@ maxon::Result<void> UpdatePreviewThumbnail(
 			MAXON_SOURCE_LOCATION, "Could not access asset implementation."_s);
 
 	// Get Asset Browser preferences and the thumbnail width within them.
-	BaseContainer* bc = GetWorldContainerInstance()->GetContainerInstance(
+	const BaseContainer* bc = GetWorldContainerInstance()->GetContainerInstance(
 		CID_ASSET_BROWSER_PREFERENCES);
 	const maxon::Int32 BROWSER_PREVIEW_WIDTH = 6;
 	maxon::Int32 previewWidth = maxon::ClampValue(

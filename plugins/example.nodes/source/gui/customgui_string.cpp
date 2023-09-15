@@ -25,7 +25,7 @@ maxon::Result<void> UiConversionCustomGuiString::CreateC4DDescription(const maxo
 	const maxon::DataDictionary& dataEntry, const maxon::DataDictionary& guiEntry, const maxon::DataDescription& mainDataDescription, const maxon::DataDescription& stringDescription, const DescID& mainId,
 	const DescID& groupId, const maxon::PatchC4DDescriptionEntryDelegate& patchEntryFunc, maxon::DescTranslation& translateIds,
 	const maxon::BaseArray<maxon::InternedId>& parentIds, const DescID& parentFoldId, const maxon::GetDataCallbackType& getDataCallback,
-	const maxon::GetExtraDataCallbackType& getExtraDataDelegate, BaseDocument* doc) const
+	const maxon::GetExtraDataCallbackType& getExtraDataDelegate, const BaseDocument* doc) const
 {
 	iferr_scope;
 
@@ -49,7 +49,7 @@ maxon::Result<void> UiConversionCustomGuiString::CreateC4DDescription(const maxo
 }
 
 maxon::Result<void> UiConversionCustomGuiString::ConvertToC4D(GeData& output, const maxon::DataType& dataType, const maxon::Data& data, const DescID& descIdSuffix,
-	const maxon::DataDictionary& dataEntry, const maxon::DataDictionary& guiEntry, const maxon::GetExtraDataCallbackType& extraDataDelegate, BaseDocument* doc) const
+	const maxon::DataDictionary& dataEntry, const maxon::DataDictionary& guiEntry, const maxon::GetExtraDataCallbackType& extraDataDelegate, const BaseDocument* doc) const
 {
 	iferr_scope;
 
@@ -60,7 +60,7 @@ maxon::Result<void> UiConversionCustomGuiString::ConvertToC4D(GeData& output, co
 
 maxon::Result<maxon::Tuple<maxon::Data, maxon::Bool>> UiConversionCustomGuiString::ConvertToCore(const maxon::DataType& dataType, const GeData& data, const DescID& descIdSuffix,
 	const maxon::DataDictionary& dataEntry, const maxon::DataDictionary& guiEntry, const maxon::Data& oldData,
-	const maxon::GetExtraDataCallbackType& extraDataDelegate, BaseDocument* doc) const
+	const maxon::GetExtraDataCallbackType& extraDataDelegate, const BaseDocument* doc) const
 {
 	const String v = data.GetString();
 	return maxon::Tuple<maxon::Data, maxon::Bool>(maxon::Data(v), false);

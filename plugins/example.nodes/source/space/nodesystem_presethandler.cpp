@@ -1,6 +1,7 @@
 #include "nodesystem_presethandler.h"
 
 #include "maxon/datadescription_nodes.h"
+#include "maxon/derived_nodeattributes.h"
 #include "customnode-customnodespace_descriptions.h"
 
 namespace maxonsdk
@@ -45,7 +46,7 @@ maxon::Result<void> NodeSystemPresetChangedHandler::HandleGraphChanged(const max
 		if (isDataAttribute == false)
 			return true;
 
-		const maxon::IdAndVersion assetId = node.GetValue(maxon::NODE::ATTRIBUTE::ASSETID).GetValueOrNull() iferr_return;
+		const maxon::IdAndVersion assetId = node.GetValue(maxon::nodes::AssetId).GetValueOrDefault() iferr_return;
 		const maxon::Id& nodeId = assetId.Get<0>();
 		if (nodeId != maxonexample::NODE::ENDNODE::GetId())
 			return true;
@@ -59,7 +60,7 @@ maxon::Result<void> NodeSystemPresetChangedHandler::HandleGraphChanged(const max
 		if (portId != maxonexample::NODE::ENDNODE::MATERIALPRESET)
 			return true;
 
-		const maxon::InternedId presetType = node.GetConstantValue(maxon::InternedId()) iferr_return;
+		const maxon::InternedId presetType = node.GetEffectivePortValue<maxon::InternedId>().GetValueOrDefault() iferr_return;
 		if (presetType.IsEmpty() == true || presetType == maxonexample::NODE::ENDNODE::MATERIALPRESET_ENUM_NONE)
 			return true;
 
@@ -110,11 +111,11 @@ maxon::Result<void> NodeSystemPresetChangedHandler::ApplyMaterialPreset(maxon::G
 	// This would allow us to early-out in the change handler above, avoiding to re-consume one change event.
 
 	maxon::GraphNode inputs = presetInput.GetParent() iferr_return;
-	const maxon::InternedId presetType = presetInput.GetConstantValue(maxon::InternedId()) iferr_return;
+	const maxon::InternedId presetType = presetInput.GetEffectivePortValue<maxon::InternedId>().GetValueOrDefault() iferr_return;
 
 	// Note that if this preset port is propagated through a group or an asset, this value assigment will not suffice.
 	// We would have to follow back the inputs for the presetInput port and mutate there.
-	presetInput.SetDefaultValue(maxon::InternedId(maxonexample::NODE::ENDNODE::MATERIALPRESET_ENUM_NONE)) iferr_return;
+	presetInput.SetPortValue(maxon::InternedId(maxonexample::NODE::ENDNODE::MATERIALPRESET_ENUM_NONE)) iferr_return;
 
 	switch (ID_SWITCH(presetType))
 	{
@@ -157,20 +158,20 @@ maxon::Result<void> NodeSystemPresetChangedHandler::ApplyPlasticPreset(maxon::Gr
 {
 	iferr_scope;
 
-	inputs.FindChild(maxonexample::NODE::ENDNODE::METAL).SetDefaultValue(maxon::Bool(false)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARCOLOR).SetDefaultValue(maxon::Color(1.0, 1.0, 1.0)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARCOLORINTENSITY).SetDefaultValue(maxon::Float(1.0)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARROUGHNESS).SetDefaultValue(maxon::Float(0.15)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARIOR).SetDefaultValue(maxon::Float(1.46)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::METAL).SetPortValue(maxon::Bool(false)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARCOLOR).SetPortValue(maxon::Color(1.0, 1.0, 1.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARCOLORINTENSITY).SetPortValue(maxon::Float(1.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARROUGHNESS).SetPortValue(maxon::Float(0.15)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARIOR).SetPortValue(maxon::Float(1.46)) iferr_return;
 
-	inputs.FindChild(maxonexample::NODE::ENDNODE::BASECOLOR).SetDefaultValue(maxon::Color(0.4, 1.0, 0.1)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::BASECOLORINTENSITY).SetDefaultValue(maxon::Float(1.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::BASECOLOR).SetPortValue(maxon::Color(0.4, 1.0, 0.1)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::BASECOLORINTENSITY).SetPortValue(maxon::Float(1.0)) iferr_return;
 
-	inputs.FindChild(maxonexample::NODE::ENDNODE::EMISSIONCOLOR).SetDefaultValue(maxon::Color(0.0, 0.0, 0.0)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::EMISSIONCOLORINTENSITY).SetDefaultValue(maxon::Float(0.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::EMISSIONCOLOR).SetPortValue(maxon::Color(0.0, 0.0, 0.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::EMISSIONCOLORINTENSITY).SetPortValue(maxon::Float(0.0)) iferr_return;
 
-	inputs.FindChild(maxonexample::NODE::ENDNODE::REFRACTIONINTENSITY).SetDefaultValue(maxon::Float(0.0)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::SURFACEALPHA).SetDefaultValue(maxon::Float(1.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::REFRACTIONINTENSITY).SetPortValue(maxon::Float(0.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::SURFACEALPHA).SetPortValue(maxon::Float(1.0)) iferr_return;
 
 	return maxon::OK;
 }
@@ -179,20 +180,20 @@ maxon::Result<void> NodeSystemPresetChangedHandler::ApplyGlassPreset(maxon::Grap
 {
 	iferr_scope;
 
-	inputs.FindChild(maxonexample::NODE::ENDNODE::METAL).SetDefaultValue(maxon::Bool(false)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARCOLOR).SetDefaultValue(maxon::Color(1.0, 1.0, 1.0)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARCOLORINTENSITY).SetDefaultValue(maxon::Float(1.0)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARROUGHNESS).SetDefaultValue(maxon::Float(0.0)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARIOR).SetDefaultValue(maxon::Float(1.52)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::METAL).SetPortValue(maxon::Bool(false)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARCOLOR).SetPortValue(maxon::Color(1.0, 1.0, 1.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARCOLORINTENSITY).SetPortValue(maxon::Float(1.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARROUGHNESS).SetPortValue(maxon::Float(0.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARIOR).SetPortValue(maxon::Float(1.52)) iferr_return;
 
-	inputs.FindChild(maxonexample::NODE::ENDNODE::BASECOLOR).SetDefaultValue(maxon::Color(1.0, 1.0, 1.0)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::BASECOLORINTENSITY).SetDefaultValue(maxon::Float(1.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::BASECOLOR).SetPortValue(maxon::Color(1.0, 1.0, 1.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::BASECOLORINTENSITY).SetPortValue(maxon::Float(1.0)) iferr_return;
 
-	inputs.FindChild(maxonexample::NODE::ENDNODE::EMISSIONCOLOR).SetDefaultValue(maxon::Color(0.0, 0.0, 0.0)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::EMISSIONCOLORINTENSITY).SetDefaultValue(maxon::Float(0.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::EMISSIONCOLOR).SetPortValue(maxon::Color(0.0, 0.0, 0.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::EMISSIONCOLORINTENSITY).SetPortValue(maxon::Float(0.0)) iferr_return;
 
-	inputs.FindChild(maxonexample::NODE::ENDNODE::REFRACTIONINTENSITY).SetDefaultValue(maxon::Float(1.0)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::SURFACEALPHA).SetDefaultValue(maxon::Float(1.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::REFRACTIONINTENSITY).SetPortValue(maxon::Float(1.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::SURFACEALPHA).SetPortValue(maxon::Float(1.0)) iferr_return;
 
 	return maxon::OK;
 }
@@ -201,20 +202,20 @@ maxon::Result<void> NodeSystemPresetChangedHandler::ApplyMetalPreset(maxon::Grap
 {
 	iferr_scope;
 
-	inputs.FindChild(maxonexample::NODE::ENDNODE::METAL).SetDefaultValue(maxon::Bool(true)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARCOLOR).SetDefaultValue(maxon::Color(1.0, 1.0, 1.0)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARCOLORINTENSITY).SetDefaultValue(maxon::Float(1.0)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARROUGHNESS).SetDefaultValue(maxon::Float(0.02)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARIOR).SetDefaultValue(maxon::Float(2.5)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::METAL).SetPortValue(maxon::Bool(true)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARCOLOR).SetPortValue(maxon::Color(1.0, 1.0, 1.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARCOLORINTENSITY).SetPortValue(maxon::Float(1.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARROUGHNESS).SetPortValue(maxon::Float(0.02)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARIOR).SetPortValue(maxon::Float(2.5)) iferr_return;
 
-	inputs.FindChild(maxonexample::NODE::ENDNODE::BASECOLOR).SetDefaultValue(maxon::Color(0.4, 1.0, 0.1)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::BASECOLORINTENSITY).SetDefaultValue(maxon::Float(1.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::BASECOLOR).SetPortValue(maxon::Color(0.4, 1.0, 0.1)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::BASECOLORINTENSITY).SetPortValue(maxon::Float(1.0)) iferr_return;
 
-	inputs.FindChild(maxonexample::NODE::ENDNODE::EMISSIONCOLOR).SetDefaultValue(maxon::Color(0.0, 0.0, 0.0)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::EMISSIONCOLORINTENSITY).SetDefaultValue(maxon::Float(0.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::EMISSIONCOLOR).SetPortValue(maxon::Color(0.0, 0.0, 0.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::EMISSIONCOLORINTENSITY).SetPortValue(maxon::Float(0.0)) iferr_return;
 
-	inputs.FindChild(maxonexample::NODE::ENDNODE::REFRACTIONINTENSITY).SetDefaultValue(maxon::Float(0.0)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::SURFACEALPHA).SetDefaultValue(maxon::Float(1.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::REFRACTIONINTENSITY).SetPortValue(maxon::Float(0.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::SURFACEALPHA).SetPortValue(maxon::Float(1.0)) iferr_return;
 
 	return maxon::OK;
 }
@@ -223,20 +224,20 @@ maxon::Result<void> NodeSystemPresetChangedHandler::ApplyLavaPreset(maxon::Graph
 {
 	iferr_scope;
 
-	inputs.FindChild(maxonexample::NODE::ENDNODE::METAL).SetDefaultValue(maxon::Bool(false)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARCOLOR).SetDefaultValue(maxon::Color(0.0, 0.0, 0.0)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARCOLORINTENSITY).SetDefaultValue(maxon::Float(0.0)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARROUGHNESS).SetDefaultValue(maxon::Float(0.0)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARIOR).SetDefaultValue(maxon::Float(1.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::METAL).SetPortValue(maxon::Bool(false)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARCOLOR).SetPortValue(maxon::Color(0.0, 0.0, 0.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARCOLORINTENSITY).SetPortValue(maxon::Float(0.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARROUGHNESS).SetPortValue(maxon::Float(0.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARIOR).SetPortValue(maxon::Float(1.0)) iferr_return;
 
-	inputs.FindChild(maxonexample::NODE::ENDNODE::BASECOLOR).SetDefaultValue(maxon::Color(0.16, 0.14, 0.11)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::BASECOLORINTENSITY).SetDefaultValue(maxon::Float(1.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::BASECOLOR).SetPortValue(maxon::Color(0.16, 0.14, 0.11)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::BASECOLORINTENSITY).SetPortValue(maxon::Float(1.0)) iferr_return;
 
-	inputs.FindChild(maxonexample::NODE::ENDNODE::EMISSIONCOLOR).SetDefaultValue(maxon::Color(1.0, 0.51, 0.0)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::EMISSIONCOLORINTENSITY).SetDefaultValue(maxon::Float(1.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::EMISSIONCOLOR).SetPortValue(maxon::Color(1.0, 0.51, 0.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::EMISSIONCOLORINTENSITY).SetPortValue(maxon::Float(1.0)) iferr_return;
 
-	inputs.FindChild(maxonexample::NODE::ENDNODE::REFRACTIONINTENSITY).SetDefaultValue(maxon::Float(0.0)) iferr_return;
-	inputs.FindChild(maxonexample::NODE::ENDNODE::SURFACEALPHA).SetDefaultValue(maxon::Float(1.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::REFRACTIONINTENSITY).SetPortValue(maxon::Float(0.0)) iferr_return;
+	inputs.FindChild(maxonexample::NODE::ENDNODE::SURFACEALPHA).SetPortValue(maxon::Float(1.0)) iferr_return;
 
 	return maxon::OK;
 }

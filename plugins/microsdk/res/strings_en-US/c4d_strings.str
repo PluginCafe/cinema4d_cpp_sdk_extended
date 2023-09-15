@@ -1,7 +1,0 @@
-// C4D-StringResource
-// Identifier	Text
-
-STRINGTABLE
-{
-  IDS_MAKECUBE "Make Cube";
-}

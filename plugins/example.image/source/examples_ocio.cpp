@@ -42,8 +42,8 @@ maxon::Result<void> ConvertSceneOrElements(BaseDocument* doc)
 	}
 
 	// Get then OCIO render space name to convert to, we could also define it manually here.
-	maxon::CString renderSpaceName, _;
-	doc->GetActiveOcioColorSpacesNames(renderSpaceName, _, _, _);
+	maxon::CString renderSpaceName, _dummy;
+	doc->GetActiveOcioColorSpacesNames(renderSpaceName, _dummy, _dummy, _dummy);
 
 	// Allocate and initialize the converter, currently it is not possible to retrieve the linear 
 	// and non-linear input color space names "input-low" and "input-high" that are associated
@@ -51,8 +51,7 @@ maxon::Result<void> ConvertSceneOrElements(BaseDocument* doc)
 	// space, the Init call uses here the default values of the native dialog.
 	AutoAlloc<SceneColorConverter> converter;
 	if (!converter)
-		return maxon::OutOfMemoryError(
-			MAXON_SOURCE_LOCATION, "Could not allocate converter interface."_s);
+		return maxon::OutOfMemoryError(MAXON_SOURCE_LOCATION, "Could not allocate converter interface."_s);
 
 	converter->Init(doc, "sRGB"_cs, "scene-linear Rec.709-sRGB"_cs, renderSpaceName) iferr_return;
 
@@ -64,7 +63,7 @@ maxon::Result<void> ConvertSceneOrElements(BaseDocument* doc)
 
 	// When converting a whole document, one should mark it as already converted when the conversion
 	// did succeed.
-	doc->SetParameter(DOCUMENT_COLOR_MANAGEMENT_OCIO_CONVERTED, GeData(true), DESCFLAGS_SET::NONE);
+	doc->SetParameter(ConstDescID(DescLevel(DOCUMENT_COLOR_MANAGEMENT_OCIO_CONVERTED)), GeData(true), DESCFLAGS_SET::NONE);
 
 	ApplicationOutput("\n@():", MAXON_FUNCTIONNAME);
 	ApplicationOutput("\tConverted @ elements in '@' to OCIO Render space named '@'.", 
@@ -118,8 +117,7 @@ maxon::Result<void> ConvertOcioColors(BaseDocument* doc)
 	// initialization to succeed, the document must be in OCIO color management mode.
 	const OcioConverter* converter = OcioConverter::Init(doc) iferr_return;
 	if (!converter)
-		return maxon::NullptrError(
-			MAXON_SOURCE_LOCATION, "Could not init OCIO converter for document."_s);
+		return maxon::NullptrError(MAXON_SOURCE_LOCATION, "Could not init OCIO converter for document."_s);
 
 	// The to be converted color, it has no implicitly defined color space.
 	const maxon::Vector64 colorInput { 1, 0, 0 };
@@ -270,15 +268,15 @@ maxon::Result<void> GetSetColorManagementSettings(BaseDocument* doc)
 	// Print the names for all OCIO color spaces and transforms that are available in the OCIO
 	// configuration file loaded by the document.
 	ApplicationOutput("\n@():", MAXON_FUNCTIONNAME);
-	ApplicationOutput("\tAll OCIO transform names: @", doc->GetOCIOColorSpaceNames());
-	ApplicationOutput("\tOCIO render transform names: @", doc->GetOCIORenderingColorSpaceNames());
-	ApplicationOutput("\tOCIO view transform names: @", doc->GetOCIOViewTransformNames());
-	ApplicationOutput("\tOCIO display transform names: @", doc->GetOCIODisplayColorSpaceNames());
+	ApplicationOutput("\tAll OCIO transform names: @", doc->GetOcioColorSpaceNames());
+	ApplicationOutput("\tOCIO render transform names: @", doc->GetOcioRenderingColorSpaceNames());
+	ApplicationOutput("\tOCIO view transform names: @", doc->GetOcioViewTransformNames());
+	ApplicationOutput("\tOCIO display transform names: @", doc->GetOcioDisplayColorSpaceNames());
 
 	// Since an OCIO configuration file can contain any combination of color spaces and transforms,
 	// the description IDs for the render space, display space, view transform, and view thumbnail
 	// transform parameters must be dynamic IDs.
-	for (maxon::CString s : doc->GetOCIORenderingColorSpaceNames())
+	for (maxon::CString s : doc->GetOcioRenderingColorSpaceNames())
 	{
 		ApplicationOutput("\t\tThe render transform label '@' corresponds to the ID '@'.", 
 			s, doc->GetColorSpaceIdFromName(DOCUMENT_OCIO_RENDER_COLORSPACE, s));
@@ -292,7 +290,7 @@ maxon::Result<void> GetSetColorManagementSettings(BaseDocument* doc)
 		return maxon::IllegalArgumentError(MAXON_SOURCE_LOCATION,
 			"OCIO configuration does not contain a 'ACES2065 - 1' render space."_s);
 
-	doc->SetParameter(DescID(DOCUMENT_OCIO_RENDER_COLORSPACE), GeData(id), DESCFLAGS_SET::NONE);
+	doc->SetParameter(ConstDescID(DescLevel(DOCUMENT_OCIO_RENDER_COLORSPACE)), GeData(id), DESCFLAGS_SET::NONE);
 	doc->UpdateOcioColorSpaces();
 	EventAdd();
 
@@ -327,7 +325,7 @@ maxon::Result<void> GetSetColorValuesInOcioDocuments(BaseDocument* doc)
 	// Render space. When for example the default color for objects is being retrieved from a 
 	// document, the value is expressed in Render space.
 	GeData data;
-	doc->GetParameter(DescID(DOCUMENT_DEFAULTMATERIAL_COLOR), data, DESCFLAGS_GET::NONE);
+	doc->GetParameter(ConstDescID(DescLevel(DOCUMENT_DEFAULTMATERIAL_COLOR)), data, DESCFLAGS_GET::NONE);
 	const Vector defaultColor = data.GetVector();
 	ApplicationOutput("\tdefaultColor(@): @", renderSpace, defaultColor);
 
@@ -354,7 +352,7 @@ maxon::Result<void> GetSetColorValuesInOcioDocuments(BaseDocument* doc)
 	// Analogously, when color values are written, they are interpreted as Render space values by
 	// default, and all other input spaces must be converted first.
 	const Vector color { 1, 0, 0 };
-	const DescID colorChannel (MATERIAL_COLOR_COLOR);
+	const DescID colorChannel = ConstDescID(DescLevel(MATERIAL_COLOR_COLOR));
 
 	// Write the color channel color of m1 as (1, 0, 0) in Render space.
 	m1->SetParameter(colorChannel, GeData(color), DESCFLAGS_SET::NONE);
@@ -450,7 +448,7 @@ maxon::Result<void> GetSetBitmapOcioProfiles(BaseDocument* doc)
 //! [GetSetBitmapOcioProfiles]
 
 
-Bool OcioAwareRenderer::Init(GeListNode* node)
+Bool OcioAwareRenderer::Init(GeListNode* node, Bool isCloneInit)
 {
 	BaseList2D* const item = static_cast<BaseList2D*>(node);
 	if (!item)

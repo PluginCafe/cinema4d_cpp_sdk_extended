@@ -94,13 +94,13 @@ Bool HybridDataTypeClass::ReadData(CustomDataType* t_d, HyperFile* hf, Int32 lev
 
 Bool HybridDataTypeClass::InterpolateKeys(GeData& res, const GeData& t_dataA, const GeData& t_dataB, Float mix, Int32 flags)
 {
-	const HybridDataType& dataA = *static_cast<const HybridDataType*>(t_dataA.GetCustomDataType(HYBRIDDATATYPE_ID));
-	const HybridDataType& dataB = *static_cast<const HybridDataType*>(t_dataB.GetCustomDataType(HYBRIDDATATYPE_ID));
+	const HybridDataType& dataA = *t_dataA.GetCustomDataType<HybridDataType>();
+	const HybridDataType& dataB = *t_dataB.GetCustomDataType<HybridDataType>();
 
 	const Float valueA = dataA.GetValue();
 	const Float valueB = dataB.GetValue();
 	const HybridDataType mixedValue = HybridDataType(maxon::Blend(valueA, valueB, mix));
-	res = GeData(HYBRIDDATATYPE_ID, (CustomDataType&)mixedValue);
+	res = GeData(mixedValue);
 	return true;
 }
 
@@ -120,7 +120,9 @@ maxon::Result<void> HybridDataTypeClass::RegisterDataType()
 	iferr_scope;
 
 	static const Int32 version = 1;
-	const Bool isDataTypeRegistered = RegisterCustomDataTypePlugin("HybridDataType"_s, CUSTOMDATATYPE_INFO_LOADSAVE, NewObjClear(HybridDataTypeClass), version);
+
+	// set CUSTOMDATATYPE_INFO_NO_ALIASTRANS if CopyData doesn't make use of aliastrans parameter - this enables COW
+	const Bool isDataTypeRegistered = RegisterCustomDataTypePlugin("HybridDataType"_s, CUSTOMDATATYPE_INFO_LOADSAVE | CUSTOMDATATYPE_INFO_NO_ALIASTRANS, NewObjClear(HybridDataTypeClass), version);
 	CheckState(isDataTypeRegistered == true);
 
 	return maxon::OK;

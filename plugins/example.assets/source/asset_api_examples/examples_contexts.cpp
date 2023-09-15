@@ -292,7 +292,7 @@ maxon::Result<void> RunEraseAsset()
 			// Check if the yielded asset is parented to #targetCategoryId. Abort the search once such an
 			// asset has been found.
 			const  maxon::Id assetCategoryId = asset.GetMetaData().Get<
-				decltype(maxon::ASSETMETADATA::Category)>().GetValueOrNull() iferr_return;
+				decltype(maxon::ASSETMETADATA::Category)>().GetValueOrDefault() iferr_return;
 
 			if (targetCategoryId == assetCategoryId)
 			{

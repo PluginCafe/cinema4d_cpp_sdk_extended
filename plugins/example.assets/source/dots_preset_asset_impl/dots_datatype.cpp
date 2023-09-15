@@ -48,7 +48,7 @@
 
 // --- The dots data type implementation -----------------------------------------------------------
 
-maxon::Result<maxon::Int32> DotsData::CopyTo(DotsData& dest)
+maxon::Result<maxon::Int32> DotsData::CopyTo(DotsData& dest) const
 {
 	iferr_scope;
 
@@ -391,8 +391,7 @@ maxon::Int32 DotsGui::Message(const BaseContainer& msg, BaseContainer& result)
 Bool DotsGui::SetData(const TriState<GeData> &tristate)
 {
 	// data is set from the outside
-	const DotsData* const data = static_cast<const DotsData*>(
-		tristate.GetValue().GetCustomDataType(PID_CUSTOMDATATYPE_DOTS));
+	const DotsData* const data = tristate.GetValue().GetCustomDataType<DotsData>();
 
 	if (data)
 	{
@@ -409,7 +408,7 @@ Bool DotsGui::SetData(const TriState<GeData> &tristate)
 TriState<GeData> DotsGui::GetData()
 {
 	TriState<GeData> tri;
-	tri.Add(GeData(PID_CUSTOMDATATYPE_DOTS, _data));
+	tri.Add(GeData(_data));
 
 	return tri;
 };
@@ -593,12 +592,13 @@ Bool RegisterDotsDataAndGui()
 {
 	// register custom datatype
 	if (!RegisterCustomDataTypePlugin(
-		GeLoadString(IDS_DOTS_DATATYPE),
-		CUSTOMDATATYPE_INFO_LOADSAVE |
-		CUSTOMDATATYPE_INFO_TOGGLEDISPLAY |
-		CUSTOMDATATYPE_INFO_HASSUBDESCRIPTION,
-		NewObjClear(DotsDataClass),
-		1))
+				GeLoadString(IDS_DOTS_DATATYPE),
+				CUSTOMDATATYPE_INFO_LOADSAVE |
+					CUSTOMDATATYPE_INFO_TOGGLEDISPLAY |
+					CUSTOMDATATYPE_INFO_HASSUBDESCRIPTION |
+					CUSTOMDATATYPE_INFO_NO_ALIASTRANS, // set this flag if CopyData doesn't make use of aliastrans parameter - this enables COW
+				NewObjClear(DotsDataClass),
+				1))
 		return false;
 	
 	// dummy library for custom GUI

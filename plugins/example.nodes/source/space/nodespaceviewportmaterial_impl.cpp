@@ -1,6 +1,7 @@
 #include "nodespaceviewportmaterial_impl.h"
 #include "maxon/datadescription_nodes.h"
 #include "maxon/datadescription_node_spaces.h"
+#include "maxon/derived_nodeattributes.h"
 #include "customnode-customnodespace_descriptions.h"
 #include "viewporttextureprovider_impl.h"
 #include "nodesystem_presethandler.h"
@@ -66,7 +67,7 @@ maxon::Result<maxon::DataDictionary> NodeSpaceViewportMaterialExample::GetMateri
 
 	const maxon::GraphNode rootNode = _graph.GetNode(rootNodePath);
 
-	const maxon::IdAndVersion& rootNodeIdAndVersion = rootNode.GetValue(maxon::NODE::ATTRIBUTE::ASSETID).GetValueOrNull() iferr_return;
+	const maxon::IdAndVersion& rootNodeIdAndVersion = rootNode.GetValue(maxon::nodes::AssetId).GetValueOrDefault() iferr_return;
 	const maxon::Id& rootNodeId = rootNodeIdAndVersion.Get<0>();
 
 	_isValueDynamic = !_isValueDynamic;
@@ -102,22 +103,22 @@ maxon::Result<maxon::DataDictionary> NodeSpaceViewportMaterialExample::GetEndNod
 	
 	const maxon::GraphNode inputs = endNode.GetInputs() iferr_return;
 	
-	const maxon::Bool isMetal = inputs.FindChild(maxonexample::NODE::ENDNODE::METAL).GetConstantValue(maxon::Bool()) iferr_return;
+	const maxon::Bool isMetal = inputs.FindChild(maxonexample::NODE::ENDNODE::METAL).GetEffectivePortValue<maxon::Bool>().GetValueOrDefault() iferr_return;
 	
-	const maxon::Color specularColor = inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARCOLOR).GetConstantValue(maxon::Color()) iferr_return;
-	const maxon::Float specularColorWeight = inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARCOLORINTENSITY).GetConstantValue(maxon::Float()) iferr_return;
-	const maxon::Float specularRoughness = inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARROUGHNESS).GetConstantValue(maxon::Float()) iferr_return;
-	const maxon::Float specularIOR = inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARIOR).GetConstantValue(maxon::Float()) iferr_return;
+	const maxon::Color specularColor = inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARCOLOR).GetEffectivePortValue<maxon::Color>().GetValueOrDefault() iferr_return;
+	const maxon::Float specularColorWeight = inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARCOLORINTENSITY).GetEffectivePortValue<maxon::Float>().GetValueOrDefault() iferr_return;
+	const maxon::Float specularRoughness = inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARROUGHNESS).GetEffectivePortValue<maxon::Float>().GetValueOrDefault() iferr_return;
+	const maxon::Float specularIOR = inputs.FindChild(maxonexample::NODE::ENDNODE::SPECULARIOR).GetEffectivePortValue<maxon::Float>().GetValueOrDefault() iferr_return;
 	
-	const maxon::Color baseColor = inputs.FindChild(maxonexample::NODE::ENDNODE::BASECOLOR).GetConstantValue(maxon::Color()) iferr_return;
-	const maxon::Float baseColorWeight = inputs.FindChild(maxonexample::NODE::ENDNODE::BASECOLORINTENSITY).GetConstantValue(maxon::Float()) iferr_return;
+	const maxon::Color baseColor = inputs.FindChild(maxonexample::NODE::ENDNODE::BASECOLOR).GetEffectivePortValue<maxon::Color>().GetValueOrDefault() iferr_return;
+	const maxon::Float baseColorWeight = inputs.FindChild(maxonexample::NODE::ENDNODE::BASECOLORINTENSITY).GetEffectivePortValue<maxon::Float>().GetValueOrDefault() iferr_return;
 	
-	const maxon::Color emissionColor = inputs.FindChild(maxonexample::NODE::ENDNODE::EMISSIONCOLOR).GetConstantValue(maxon::Color()) iferr_return;
-	const maxon::Float emissionColorWeight = inputs.FindChild(maxonexample::NODE::ENDNODE::EMISSIONCOLORINTENSITY).GetConstantValue(maxon::Float()) iferr_return;
+	const maxon::Color emissionColor = inputs.FindChild(maxonexample::NODE::ENDNODE::EMISSIONCOLOR).GetEffectivePortValue<maxon::Color>().GetValueOrDefault() iferr_return;
+	const maxon::Float emissionColorWeight = inputs.FindChild(maxonexample::NODE::ENDNODE::EMISSIONCOLORINTENSITY).GetEffectivePortValue<maxon::Float>().GetValueOrDefault() iferr_return;
 	
-	const maxon::Float refractionIntensity = inputs.FindChild(maxonexample::NODE::ENDNODE::REFRACTIONINTENSITY).GetConstantValue(maxon::Float()) iferr_return;
+	const maxon::Float refractionIntensity = inputs.FindChild(maxonexample::NODE::ENDNODE::REFRACTIONINTENSITY).GetEffectivePortValue<maxon::Float>().GetValueOrDefault() iferr_return;
 	
-	const maxon::Float surfaceAlpha = inputs.FindChild(maxonexample::NODE::ENDNODE::SURFACEALPHA).GetConstantValue(maxon::Float()) iferr_return;
+	const maxon::Float surfaceAlpha = inputs.FindChild(maxonexample::NODE::ENDNODE::SURFACEALPHA).GetEffectivePortValue<maxon::Float>().GetValueOrDefault() iferr_return;
 	
 	maxon::DataDictionary parameters;
 	
@@ -168,7 +169,7 @@ maxon::Result<maxon::DataDictionary> NodeSpaceViewportMaterialExample::GetSoloPa
 	{
 	 iferr_scope;
 	 
-	 maxon::ConstDataPtr inputData = input.GetValue(maxon::ConstantValue, maxon::DataType::NullValue()) iferr_return;
+	 maxon::ConstDataPtr inputData = input.GetValue(maxon::EffectivePortValue, maxon::DataType::DefaultValue()) iferr_return;
 	 if (inputData.GetType().Is<maxon::Color>())
 	 {
 		 constantColor = inputData.Get< maxon::Color>() iferr_return;

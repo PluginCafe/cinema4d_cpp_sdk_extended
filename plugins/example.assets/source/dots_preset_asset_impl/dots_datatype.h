@@ -49,7 +49,7 @@ const maxon::Int32 g_dots_canvas_size = 200;
 class DotsDataClass;
 
 // Provides a data structure to store an array of points on a fixed size canvas.
-class DotsData : public iCustomDataType<DotsData>
+class DotsData : public iCustomDataType<DotsData, PID_CUSTOMDATATYPE_DOTS>
 {
 	friend class DotsDataClass;
 
@@ -68,7 +68,7 @@ public:
 	// @param[in] dest    The target to copy to.
 	// 
 	// @return            The number of points copied.
-	maxon::Result<maxon::Int32> CopyTo(DotsData& dest);
+	maxon::Result<maxon::Int32> CopyTo(DotsData& dest) const;
 };
 
 // Represents a gadget which can be added to dialogs that renders an instance of DotsData.
