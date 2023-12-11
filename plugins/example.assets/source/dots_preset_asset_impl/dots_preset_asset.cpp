@@ -295,7 +295,7 @@ MAXON_METHOD maxon::Bool DotsPresetAssetTypeImpl::LoadPreset(
 		return true;
 
 	// Attempt to instantiate the specific preset type and retrieve the custom data attached to it.
-	const DotsPresetAssetImpl* impl = DotsPresetAssetImpl::GetOrDefault(preset);
+	const DotsPresetAssetImpl* impl = DotsPresetAssetImpl::GetOrNull(preset);
 	if (!impl)
 		return false;
 

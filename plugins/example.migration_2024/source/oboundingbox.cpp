@@ -96,8 +96,16 @@ Bool RegisterBoundingBoxObject()
 	if (!bmp)
 		return false;
 
-	return RegisterObjectPlugin(PID_OBOUNDINGBOX, "BoundingBox"_s, OBJECT_GENERATOR | OBJECT_INPUT, 
-		BoundingBoxObject::Alloc, "oboundingbox"_s, bmp, 0, OBJECTCATEGORY::GENERATOR);
+	finally
+	{
+		// bitmap is copied inside RegisterObjectPlugin
+		BaseBitmap::Free(bmp);
+	};
+
+	if (!RegisterObjectPlugin(PID_OBOUNDINGBOX, "BoundingBox"_s, OBJECT_GENERATOR | OBJECT_INPUT, BoundingBoxObject::Alloc, "oboundingbox"_s, bmp, 0, OBJECTCATEGORY::GENERATOR))
+		return false;
+	
+	return true;
 }
 
 NodeData* BoundingBoxObject::Alloc()
@@ -162,7 +170,7 @@ Bool BoundingBoxObject::Init(GeListNode* node, Bool isCloneInit)
 {
 	// We should use C++ style casts instead of C style casts.
 	BaseObject* obj = static_cast<BaseObject*>(node);
-	BaseContainer bc = obj->GetDataInstanceRef();
+	BaseContainer& bc = obj->GetDataInstanceRef();
 
 	// In 2024.0 the #isCloneInit argument has been added to throttle initialization overhead for 
 	// cloned scene elements. The data container values will be copied right after this 

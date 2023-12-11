@@ -175,7 +175,7 @@ maxon::Result<void> ConvertOcioColorsArbitrarily(BaseDocument* doc)
 	}
 
 	// Load the "sRGB2014" ICC profile located next to this file.
-	const maxon::Url directory = maxon::Url(maxon::String(__FILE__)).GetDirectory();
+	const maxon::Url directory = maxon::Url(maxon::String(MAXON_FILE)).GetDirectory();
 	const maxon::Url sRgb2014File = (directory + "sRGB2014.icc"_s) iferr_return;
 	if (sRgb2014File.IoDetect() == maxon::IODETECT::NONEXISTENT)
 		return maxon::IoError(

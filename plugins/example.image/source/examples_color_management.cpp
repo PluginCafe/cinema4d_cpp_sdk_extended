@@ -65,7 +65,7 @@ maxon::Result<void> GetColorProfilesFromFile(
 	// To run this example, you must download these files and put them next to this cpp file.
 
 	// Construct the URLs for the two ICC profiles next to this cpp file.
-	const maxon::Url directory = maxon::Url(maxon::String(__FILE__)).GetDirectory();
+	const maxon::Url directory = maxon::Url(maxon::String(MAXON_FILE)).GetDirectory();
 	const maxon::Url srgbIccFile = (directory + "sRGB2014.icc"_s) iferr_return;
 	const maxon::Url xyzIccFile = (directory + "D65_XYZ.icc"_s) iferr_return;
 
@@ -149,7 +149,7 @@ maxon::Result<void> WriteColorProfileToFile()
 
 	// Construct a URL for an ICC file next to this cpp file and write it to disk, written is
 	// here effectively an sRGB-2.2 ICC profile from the builtin color RGB color space.
-	const maxon::Url directory = maxon::Url(maxon::String(__FILE__)).GetDirectory();
+	const maxon::Url directory = maxon::Url(maxon::String(MAXON_FILE)).GetDirectory();
 	const maxon::Url url = (directory + "myProfile.icc"_s) iferr_return;
 	profile.WriteProfileToFile(url) iferr_return;
 
@@ -450,7 +450,7 @@ maxon::Result<void> ConvertTextureWithColorProfile(
 	// Instantiate a PSD file format output handler and define a storage URL next to this cpp file 
 	// with the file name "texture.psd",
 	const maxon::MediaOutputUrlRef psdFormat = maxon::ImageSaverClasses::Psd().Create() iferr_return;
-	const maxon::Url url = (maxon::Url(maxon::String(__FILE__)).GetDirectory() + "texture.psd"_s) iferr_return;
+	const maxon::Url url = (maxon::Url(maxon::String(MAXON_FILE)).GetDirectory() + "texture.psd"_s) iferr_return;
 
 	// To store the ImageRef #image, it must be inserted below a type instance in the ImageInterface
 	// hierarchy that supports serialization, e.g., ImageTextureInterface.

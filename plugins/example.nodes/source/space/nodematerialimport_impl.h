@@ -15,6 +15,11 @@ public:
 
 	MAXON_METHOD maxon::Result<void> Import(maxon::nodes::NodesGraphModelRef& graph, const maxon::material::MaterialExchangeData& materialData, BaseDocument& baseDocument);
 
+	MAXON_METHOD maxon::Result<void> ImportExtended(maxon::nodes::NodesGraphModelRef& graph, const maxon::material::MaterialExchangeDataExtended& materialData, BaseDocument& baseDocument)
+	{
+		return self.Import(graph, reinterpret_cast<const maxon::material::MaterialExchangeData&>(materialData), baseDocument);
+	}
+
 private:
 	static BaseList2D* FindSubstanceAsset(BaseDocument& baseDocument, const String& assetName);
 };
