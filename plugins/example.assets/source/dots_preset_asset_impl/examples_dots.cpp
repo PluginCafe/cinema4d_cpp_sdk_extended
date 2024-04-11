@@ -104,7 +104,7 @@ maxon::Result<maxon::AssetDescription> InstantiateDotsPresetAsset()
 	maxon::AssetDescription asset = maxon::AssetCreationInterface::SaveBrowserPreset(
 		maxon::AssetTypes::DotsPresetAsset(), data, typeName, name, false, false, false) iferr_return;
 
-	return std::move(asset);
+	return asset;
 }
 //! [instantiate_dots_preset_asset]
 

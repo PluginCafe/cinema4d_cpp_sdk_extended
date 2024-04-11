@@ -299,7 +299,7 @@ maxon::Result<NodeData> BundleGui::CollectNodeData(const NodeDataContext& contex
 		data._attributes.Append(std::move(attribute)) iferr_return;
 	}
 
-	return std::move(data);
+	return data;
 }
 
 maxon::Result<void> BundleGui::CreateDebugGUI(NodeData& data, const NodeDataContext& context, iBaseCustomGui& gui)

@@ -21,7 +21,7 @@ maxon::Result<maxon::BaseArray<maxon::InternedId>> CustomGuiHelpers::GetIdArray(
 		maxon::NodePath::ParsePath(eid.ToBlock(), dataArray) iferr_return;
 	}
 
-	return std::move(dataArray);
+	return dataArray;
 }
 
 const DescID& CustomGuiHelpers::GetRealGroupId(const DescID& groupIdA, const maxon::DataDictionary& guiEntry, maxon::DescTranslation& translateIds)

@@ -94,6 +94,11 @@ Bool PickObjectTool::MouseInput(BaseDocument* doc, BaseContainer& data, BaseDraw
 	snprintf(ch, sizeof(ch), "|Time: %.2f us", float(timer) * 1000.0f);
 	str += ch;
 
+	// Enable the following code for an example of GetFrameScreen.
+	/*Float cl, ct, cr, cb, scale;
+	bd->GetFrameScreen(&cl, &ct, &cr, &cb, &scale);
+	DiagnosticOutput("BaseDraw coordinates in screen space: (@, @, @, @), scale=@ -> (@, @, @, @)", cl, ct, cr, cb, scale, cl * scale, ct * scale, cr * scale, cb * scale);*/
+
 	DeleteMem(pix);
 	GeOutString(str, GEMB::OK);
 

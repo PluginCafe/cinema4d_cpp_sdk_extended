@@ -32,7 +32,7 @@ maxon::Result<maxon::Tuple<maxon::Id, maxon::DataDictionary>> ExampleNodeMateria
 maxon::Result<maxon::HashMap<maxon::Id, maxon::Data>> ExampleNodeMaterialExport::GetTextures(const maxon::HashSet<maxon::Id>& texturedChannels)
 {
 	maxon::HashMap<maxon::Id, maxon::Data> textures;
-	return std::move(textures);
+	return textures;
 }
 
 } // namespace maxonsdk

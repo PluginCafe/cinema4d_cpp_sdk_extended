@@ -171,7 +171,7 @@ maxon::Result<maxon::AssetDescription> AddAssetVersion(
 	ApplicationOutput("Original asset: @", asset);
 	ApplicationOutput("Added asset version: @", assetVersion);
 
-	return std::move(assetVersion);
+	return assetVersion;
 }
 //! [add_asset_version]
 

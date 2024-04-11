@@ -4,6 +4,7 @@
 #include "c4d.h"
 #include "main.h"
 #include "maxon/memoizationcache.h"
+#include "maxon/dll.h"
 
 class MemStatDialog : public GeDialog
 {

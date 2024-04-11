@@ -47,7 +47,7 @@ public:
 		// Add a dependency from input to output. That's necessary for the evaluation at compile time.
 		input.Connect(output, maxon::Wires(maxon::Wires::DEPENDENCY)) iferr_return;
 
-		root.SetTemplate(parent, self, args) iferr_return;
+		root.SetTemplate(self, args) iferr_return;
 
 		return root.EndModification();
 	}

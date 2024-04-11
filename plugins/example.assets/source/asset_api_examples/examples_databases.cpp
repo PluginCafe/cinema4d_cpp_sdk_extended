@@ -178,7 +178,7 @@ maxon::Result<maxon::AssetDatabaseStruct> AddOrGetDatabase(const maxon::Url& url
 	if (GeIsMainThread())
 		EventAdd();
 
-	return std::move(newDatabase);
+	return newDatabase;
 }
 //! [add_database]
 
@@ -466,7 +466,7 @@ maxon::Result<maxon::AssetDescription> CopyAsset(const maxon::AssetRepositoryRef
 		maxon::CategoryAssetInterface::SetAssetCategory(assetCopy, categoryId) iferr_return;
 	}
 
-	return std::move(assetCopy);
+	return assetCopy;
 }
 //! [copy_asset]
 

@@ -3,9 +3,7 @@
 // be sure to use a unique ID obtained from www.plugincafe.com
 #define ID_ACTIVEOBJECT 1000472
 
-#include "c4d.h"
-#include "c4d_symbols.h"
-#include "main.h"
+#include "activeobject.h"
 #include "maxon/sortedarray.h"
 #include "maxon/utilities/sprintf_safe.h"
 #include "maxon/weakrawptr.h"
@@ -769,16 +767,23 @@ public:
 		switch (lColumn)
 		{
 			case 'tree':
-				if (link && link->GetType() == ID_LISTHEAD)
+				if (link)
 				{
-					bc->InsData(REFRESH_TREE, GeData("Refresh Tree"));
+					if (link->GetType() == ID_LISTHEAD)
+					{
+						bc->InsData(REFRESH_TREE, GeData("Refresh Tree"));
+					}
+					else if (link->IsInstanceOf(Obase))
+					{
+						bc->InsData(SHOW_OBJECT_INFORMATION, GeData("Show object information..."));
+						bc->InsData(EXTRACT_OBJECT_TO_SCENE, GeData("Extract to scene"));
+					}
+					else if (link->IsInstanceOf(Tvariable))
+					{
+						bc->InsData(SHOW_VARIABLE_TAG_DATA, GeData("Show variable tag dat"));
+					}
 				}
-				else if (link && link->IsInstanceOf(Obase))
-				{
-					bc->InsData(SHOW_OBJECT_INFORMATION, GeData("Show object information..."));
-					bc->InsData(EXTRACT_OBJECT_TO_SCENE, GeData("Extract to scene"));
-				}
-				
+
 				if (node->ptr)
 				{
 					bc->InsData(COPY_ADDRESS, GeData("Copy Address"));
@@ -859,6 +864,15 @@ public:
 
 				break;
 			}
+			case SHOW_VARIABLE_TAG_DATA:
+			{
+				if (link && link->IsInstanceOf(Tvariable))
+				{
+					const VariableTag* tag = static_cast<const VariableTag*>(link);
+					ShowVariableTagDataDialog(tag);
+				}
+				break;
+			}
 		}
 
 		return true;
@@ -869,6 +883,7 @@ private:
 	static const Int32 SHOW_OBJECT_INFORMATION = ID_TREEVIEW_FIRST_NEW_ID + 2;
 	static const Int32 EXTRACT_OBJECT_TO_SCENE = ID_TREEVIEW_FIRST_NEW_ID + 3;
 	static const Int32 COPY_ADDRESS = ID_TREEVIEW_FIRST_NEW_ID + 4;
+	static const Int32 SHOW_VARIABLE_TAG_DATA = ID_TREEVIEW_FIRST_NEW_ID + 5;
 };
 
 Function2 g_functable;

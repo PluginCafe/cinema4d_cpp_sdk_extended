@@ -80,7 +80,7 @@ public:
 	virtual Bool Message(GeListNode* node, Int32 type, void* t_data); 
 
 	/// @brief Called by Cinema 4D to gather dependency information on scene elements.
-	/// @details This method realizes the new decency information system of the classic API.
+	/// @details This method realizes the new dependency information system of the classic API.
 	virtual maxon::Result<Bool> GetAccessedObjects(
 		const BaseList2D* node, METHOD_ID 	method, AccessedObjectsCallback& access) const;
 };
@@ -383,8 +383,8 @@ maxon::Result<Bool> BoundingBoxObject::GetAccessedObjects(
 		// In cases where a node relies on whole hierarchies, we can use one of the convenience methods
 		// on BaseList2D such as ::GetAccessedObjectsRec or ::GetAccessedObjectsOfHierarchy to build
 		// all access information in one call, passing in our #access object.
-		static const Bool dependsOnFullHierachy = false && firstChild;
-		if (MAXON_UNLIKELY(dependsOnFullHierachy))
+		static const Bool dependsOnFullHierarchy = false && firstChild;
+		if (MAXON_UNLIKELY(dependsOnFullHierarchy))
 		{
 			const Bool result = firstChild->GetAccessedObjectsOfHierarchy(
 				ACCESSED_OBJECTS_MASK::MATRIX | ACCESSED_OBJECTS_MASK::CACHE,

@@ -279,7 +279,7 @@ MAXON_METHOD maxon::Result<maxon::Asset> DotsPresetAssetTypeImpl::Load(
 	// Making use of the Init() implementation provided above in DotsPresetAssetImpl to load an 
 	// asset from its asset description and url.
 	maxon::Asset asset = DotsPresetAssetImpl::CreateInit(assetDescription, url) iferr_return;
-	return std::move(asset);
+	return asset;
 }
 
 MAXON_METHOD maxon::Bool DotsPresetAssetTypeImpl::LoadPreset(

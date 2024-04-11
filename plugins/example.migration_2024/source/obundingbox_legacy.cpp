@@ -10,7 +10,7 @@
 
 	Should be read in contrast to the 2024.0 API code in oboundingbox.cpp.
 */
-#include "maxon/apibase.h"
+#include "maxon/apibase_version.h"
 #if MAXON_API_ABI_VERSION <= 2023200 // Guarded so that it can be part of the SDK.
 
 #include "c4d_basebitmap.h"

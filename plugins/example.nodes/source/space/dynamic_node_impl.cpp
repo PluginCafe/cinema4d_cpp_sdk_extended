@@ -113,7 +113,7 @@ public:
 				return true;
 			}) iferr_return;
 
-		root.SetTemplate(parent, self, args) iferr_return;
+		root.SetTemplate(self, args) iferr_return;
 
 		return root.EndModification();
 	}

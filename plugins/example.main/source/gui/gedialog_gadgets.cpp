@@ -752,7 +752,7 @@ void ExampleDialog::AddDynamicElement(const int selection)
 			if (bitmapButtonGUI != nullptr)
 			{
 				IconData data;
-				GetIcon(RESOURCEIMAGE_BROWSER_PLAY, &data);
+				GetIcon(5159, &data);
 
 				// set Icon
 				bitmapButtonGUI->SetImage(&data);

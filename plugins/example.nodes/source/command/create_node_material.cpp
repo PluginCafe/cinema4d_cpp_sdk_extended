@@ -91,7 +91,7 @@ static maxon::Result<maxon::Tuple<NodeMaterial*, maxon::HomogenousTupleType<5, m
 	const maxon::AssetRepositoryRef& repository = maxon::AssetInterface::GetBuiltinRepository();
 
 	// Find the bsdf node so we can later connect nodes to it.
-	const maxon::GraphNode root = nodeGraph.GetRoot();
+	const maxon::GraphNode root = nodeGraph.GetViewRoot();
 	maxon::GraphNode bsdfGraphNode;
 	maxon::GraphModelHelper::FindNodesByAssetId(nodeGraph, maxon::Id("net.maxon.render.node.bsdf"), true,
 										[&bsdfGraphNode](const maxon::GraphNode& child) -> Bool
@@ -204,7 +204,7 @@ static maxon::Result<void> ManipulatingNodeMaterial(maxon::Tuple<NodeMaterial*, 
 		}) iferr_return;
 	
 	// Create an output and input port on Root.
-	maxon::GraphNode root = nodeGraph.GetRoot();
+	maxon::GraphNode root = nodeGraph.GetViewRoot();
 	graphTransaction = nodeGraph.BeginTransaction() iferr_return;
 	maxon::GraphNode rootOutputPort = maxon::GraphModelHelper::CreateOutputPort(root, "mymaterial"_cs, "My Output Port"_s) iferr_return;
 	maxon::GraphNode rootInputPort = maxon::GraphModelHelper::CreateInputPort(root, "this is my inputport"_cs, "My Input Port"_s) iferr_return;
