@@ -18,6 +18,8 @@
 #define TEXT_ID 1001 ///< The ID of the string text field GUI element.
 #define COUNT_ID 1002 ///< The ID of the number text field GUI element.
 
+using namespace cinema;
+
 //----------------------------------------------------------------------------------------
 /// A custom GUI to display a string with an additional text field showing the number of characters.
 //----------------------------------------------------------------------------------------

@@ -22,9 +22,9 @@ namespace COMMAND
 {
 	namespace POLYLINE
 	{
-		MAXON_ATTRIBUTE(BaseArray<Vector>, POSITIONS, "net.maxonexample.command.paint.positions");
-		MAXON_ATTRIBUTE(Vector, START, "net.maxonexample.command.paint.start", RESOURCE_DEFAULT(Vector()));
-		MAXON_ATTRIBUTE(Vector, END, "net.maxonexample.command.paint.end", RESOURCE_DEFAULT(Vector(200.0, 200.0, 0.0)));
+		MAXON_ATTRIBUTE(BaseArray<cinema::Vector>, POSITIONS, "net.maxonexample.command.paint.positions");
+		MAXON_ATTRIBUTE(cinema::Vector, START, "net.maxonexample.command.paint.start", RESOURCE_DEFAULT(cinema::Vector()));
+		MAXON_ATTRIBUTE(cinema::Vector, END, "net.maxonexample.command.paint.end", RESOURCE_DEFAULT(cinema::Vector(200.0, 200.0, 0.0)));
 		MAXON_ATTRIBUTE(POLYLINE_DRAW, DRAW, "net.maxonexample.command.paint.draw");
 	}
 }

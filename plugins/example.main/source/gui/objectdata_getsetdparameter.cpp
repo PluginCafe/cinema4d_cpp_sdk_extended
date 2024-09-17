@@ -15,6 +15,8 @@
 #define ID_GRADIENT 1001
 #define ID_LINK     1002
 
+using namespace cinema;
+
 static const Int32 SPLINE_SC_KNOT_POS_X = 0; // Float
 static const Int32 SPLINE_SC_KNOT_POS_Y = 1; // Float
 static const Int32 SPLINE_SC_KNOT_TANGENT_LEFT_X = 2; // Float

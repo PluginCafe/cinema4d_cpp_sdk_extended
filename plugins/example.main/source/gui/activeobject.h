@@ -5,6 +5,6 @@
 #include "c4d_symbols.h"
 #include "main.h"
 
-void ShowVariableTagDataDialog(const VariableTag* tag);
+void ShowVariableTagDataDialog(const cinema::VariableTag* tag);
 
 #endif // ACTIVEOBJECT_H__

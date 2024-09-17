@@ -6,6 +6,8 @@
 
 #define ID_SAMPLE_PICK_OBJECT_TOOL 450000263
 
+using namespace cinema;
+
 class PickObjectTool : public DescriptionToolData
 {
 public:
@@ -186,7 +188,7 @@ TOOLDRAW PickObjectTool::Draw(BaseDocument* doc, BaseContainer& data, BaseDraw* 
 		Int32	 mode = data.GetInt32(MDATA_PICKOBJECT_MODE);
 		Vector col(1.0);
 		bd->SetMatrix_Screen();
-		bd->SetPen(col);
+		bd->SetPen(col, SET_PEN_USE_PROFILE_COLOR);
 		if (mode == MDATA_PICKOBJECT_MODE_CIRCLE)
 		{
 			Matrix m;

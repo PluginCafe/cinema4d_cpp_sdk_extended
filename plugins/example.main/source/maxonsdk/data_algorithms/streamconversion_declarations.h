@@ -8,7 +8,7 @@
 #ifndef STREAMCONVERSION_DECLARATIONS_H__
 #define STREAMCONVERSION_DECLARATIONS_H__
 
-// MAXON API header file
+// Maxon API header file
 #include "maxon/streamconversion.h"
 
 namespace maxon

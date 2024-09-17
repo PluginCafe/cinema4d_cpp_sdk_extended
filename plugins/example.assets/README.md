@@ -23,4 +23,3 @@ See `source\dots_preset_asset_impl` for details.
 *Fig II - A null object with a parameter that is of type `DotsData` and the Asset Browser side by side. Dots preset assets can be created and loaded with the buttons in the `DotsGui` custom GUI that complements the `DotsData` type. Assets of type `DotsPresetAsset` in the Asset Browser can be dragged into a `DotsGui` to load such asset.*
 
 
-

@@ -7,6 +7,8 @@
 
 #include "ohairsdkconstraint.h"
 
+using namespace cinema;
+
 class HairConstraintObject : public ObjectData
 {
 	INSTANCEOF(HairConstraintObject, ObjectData)

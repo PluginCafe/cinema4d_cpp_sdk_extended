@@ -6,6 +6,8 @@
 
 #define ID_LIQUIDTOOL 1000973
 
+using namespace cinema;
+
 class LiquidToolData : public ToolData
 {
 public:
@@ -76,16 +78,14 @@ Bool LiquidToolData::MouseInput(BaseDocument* doc, BaseContainer& data, BaseDraw
 		DrawViews(DRAWFLAGS::ONLY_ACTIVE_VIEW | DRAWFLAGS::NO_THREAD | DRAWFLAGS::NO_ANIMATION);
 	}
 
-	BaseContainer bc;
 	BaseContainer device;
 	win->MouseDragStart(button, mx, my, MOUSEDRAGFLAGS::DONTHIDEMOUSE | MOUSEDRAGFLAGS::NOMOVE);
 	while (win->MouseDrag(&dx, &dy, &device) == MOUSEDRAGRESULT::CONTINUE)
 	{
-		bc = BaseContainer();
-		win->BfGetInputEvent(BFM_INPUT_MOUSE, &bc);
-		if (bc.GetInt32(BFM_INPUT_CHANNEL) == BFM_INPUT_MOUSEWHEEL)
+		Float vscroll = device.GetFloat(BFM_INPUT_VSCROLL);
+		if (vscroll != 0.0)
 		{
-			rad += bc.GetFloat(BFM_INPUT_VALUE) / 120.0;
+			rad += vscroll / 120.0;
 			rad	 = ClampValue(rad, 0.1_f, (Float) MAXRANGE);
 			ApplicationOutput(String::FloatToString(rad));
 		}

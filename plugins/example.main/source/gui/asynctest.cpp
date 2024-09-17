@@ -9,6 +9,8 @@
 #include "lib_browser.h"
 #include "main.h"
 
+using namespace cinema;
+
 enum
 {
 	GADGET_ADDROW = 5000,

@@ -5,7 +5,7 @@
 /// implementation behaviour.
 // ------------------------------------------------------------------------
 
-// MAXON API header files
+// Maxon API header files
 #include "maxon/blend_function.h"
 #include "maxon/errortypes.h"
 #include "maxon/lib_math.h"

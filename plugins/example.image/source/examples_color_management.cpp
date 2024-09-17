@@ -17,6 +17,7 @@
 
 #include "examples_color_management.h"
 
+using namespace cinema;
 
 //! [GetColorProfilesFromColorSpaces]
 maxon::Result<void> GetColorProfilesFromColorSpaces(

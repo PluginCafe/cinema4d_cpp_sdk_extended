@@ -7,7 +7,7 @@
 #ifndef MEDIAOUTPUT_DECLARATIONS_H__
 #define MEDIAOUTPUT_DECLARATIONS_H__
 
-// MAXON API header file
+// Maxon API header file
 #include "maxon/mediasession_image_export.h"
 
 namespace maxon

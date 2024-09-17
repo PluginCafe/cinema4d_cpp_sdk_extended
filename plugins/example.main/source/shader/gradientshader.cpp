@@ -5,6 +5,8 @@
 #include "xsdkgradient.h"
 #include "main.h"
 
+using namespace cinema;
+
 struct GradientData
 {
 	Bool			cycle;

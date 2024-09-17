@@ -6,6 +6,8 @@
 
 #include "main.h"
 
+using namespace cinema;
+
 namespace copymoveconstructorsample
 {
 

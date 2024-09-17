@@ -18,43 +18,43 @@
 namespace maxonsdk
 {
 
-struct HybridDataTypeLib : public BaseCustomGuiLib
+struct HybridDataTypeLib : public cinema::BaseCustomGuiLib
 {
 
 };
 
-class HybridDataTypeData : public CustomGuiData
+class HybridDataTypeData : public cinema::CustomGuiData
 {
 public:
-	virtual Int32 GetId() override;
-	virtual CDialog* Alloc(const BaseContainer &settings) override;
-	virtual void Free(CDialog *dlg, void *userdata) override;
-	virtual const Char* GetResourceSym() override;
-	virtual CustomProperty* GetProperties() override;
-	virtual Int32 GetResourceDataType(Int32 *&table) override;
+	virtual cinema::Int32 GetId() override;
+	virtual cinema::CDialog* Alloc(const cinema::BaseContainer &settings) override;
+	virtual void Free(cinema::CDialog *dlg, void *userdata) override;
+	virtual const cinema::Char* GetResourceSym() override;
+	virtual cinema::CustomProperty* GetProperties() override;
+	virtual cinema::Int32 GetResourceDataType(cinema::Int32 *&table) override;
 
 	static maxon::Result<void> RegisterGuiPlugin();
 };
 
-class HybridDataTypeGui : public iBaseCustomGui
+class HybridDataTypeGui : public cinema::iBaseCustomGui
 {
-	INSTANCEOF(HybridDataTypeGui, iCustomGui)
+	INSTANCEOF(HybridDataTypeGui, cinema::iCustomGui)
 
 public:
-	HybridDataTypeGui(const BaseContainer &settings, CUSTOMGUIPLUGIN *plugin);
+	HybridDataTypeGui(const cinema::BaseContainer &settings, cinema::CUSTOMGUIPLUGIN *plugin);
 
-	virtual Bool CreateLayout() override;
-	virtual Bool InitValues() override;
-	virtual Bool Command(Int32 id, const BaseContainer &msg) override;
+	virtual cinema::Bool CreateLayout() override;
+	virtual cinema::Bool InitValues() override;
+	virtual cinema::Bool Command(cinema::Int32 id, const cinema::BaseContainer &msg) override;
 
-	virtual TriState<GeData> GetData() override;
-	virtual Bool SetData(const TriState<GeData> &tristate) override;
+	virtual cinema::TriState<cinema::GeData> GetData() override;
+	virtual cinema::Bool SetData(const cinema::TriState<cinema::GeData> &tristate) override;
 private:
 	HybridDataType _value;
 	HybridDataType _defaultValue;
 };
 
-// This component maps between the 'classical' and 'new' API and allows to represent our own data type in the Attribute Manager GUI for nodes.
+// This component maps between the Cinema and Maxon API and allows to represent our own data type in the Attribute Manager GUI for nodes.
 class HybridDataTypeGuiConversion : public maxon::Component<HybridDataTypeGuiConversion, maxon::UiConversionInterface>
 {
 	MAXON_COMPONENT();
@@ -65,18 +65,18 @@ public:
 
 	MAXON_METHOD maxon::Result<void> QuerySupportedDataTypes(maxon::BaseArray<maxon::DataType>& dataTypes) const;
 
-	MAXON_METHOD maxon::Result<void> CreateC4DDescription(const maxon::DataType& dataType, Description& c4dDescription, const maxon::LanguageRef& language,
-		const maxon::DataDictionary& dataEntry, const maxon::DataDictionary& guiEntry, const maxon::DataDescription& mainDataDescription, const maxon::DataDescription& stringDescription, const DescID& mainId,
-		const DescID& groupId, const maxon::PatchC4DDescriptionEntryDelegate& patchEntryFunc, maxon::DescTranslation& translateIds,
-		const maxon::BaseArray<maxon::InternedId>& parentIds, const DescID& parentFoldId, const maxon::GetDataCallbackType& getDataCallback,
-		const maxon::GetExtraDataCallbackType& getExtraDataDelegate, const BaseDocument* doc) const;
+	MAXON_METHOD maxon::Result<void> CreateC4DDescription(const maxon::DataType& dataType, cinema::Description& c4dDescription, const maxon::LanguageRef& language,
+		const maxon::DataDictionary& dataEntry, const maxon::DataDictionary& guiEntry, const maxon::DataDescription& mainDataDescription, const maxon::DataDescription& stringDescription, const cinema::DescID& mainId,
+		const cinema::DescID& groupId, const maxon::PatchC4DDescriptionEntryDelegate& patchEntryFunc, maxon::DescTranslation& translateIds,
+		const maxon::BaseArray<maxon::InternedId>& parentIds, const cinema::DescID& parentFoldId, const maxon::GetDataCallbackType& getDataCallback,
+		const maxon::GetExtraDataCallbackType& getExtraDataDelegate, const cinema::BaseDocument* doc) const;
 
-	MAXON_METHOD maxon::Result<void> ConvertToC4D(GeData& output, const maxon::DataType& dataType, const maxon::Data& data, const DescID& descIdSuffix,
-		const maxon::DataDictionary& dataEntry, const maxon::DataDictionary& guiEntry, const maxon::GetExtraDataCallbackType& extraDataDelegate, const BaseDocument* doc) const;
+	MAXON_METHOD maxon::Result<void> ConvertToC4D(cinema::GeData& output, const maxon::DataType& dataType, const maxon::Data& data, const cinema::DescID& descIdSuffix,
+		const maxon::DataDictionary& dataEntry, const maxon::DataDictionary& guiEntry, const maxon::GetExtraDataCallbackType& extraDataDelegate, const cinema::BaseDocument* doc) const;
 
-	MAXON_METHOD maxon::Result<maxon::Tuple<maxon::Data, maxon::Bool>> ConvertToCore(const maxon::DataType& dataType, const GeData& data, const DescID& descIdSuffix,
+	MAXON_METHOD maxon::Result<maxon::Tuple<maxon::Data, maxon::Bool>> ConvertToCore(const maxon::DataType& dataType, const cinema::GeData& data, const cinema::DescID& descIdSuffix,
 		const maxon::DataDictionary& dataEntry, const maxon::DataDictionary& guiEntry, const maxon::Data& oldData,
-		const maxon::GetExtraDataCallbackType& extraDataDelegate, const BaseDocument* doc) const;
+		const maxon::GetExtraDataCallbackType& extraDataDelegate, const cinema::BaseDocument* doc) const;
 };
 
 } // namespace maxonsdk

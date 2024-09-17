@@ -3,6 +3,8 @@
 #include "customgui_hybriddatatype.h"
 #include "lib_description.h"
 
+using namespace cinema;
+
 namespace maxonsdk
 {
 

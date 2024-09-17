@@ -6,6 +6,8 @@
 #include "customgui_matpreview.h"
 #include "main.h"
 
+using namespace cinema;
+
 struct PVRender
 {
 	PVRender();

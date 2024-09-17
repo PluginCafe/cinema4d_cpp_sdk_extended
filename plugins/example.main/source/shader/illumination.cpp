@@ -7,6 +7,8 @@
 #if 0
 #include "c4d.h"
 
+using namespace cinema;
+
 void ShIlluminance1(VolumeData* sd, Vector* diffuse, Vector* specular, Float exponent)
 {
 	RayLight* lp;

@@ -56,6 +56,8 @@
 #include "examples_dots.h"
 #include "examples_metadata.h"
 
+using namespace cinema;
+
 // Database Example Contexts
 // -------------------------------------------------------------------------------------------------
 
@@ -142,7 +144,6 @@ maxon::Result<void> RunAttachRepositoryObservers(
 maxon::Result<void> RunCreateRepositories()
 {
 	iferr_scope;
-
 
 	// Wait for all databases to be fully loaded and then retrieve all user databases.
 	maxon::Bool loaded = maxon::AssetDataBasesInterface::WaitForDatabaseLoading();
@@ -292,7 +293,7 @@ maxon::Result<void> RunEraseAsset()
 			// Check if the yielded asset is parented to #targetCategoryId. Abort the search once such an
 			// asset has been found.
 			const  maxon::Id assetCategoryId = asset.GetMetaData().Get<
-				decltype(maxon::ASSETMETADATA::Category)>().GetValueOrDefault() iferr_return;
+				decltype(maxon::ASSETMETADATA::Category)>().GetOrDefault() iferr_return;
 
 			if (targetCategoryId == assetCategoryId)
 			{

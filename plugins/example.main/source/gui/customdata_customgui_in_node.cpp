@@ -4,10 +4,10 @@
 
 	Date: 17/12/2021
 
- This example show how to support classic API UI and datatype inside the Node Editor. 
+ This example show how to support Cinema API UI and datatype inside the Node Editor. 
  For this, the datatype needs to be registered as a Maxon Data.
 
- The same code will be used as Classic API and Maxon APi. Some functions must be added, 
+ The same code will be used as Cinema API and Maxon API. Some functions must be added, 
  like a copy constructor, an assignment operator and the DescribeIO function.
 
  To be able to create a user node with the Resource Editor, a database needs to be created and 
@@ -37,9 +37,11 @@
 
 #include "customdata_customgui_in_node.h"
 
+using namespace cinema;
+
 	
 // Implementing a UiConversionInterface for the DotData example already implemented in the sdk examples.
-// This implementation allow to convert Classic API dataType to MaxonAPI data.
+// This implementation allow to convert Cinema API dataType to MaxonAPI data.
 
 class UiConversionDotDataImpl : public maxon::Component<UiConversionDotDataImpl, maxon::UiConversionInterface>
 {
@@ -73,7 +75,7 @@ public:
 
 		BaseContainer param = GetCustomDataTypeDefault(dtype);
 		patchEntryFunc(param) iferr_return;
-		// Defining the default option for the classic API gadget.
+		// Defining the default option for the Cinema API gadget.
 		param.SetInt32(DESC_CUSTOMGUI, id_sdk_example_customgui_dots);
 		param.SetBool(DESC_SCALEH, true);
 		param.SetString(DESC_NAME, "Dot Custom Data"_s);
@@ -103,8 +105,7 @@ public:
 
 		// Add the information in the translateIds parameter so the system 
 		// can have the necessary information.
-		translateIds._descIdMap.Insert(descId, { std::move(dataArray), dataTypeId, guiTypeId, maxon::Id(),
-										dataEntry, guiEntry }) iferr_return;
+		translateIds._descIdMap.Insert(descId, { std::move(dataArray), dataTypeId, guiTypeId, maxon::Id(), dataEntry, guiEntry }) iferr_return;
 
 		return maxon::OK;
 	}

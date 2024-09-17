@@ -4,6 +4,8 @@
 #include "registeradvancedpaint.h"
 #include "lib_paint.h"
 
+using namespace cinema;
+
 Int32 PaintBrushBase::GetToolPluginId() const
 {
 	return ID_PAINT_BRUSH_BASE;

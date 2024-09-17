@@ -11,7 +11,7 @@ class SimpleMaterialImport : public maxon::Component<SimpleMaterialImport, maxon
 	MAXON_COMPONENT(NORMAL);
 
 public:
-	MAXON_METHOD maxon::Result<BaseMaterial*> CreateMaterial(const maxon::material::MaterialExchangeData& materialData, BaseDocument& baseDocument, const maxon::DataDictionary& config);
+	MAXON_METHOD maxon::Result<cinema::BaseMaterial*> CreateMaterial(const maxon::material::MaterialExchangeData& materialData, cinema::BaseDocument& baseDocument, const maxon::DataDictionary& config);
 
 	static maxon::Result<void> Register();
 

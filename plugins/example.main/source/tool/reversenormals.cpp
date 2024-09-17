@@ -5,6 +5,8 @@
 
 #define ID_MODELING_REVERSE_NORMALS_SDK	450000026
 
+using namespace cinema;
+
 static Bool ReverseNormals(Modeling* krnl, C4DAtom* op, UChar* reverse, Int32 polycnt, Int32 pgoncnt, Int32* polymap)
 {
 	Int32 i;

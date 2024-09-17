@@ -7,6 +7,8 @@
 #include "main.h"
 #include <stdio.h>
 
+using namespace cinema;
+
 class STLLoaderData : public SceneLoaderData
 {
 public:

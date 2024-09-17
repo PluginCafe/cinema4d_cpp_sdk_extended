@@ -13,14 +13,14 @@
 /// Basic ObjectData implementation responsible for generating a simple plane centered in the
 /// origin and sized 200 x 200.
 //------------------------------------------------------------------------------------------------
-class BLW_SimpleGenerator : public ObjectData
+class BLW_SimpleGenerator : public cinema::ObjectData
 {
-	INSTANCEOF(BLW_SimpleGenerator, ObjectData)
+	INSTANCEOF(BLW_SimpleGenerator, cinema::ObjectData)
 	
 public:
-	static NodeData* Alloc()
+	static cinema::NodeData* Alloc()
 	{
-		iferr (NodeData * nodeData = NewObj(BLW_SimpleGenerator))
+		iferr (cinema::NodeData * nodeData = NewObj(BLW_SimpleGenerator))
 		{
 			err.DiagOutput();
 			err.DbgStop();
@@ -29,9 +29,9 @@ public:
 		
 		return nodeData;
 	};
-	virtual Bool Init(GeListNode* node, Bool isCloneInit);
-	virtual void GetDimension(const BaseObject* op, Vector* mp, Vector* rad) const;
-	virtual BaseObject* GetVirtualObjects(BaseObject* op, const HierarchyHelp* hh);
+	virtual cinema::Bool Init(cinema::GeListNode* node, cinema::Bool isCloneInit);
+	virtual void GetDimension(const cinema::BaseObject* op, cinema::Vector* mp, cinema::Vector* rad) const;
+	virtual cinema::BaseObject* GetVirtualObjects(cinema::BaseObject* op, const cinema::HierarchyHelp* hh);
 };
 
 #endif /* BLW_SIMPLEGENERATOR_H__ */

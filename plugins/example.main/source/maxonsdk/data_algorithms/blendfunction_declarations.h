@@ -7,7 +7,7 @@
 #ifndef BLENDFUNCTION_DECLARATIONS_H__
 #define BLENDFUNCTION_DECLARATIONS_H__
 
-// MAXON API header file
+// Maxon API header file
 #include "maxon/blend_function.h"
 
 namespace maxon

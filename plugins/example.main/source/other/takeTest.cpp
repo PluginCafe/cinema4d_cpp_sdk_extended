@@ -12,6 +12,8 @@
 #include "lib_takesystem.h"
 #include "main.h"
 
+using namespace cinema;
+
 static const Int32 ID_CREATETAKE = 1033812;
 static const Int32 ID_EDITOVERIDE = 1033814;
 static const Int32 ID_ANIMATEOVERRIDE = 1033815;

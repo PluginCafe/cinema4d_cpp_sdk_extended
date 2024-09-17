@@ -6,7 +6,7 @@
 /// The "image" file format will be displayed as a image format under "Render Settings" -> "Save"
 // ------------------------------------------------------------------------
 
-// MAXON API header files
+// Maxon API header files
 #include "maxon/mediasession_output.h"
 #include "maxon/mediasession_errors.h"
 #include "maxon/mediasession_stream.h"

@@ -15,6 +15,8 @@ where you are just moving those points around until the user lets go of them.
 
 #define SCULPTGRABBRUSH_SDK_EXAMPLE 1029860	//You MUST get your own ID from www.plugincafe.com
 
+using namespace cinema;
+
 class ExampleSculptGrabBrush : public SculptBrushToolData
 {
 public:

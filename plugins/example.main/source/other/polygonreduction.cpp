@@ -12,6 +12,8 @@
 #include "lib_polygonreduction.h"
 #include "main.h"
 
+using namespace cinema;
+
 static const Int32 ID_POLYREDUCTON_TEST = 1038949;
 
 class PolygonReductionCommand : public CommandData

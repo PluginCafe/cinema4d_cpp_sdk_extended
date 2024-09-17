@@ -99,7 +99,7 @@ maxon::Result<void> FindCategoryAssetsByPath(
 /// point of time or on another system. In some cases this quality of predictable asset identifiers 
 /// is required to search for assets effectively or avoid ingesting duplicate assets. The example
 /// demonstrates with the cases of a category and image asset how such identifying asset hashes
-/// could be constructed with the maxon API in a sufficiently collision free manner.
+/// could be constructed with the Maxon API in a sufficiently collision free manner.
 maxon::Result<void> GenerateAssetIdentifiers();
 
 

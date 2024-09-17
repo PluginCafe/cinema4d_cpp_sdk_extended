@@ -8,19 +8,19 @@
 #include "paintbrushids.h"
 #include "toolpaintbrushbase.h"
 
-class PaintBrushBase : public SculptBrushToolData
+class PaintBrushBase : public cinema::SculptBrushToolData
 {
 public:
-	explicit PaintBrushBase(SculptBrushParams *pParams) : SculptBrushToolData(pParams) { }
+	explicit PaintBrushBase(cinema::SculptBrushParams *pParams) : cinema::SculptBrushToolData(pParams) { }
 	virtual ~PaintBrushBase() { }
 
-	virtual Int32 GetToolPluginId() const;
-	virtual const String GetResourceSymbol() const;
+	virtual cinema::Int32 GetToolPluginId() const;
+	virtual const cinema::String GetResourceSymbol() const;
 
-	void StartStroke(Int32 strokeCount, const BaseContainer &data);
+	void StartStroke(cinema::Int32 strokeCount, const cinema::BaseContainer &data);
 	void EndStroke();
 
-	static Bool MovePointsFunc(BrushDabData *dab);
+	static cinema::Bool MovePointsFunc(cinema::BrushDabData *dab);
 };
 
 #endif // PAINTBRUSHBASE_H__

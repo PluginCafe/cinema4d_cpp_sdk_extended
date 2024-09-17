@@ -22,6 +22,8 @@
 #include "dots_preset_asset.h"
 #include "examples_dots.h"
 
+using namespace cinema;
+
 maxon::Result<void> InsertDotsDataNull(BaseDocument* doc)
 {
 	iferr_scope;
@@ -154,7 +156,7 @@ maxon::Result<void> UpdatePreviewThumbnail(
 
 	// Call the DotsPresetAssetImpl to generate the preview and store new preview url. The fact
 	// that we can do this with the BasePresetAssetInterface reference #presetAsset is due to the 
-	// component system of the maxon API. The BasePresetAssetInterface referenced by #presetAsset 
+	// component system of the Maxon API. The BasePresetAssetInterface referenced by #presetAsset 
 	// will carry the DotsPresetAssetImpl component which has been defined in the dots preset asset
 	// implementation. It will take over with its method of the same name when GeneratePreview() is 
 	// being called. So, we are in fact calling here DotsPresetAssetImpl::GeneratePreview().

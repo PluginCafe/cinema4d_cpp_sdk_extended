@@ -9,6 +9,8 @@
 
 #define SCULPTPAINTUNDOSTRING "SculptPaintUndo"
 
+using namespace cinema;
+
 static Bool CreateSculptUndo(BaseDocument *pDoc)
 {
 	if (pDoc)

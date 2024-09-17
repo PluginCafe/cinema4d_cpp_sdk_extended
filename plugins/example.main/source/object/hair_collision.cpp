@@ -9,6 +9,8 @@
 
 #include "ohairsdkcollider.h"
 
+using namespace cinema;
+
 //////////////////////////////////////////////////////////////////////////
 
 class HairCollisionObject : public ObjectData
@@ -158,7 +160,7 @@ DRAWRESULT HairCollisionObject::Draw(BaseObject* op, DRAWPASS drawpass, BaseDraw
 
 	const Matrix& mg = bh->GetMg();
 
-	bd->SetPen(bd->GetObjectColor(bh, op));
+	bd->SetPen(bd->GetObjectColor(bh, op), SET_PEN_USE_PROFILE_COLOR);
 	bd->SetMatrix_Matrix(op, mg);
 
 	bd->DrawLine(Vector(-width, height, 0.0), Vector(width, height, 0.0), 0);

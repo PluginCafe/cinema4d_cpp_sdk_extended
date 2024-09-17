@@ -6,6 +6,8 @@
 
 #include "maxon/material/datadescription_material_standard_surface.h"
 
+using namespace cinema;
+
 namespace maxonsdk
 {
 

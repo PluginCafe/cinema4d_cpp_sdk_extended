@@ -10,6 +10,9 @@
 
 #include "_migration_example_plugin.h"
 
+namespace cinema
+{
+
 Bool PluginStart()
 {
 	if (!RegisterBoundingBoxObject())
@@ -21,7 +24,7 @@ Bool PluginStart()
 
 void PluginEnd() { }
 
-Bool PluginMessage(::Int32 id, void* data)
+Bool PluginMessage(Int32 id, void* data)
 {
 	switch (id)
 	{
@@ -34,3 +37,6 @@ Bool PluginMessage(::Int32 id, void* data)
 	}
 	return false;
 }
+
+} // namespace cinema
+

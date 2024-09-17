@@ -12,6 +12,8 @@
 #include "c4d_resource.h"
 #include "c4d_basebitmap.h"
 
+using namespace cinema;
+
 /**A unique plugin ID. You must obtain this from http://www.plugincafe.com. Use this ID to create new instances of this object.*/
 static const Int32 ID_SDKEXAMPLE_OBJECTDATA_SHUFFLINGPARTICLES = 1038238;
 
@@ -153,7 +155,7 @@ DRAWRESULT ShufflingParticles::Draw(BaseObject* op, DRAWPASS drawpass, BaseDraw*
 	bd->SetMatrix_Matrix(op, modifierWorldMatrix);
 
 	// Set the BaseDraw instance color to match the object color
-	bd->SetPen(bd->GetObjectColor(bh, op));
+	bd->SetPen(bd->GetObjectColor(bh, op), SET_PEN_USE_PROFILE_COLOR);
 
 	Vector rad = op->GetRad();
 	iferr (ShufflingParticlesHelpers::DrawCube(bd, &rad))

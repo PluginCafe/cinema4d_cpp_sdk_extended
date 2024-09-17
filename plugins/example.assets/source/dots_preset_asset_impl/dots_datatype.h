@@ -1,5 +1,5 @@
 /*
-	Dots CustomDataType & CustomGui Example
+	Dots cinema::CustomDataType & CustomGui Example
 	(C) 2022 MAXON Computer GmbH
 
 	Author: Sebastian Bach, Ferdinand Hoppe
@@ -12,7 +12,7 @@
 	custom data type and DotsGui a dialog that is used to render that data type as a parameter
 	in the Attribute Manger.
 
-	DotsGui is a iCustomGui which inherits from GeDialog and attaches three gadgets to itself.
+	DotsGui is a cinema::iCustomGui which inherits from cinema::GeDialog and attaches three gadgets to itself.
 
 		1. A DotsUserArea instance, which renders a preview of the DotsData attached to the DotsGui.
 		2. A "Load Preset ..." button to load a preset asset of type DotsPresetAsset with the help of
@@ -20,7 +20,7 @@
 		3. A "Save Preset ..." button to save the DotsData shown in the DotsGui as a DotsPresetAsset 
 			 which is exposed by the Asset Browser.
 
-	Both the DotsData and DotsGui implementation are exposed as plugin interfaces to the classic API,
+	Both the DotsData and DotsGui implementation are exposed as plugin interfaces to the Cinema API,
 	handling the data type and its GUI. For DotsData it is DotsDataClass and for DotsGui it is
 	DotsGuiData. These types are then used to register the data type and its GUI as plugins with
 	Cinema 4D.
@@ -49,7 +49,7 @@ const maxon::Int32 g_dots_canvas_size = 200;
 class DotsDataClass;
 
 // Provides a data structure to store an array of points on a fixed size canvas.
-class DotsData : public iCustomDataType<DotsData, PID_CUSTOMDATATYPE_DOTS>
+class DotsData : public cinema::iCustomDataType<DotsData, PID_CUSTOMDATATYPE_DOTS>
 {
 	friend class DotsDataClass;
 
@@ -74,18 +74,18 @@ public:
 // Represents a gadget which can be added to dialogs that renders an instance of DotsData.
 //
 // Used by DotsGui and does not contain any Asset API relevant code.
-class DotsUserArea : public GeUserArea
+class DotsUserArea : public cinema::GeUserArea
 {
 public:
 	DotsUserArea();
 	virtual ~DotsUserArea();
 
-	virtual Bool Init();
-	virtual Bool InitValues();
-	virtual Bool GetMinSize(Int32& w, Int32& h);
+	virtual cinema::Bool Init();
+	virtual cinema::Bool InitValues();
+	virtual cinema::Bool GetMinSize(cinema::Int32& w, cinema::Int32& h);
 
-	virtual void DrawMsg(Int32 x1, Int32 y1, Int32 x2, Int32 y2, const BaseContainer& msg);
-	virtual Bool InputEvent(const BaseContainer& msg);
+	virtual void DrawMsg(cinema::Int32 x1, cinema::Int32 y1, cinema::Int32 x2, cinema::Int32 y2, const cinema::BaseContainer& msg);
+	virtual cinema::Bool InputEvent(const cinema::BaseContainer& msg);
 
 	DotsData* _data;
 };
@@ -93,23 +93,23 @@ public:
 // Represents the custom GUI interface that handles a DotsData parameter in the Attribute Manager.
 //
 // This contains all the code handling the Asset API dots preset asset type implementation from the 
-// classic API side, this custom GUI. The methods containing code relevant for the Asset API are 
+// Cinema API side, this custom GUI. The methods containing code relevant for the Asset API are 
 // DotsGui::Command(), DotsGui::Message(), DotsGui::LoadAsset(), and DotsGui::SaveAsset().
-class DotsGui : public iCustomGui
+class DotsGui : public cinema::iCustomGui
 {
-	INSTANCEOF(DotsGui, iCustomGui)
+	INSTANCEOF(DotsGui, cinema::iCustomGui)
 
 private:
-	Bool _tristate;
+	cinema::Bool _tristate;
 	DotsData _data;
 	DotsUserArea _dotsUserArea;
 
 public:
-	DotsGui(const BaseContainer &settings, CUSTOMGUIPLUGIN *plugin);
-	virtual Bool CreateLayout();
-	virtual Bool InitValues();
-	virtual Bool SetData(const TriState<GeData>& tristate);
-	virtual TriState<GeData> GetData();
+	DotsGui(const cinema::BaseContainer &settings, cinema::CUSTOMGUIPLUGIN *plugin);
+	virtual cinema::Bool CreateLayout();
+	virtual cinema::Bool InitValues();
+	virtual cinema::Bool SetData(const cinema::TriState<cinema::GeData>& tristate);
+	virtual cinema::TriState<cinema::GeData> GetData();
 
 	// Receives dialog gadget events for the custom GUI.
 	// 
@@ -122,9 +122,9 @@ public:
 	// @param[in] msg    The event data.
 	// 
 	// @return           If the event was consumed or not.
-	virtual Bool Command(Int32 id, const BaseContainer &msg);
+	virtual cinema::Bool Command(cinema::Int32 id, const cinema::BaseContainer &msg);
 
-	// Receives messages sent to the iCustomGui dialog.
+	// Receives messages sent to the cinema::iCustomGui dialog.
 	// 
 	// Used in this example to handle asset drag and drop events onto the custom GUI. Receives data 
 	// from the Asset API in form of DndAsset tuples and then sends data to the Asset API to load
@@ -134,12 +134,12 @@ public:
 	// @param[in, out] result    The message data.
 	// 
 	// @return                   Depends on the type of message.
-	virtual Int32 Message(const BaseContainer& msg, BaseContainer& result);
+	virtual cinema::Int32 Message(const cinema::BaseContainer& msg, cinema::BaseContainer& result);
 
 	// Handles loading assets into the GUI.
 	// 
 	// Both asset drag and drop events and "Load Asset..." button clicks will use this method. This
-	// method is not an overload of iCustomGui and things must not be implemented in this way, but it
+	// method is not an overload of cinema::iCustomGui and things must not be implemented in this way, but it
 	// is the approach chosen here to abstract the process of asset loading.
 	//
 	// @param[in] assetDescription    The asset to load into the GUI.
@@ -147,28 +147,28 @@ public:
 
 	// Handles saving assets from the current state of the GUI. This method is not an overload of
 	// 
-	// Saved will be _data of the GUI instance. This method is not an overload of iCustomGui and 
+	// Saved will be _data of the GUI instance. This method is not an overload of cinema::iCustomGui and 
 	// things must not be implemented in this way, but it is the approach chosen here to abstract 
 	// the process of asset saving.
 	maxon::Result<void> SaveAsset();
 };
 
 
-static Int32 g_stringtable[] = { PID_CUSTOMDATATYPE_DOTS };
+static cinema::Int32 g_stringtable[] = { PID_CUSTOMDATATYPE_DOTS };
 
 
 // Provides the plugin interface for the custom GUI.
 //
 // This does not contain any code relevant for the Asset API.
-class DotsGuiData : public CustomGuiData
+class DotsGuiData : public cinema::CustomGuiData
 {
 public:
-	virtual Int32 GetId();
-	virtual CDialog* Alloc(const BaseContainer& settings);
-	virtual void Free(CDialog* dlg, void* userdata);
-	virtual const Char* GetResourceSym();
-	virtual CustomProperty* GetProperties();
-	virtual Int32 GetResourceDataType(Int32*& table);
+	virtual cinema::Int32 GetId();
+	virtual cinema::CDialog* Alloc(const cinema::BaseContainer& settings);
+	virtual void Free(cinema::CDialog* dlg, void* userdata);
+	virtual const cinema::Char* GetResourceSym();
+	virtual cinema::CustomProperty* GetProperties();
+	virtual cinema::Int32 GetResourceDataType(cinema::Int32*& table);
 
 };
 
@@ -176,25 +176,25 @@ public:
 // Provides the plugin interface for the custom datatype.
 //
 // This does not contain any code relevant for the Asset API.
-class DotsDataClass : public CustomDataTypeClass
+class DotsDataClass : public cinema::CustomDataTypeClass
 {
-	INSTANCEOF(DotsDataClass, CustomDataTypeClass)
+	INSTANCEOF(DotsDataClass, cinema::CustomDataTypeClass)
 
 public:
-	virtual Int32 GetId();
-	virtual CustomDataType* AllocData();
-	virtual void FreeData(CustomDataType* data);
-	virtual Bool CopyData(const CustomDataType* src, CustomDataType* dst, AliasTrans* aliastrans);
-	virtual Int32 Compare(const CustomDataType* d1, const CustomDataType* d2);
-	virtual Bool WriteData(const CustomDataType* t_d, HyperFile* hf);
-	virtual Bool ReadData(CustomDataType* t_d, HyperFile* hf, Int32 level);
-	virtual const Char* GetResourceSym();
-	virtual void GetDefaultProperties(BaseContainer& data);
+	virtual cinema::Int32 GetId();
+	virtual cinema::CustomDataType* AllocData();
+	virtual void FreeData(cinema::CustomDataType* data);
+	virtual cinema::Bool CopyData(const cinema::CustomDataType* src, cinema::CustomDataType* dst, cinema::AliasTrans* aliastrans);
+	virtual cinema::Int32 Compare(const cinema::CustomDataType* d1, const cinema::CustomDataType* d2);
+	virtual cinema::Bool WriteData(const cinema::CustomDataType* t_d, cinema::HyperFile* hf);
+	virtual cinema::Bool ReadData(cinema::CustomDataType* t_d, cinema::HyperFile* hf, cinema::Int32 level);
+	virtual const cinema::Char* GetResourceSym();
+	virtual void GetDefaultProperties(cinema::BaseContainer& data);
 };
 
 
 // Registers the dots datatype and GUI
-Bool RegisterDotsDataAndGui();
+cinema::Bool RegisterDotsDataAndGui();
 
 #endif // CUSTOMDATA_CUSTOMGUI_H__
 //! [declaration]

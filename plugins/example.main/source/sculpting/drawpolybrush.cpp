@@ -9,6 +9,8 @@
 
 #define SCULPTDRAWPOLYBRUSH_SDK_EXAMPLE 1029861	//You MUST get your own ID from www.plugincafe.com
 
+using namespace cinema;
+
 struct StrokeData
 {
 	Vector p1, p2, p3, p4;

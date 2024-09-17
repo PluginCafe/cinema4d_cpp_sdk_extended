@@ -19,6 +19,9 @@
 #include "examples_ocio.h"
 
 #include "plugin_image_api_examples.h"
+#include "c4d_symbols.h"
+
+using namespace cinema;
 
 static void OpenFlushConsole()
 {
@@ -93,6 +96,10 @@ Bool RegisterImageApiExamples()
 		PID_OCIO_AWARE_VIDEOPOST, GeLoadString(IDS_NME_OCIO_AWARE_VIDEOPOST), PLUGINFLAG_VIDEOPOST_ISRENDERER,
 		OcioAwareRenderer::Alloc, "vpocioawarerenderer"_s, 0, 0))
 		ApplicationOutput("Failed to register: @", GeLoadString(IDS_NME_OCIO_AWARE_VIDEOPOST));
+
+	if (!RegisterObjectPlugin(PID_OCIO_NODE_2025, GeLoadString(IDS_NME_OCIO_NODE_2025), OBJECT_GENERATOR, 
+		OcioNode2025::Alloc, "oocionode2025"_s, nullptr, 0))
+		ApplicationOutput("Failed to register: @", GeLoadString(IDS_NME_OCIO_NODE_2025));
 
 	return true;
 }

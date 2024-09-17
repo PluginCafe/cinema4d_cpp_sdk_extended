@@ -4,6 +4,8 @@
 #include "maxon/datadescription_ui.h"
 #include "maxon/nodepath.h"
 
+using namespace cinema;
+
 namespace maxonsdk
 {
 

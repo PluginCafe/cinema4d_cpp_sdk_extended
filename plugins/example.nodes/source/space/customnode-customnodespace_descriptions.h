@@ -56,7 +56,6 @@ namespace NODE
 
 		// supports MAXON::NODE::BASE::FILTERTAGS
 		// supports MAXON::NODE::BASE::NODEPREVIEWIMAGE
-		// supports MAXON::NODE::BASE::MATERIALPREVIEWIMAGE
 		// supports MAXON::NODE::BASE::NAME
 		// supports MAXON::NODE::BASE::ASSETVERSION
 		// supports MAXON::NODE::BASE::COLOR
@@ -86,7 +85,6 @@ namespace NODE
 
 		// supports MAXON::NODE::BASE::FILTERTAGS
 		// supports MAXON::NODE::BASE::NODEPREVIEWIMAGE
-		// supports MAXON::NODE::BASE::MATERIALPREVIEWIMAGE
 		// supports MAXON::NODE::BASE::NAME
 		// supports MAXON::NODE::BASE::ASSETVERSION
 		// supports MAXON::NODE::BASE::COLOR
@@ -110,7 +108,6 @@ namespace NODE
 
 		// supports MAXON::NODE::BASE::FILTERTAGS
 		// supports MAXON::NODE::BASE::NODEPREVIEWIMAGE
-		// supports MAXON::NODE::BASE::MATERIALPREVIEWIMAGE
 		// supports MAXON::NODE::BASE::NAME
 		// supports MAXON::NODE::BASE::ASSETVERSION
 		// supports MAXON::NODE::BASE::COLOR
@@ -161,7 +158,6 @@ namespace NODE
 
 		// supports MAXON::NODE::BASE::FILTERTAGS
 		// supports MAXON::NODE::BASE::NODEPREVIEWIMAGE
-		// supports MAXON::NODE::BASE::MATERIALPREVIEWIMAGE
 		// supports MAXON::NODE::BASE::NAME
 		// supports MAXON::NODE::BASE::ASSETVERSION
 		// supports MAXON::NODE::BASE::COLOR
@@ -189,7 +185,6 @@ namespace NODE
 
 		// supports MAXON::NODE::BASE::FILTERTAGS
 		// supports MAXON::NODE::BASE::NODEPREVIEWIMAGE
-		// supports MAXON::NODE::BASE::MATERIALPREVIEWIMAGE
 		// supports MAXON::NODE::BASE::NAME
 		// supports MAXON::NODE::BASE::ASSETVERSION
 		// supports MAXON::NODE::BASE::COLOR
@@ -213,7 +208,6 @@ namespace NODE
 
 		// supports MAXON::NODE::BASE::FILTERTAGS
 		// supports MAXON::NODE::BASE::NODEPREVIEWIMAGE
-		// supports MAXON::NODE::BASE::MATERIALPREVIEWIMAGE
 		// supports MAXON::NODE::BASE::NAME
 		// supports MAXON::NODE::BASE::ASSETVERSION
 		// supports MAXON::NODE::BASE::COLOR

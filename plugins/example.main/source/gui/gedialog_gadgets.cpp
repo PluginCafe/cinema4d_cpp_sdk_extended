@@ -33,6 +33,7 @@
 #define ID_QUICKTAB_SUBDIALOG_SUBGROUP        3500
 #define ID_QUICKTAB_SUBDIALOG_SUBGROUP_TEXT   3600
 
+using namespace cinema;
 
 enum DIALOGELEMENTS
 {

@@ -36,28 +36,28 @@
 #define LICCFG_TR_REL_NFR "net.maxon.license.app.teamrender-release~nfr"_s
 #define LICCFG_TR_REL_TRI "net.maxon.license.app.teamrender-release~trial"_s
 
-class BLW_PluginLicenseDialog_Dialog : public GeDialog
+class BLW_PluginLicenseDialog_Dialog : public cinema::GeDialog
 {
 public:
 private:
 	CinemaLicenseData _cinemaLic;
 	
 public:
-	virtual Bool CreateLayout();
+	virtual cinema::Bool CreateLayout();
 	virtual bool InitValues();
-	virtual Bool Command(Int32 id, const BaseContainer & msg);
+	virtual cinema::Bool Command(cinema::Int32 id, const cinema::BaseContainer & msg);
 	
 private:
 	maxon::Result<void> FillUIWithC4DLicenseData();
 	maxon::Result<void> FillPluginLicenseDataWithUI(maxon::DataDictionary &pluginLic);
 };
 
-class BLW_PluginLicenseDialog : public CommandData
+class BLW_PluginLicenseDialog : public cinema::CommandData
 {
 public:
-	static CommandData* Alloc()
+	static cinema::CommandData* Alloc()
 	{
-		iferr (CommandData * cmdData = NewObj(BLW_PluginLicenseDialog))
+		iferr (cinema::CommandData * cmdData = NewObj(BLW_PluginLicenseDialog))
 		{
 			err.DiagOutput();
 			err.DbgStop();
@@ -67,8 +67,8 @@ public:
 		return cmdData;
 	};
 	
-	virtual Bool Execute(BaseDocument* doc, GeDialog* parentManager);
-	virtual Bool RestoreLayout(void* secret);
+	virtual cinema::Bool Execute(cinema::BaseDocument* doc, cinema::GeDialog* parentManager);
+	virtual cinema::Bool RestoreLayout(void* secret);
 
 	
 private:

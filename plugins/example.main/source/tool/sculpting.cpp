@@ -9,6 +9,8 @@
 
 #define ID_SCULPTING_TOOL	450000250
 
+using namespace cinema;
+
 class SculptingTool : public DescriptionToolData
 {
 public:
@@ -338,7 +340,7 @@ void SculptingTool::UpdateObject(Vector* pvPoints, Float rMouseX, Float rMouseY,
 
 #endif
 
-Bool RegisterSculptingTool()
+cinema::Bool RegisterSculptingTool()
 {
 	return true;
 	//return RegisterToolPlugin(ID_SCULPTING_TOOL, GeLoadString(IDS_SCULPTING_TOOL), PLUGINFLAG_TOOL_NO_WIREFRAME, nullptr, GeLoadString(IDS_SCULPTING_TOOL), NewObjClear(SculptingTool));

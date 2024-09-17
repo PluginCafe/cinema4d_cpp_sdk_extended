@@ -1,5 +1,7 @@
 #include "c4d.h"
 
+using namespace cinema;
+
 static const Int32 PluginID = 99990000;
 
 #include "customerror_interface.h"

@@ -10,6 +10,8 @@
 // be sure to use a unique ID obtained from www.plugincafe.com
 #define ID_SIMPLEMAT 1001164
 
+using namespace cinema;
+
 class SimpleMaterial : public MaterialData
 {
 	INSTANCEOF(SimpleMaterial, MaterialData)

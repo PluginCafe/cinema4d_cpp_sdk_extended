@@ -1,6 +1,8 @@
 #include "paintchannels.h"
 #include "paintundo.h"
 
+using namespace cinema;
+
 PaintChannels::PaintChannels() : channel(nullptr)
 {
 }

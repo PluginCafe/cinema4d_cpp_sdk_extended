@@ -5,6 +5,8 @@
 #include "main.h"
 #include "lib_hair.h"
 
+using namespace cinema;
+
 class HairSDKVideopost : public VideoPostData
 {
 	INSTANCEOF(HairSDKVideopost, VideoPostData)

@@ -7,6 +7,8 @@
 #include "c4d_symbols.h"
 #include "main.h"
 
+using namespace cinema;
+
 class InvertData : public VideoPostData
 {
 public:

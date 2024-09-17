@@ -5,6 +5,8 @@
 #include "odoublecircle.h"
 #include "main.h"
 
+using namespace cinema;
+
 class DoubleCircleData : public ObjectData
 {
 	INSTANCEOF(DoubleCircleData, ObjectData)

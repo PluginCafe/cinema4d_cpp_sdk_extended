@@ -2,6 +2,8 @@
 #include "c4d_colors.h"
 #include "c4d_basedocument.h"
 
+using namespace cinema;
+
 namespace maxonsdk
 {
 
@@ -200,7 +202,7 @@ void BundleGui::CreateErrorText(const String& text, const maxon::AttributeManage
 			{
 				if (attribute._hasAttributeManagerValue == true)
 				{
-					attributeManager.RemoveAttributeValue(attribute._description) iferr_ignore("");
+					attributeManager.RemoveAttributeValue(attribute._description) iferr_ignore("missing error handling");
 					attribute._hasAttributeManagerValue = false;
 				}
 			}

@@ -11,6 +11,8 @@
 
 #define ID_BITMAP_SAVER_TEST 200000109
 
+using namespace cinema;
+
 class BitmapSaverTest : public CommandData
 {
 	INSTANCEOF(BitmapSaverTest, CommandData)

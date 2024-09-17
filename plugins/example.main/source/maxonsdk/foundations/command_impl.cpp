@@ -6,7 +6,7 @@
 /// "MeanMedianCommandImpl" is an implementation calculating the median value of a given array.
 // ------------------------------------------------------------------------
 
-// MAXON API header files
+// Maxon API header files
 #include "maxon/lib_math.h"
 #include "maxon/sort.h"
 

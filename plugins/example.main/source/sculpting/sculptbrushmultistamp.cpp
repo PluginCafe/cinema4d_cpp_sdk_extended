@@ -5,6 +5,8 @@
 
 #define ID_SCULPT_BRUSH_MULTISTAMP 1030685
 
+using namespace cinema;
+
 class SculptBrushMultiStamp : public SculptBrushToolData
 {
 public:

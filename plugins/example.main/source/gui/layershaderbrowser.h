@@ -6,27 +6,27 @@
 
 #include "c4d_gui.h"
 
-class LayerShaderBrowser : public GeDialog
+class LayerShaderBrowser : public cinema::GeDialog
 {
 public:
 	LayerShaderBrowser();
 	virtual ~LayerShaderBrowser();
 
-	virtual Bool CreateLayout();
-	virtual Bool InitValues();
-	virtual Bool Command(Int32 id, const BaseContainer& msg);
-	virtual Int32 Message(const BaseContainer& msg, BaseContainer& result);
-	virtual Bool CoreMessage  (Int32 id, const BaseContainer& msg);
+	virtual cinema::Bool CreateLayout();
+	virtual cinema::Bool InitValues();
+	virtual cinema::Bool Command(cinema::Int32 id, const cinema::BaseContainer& msg);
+	virtual cinema::Int32 Message(const cinema::BaseContainer& msg, cinema::BaseContainer& result);
+	virtual cinema::Bool CoreMessage  (cinema::Int32 id, const cinema::BaseContainer& msg);
 
-	void UpdateAll(Bool msg);
-	void ShowInfo(LayerShaderLayer* l);
+	void UpdateAll(cinema::Bool msg);
+	void ShowInfo(cinema::LayerShaderLayer* l);
 
 	void* lastselected;
 
 private:
-	LinkBoxGui*				 linkbox;
-	TreeViewCustomGui* tree;
-	Int32							 lastdirty;
+	cinema::LinkBoxGui*				 linkbox;
+	cinema::TreeViewCustomGui* tree;
+	cinema::Int32							 lastdirty;
 };
 
 #endif // LAYERSHADERBROWSER_H__

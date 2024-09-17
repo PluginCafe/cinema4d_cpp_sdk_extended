@@ -20,7 +20,7 @@
 		3. A "Save Preset ..." button to save the DotsData shown in the DotsGui as a DotsPresetAsset 
 		which is exposed by the Asset Browser.
 
-	Both the DotsData and DotsGui implementation are exposed as plugin interfaces to the classic API,
+	Both the DotsData and DotsGui implementation are exposed as plugin interfaces to the Cinema API,
 	handling the data type and its GUI. For DotsData it is DotsDataClass and for DotsGui it is
 	DotsGuiData. These types are then used to register the data type and its GUI as plugins with
 	Cinema 4D.
@@ -45,6 +45,8 @@
 
 #include "dots_preset_asset.h"
 #include "dots_datatype.h"
+
+using namespace cinema;
 
 // --- The dots data type implementation -----------------------------------------------------------
 

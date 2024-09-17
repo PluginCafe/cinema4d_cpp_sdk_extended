@@ -8,6 +8,8 @@
 
 #include "command_test.h"
 
+using namespace cinema;
+
 namespace maxon
 {
 

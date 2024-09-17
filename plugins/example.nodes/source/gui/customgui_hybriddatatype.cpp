@@ -14,6 +14,8 @@
 
 #include "customgui_helpers.h"
 
+using namespace cinema;
+
 namespace maxonsdk
 {
 
@@ -210,7 +212,7 @@ maxon::Result<void> HybridDataTypeGuiConversion::ConvertToC4D(GeData& output, co
 {
 	iferr_scope;
 
-	// We transport the data type from 'new' to 'classical', i.e. from node to gui.
+	// We transport the data type from 'Maxon API' to 'Cinema API', i.e. from node to gui.
 	HybridDataType value = data.Get<HybridDataType>() iferr_return;
 	output = GeData(value);
 	return maxon::OK;
@@ -220,7 +222,7 @@ maxon::Result<maxon::Tuple<maxon::Data, maxon::Bool>> HybridDataTypeGuiConversio
 	const maxon::DataDictionary& dataEntry, const maxon::DataDictionary& guiEntry, const maxon::Data& oldData,
 	const maxon::GetExtraDataCallbackType& extraDataDelegate, const BaseDocument* doc) const
 {
-	// We transport the data type from 'classical' to 'new', i.e. from gui to node.
+	// We transport the data type from 'Cinema API' to 'Maxon API', i.e. from gui to node.
 	const HybridDataType& value = *data.GetCustomDataType<HybridDataType>();
 	return maxon::Tuple<maxon::Data, maxon::Bool>(maxon::Data(HybridDataType(value)), false);
 }

@@ -8,13 +8,13 @@
 #include "maxon/mesh_attribute_base.h"
 #include "maxon/vector4d.h"
 
-static const Int32 ID_CUSTOMDATA_TAG_VC = 431000189;
-static const Int32 ID_CUSTOMDATA_TAG_FL = 431000190;
-static const Int32 ID_CUSTOMDATA_TAG_COMMAND = 1039842;
+static const cinema::Int32 ID_CUSTOMDATA_TAG_VC = 431000189;
+static const cinema::Int32 ID_CUSTOMDATA_TAG_FL = 431000190;
+static const cinema::Int32 ID_CUSTOMDATA_TAG_COMMAND = 1039842;
 
-static const Int32 ID_POLYOBJ = 1052873;
-static const Int32 ID_POINT_INDEX_TAG = 1052874;
-static const Int32 ID_POINT_INDEX_OBJECT_EXAMPLE = 1060109;
+static const cinema::Int32 ID_POLYOBJ = 1052873;
+static const cinema::Int32 ID_POINT_INDEX_TAG = 1052874;
+static const cinema::Int32 ID_POINT_INDEX_OBJECT_EXAMPLE = 1060109;
 
 namespace maxon
 {
@@ -22,7 +22,7 @@ namespace maxon
 MAXON_MESHATTRIBUTE(ColorA32, VERTEXCOLOR);
 MAXON_DATATYPE(VERTEXCOLOR_MESHATTRIBUTE, "net.maxonexample.meshattribute.vertexcolor");
 
-MAXON_MESHATTRIBUTE(Float, FLOATTYPE);
+MAXON_MESHATTRIBUTE(cinema::Float, FLOATTYPE);
 MAXON_DATATYPE(FLOATTYPE_MESHATTRIBUTE, "net.maxonexample.meshattribute.floattype");
 
 namespace CustomDataTagClasses
@@ -46,30 +46,23 @@ public:
 
 	PointIndex() = default;
 
-	MAXON_IMPLICIT PointIndex(Int32 index) : _privateBuffer(0), _index(index)  {	}
+	MAXON_IMPLICIT PointIndex(cinema::Int32 index) : _privateBuffer(0), _index(index)  {	}
 
-	PointIndex& operator =(const PointIndex& src)
-	{
-		_index = src._index;
-		_privateBuffer = src._privateBuffer;
-		return *this;
-	}
-
-	inline Bool operator ==(const PointIndex& other) const
+	inline cinema::Bool operator ==(const PointIndex& other) const
 	{
 		return _index == other._index;
 	}
 
-	inline Bool operator <(const PointIndex& other) const
+	inline cinema::Bool operator <(const PointIndex& other) const
 	{
 		return _index < other._index;
 	}
 
 	MAXON_OPERATOR_COMPARISON(PointIndex);
 
-	inline String ToString(const FormatStatement* formatStatement = nullptr) const
+	inline cinema::String ToString(const FormatStatement* formatStatement = nullptr) const
 	{
-		return String::IntToString((Int32)_index);
+		return cinema::String::IntToString((cinema::Int32)_index);
 	}
 
 	HashInt GetHashCode() const
@@ -77,8 +70,8 @@ public:
 		return MAXON_HASHCODE(_index);
 	}
 
-	Int32 _privateBuffer = 0;
-	Int32 _index = NOTOK; // this is the point index.
+	cinema::Int32 _privateBuffer = 0;
+	cinema::Int32 _index = NOTOK; // this is the point index.
 };
 
 // Declare first the basic class datatype
@@ -100,8 +93,8 @@ namespace CustomDataTagClasses
 
 } // namespace maxon
 
-Bool RegisterCustomDataTagDescription();
-Bool RegisterCustomDataTagCommand();
-Bool RegisterPolyExample();
+cinema::Bool RegisterCustomDataTagDescription();
+cinema::Bool RegisterCustomDataTagCommand();
+cinema::Bool RegisterPolyExample();
 
 #endif // CUSTOMDATATAGS_H__

@@ -1,4 +1,4 @@
-// MAXON API header files
+// Maxon API header files
 #include "maxon/gfx_image.h"
 #include "maxon/gfx_image_storage.h"
 #include "maxon/iomemory.h"

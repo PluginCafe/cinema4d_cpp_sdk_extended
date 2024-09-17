@@ -1,4 +1,5 @@
 #include "c4d_basedraw.h"
+#include "c4d_basedocument.h"
 #include "c4d_baseobject.h"
 #include "c4d_objectdata.h"
 
@@ -10,6 +11,8 @@
 #include "overtexhandle.h"
 #include "c4d_resource.h"
 #include "c4d_basebitmap.h"
+
+using namespace cinema;
 
 /**A unique plugin ID. You must obtain this from http://www.plugincafe.com. Use this ID to create new instances of this object.*/
 static const Int32 ID_SDKEXAMPLE_OBJECTDATA_VERTEXHANDLE = 1038237;
@@ -243,6 +246,10 @@ DRAWRESULT VertexHandle::Draw(BaseObject* op, DRAWPASS drawpass, BaseDraw* bd, B
 	// in global coordinates.
 	bd->SetMatrix_Matrix(op, bh->GetMg());
 
+	const OcioConverterRef converter = bd->GetDocument()->GetColorConverter();
+	if (!converter)
+		return DRAWRESULT::SKIP;
+
 	// Loop over all the handles to.
 	for (Int32 i = 0; i < handlesCount; ++i)
 	{
@@ -256,7 +263,7 @@ DRAWRESULT VertexHandle::Draw(BaseObject* op, DRAWPASS drawpass, BaseDraw* bd, B
 		if (i == currentHandleId)
 		{
 			// The currently highlighted handled is found.
-			bd->SetPen(GetViewColor(VIEWCOLOR_SELECTION_PREVIEW));
+			bd->SetPen(GetViewColor(VIEWCOLOR_SELECTION_PREVIEW), 0);
 			// Calculate the position of the handle's end
 			Vector finalPos = handleInfo.position;
 			finalPos += Vector(handleLength * Cos(currentAngle), 0, handleLength * Sin(currentAngle));
@@ -268,7 +275,7 @@ DRAWRESULT VertexHandle::Draw(BaseObject* op, DRAWPASS drawpass, BaseDraw* bd, B
 		else
 		{
 			// Just draw the handle.
-			bd->SetPen(GetViewColor(VIEWCOLOR_HANDLES));
+			bd->SetPen(GetViewColor(VIEWCOLOR_HANDLES), 0);
 			bd->DrawHandle(handleInfo.position, DRAWHANDLE::BIG, 0);
 		}
 	}

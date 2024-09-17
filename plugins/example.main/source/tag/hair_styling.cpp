@@ -7,6 +7,8 @@
 
 #include "thairsdkstyling.h"
 
+using namespace cinema;
+
 //////////////////////////////////////////////////////////////////////////
 
 class HairStylingTag : public TagData

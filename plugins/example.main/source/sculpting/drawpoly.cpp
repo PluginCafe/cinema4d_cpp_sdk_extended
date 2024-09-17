@@ -7,6 +7,8 @@
 
 #define ID_SCULPT_DRAWPOLY_TOOL	1027981
 
+using namespace cinema;
+
 class SculptDrawPolyTool : public DescriptionToolData
 {
 public:

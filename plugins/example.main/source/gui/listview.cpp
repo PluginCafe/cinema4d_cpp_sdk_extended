@@ -9,6 +9,8 @@
 #include <stdarg.h>
 #include "maxon/utilities/sprintf_safe.h"
 
+using namespace cinema;
+
 struct TestData
 {
 	Int32 id;

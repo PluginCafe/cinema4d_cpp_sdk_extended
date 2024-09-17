@@ -5,24 +5,29 @@
 #include "gui.h"
 #include "maxon/material/materialexport.h"
 
+namespace cinema
+{
+
 class BaseMaterial;
+
+} // namespace cinema
 
 namespace maxonsdk
 {
 
-class MaterialExportCommand : public CommandData
+class MaterialExportCommand : public cinema::CommandData
 {
 public:
-	virtual Bool Execute(BaseDocument* doc, GeDialog* parentManager) override;
+	virtual cinema::Bool Execute(cinema::BaseDocument* doc, cinema::GeDialog* parentManager) override;
 
-	virtual Int32 GetState(BaseDocument* doc, GeDialog* parentManager)  override;
+	virtual cinema::Int32 GetState(cinema::BaseDocument* doc, cinema::GeDialog* parentManager)  override;
 
 	static maxon::Result<void> Register();
 
 private:
-	static BaseMaterial* GetSelectedMaterial(BaseDocument* baseDocument);
+	static cinema::BaseMaterial* GetSelectedMaterial(cinema::BaseDocument* baseDocument);
 
-	static maxon::Result<maxon::material::MaterialExchangeData> ExportMaterial(const BaseMaterial& baseMaterial);
+	static maxon::Result<maxon::material::MaterialExchangeData> ExportMaterial(const cinema::BaseMaterial& baseMaterial);
 
 	static void PrintMaterialData(const maxon::material::MaterialExchangeData& materialData);
 

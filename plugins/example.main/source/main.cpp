@@ -34,6 +34,9 @@
 
 CheckLicense *g_checkLic = nullptr;
 
+namespace cinema
+{
+
 Bool PluginStart()
 {
 	#ifdef DO_LICENSING_CHECK
@@ -447,3 +450,5 @@ Bool PluginMessage(Int32 id, void* data)
 
 	return false;
 }
+
+} // namespace cinema

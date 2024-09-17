@@ -123,7 +123,7 @@ maxon::Result<void> NodeSpaceExample::ConfigurePreviewImageRequest(maxon::DataDi
 	return maxon::OK;
 }
 
-maxon::Result<Bool> NodeSpaceExample::NodeMaterialMessageHandler(const maxon::nodes::NodesGraphModelRef& graph, Int32 messageId, void* messageData, void* nodeMaterial)
+maxon::Result<maxon::Bool> NodeSpaceExample::NodeMaterialMessageHandler(const maxon::nodes::NodesGraphModelRef& graph, maxon::Int32 messageId, void* messageData, void* nodeMaterial)
 {
 	return false;
 }

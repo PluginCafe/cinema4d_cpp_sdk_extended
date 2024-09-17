@@ -168,13 +168,15 @@ static Result<void> CallLambdaDelegates()
 	sampleFunctionByReferenceStr = "Lambda ByLValueReference assignment";
 	fn6(sampleFunctionByReferenceStr);
 
+	using CharPtr = Char*;
+
 	// Parameter by rvalue reference.
 	auto lambdaByRValueReference =
-		[](Char*&& str)
+		[](CharPtr&& str)
 		{
 			DiagnosticOutput("@", str);
 		};
-	Delegate<void(Char*&&)> fn7(lambdaByRValueReference);
+	Delegate<void(CharPtr&&)> fn7(lambdaByRValueReference);
 	if (fn7.IsStaticFunctionPointer() == true)
 		return IllegalStateError(MAXON_SOURCE_LOCATION);
 	Char* sampleFunctionMoveStr = const_cast<Char*>("Lambda ByRValueReference constructor");
@@ -224,13 +226,15 @@ static Result<void> CallByReferenceDelegates()
 	const Char* sampleFunctionByReferenceStr = "Lambda ByLValueReference CreateByReference";
 	fn6(sampleFunctionByReferenceStr);
 
+	using CharPtr = Char*;
+
 	// Parameter by rvalue reference.
 	auto lambdaByRValueReference =
-		[](Char*&& str)
+		[](CharPtr&& str)
 		{
 			DiagnosticOutput("@", str);
 		};
-	auto fn7 = Delegate<void(Char*&&)>::CreateByReference(lambdaByRValueReference);
+	auto fn7 = Delegate<void(CharPtr&&)>::CreateByReference(lambdaByRValueReference);
 	if (fn7.IsStaticFunctionPointer() == true)
 		return IllegalStateError(MAXON_SOURCE_LOCATION);
 	Char* sampleFunctionMoveStr = const_cast<Char*>("Lambda ByRValueReference CreateByReference");

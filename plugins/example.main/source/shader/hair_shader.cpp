@@ -4,6 +4,8 @@
 
 #include "lib_hair.h"
 
+using namespace cinema;
+
 class HairSDKShader : public ShaderData
 {
 	INSTANCEOF(HairSDKShader, ShaderData)

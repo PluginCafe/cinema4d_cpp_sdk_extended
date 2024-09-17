@@ -10,6 +10,8 @@
 /// The example consists of two small, simple helper functions and the actual ObjectData class.
 //----------------------------------------------------------------------------------------
 
+using namespace cinema;
+
 // At first the two helper functions to print file errors to the console.
 
 //----------------------------------------------------------------------------------------

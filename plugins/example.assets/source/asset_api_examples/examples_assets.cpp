@@ -30,6 +30,8 @@
 
 #include "examples_assets.h"
 
+using namespace cinema;
+
 //! [create_arbitrary_file_asset]
 maxon::Result<maxon::AssetDescription> CreateArbitraryFileAsset(
 	const maxon::AssetRepositoryRef& repository, const maxon::Url& url, const maxon::Id& category)
@@ -365,7 +367,7 @@ maxon::Result<void> LoadAssets(const maxon::BaseArray<maxon::AssetDescription>& 
 	}
 
 	// Load all assets. This might invoke progress bar popup dialog when an asset must be downloaded.
-	maxon::AssetManagerInterface::LoadAssets(lookupRepo, assetToLoad) iferr_return;
+	maxon::AssetManagerInterface::LoadAssets(lookupRepo, assetToLoad, maxon::GetZeroRef<maxon::GraphModelPresenterRef>(), maxon::GetZeroRef<maxon::nodes::NodesGraphModelRef>(), "example"_s) iferr_return;
 	ApplicationOutput("Loaded @ assets.", assetCollection.GetCount());
 
 	return maxon::OK;

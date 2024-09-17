@@ -18,8 +18,11 @@
 #include "c4d_resource.h"
 
 // Forward declaration
-Bool RegisterAssetApiBasics();
-Bool RegisterDotsDataAndGui();
+cinema::Bool RegisterAssetApiBasics();
+cinema::Bool RegisterDotsDataAndGui();
+
+namespace cinema
+{
 
 Bool PluginStart()
 {
@@ -35,7 +38,7 @@ void PluginEnd()
 
 }
 
-Bool PluginMessage(::Int32 id, void* data)
+Bool PluginMessage(Int32 id, void* data)
 {
 	switch (id)
 	{
@@ -49,3 +52,5 @@ Bool PluginMessage(::Int32 id, void* data)
 	}
 	return false;
 }
+
+} // namespace cinema

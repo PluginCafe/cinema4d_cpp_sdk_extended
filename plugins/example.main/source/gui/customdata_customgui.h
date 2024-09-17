@@ -33,18 +33,18 @@ class DotsCustomDataTypeClass; // forward declaration
 //---------------------------
 /// the actual data
 //---------------------------
-class iCustomDataTypeDots : public iCustomDataType<iCustomDataTypeDots, id_sdk_example_customdatatype_dots>
+class iCustomDataTypeDots : public cinema::iCustomDataType<iCustomDataTypeDots, id_sdk_example_customdatatype_dots>
 {
 	friend class DotsCustomDataTypeClass;
 
 public:
 	iCustomDataTypeDots() = default;
-	explicit iCustomDataTypeDots(const maxon::BaseArray<Vector> &points);
+	explicit iCustomDataTypeDots(const maxon::BaseArray<cinema::Vector> &points);
 
 	//---------------------------
-	// The example "how to use a Classic API UI and Datatype inside the node editor" 
+	// The example "how to use a Cinema API UI and Datatype inside the node editor" 
 	// need some extra code.
-	// In order to use the Classic API data type and its UI in the node editor, 
+	// In order to use the Cinema API data type and its UI in the node editor, 
 	// a copy constructor is mandatory, an assignment operator, and 
 	// the DescribeIO function or the data will not be properly saved to the cinema4D's project file.
 	
@@ -63,12 +63,12 @@ public:
 	//---------------------------
 	
 	// The accessors that will be used in several functions.
-	maxon::BaseArray<Vector> GetValue() const;
-	void SetValue(const maxon::BaseArray<Vector> &value);
+	maxon::BaseArray<cinema::Vector> GetValue() const;
+	void SetValue(const maxon::BaseArray<cinema::Vector> &value);
 
 
 	// an array of Vectors
-	maxon::BaseArray<Vector> _points;
+	maxon::BaseArray<cinema::Vector> _points;
 
 };
 // For the Node API example, customDataTypeDot need to be registered as a Maxon Data.
@@ -78,88 +78,88 @@ MAXON_DATATYPE(iCustomDataTypeDots, "net.maxonsdk.datatype.iCustomDataTypeDots")
 //---------------------------
 /// The user area used to display the custom datatype
 //---------------------------
-class DotsUserArea : public GeUserArea
+class DotsUserArea : public cinema::GeUserArea
 {
 public:
 	DotsUserArea();
 	virtual ~DotsUserArea();
 
-  virtual Bool Init();
-  virtual Bool InitValues();
-  virtual Bool GetMinSize(Int32& w, Int32& h);
+  virtual cinema::Bool Init();
+  virtual cinema::Bool InitValues();
+  virtual cinema::Bool GetMinSize(cinema::Int32& w, cinema::Int32& h);
 
-  virtual void DrawMsg(Int32 x1, Int32 y1, Int32 x2, Int32 y2, const BaseContainer& msg);
-  virtual Bool InputEvent(const BaseContainer& msg);
+  virtual void DrawMsg(cinema::Int32 x1, cinema::Int32 y1, cinema::Int32 x2, cinema::Int32 y2, const cinema::BaseContainer& msg);
+  virtual cinema::Bool InputEvent(const cinema::BaseContainer& msg);
 
 	iCustomDataTypeDots* _data;
 };
 
 //------------
-/// the iCustomGui dialog hosting the user area 
+/// the cinema::iCustomGui dialog hosting the user area 
 //------------
 enum
 {
 	ID_USERAREA = 2000, ///< The ID of the user area GUI element.
 };
 
-class iExampleCustomGUIDots : public iCustomGui
+class iExampleCustomGUIDots : public cinema::iCustomGui
 {
-	INSTANCEOF(iExampleCustomGUIDots, iCustomGui)
+	INSTANCEOF(iExampleCustomGUIDots, cinema::iCustomGui)
 
 private:
-	Bool _tristate;
+	cinema::Bool _tristate;
 	iCustomDataTypeDots _data;
 	DotsUserArea _dotsUserArea;
 
 public:
-	iExampleCustomGUIDots(const BaseContainer &settings, CUSTOMGUIPLUGIN *plugin);
-	virtual Bool CreateLayout();
-	virtual Bool InitValues();
-	virtual Bool Command(Int32 id, const BaseContainer &msg);
-	virtual Bool SetData(const TriState<GeData> &tristate);
-	virtual TriState<GeData> GetData();
+	iExampleCustomGUIDots(const cinema::BaseContainer &settings, cinema::CUSTOMGUIPLUGIN *plugin);
+	virtual cinema::Bool CreateLayout();
+	virtual cinema::Bool InitValues();
+	virtual cinema::Bool Command(cinema::Int32 id, const cinema::BaseContainer &msg);
+	virtual cinema::Bool SetData(const cinema::TriState<cinema::GeData> &tristate);
+	virtual cinema::TriState<cinema::GeData> GetData();
 };
 
 //---------------------
 /// custom GUI data
 //---------------------
-static Int32 g_stringtable[] = { id_sdk_example_customdatatype_dots };
+static cinema::Int32 g_stringtable[] = { id_sdk_example_customdatatype_dots };
 
-class SDKExampleCustomGUIDots : public CustomGuiData
+class SDKExampleCustomGUIDots : public cinema::CustomGuiData
 {
 public:
-	virtual Int32 GetId();
-  virtual CDialog* Alloc(const BaseContainer& settings);
-  virtual void Free(CDialog* dlg, void* userdata);
-  virtual const Char* GetResourceSym();
-  virtual CustomProperty* GetProperties();
-  virtual Int32 GetResourceDataType(Int32*& table);
+	virtual cinema::Int32 GetId();
+  virtual cinema::CDialog* Alloc(const cinema::BaseContainer& settings);
+  virtual void Free(cinema::CDialog* dlg, void* userdata);
+  virtual const cinema::Char* GetResourceSym();
+  virtual cinema::CustomProperty* GetProperties();
+  virtual cinema::Int32 GetResourceDataType(cinema::Int32*& table);
 
 };
 
 //---------------------------
 /// The datatype class
 //---------------------------
-class DotsCustomDataTypeClass : public CustomDataTypeClass
+class DotsCustomDataTypeClass : public cinema::CustomDataTypeClass
 {
-  INSTANCEOF(DotsCustomDataTypeClass, CustomDataTypeClass)
+  INSTANCEOF(DotsCustomDataTypeClass, cinema::CustomDataTypeClass)
 
 public:
-  virtual Int32 GetId();
-  virtual CustomDataType* AllocData();
-  virtual void FreeData(CustomDataType* data);
-  virtual Bool CopyData(const CustomDataType* src, CustomDataType* dst, AliasTrans* aliastrans);
-  virtual Int32 Compare(const CustomDataType* d1, const CustomDataType* d2);
-  virtual Bool WriteData(const CustomDataType* t_d, HyperFile* hf);
-  virtual Bool ReadData(CustomDataType* t_d, HyperFile* hf, Int32 level);
-  virtual const Char* GetResourceSym();
-  virtual void GetDefaultProperties(BaseContainer& data);
+  virtual cinema::Int32 GetId();
+  virtual cinema::CustomDataType* AllocData();
+  virtual void FreeData(cinema::CustomDataType* data);
+  virtual cinema::Bool CopyData(const cinema::CustomDataType* src, cinema::CustomDataType* dst, cinema::AliasTrans* aliastrans);
+  virtual cinema::Int32 Compare(const cinema::CustomDataType* d1, const cinema::CustomDataType* d2);
+  virtual cinema::Bool WriteData(const cinema::CustomDataType* t_d, cinema::HyperFile* hf);
+  virtual cinema::Bool ReadData(cinema::CustomDataType* t_d, cinema::HyperFile* hf, cinema::Int32 level);
+  virtual const cinema::Char* GetResourceSym();
+  virtual void GetDefaultProperties(cinema::BaseContainer& data);
 };
 
 //---------------------------
 /// Register
 //---------------------------
-Bool RegisterCustomDatatypeCustomGUI();
+cinema::Bool RegisterCustomDatatypeCustomGUI();
 
 #include "customdata_customgui1.hxx"
 #include "customdata_customgui2.hxx"

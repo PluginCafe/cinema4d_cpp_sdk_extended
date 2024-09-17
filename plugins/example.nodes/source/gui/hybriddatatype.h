@@ -20,22 +20,22 @@ namespace maxonsdk
 // This way we ensure that our node space registration is performed afterwards.
 MAXON_DEPENDENCY(HybridDataTypeRegistration);
 
-// This data type is a bit special: it's part of the 'classical' and 'new' APIs of Cinema4D.
+// This data type is a bit special: it's part both of the Cinema and Maxon API.
 // Its purpose is to show how custom data types can be used in the context of nodes.
-class HybridDataType : public iCustomDataType<HybridDataType, HYBRIDDATATYPE_ID>
+class HybridDataType : public cinema::iCustomDataType<HybridDataType, HYBRIDDATATYPE_ID>
 {
 public:
 
 	HybridDataType() = default;
 
-	explicit HybridDataType(Float value);
+	explicit HybridDataType(cinema::Float value);
 
-	Bool operator ==(const HybridDataType& b) const
+	cinema::Bool operator ==(const HybridDataType& b) const
 	{
 		return _value == b._value;
 	}
 
-	Bool operator <(const HybridDataType& b) const
+	cinema::Bool operator <(const HybridDataType& b) const
 	{
 		return _value < b._value;
 	}
@@ -47,48 +47,48 @@ public:
 
 	// This method is used to persist static, non-animated data.
 	// This includes the storage of the default value inside the JSON file.
-	// Key-framed data is stored via the 'classical' ReadData/WriteData functions on HybridDataTypeClass.
+	// Key-framed data is stored via the Cinema API ReadData/WriteData functions on HybridDataTypeClass.
 	static maxon::Result<void> DescribeIO(const maxon::DataSerializeInterface& stream);
 
 	// The accessors that we use.
-	Float GetValue() const;
-	void SetValue(Float value);
+	cinema::Float GetValue() const;
+	void SetValue(cinema::Float value);
 
 private:
 
 	// In order to assert that we don't wrongly reinterpret with maxon::Float, we add some rather random padding.
-	Char _startPadding = 'A';
-	Float _value = 1.23; // The actual value that can be modified in the GUI.
-	Char _endPadding = 'Z';
+	cinema::Char _startPadding = 'A';
+	cinema::Float _value = 1.23; // The actual value that can be modified in the GUI.
+	cinema::Char _endPadding = 'Z';
 };
 
 MAXON_DATATYPE(HybridDataType, "net.maxonsdk.datatype.hybriddatatype");
 
-// This class handles our custom data type with respect to the 'classical' data type API.
-class HybridDataTypeClass : public CustomDataTypeClass
+// This class handles our custom data type with respect to the Cinema API.
+class HybridDataTypeClass : public cinema::CustomDataTypeClass
 {
-	INSTANCEOF(HybridDataTypeClass, CustomDataTypeClass)
+	INSTANCEOF(HybridDataTypeClass, cinema::CustomDataTypeClass)
 
 public:
-	virtual Int32 GetId() override;
+	virtual cinema::Int32 GetId() override;
 
-	virtual CustomDataType* AllocData() override;
+	virtual cinema::CustomDataType* AllocData() override;
 
-	virtual void FreeData(CustomDataType* data) override;
+	virtual void FreeData(cinema::CustomDataType* data) override;
 
-	virtual Bool CopyData(const CustomDataType* src, CustomDataType* dst, AliasTrans* aliastrans) override;
+	virtual cinema::Bool CopyData(const cinema::CustomDataType* src, cinema::CustomDataType* dst, cinema::AliasTrans* aliastrans) override;
 
-	virtual Int32 Compare(const CustomDataType* a, const CustomDataType* b) override;
+	virtual cinema::Int32 Compare(const cinema::CustomDataType* a, const cinema::CustomDataType* b) override;
 
-	virtual Bool WriteData(const CustomDataType* t_d, HyperFile* hf) override;
+	virtual cinema::Bool WriteData(const cinema::CustomDataType* t_d, cinema::HyperFile* hf) override;
 
-	virtual Bool ReadData(CustomDataType* t_d, HyperFile* hf, Int32 level) override;
+	virtual cinema::Bool ReadData(cinema::CustomDataType* t_d, cinema::HyperFile* hf, cinema::Int32 level) override;
 
-	virtual Bool InterpolateKeys(GeData& res, const GeData& t_dataA, const GeData& t_dataB, Float mix, Int32 flags) override;
+	virtual cinema::Bool InterpolateKeys(cinema::GeData& res, const cinema::GeData& t_dataA, const cinema::GeData& t_dataB, cinema::Float mix, cinema::Int32 flags) override;
 
-	virtual const Char* GetResourceSym() override;
+	virtual const cinema::Char* GetResourceSym() override;
 
-	virtual void GetDefaultProperties(BaseContainer& data) override;
+	virtual void GetDefaultProperties(cinema::BaseContainer& data) override;
 
 	static maxon::Result<void> RegisterDataType();
 };

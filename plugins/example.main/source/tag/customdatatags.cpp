@@ -6,6 +6,8 @@
 #include "c4d_commanddata.h"
 #include "c4d_resource.h"
 
+using namespace cinema;
+
 namespace maxon
 {
 
@@ -32,7 +34,7 @@ public:
 			return IllegalArgumentError(MAXON_SOURCE_LOCATION);
 
 		bd->SetMatrix_Screen();
-		bd->SetPen(Vector(1.0, 0.0, 0.0));
+		bd->SetPen(Vector(1.0, 0.0, 0.0), SET_PEN_USE_PROFILE_COLOR);
 		bd->DrawLine(Vector(100.0, 100.0, 0.0), Vector(200.0, 200.0, 0.0), 0);
 		bd->SetMatrix_Matrix(nullptr, Matrix());
 
@@ -331,7 +333,7 @@ public:
 			return IllegalArgumentError(MAXON_SOURCE_LOCATION);
 
 		bd->SetMatrix_Screen();
-		bd->SetPen(Vector(1.0, 1.0, 0.0));
+		bd->SetPen(Vector(1.0, 1.0, 0.0), SET_PEN_USE_PROFILE_COLOR);
 		bd->DrawLine(Vector(100.0, 100.0, 0.0), Vector(200.0, 200.0, 0.0), 0);
 		bd->SetMatrix_Matrix(nullptr, Matrix());
 

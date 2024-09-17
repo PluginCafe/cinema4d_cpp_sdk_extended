@@ -6,6 +6,8 @@
 #include "maxon/nodesgraph_helpers.h"
 #include "maxon/valuereceiver.h"
 
+using namespace cinema;
+
 namespace maxonsdk
 {
 
@@ -45,7 +47,7 @@ maxon::Result<void> GradientPreviewProvider::Initialize(maxon::DataDictionaryObj
 		const maxon::GraphModelRef& graph = gradientBundle.GetGraph();
 		maxon::nodes::NodesGraphModelRef nodeGraph = maxon::Cast<maxon::nodes::NodesGraphModelRef>(graph);
 		maxon::nodes::NodesGraphModelRef nodeGraphClone = nodeGraph.Clone() iferr_return;
-		maxon::nodes::NodesGraphHelpersInterface::SetOriginal(nodeGraphClone, nodeGraph) iferr_return;
+		maxon::nodes::NodesGraphHelpers::SetOriginal(nodeGraphClone, nodeGraph) iferr_return;
 		_clonedGradientBundle = nodeGraphClone.GetNode(gradientBundle.GetPath());
 	}
 
@@ -92,18 +94,18 @@ maxon::Result<GradientBakingData> GradientPreviewProvider::InitializeGradientDat
 		maxon::GraphNode biasPort = bundleKnot.FindChild(maxonexample::DATATYPE::PORTBUNDLE::GRADIENT::BIAS) iferr_return;
 		maxon::GraphNode interpolationPort = bundleKnot.FindChild(maxonexample::DATATYPE::PORTBUNDLE::GRADIENT::INTERPOLATION) iferr_return;
 
-		const maxon::Float position = positionPort.GetEffectivePortValue<maxon::Float>().GetValueOrDefault() iferr_return;
+		const maxon::Float position = positionPort.GetEffectivePortValue<maxon::Float>().GetOrDefault() iferr_return;
 		gradientData._sortedKnots.InsertKnot(maxon::Float32(position)) iferr_return;
 
 		// We only support fixed values for these ports and can store them right away as a result.
 		GradientBakingData::KnotData knotData;
-		const maxon::ColorA colorValue = colorPort.GetEffectivePortValue<maxon::ColorA>().GetValueOrDefault() iferr_return;
+		const maxon::ColorA colorValue = colorPort.GetEffectivePortValue<maxon::ColorA>().GetOrDefault() iferr_return;
 		knotData._value = maxon::ColorA32(colorValue);
 
-		const maxon::Float biasValue = biasPort.GetEffectivePortValue<maxon::Float>().GetValueOrDefault() iferr_return;
+		const maxon::Float biasValue = biasPort.GetEffectivePortValue<maxon::Float>().GetOrDefault() iferr_return;
 		knotData._bias = maxon::Float32(biasValue);
 
-		const maxon::InternedId interpolationMode = interpolationPort.GetEffectivePortValue<maxon::InternedId>().GetValueOrDefault() iferr_return;
+		const maxon::InternedId interpolationMode = interpolationPort.GetEffectivePortValue<maxon::InternedId>().GetOrDefault() iferr_return;
 		knotData._interpolationMode = interpolationMode.GetHashCode();
 		gradientData._knotsData.Append(std::move(knotData)) iferr_return;
 

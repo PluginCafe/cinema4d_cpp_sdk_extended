@@ -17,6 +17,7 @@
 ///
 //----------------------------------------------------------------------------------------
 
+using namespace cinema;
 
 //----------------------------------------------------------------------------------------
 /// Snap mode example to snap to null objects.
@@ -150,7 +151,7 @@ Bool NullSnap::Draw(const SnapStruct& ss, BaseDocument* doc, BaseDraw* bd, BaseD
 	if (_targetObject == nullptr)
 		return true;
 
-	bd->SetPen(Vector(1.0));
+	bd->SetPen(Vector(1.0), SET_PEN_USE_PROFILE_COLOR);
 	bd->SetMatrix_Screen();  
 
 	// get the screen space position of the target object

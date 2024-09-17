@@ -7,6 +7,8 @@
 #define LAYER_SHADER_BROWSER_ID	450000054
 #define ICON_SIZE								20
 
+using namespace cinema;
+
 class MyTreeViewFunctions : public TreeViewFunctions
 {
 	void*		GetFirst(void* root, void* userdata)
@@ -20,8 +22,8 @@ class MyTreeViewFunctions : public TreeViewFunctions
 
 	void*		GetDown(void* root, void* userdata, void* obj)
 	{
-		LayerShaderLayer* l = (LayerShaderLayer*)obj;
-		if (l->GetType() == TypeFolder)
+		cinema::LayerShaderLayer* l = (cinema::LayerShaderLayer*)obj;
+		if (l->GetType() == cinema::TypeFolder)
 		{
 			GeData d;
 			if (l->GetParameter(LAYER_S_PARAM_FOLDER_FIRSTCHILD, d))
@@ -33,12 +35,12 @@ class MyTreeViewFunctions : public TreeViewFunctions
 
 	void*		GetNext(void* root, void* userdata, void* obj)
 	{
-		return static_cast<LayerShaderLayer*>(obj)->GetNext();
+		return static_cast<cinema::LayerShaderLayer*>(obj)->GetNext();
 	}
 
 	Bool IsSelected(void* root, void* userdata, void* obj)
 	{
-		LayerShaderLayer* l = (LayerShaderLayer*)obj;
+		cinema::LayerShaderLayer* l = (cinema::LayerShaderLayer*)obj;
 		GeData d;
 		if (l->GetParameter(LAYER_S_PARAM_ALL_SELECTED, d))
 			return d.GetInt32() != 0;
@@ -57,7 +59,7 @@ class MyTreeViewFunctions : public TreeViewFunctions
 
 	void DrawCell(void* root, void* userdata, void* obj, Int32 col, DrawInfo* drawinfo, const GeData& bgColor)
 	{
-		LayerShaderLayer* l = (LayerShaderLayer*)obj;
+		cinema::LayerShaderLayer* l = (cinema::LayerShaderLayer*)obj;
 		if (col == 'tree')
 		{
 			BaseBitmap* bm = l->GetPreview();
@@ -71,8 +73,8 @@ class MyTreeViewFunctions : public TreeViewFunctions
 
 	Bool IsOpened(void* root, void* userdata, void* obj)
 	{
-		LayerShaderLayer* l = (LayerShaderLayer*)obj;
-		if (l->GetType() == TypeFolder)
+		cinema::LayerShaderLayer* l = (cinema::LayerShaderLayer*)obj;
+		if (l->GetType() == cinema::TypeFolder)
 		{
 			GeData d;
 			if (l->GetParameter(LAYER_S_PARAM_FOLDER_OPEN, d))
@@ -84,7 +86,7 @@ class MyTreeViewFunctions : public TreeViewFunctions
 
 	String GetName(void* root, void* userdata, void* obj)
 	{
-		LayerShaderLayer* l = (LayerShaderLayer*)obj;
+		cinema::LayerShaderLayer* l = (cinema::LayerShaderLayer*)obj;
 		return l->GetName(GetActiveDocument());
 	}
 
@@ -100,14 +102,14 @@ class MyTreeViewFunctions : public TreeViewFunctions
 
 	void Open(void* root, void* userdata, void* obj, Bool onoff)
 	{
-		LayerShaderLayer* l = (LayerShaderLayer*)obj;
+		cinema::LayerShaderLayer* l = (cinema::LayerShaderLayer*)obj;
 		l->SetParameter(LAYER_S_PARAM_FOLDER_OPEN, GeData((Int32)onoff));
 		static_cast<LayerShaderBrowser*>(userdata)->UpdateAll(true);
 	}
 
 	void Select(void* root, void* userdata, void* obj, Int32 mode)
 	{
-		static_cast<LayerShaderBrowser*>(userdata)->ShowInfo(static_cast<LayerShaderLayer*>(obj));
+		static_cast<LayerShaderBrowser*>(userdata)->ShowInfo(static_cast<cinema::LayerShaderLayer*>(obj));
 	}
 };
 
@@ -220,7 +222,7 @@ void LayerShaderBrowser::UpdateAll(Bool msg)
 		str = str + String(# expr) + "    " + String::FloatToString(v.x) + ", " + String::FloatToString(v.y) + ", " + String::FloatToString(v.z) + "\n";	\
 	}
 
-void LayerShaderBrowser::ShowInfo(LayerShaderLayer* l)
+void LayerShaderBrowser::ShowInfo(cinema::LayerShaderLayer* l)
 {
 	String str;
 	GeData d;
@@ -232,7 +234,7 @@ void LayerShaderBrowser::ShowInfo(LayerShaderLayer* l)
 
 		switch (l->GetType())
 		{
-			case TypeFolder:
+			case cinema::TypeFolder:
 				ADD_PARAMETER_L(LAYER_S_PARAM_FOLDER_MODE);
 				ADD_PARAMETER_R(LAYER_S_PARAM_FOLDER_BLEND);
 				break;

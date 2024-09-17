@@ -4,6 +4,8 @@
 #include "c4d_symbols.h"
 #include "main.h"
 
+using namespace cinema;
+
 class Gravitation : public ObjectData
 {
 public:
@@ -35,7 +37,7 @@ DRAWRESULT Gravitation::Draw(BaseObject* op, DRAWPASS drawpass, BaseDraw* bd, Ba
 	p11 = p9 + Vector(5.0, 5.0, 0.0);
 	p12 = p9 + Vector(-5.0, 5.0, 0.0);
 
-	bd->SetPen(bd->GetObjectColor(bh, op));
+	bd->SetPen(bd->GetObjectColor(bh, op), SET_PEN_USE_PROFILE_COLOR);
 	bd->DrawLine(p9, p10, 0);
 	bd->DrawLine(p10, p11, 0);
 	bd->DrawLine(p10, p12, 0);

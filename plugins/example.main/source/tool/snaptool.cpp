@@ -20,6 +20,8 @@
 
 #define ID_SNAPTOOL 1030693
 
+using namespace cinema;
+
 class SnapTool : public DescriptionToolData
 {
 public:

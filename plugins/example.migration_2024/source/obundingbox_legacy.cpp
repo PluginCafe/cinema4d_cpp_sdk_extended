@@ -28,6 +28,8 @@
 #include "c4d_symbols.h"
 #include "oboundingbox.h"
 
+using namespace cinema;
+
 /// @brief Registers the plugin hook for #Oboundingbox.
 Bool RegisterBoundingBoxObject();
 

@@ -20,7 +20,7 @@ public:
 	
 	static maxon::Result<void> ConfigurePreviewImageRequest(maxon::DataDictionaryObjectRef request);
 
-	static maxon::Result<Bool> NodeMaterialMessageHandler(const maxon::nodes::NodesGraphModelRef& graph, Int32 messageId, void* messageData, void* nodeMaterial);
+	static maxon::Result<maxon::Bool> NodeMaterialMessageHandler(const maxon::nodes::NodesGraphModelRef& graph, maxon::Int32 messageId, void* messageData, void* nodeMaterial);
 	
 	MAXON_METHOD maxon::Result<void> Init(maxon::DataDictionary spaceData);
 	

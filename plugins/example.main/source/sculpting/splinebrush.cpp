@@ -9,6 +9,8 @@
 
 #define SCULPTBRUSH_SDK_EXAMPLE_SPLINE 1032294 	//You MUST get your own ID from www.plugincafe.com
 
+using namespace cinema;
+
 struct SplineStrokeData
 {
 	Bool	 firstHit;

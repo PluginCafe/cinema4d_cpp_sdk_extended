@@ -3,12 +3,14 @@
 #include "business_logic.h"
 #include "c4d_symbols.h"
 
-// classic API header files
+// Cinema API header files
 #include "c4d_commandplugin.h"
 #include "c4d_gui.h"
 #include "c4d_general.h"
 #include "c4d_basedocument.h"
 #include "c4d_resource.h"
+
+using namespace cinema;
 
 namespace microsdk
 {

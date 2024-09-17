@@ -7,6 +7,8 @@
 
 #define FILE_VERSION 0
 
+using namespace cinema;
+
 class SculptLoaderData : public SceneLoaderData
 {
 public:

@@ -11,6 +11,8 @@
 #include "oatom.h"
 #include "main.h"
 
+using namespace cinema;
+
 class AtomObject : public ObjectData
 {
 	INSTANCEOF(AtomObject, ObjectData)

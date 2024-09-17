@@ -9,6 +9,8 @@
 
 #include "ohairsdkforce.h"
 
+using namespace cinema;
+
 //////////////////////////////////////////////////////////////////////////
 
 class HairForceObject : public ObjectData

@@ -5,6 +5,8 @@
 #include "omorphmixer.h"
 #include "main.h"
 
+using namespace cinema;
+
 #define MAXTARGETS 100
 
 class MorphMixerObject : public ObjectData

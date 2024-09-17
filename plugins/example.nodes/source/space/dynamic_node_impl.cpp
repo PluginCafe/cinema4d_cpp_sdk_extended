@@ -43,8 +43,8 @@ public:
 		codePort.SetValue(maxon::nodes::TemplateParameter, true) iferr_return;
 
 		// Get the template argument for the code.
-		const String& code = args.GetValueArgument<String>(codePort).GetValueOrDefault();
-		Int order = 0;
+		const cinema::String& code = args.GetValueArgument<cinema::String>(codePort).GetOrDefault();
+		maxon::Int order = 0;
 
 		// Parse code, here we just split the code into its comma-separated parts and create a port for each part.
 		code.Split(","_s, true,
@@ -69,7 +69,7 @@ public:
 					}
 					else if (part[0] == 's')
 					{
-						// Create a port of type String.
+						// Create a port of type cinema::String.
 						port.SetType<maxon::String>() iferr_return;
 						port.SetValue(maxon::NODE::BASE::NAME, part) iferr_return;
 					}

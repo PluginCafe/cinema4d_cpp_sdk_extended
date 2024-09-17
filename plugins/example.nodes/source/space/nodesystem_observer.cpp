@@ -121,7 +121,7 @@ maxon::Result<void> NodeSystemChangedMonitor::RegisterHandler(maxon::UInt64 hand
 void NodeSystemChangedMonitor::RemoveHandler(maxon::UInt64 handlerId)
 {
 	maxon::ScopedLock guard(_lock);
-	_handlers.Erase(handlerId) iferr_ignore("");
+	_handlers.Erase(handlerId) iferr_ignore("missing error handling");
 }
 
 void NodeSystemChangedMonitor::NotifySystemChanged()

@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include "activeobject.h"
 
+using namespace cinema;
+
 enum
 {
 	IDC_VARIABLE_TAG_INFO1 = 1000,

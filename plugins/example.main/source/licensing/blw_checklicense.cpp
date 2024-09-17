@@ -8,9 +8,10 @@
 
 #include "maxon/file_utilities.h"
 
-
 #include "blw_crypt.h"
 #include "blw_checklicense.h"
+
+using namespace cinema;
 
 maxon::Result<maxon::String> CheckLicense::RetrieveMD5FromUrl(const maxon::Url &in_url)
 {

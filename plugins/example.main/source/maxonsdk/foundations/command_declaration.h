@@ -6,7 +6,7 @@
 #ifndef COMMAND_DECLARATION_H__
 #define COMMAND_DECLARATION_H__
 
-// MAXON API header file
+// Maxon API header file
 #include "maxon/commandbase.h"
 
 

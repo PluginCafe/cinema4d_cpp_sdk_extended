@@ -30,6 +30,8 @@
 #include "c4d_symbols.h"
 #include "oboundingbox.h"
 
+using namespace cinema;
+
 /// @brief Locks access to the field #_get_display_mode_count of all BoundingBoxObject instances. 
 maxon::Spinlock g_boundingbox_object_data_lock;
 
@@ -80,7 +82,7 @@ public:
 	virtual Bool Message(GeListNode* node, Int32 type, void* t_data); 
 
 	/// @brief Called by Cinema 4D to gather dependency information on scene elements.
-	/// @details This method realizes the new dependency information system of the classic API.
+	/// @details This method realizes the new dependency information system of the Cinema API.
 	virtual maxon::Result<Bool> GetAccessedObjects(
 		const BaseList2D* node, METHOD_ID 	method, AccessedObjectsCallback& access) const;
 };

@@ -1,4 +1,4 @@
-// MAXON API header files
+// Maxon API header files
 #include "maxon/unittest.h"
 #include "maxon/lib_math.h"
 

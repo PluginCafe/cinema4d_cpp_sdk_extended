@@ -50,6 +50,8 @@ fi
 
 #include "main.h"
 
+using namespace cinema;
+
 Float g_lastProgressValue = -1.0;
 RENDERPROGRESSTYPE g_lastProgressType = RENDERPROGRESSTYPE::AFTERRENDERING;
 

@@ -7,6 +7,8 @@
 // Local resources
 #include "olatticeplanemodifier.h"
 
+using namespace cinema;
+
 /**A unique plugin ID. You must obtain this from http://www.plugincafe.com. Use this ID to create new instances of this object.*/
 static const Int32 ID_SDKEXAMPLE_OBJECTDATA_LATTICEPLANEMODIFIER = 1038814;
 
@@ -764,13 +766,17 @@ maxon::Result<void> LatticePlaneModifier::DrawPoints(BaseDraw* bd, const BaseSel
 	bd->SetPointSize(5);
 
 	// Draw the unselected points.
-	bd->SetPen(GetViewColor(VIEWCOLOR_INACTIVEPOINT));
+	const OcioConverterRef converter = bd->GetDocument()->GetColorConverter();
+	if (!converter)
+		return maxon::OK;
+
+	bd->SetPen(GetViewColor(VIEWCOLOR_INACTIVEPOINT), 0);
 	const Int32 unselPntsCnt = (Int32)unselPoints.GetCount();
 	if (unselPoints.GetFirst())
 		bd->DrawPointArray(unselPntsCnt, unselPoints.GetFirst());
 
 	// Draw the selected points.
-	bd->SetPen(GetViewColor(VIEWCOLOR_ACTIVEPOINT));
+	bd->SetPen(GetViewColor(VIEWCOLOR_ACTIVEPOINT), 0);
 	const Int32 selPntsCnt = (Int32)selPoints.GetCount();
 	if (selPoints.GetFirst())
 		bd->DrawPointArray(selPntsCnt, selPoints.GetFirst());
@@ -1113,11 +1119,11 @@ DRAWRESULT LatticePlaneModifier::Draw(BaseObject* op, DRAWPASS drawpass, BaseDra
 		Vector col(DC);
 		if (!bd->GetHighlightPassColor(*bh, true, col))
 			return DRAWRESULT::SKIP;
-		bd->SetPen(col);
+		bd->SetPen(col, SET_PEN_USE_PROFILE_COLOR);
 	}
 	else
 	{
-		bd->SetPen(bd->GetObjectColor(bh, op));
+		bd->SetPen(bd->GetObjectColor(bh, op), SET_PEN_USE_PROFILE_COLOR);
 	}
 
 	// Set the transformation matrix for the BaseDrawHelp global transformation matrix.

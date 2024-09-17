@@ -26,6 +26,8 @@
 #include "maxon/dataserialize.h"
 #include "maxon/apibase.h"
 
+using namespace cinema;
+
 //---------------------------
 /// The user area used to display the custom datatype
 //---------------------------
@@ -207,7 +209,7 @@ iCustomDataTypeDots::iCustomDataTypeDots(const maxon::BaseArray<Vector> &points)
 };
 
 //------------
-// this code is only needed if this Classic API data/UI have to be used in the node Editor and need
+// this code is only needed if this Cinema API data/UI have to be used in the node Editor and need
 // to converted to a Maxon Data.
 
 iCustomDataTypeDots::iCustomDataTypeDots(const iCustomDataTypeDots& cdtd)

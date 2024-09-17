@@ -1,6 +1,8 @@
 #include "c4d.h"
 #include "gradientuserarea.h"
 
+using namespace cinema;
+
 Vector CalcGradientMix(const Vector& g1, const Vector& g2, Float per, Int32 interpol)
 {
 	switch (interpol)

@@ -6,6 +6,8 @@
 #include "ohairsdkgen.h"
 #include "main.h"
 
+using namespace cinema;
+
 //////////////////////////////////////////////////////////////////////////
 
 class HairGeneratorObject : public ObjectData

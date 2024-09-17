@@ -11,7 +11,10 @@
 #include "c4d_resource.h"
 
 // Forward declaration for image_api_examples_plugin.h
-Bool RegisterImageApiExamples();
+cinema::Bool RegisterImageApiExamples();
+
+namespace cinema
+{
 
 Bool PluginStart()
 {
@@ -25,7 +28,7 @@ void PluginEnd()
 
 }
 
-Bool PluginMessage(::Int32 id, void* data)
+Bool PluginMessage(Int32 id, void* data)
 {
 	switch (id)
 	{
@@ -39,3 +42,5 @@ Bool PluginMessage(::Int32 id, void* data)
 	}
 	return false;
 }
+
+} // namespace cinema

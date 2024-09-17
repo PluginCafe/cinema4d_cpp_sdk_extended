@@ -18,19 +18,19 @@
 #include "maxon/apibase.h"
 
 /// @brief Provides the command to run the minor 2024 migration examples.
-class ChangeExamplesCommand : public CommandData
+class ChangeExamplesCommand : public cinema::CommandData
 {
-	INSTANCEOF(ChangeExamplesCommand, CommandData)
+	INSTANCEOF(ChangeExamplesCommand, cinema::CommandData)
 
 public:
 	static ChangeExamplesCommand* Alloc() { return NewObjClear(ChangeExamplesCommand); }
 
 	/// @brief Runs all code examples defined in minor_examples.cpp.
-	virtual Bool Execute(BaseDocument* doc, GeDialog* parentManager);
+	virtual cinema::Bool Execute(cinema::BaseDocument* doc, cinema::GeDialog* parentManager);
 };
 
 /// Called to register the minor examples command plugin and the Oboundingbox object.
-Bool RegisterChangeExamplesCommand();
-Bool RegisterBoundingBoxObject();
+cinema::Bool RegisterChangeExamplesCommand();
+cinema::Bool RegisterBoundingBoxObject();
 
 #endif // MIGRATION_EXAMPLE_PLUGIN_H__

@@ -6,6 +6,8 @@
 #include "main.h"
 #include "oenoise.h"
 
+using namespace cinema;
+
 class NoiseEffector : public EffectorData
 {
 public:

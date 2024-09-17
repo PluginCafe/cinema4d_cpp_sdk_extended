@@ -36,3 +36,5 @@ extended SDK has been compiled and loaded.
 | ConvertOcioColors | Convert colors along OCIO conversion paths defined by the OCIO color spaces associated with a document. |
 | GetSetColorValuesInOcioDocuments | Read and write color parameters in an OCIO document either in the native %Render space of the document or other spaces. |
 | GetSetBitmapOcioProfiles | Read and write the OCIO color spaces associated with #BaseBitmap instances to change or nullify parts of an OCIO conversion path for them. |
+| OcioAwareRenderer | Realizes a renderer which manipulates the OCIO profiles of an upcoming rendering. |
+| OcioNode2025 | Demonstrates how to handle OCIO colors in a scene element at the example of a generator object, specifically in the context of the Cinema 4D 2025.0.0 OCIO changes. |

@@ -1,7 +1,7 @@
 // local header files
 #include "streamconversion_declarations.h"
 
-// MAXON API header files
+// Maxon API header files
 #include "maxon/unittest.h"
 
 namespace maxon

@@ -20,7 +20,7 @@ neutron.framework;\
 nodes.framework;\
 nodespace.framework
 
-// If this is a classic API plugin, enabling some classic API features and disabling automatic style checks.
+// If this is a Cinema API plugin, enabling some Cinema API features and disabling automatic style checks.
 C4D=true
 
 stylecheck.level=3 

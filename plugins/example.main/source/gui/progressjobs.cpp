@@ -4,6 +4,8 @@
 #include "c4d_symbols.h"
 #include "main.h"
 
+using namespace cinema;
+
 class ProgressTest : public CommandData
 {
 public:
@@ -34,7 +36,7 @@ maxon::Result<void> ProgressTest::ComputationalTaskWithProgress(maxon::JobRef* j
 	// Delete the entry once it's done, finally will be executed even in case of error.
 	finally
 	{
-		backgroundJobs.RemoveActiveEntry(backgroundJob) iferr_ignore();
+		backgroundJobs.RemoveActiveEntry(backgroundJob) iferr_ignore("ignore on destruction");
 	};
 
 	// Setting this delegate allows the user to cancel an entry in the task manager.
@@ -73,8 +75,7 @@ maxon::Result<void> ProgressTest::ComputationalTaskWithProgress(maxon::JobRef* j
 			// Updates the progress of the current job, and taking into account the weight allocated to this job,
 			// the general progress bar of the entry is updated in the user interface
 			backgroundJob.SetProgressAndCheckBreak(backgroundJobIdx, spinning ? maxon::UNKNOWNPROGRESS:progress) iferr_return;
-			GeSleep(100);
-
+			jobRef->Wait(maxon::Milliseconds(100));
 
 			// Retrieve if the WARNING and ERROR bit is set in the entry state
 			Bool isCurrentStateWarning = Int(backgroundJob.GetState()) & Int(maxon::BackgroundEntryInterface::STATE::WARNING);

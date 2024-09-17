@@ -1,11 +1,16 @@
 #ifndef BUSINESS_LOGIC_H__
 #define BUSINESS_LOGIC_H__
 
-// MAXON API header files
+// Maxon API header files
 #include "maxon/errorbase.h"
+
+namespace cinema
+{
 
 // forward declaration to avoid including the actual header file
 class BaseObject;
+
+} // namespace cinema
 
 namespace microsdk
 {
@@ -19,7 +24,7 @@ void ExecuteMicroExampleCode();
 /// Static function that creates a cube object.
 /// @return												The created cube object or an error.
 //----------------------------------------------------------------------------------------
-maxon::Result<BaseObject*> MakeCube();
+maxon::Result<cinema::BaseObject*> MakeCube();
 }
 
 #endif // BUSINESS_LOGIC_H__

@@ -11,6 +11,8 @@
 #include "c4d_resource.h"
 #include "c4d_basebitmap.h"
 
+using namespace cinema;
+
 /**A unique plugin ID. You must obtain this from http://www.plugincafe.com. Use this ID to create new instances of this object.*/
 static const Int32 ID_SDKEXAMPLE_OBJECTDATA_PORCUPINEMODIFIER = 1038236;
 

@@ -12,6 +12,8 @@ The brush will also use all the symmetry options.
 
 #define SCULPTCUBESBRUSH_SDK_EXAMPLE 1029846	//You MUST get your own ID from www.plugincafe.com
 
+using namespace cinema;
+
 class SculptCubesBrush : public SculptBrushToolData
 {
 public:

@@ -5,6 +5,8 @@
 #include "main.h"
 #include "c4d_accessedobjects.h"
 
+using namespace cinema;
+
 class RandomFalloff : public FalloffData
 {
 public:

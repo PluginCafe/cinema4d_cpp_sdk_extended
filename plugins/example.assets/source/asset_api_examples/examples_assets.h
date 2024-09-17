@@ -48,7 +48,7 @@ maxon::Result<maxon::AssetDescription> CreateArbitraryFileAsset(
 /// 
 /// @return                  The asset description for the asset wrapping the passed material.
 maxon::Result<maxon::AssetDescription> CreateMaterialAsset(
-	const maxon::AssetRepositoryRef& repository, BaseMaterial* mat, const maxon::Id& category);
+	const maxon::AssetRepositoryRef& repository, cinema::BaseMaterial* mat, const maxon::Id& category);
 
 
 /// Stores a texture or video file as as a media asset.
@@ -94,7 +94,7 @@ maxon::Result<maxon::AssetDescription> CreateNodeTemplateAsset(
 /// 
 /// @return                  The asset description for the asset wrapping the passed object.
 maxon::Result<maxon::AssetDescription> CreateObjectAsset(
-	const maxon::AssetRepositoryRef& repository, BaseObject* obj, const maxon::Id& category);
+	const maxon::AssetRepositoryRef& repository, cinema::BaseObject* obj, const maxon::Id& category);
 
 
 /// Creates a category asset.
@@ -141,7 +141,7 @@ maxon::Result<maxon::AssetDescription> CreateKeywordAsset(
 /// 
 /// @return                  The asset description for the asset wrapping the passed document.
 maxon::Result<maxon::AssetDescription> CreateSceneAsset(
-	const maxon::AssetRepositoryRef& repository, BaseDocument* doc, const maxon::Id& category);
+	const maxon::AssetRepositoryRef& repository, cinema::BaseDocument* doc, const maxon::Id& category);
 
 
 /// Loads the passed media assets as materials into the passed document.
@@ -154,7 +154,7 @@ maxon::Result<maxon::AssetDescription> CreateSceneAsset(
 /// @param[in, out] doc           The document to load the assets as materials into.
 /// @param[in] assetCollection    The assets to load.
 maxon::Result<void> LinkMediaAssets(
-	BaseDocument* doc, const maxon::BaseArray<maxon::AssetDescription>& assetCollection);
+	cinema::BaseDocument* doc, const maxon::BaseArray<maxon::AssetDescription>& assetCollection);
 
 
 /// Loads any asset type back into the active document.
@@ -177,7 +177,7 @@ maxon::Result<void>LoadAssets(const maxon::BaseArray<maxon::AssetDescription>& a
 /// @param[in, out] doc           The document to load the assets into.
 /// @param[in] assetCollection    The assets to load.
 maxon::Result<void> LoadFileAssetsManually(
-	BaseDocument* doc, const maxon::BaseArray<maxon::AssetDescription>& assetCollection);
+	cinema::BaseDocument* doc, const maxon::BaseArray<maxon::AssetDescription>& assetCollection);
 
 
 /// Loads the passed node template identifiers manually as nodes into the passed graph.

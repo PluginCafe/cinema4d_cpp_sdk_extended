@@ -7,6 +7,8 @@
 
 #include "thairsdkrendering.h"
 
+using namespace cinema;
+
 //////////////////////////////////////////////////////////////////////////
 
 class HairRenderingTag : public TagData

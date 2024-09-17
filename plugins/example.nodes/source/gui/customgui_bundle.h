@@ -12,31 +12,31 @@
 namespace maxonsdk
 {
 
-class BundleGuiData : public CustomGuiData
+class BundleGuiData : public cinema::CustomGuiData
 {
 public:
-	virtual Int32 GetId() override;
-	virtual ::CDialog* Alloc(const BaseContainer& settings) override;
-	virtual void Free(::CDialog* dlg, void* userdata) override;
-	virtual const Char* GetResourceSym() override;
-	virtual CustomProperty* GetProperties() override;
-	virtual Int32 GetResourceDataType(Int32*& table) override;
+	virtual cinema::Int32 GetId() override;
+	virtual cinema::CDialog* Alloc(const cinema::BaseContainer& settings) override;
+	virtual void Free(cinema::CDialog* dlg, void* userdata) override;
+	virtual const cinema::Char* GetResourceSym() override;
+	virtual cinema::CustomProperty* GetProperties() override;
+	virtual cinema::Int32 GetResourceDataType(cinema::Int32*& table) override;
 
 	static maxon::Result<void> RegisterGuiPlugin();
 };
 
 struct NodeAttribute
 {
-	DescID _description;
+	cinema::DescID _description;
 	maxon::String _name;
-	Bool _hasGUI = false;
-	Bool _hasAttributeManagerValue = false;
+	cinema::Bool _hasGUI = false;
+	cinema::Bool _hasAttributeManagerValue = false;
 };
 
 struct NodeData
 {
 	maxon::NodePath _nodePath;
-	Int64 _currentDocumentAddress = 0;
+	cinema::Int64 _currentDocumentAddress = 0;
 
 	maxon::BaseArray<NodeAttribute> _attributes;
 };
@@ -44,10 +44,10 @@ struct NodeData
 class BundleGui;
 struct NodeDataContext
 {
-	maxon::AttributeManagerProxyRef _attributeManager;
-	maxon::BaseArray<BaseList2D*> _objects;
-	maxon::BaseArray<DescID> _replaceIds;
-	BaseDocument* _baseDocument = nullptr;
+	maxon::AttributeManagerProxyRef				_attributeManager;
+	maxon::BaseArray<cinema::BaseList2D*> _objects;
+	maxon::BaseArray<cinema::DescID>			_replaceIds;
+	cinema::BaseDocument*									_baseDocument = nullptr;
 
 	static maxon::Result<NodeDataContext> Get(BundleGui& bundle);
 
@@ -65,21 +65,21 @@ class BundleGui : public maxon::CustomNodeGuiBase
 
 
 public:
-	BundleGui(const BaseContainer& settings, CUSTOMGUIPLUGIN* plugin);
-	virtual Bool InitValues() override;
-	virtual Bool CreateLayout() override;
-	virtual Bool Command(Int32 id, const BaseContainer& msg) override;
-	virtual Bool CoreMessage(Int32 id, const BaseContainer& msg) override;
-	virtual Int32 Message(const BaseContainer& msg, BaseContainer& result) override;
+	BundleGui(const cinema::BaseContainer& settings, cinema::CUSTOMGUIPLUGIN* plugin);
+	virtual cinema::Bool InitValues() override;
+	virtual cinema::Bool CreateLayout() override;
+	virtual cinema::Bool Command(cinema::Int32 id, const cinema::BaseContainer& msg) override;
+	virtual cinema::Bool CoreMessage(cinema::Int32 id, const cinema::BaseContainer& msg) override;
+	virtual cinema::Int32 Message(const cinema::BaseContainer& msg, cinema::BaseContainer& result) override;
 
 private:
 
-	void CreateErrorText(const String& text, const maxon::AttributeManagerProxyRef& attributeManager);
+	void CreateErrorText(const cinema::String& text, const maxon::AttributeManagerProxyRef& attributeManager);
 	maxon::Result<void> CreateAttributesTable(NodeData&& data, const NodeDataContext& context);
 
 	static maxon::Result<NodeData> CollectNodeData(const NodeDataContext& context);
-	static maxon::Result<void> CreateDebugGUI(NodeData& data, const NodeDataContext& context, iBaseCustomGui& gui);
-	static maxon::Result<void> CreateDefaultGUI(NodeData& data, const NodeDataContext& context, iBaseCustomGui& gui);
+	static maxon::Result<void> CreateDebugGUI(NodeData& data, const NodeDataContext& context, cinema::iBaseCustomGui& gui);
+	static maxon::Result<void> CreateDefaultGUI(NodeData& data, const NodeDataContext& context, cinema::iBaseCustomGui& gui);
 
 	NodeData _nodeData;
 	const BUNDLELAYOUTTYPE _layoutType = BUNDLELAYOUTTYPE::DEBUG;

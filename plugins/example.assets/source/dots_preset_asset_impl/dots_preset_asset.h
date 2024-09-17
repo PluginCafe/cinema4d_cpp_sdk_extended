@@ -39,7 +39,7 @@
 // for "Published Objects" in the C++ SDK documentation for details on the subject of publishing 
 // objects.
 
-// The maxon API requires published objects to be declared for the implemented preset asset. They 
+// The Maxon API requires published objects to be declared for the implemented preset asset. They 
 // primarily act as symbols for the preset asset type and class. A good pattern for the ids is: 
 // 
 //  "com.mycompany.assettype.myasset"
@@ -78,7 +78,7 @@ namespace maxon::ASSETMETADATA::DOTSPRESET
 // @param[in] dotScale    The size of a dot in relation to the preview size. E.g., 0.1 will mean
 //                        that for a preview size of 100 each dot will be 10 pixels large.
 maxon::Result<void> RenderPreview(
-	GeClipMap* canvas, const DotsData* data, const maxon::Int32 size, const maxon::Float32 dotScale);
+	cinema::GeClipMap* canvas, const DotsData* data, const maxon::Int32 size, const maxon::Float32 dotScale);
 
 // Provides the dots preset asset implementation.
 //
@@ -115,8 +115,8 @@ public:
 	//
 	// Not implemented in this example.
 	MAXON_METHOD maxon::Result<void> ConvertFromLegacyBrowser(
-		Int32 pluginId, const maxon::Block<const Char>& memBlock, const BaseContainer& settings,
-		const String& name, maxon::DataDictionary& metaProperties, maxon::AddAssetMetaData& addMetaData,
+		cinema::Int32 pluginId, const maxon::Block<const cinema::Char>& memBlock, const cinema::BaseContainer& settings,
+		const cinema::String& name, maxon::DataDictionary& metaProperties, maxon::AddAssetMetaData& addMetaData,
 		maxon::AddAssetDepencendyStruct& addDependencyStruct,
 		maxon::ResolveAssetDependenciesStruct& resolveAssets);
 
@@ -175,7 +175,7 @@ private:
 	// The custom data attached to the preset asset instance, in this case an instance of DotsData.
 	// Neither the naming of the field nor its existence is formally required, but the implementation 
 	// pattern shown here does store the primary data attached to an asset instance in this way.
-	AutoAlloc<DotsData> _customData;
+	cinema::AutoAlloc<DotsData> _customData;
 };
 
 

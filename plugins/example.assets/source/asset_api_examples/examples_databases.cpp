@@ -21,6 +21,8 @@
 
 #include "examples_databases.h"
 
+using namespace cinema;
+
 //! [access_important_repositories]
 maxon::Result<void> AccessImportantRepositories(
 	maxon::BaseArray<maxon::AssetRepositoryRef>& results)

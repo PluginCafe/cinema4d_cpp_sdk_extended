@@ -4,6 +4,8 @@
 #include "lib_sculptbrush.h"
 #include "main.h"
 
+using namespace cinema;
+
 static const Int32 ID_SCULPT_BRUSH_PULL_MODIFIER = 1030505;
 
 class SculptDeformer : public ObjectData

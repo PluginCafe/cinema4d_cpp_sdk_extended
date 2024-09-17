@@ -6,6 +6,8 @@
 #include "main.h"
 #include "xbitmapdistortion.h"
 
+using namespace cinema;
+
 class BitmapData : public ShaderData
 {
 public:

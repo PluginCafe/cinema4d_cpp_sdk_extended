@@ -6,7 +6,7 @@
 namespace maxonsdk
 {
 
-maxon::Result<void> ExampleNodeMaterialExport::Initialize(maxon::nodes::NodesGraphModelRef& graph, BaseDocument& baseDocument, const maxon::DataDictionary& config)
+maxon::Result<void> ExampleNodeMaterialExport::Initialize(maxon::nodes::NodesGraphModelRef& graph, cinema::BaseDocument& baseDocument, const maxon::DataDictionary& config)
 {
 	iferr_scope;
 

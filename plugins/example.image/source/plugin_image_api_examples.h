@@ -20,30 +20,30 @@
 static void OpenFlushConsole();
 
 /// @brief Provides the command to run the Image API color management examples.
-class ColorManagementExamplesCommand : public CommandData
+class ColorManagementExamplesCommand : public cinema::CommandData
 {
-	INSTANCEOF(ColorManagementExamplesCommand, CommandData)
+	INSTANCEOF(ColorManagementExamplesCommand, cinema::CommandData)
 
 public:
 	static ColorManagementExamplesCommand* Alloc() { return NewObjClear(ColorManagementExamplesCommand); }
 
 	/// @brief Runs all code examples declared in examples_color_management.h.
-	virtual Bool Execute(BaseDocument* doc, GeDialog* parentManager);
+	virtual cinema::Bool Execute(cinema::BaseDocument* doc, cinema::GeDialog* parentManager);
 };
 
 /// @brief Provides the command to run the Image API OpenColorIO examples.
-class OcioExamplesCommand : public CommandData
+class OcioExamplesCommand : public cinema::CommandData
 {
-	INSTANCEOF(OcioExamplesCommand, CommandData)
+	INSTANCEOF(OcioExamplesCommand, cinema::CommandData)
 
 public:
 	static OcioExamplesCommand* Alloc() { return NewObjClear(OcioExamplesCommand); }
 
 	/// @brief Runs all code examples declared in examples_ocio.h.
-	virtual Bool Execute(BaseDocument* doc, GeDialog* parentManager);
+	virtual cinema::Bool Execute(cinema::BaseDocument* doc, cinema::GeDialog* parentManager);
 };
 
 /// Called to register the Image API example plugin.
-Bool RegisterImageApiExamples();
+cinema::Bool RegisterImageApiExamples();
 
 #endif // IMAGE_API_EXAMPLES_PLUGIN_H__

@@ -32,6 +32,8 @@
 #include "asset_api_examples_plugin.h"
 #include "examples_contexts.h"
 
+using namespace cinema;
+
 // --- AssetApiExamplesDialog ----------------------------------------------------------------------
 
 Bool AssetApiExamplesDialog::CreateLayout()

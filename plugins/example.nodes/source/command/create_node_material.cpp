@@ -32,6 +32,8 @@
 #include "maxon/definitions/nodes_math.h"
 #include "maxon/graph_helper.h"
 
+using namespace cinema;
+
 namespace maxonsdk
 {
 

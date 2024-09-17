@@ -1,6 +1,8 @@
 #include "paintbrushbase.h"
 #include "registeradvancedpaint.h"
 
+using namespace cinema;
+
 class PaintBrushSculpt : public PaintBrushBase
 {
 public:

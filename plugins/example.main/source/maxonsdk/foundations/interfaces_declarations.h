@@ -6,7 +6,7 @@
 #ifndef INTERFACES_DECLARATIONS_H__
 #define INTERFACES_DECLARATIONS_H__
 
-// MAXON API header file
+// Maxon API header file
 #include "maxon/factory.h"
 #include "maxon/hierarchyobject.h"
 #include "maxon/url.h"

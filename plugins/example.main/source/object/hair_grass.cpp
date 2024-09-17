@@ -6,6 +6,8 @@
 #include "main.h"
 #include "ohairsdkgrass.h"
 
+using namespace cinema;
+
 //////////////////////////////////////////////////////////////////////////
 
 #define HAIRSTYLE_LINK			1000

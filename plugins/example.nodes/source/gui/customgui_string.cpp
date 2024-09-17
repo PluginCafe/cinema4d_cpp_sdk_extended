@@ -5,6 +5,8 @@
 // It adds a character counter right to the text edit field.
 #define ID_SDK_EXAMPLE_CUSTOMGUI_STRING 1034655
 
+using namespace cinema;
+
 namespace maxonsdk
 {
 

@@ -5,6 +5,8 @@
 #include "main.h"
 #include "oroundedtube.h"
 
+using namespace cinema;
+
 class RoundedTube : public ObjectData
 {
 public:
@@ -422,6 +424,10 @@ DRAWRESULT RoundedTube::Draw(BaseObject* op, DRAWPASS drawpass, BaseDraw* bd, Ba
 
 	// bd->SetPen(GetViewColor(VIEWCOLOR_HANDLES));
 
+	const OcioConverterRef converter = bd->GetDocument()->GetColorConverter();
+	if (!converter)
+		return DRAWRESULT::SKIP;
+
 	HandleInfo info;
 	Int32			 hitid = op->GetHighlightHandle(bd);
 	bd->SetMatrix_Matrix(op, bh->GetMg());
@@ -431,13 +437,13 @@ DRAWRESULT RoundedTube::Draw(BaseObject* op, DRAWPASS drawpass, BaseDraw* bd, Ba
 		GetHandle(op, i, info);
 
 		if (i == hitid)
-			bd->SetPen(GetViewColor(VIEWCOLOR_SELECTION_PREVIEW));
+			bd->SetPen(GetViewColor(VIEWCOLOR_SELECTION_PREVIEW), 0);
 		else
-			bd->SetPen(GetViewColor(VIEWCOLOR_HANDLES));
+			bd->SetPen(GetViewColor(VIEWCOLOR_HANDLES), 0);
 		bd->DrawHandle(info.position, DRAWHANDLE::BIG, 0);
 
 		// Draw lines to the handles
-		bd->SetPen(GetViewColor(VIEWCOLOR_HANDLES));
+		bd->SetPen(GetViewColor(VIEWCOLOR_HANDLES), 0);
 		switch (i)
 		{
 			case 0:

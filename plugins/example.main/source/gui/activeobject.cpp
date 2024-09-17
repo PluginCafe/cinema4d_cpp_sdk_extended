@@ -8,6 +8,8 @@
 #include "maxon/utilities/sprintf_safe.h"
 #include "maxon/weakrawptr.h"
 
+using namespace cinema;
+
 class ListHeader;
 class ActiveObjectDialog;
 
@@ -381,7 +383,7 @@ static Bool BuildTree(DebugNode* parent, DebugArray& oldlist, DebugArray& newlis
 	}
 
 	maxon::BufferedBaseArray<BranchInfo, 20> info;
-	node->GetBranchInfo(info, GETBRANCHINFO::NONE) iferr_ignore();
+	node->GetBranchInfo(info, GETBRANCHINFO::NONE) iferr_ignore("GetBranchInfo");
 	for (i = 0; i < (Int32)info.GetCount(); i++)
 	{
 		if (info[i].name.IsPopulated())
@@ -762,7 +764,7 @@ public:
 		bc->FlushAll();
 
 		DebugNode* node = (DebugNode*)obj;
-		GeListNode* link = node->link.Get();
+		const GeListNode* link = node ? node->link.Get() : nullptr;
 
 		switch (lColumn)
 		{
@@ -784,7 +786,7 @@ public:
 					}
 				}
 
-				if (node->ptr)
+				if (node && node->ptr)
 				{
 					bc->InsData(COPY_ADDRESS, GeData("Copy Address"));
 				}

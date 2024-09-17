@@ -6,6 +6,8 @@
 #define DATATYPE_DEFAULTLONG	 1000
 #define DATATYPE_DEFAULTSTRING 1001
 
+using namespace cinema;
+
 CustomProperty g_dataTypeProps[] =
 {
 	{ CUSTOMTYPE::LONG, DATATYPE_DEFAULTLONG, "DEFAULTLONG" },

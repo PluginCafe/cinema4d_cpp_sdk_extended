@@ -7,6 +7,8 @@
 
 #include "customgui_priority.h"
 
+using namespace cinema;
+
 class LookAtCamera : public TagData
 {
 public:

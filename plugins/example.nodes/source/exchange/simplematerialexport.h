@@ -12,7 +12,7 @@ class SimpleMaterialExport : public maxon::Component<SimpleMaterialExport, maxon
 	MAXON_COMPONENT(NORMAL);
 
 public:
-	MAXON_METHOD maxon::Result<void> Initialize(const BaseMaterial& baseMaterial, const maxon::DataDictionary& config);
+	MAXON_METHOD maxon::Result<void> Initialize(const cinema::BaseMaterial& baseMaterial, const maxon::DataDictionary& config);
 
 	MAXON_METHOD maxon::Result<maxon::Tuple<maxon::Id, maxon::DataDictionary>> GetParameters();
 
@@ -23,7 +23,7 @@ public:
 	static void Free();
 
 private:
-	const BaseMaterial* _baseMaterial = nullptr;
+	const cinema::BaseMaterial* _baseMaterial = nullptr;
 };
 
 } // namespace maxonsdk

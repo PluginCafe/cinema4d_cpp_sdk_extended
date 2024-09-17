@@ -7,6 +7,8 @@
 
 #define CCOUNT 125
 
+using namespace cinema;
+
 class MandelbrotData : public ShaderData
 {
 public:

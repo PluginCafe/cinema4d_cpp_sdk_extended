@@ -17,6 +17,8 @@
 
 #include "blw_crypt.h"
 
+using namespace cinema;
+
 
 //----------------------------------------------------------------------------------------
 /// Store the disclosable license information from Cinema 4D on disk
@@ -187,7 +189,7 @@ maxon::Result<void> FillCinemaLicenseDataWithDictionary(const maxon::DataDiction
 		{
 			// check for key value being "userID"
 			maxon::String keyString = key.Get<maxon::String>() iferr_return;
-			if (keyString == "userid")
+			if (keyString == "userid"_s)
 			{
 				const maxon::String userID = value.Get<maxon::String>() iferr_return;
 				// check userID is empty or userID is equal to the value found
@@ -207,7 +209,7 @@ maxon::Result<void> FillCinemaLicenseDataWithDictionary(const maxon::DataDiction
 				}
 			}
 			// check for key value being "systemID"
-			else if (keyString == "systemid")
+			else if (keyString == "systemid"_s)
 			{
 				// verify that the userID has been already filled
 				if (in_licdata.userID.IsEmpty())
@@ -235,7 +237,7 @@ maxon::Result<void> FillCinemaLicenseDataWithDictionary(const maxon::DataDiction
 				}
 			}
 			// check for key value being "version"
-			else if (keyString == "version")
+			else if (keyString == "version"_s)
 			{
 				// verify that the userID has been already filled
 				if (in_licdata.userID.IsEmpty())
@@ -265,7 +267,7 @@ maxon::Result<void> FillCinemaLicenseDataWithDictionary(const maxon::DataDiction
 				}
 			}
 			// check for key value being "currentproduct"
-			else if (keyString == "currentproduct")
+			else if (keyString == "currentproduct"_s)
 			{
 				// verify that the userID has been already filled
 				if (in_licdata.userID.IsEmpty())
@@ -293,7 +295,7 @@ maxon::Result<void> FillCinemaLicenseDataWithDictionary(const maxon::DataDiction
 				}
 			}
 			// check for key value being "name"
-			else if (keyString == "name")
+			else if (keyString == "name"_s)
 			{
 				// verify that the userID has been already filled
 				if (in_licdata.userID.IsEmpty())
@@ -305,7 +307,7 @@ maxon::Result<void> FillCinemaLicenseDataWithDictionary(const maxon::DataDiction
 				in_licdata.profileName = value.Get<maxon::String>() iferr_return;
 			}
 			// check for key value being "surname"
-			else if (keyString == "surname")
+			else if (keyString == "surname"_s)
 			{
 				// verify that the userID has been already filled
 				if (in_licdata.userID.IsEmpty())
@@ -317,7 +319,7 @@ maxon::Result<void> FillCinemaLicenseDataWithDictionary(const maxon::DataDiction
 				in_licdata.profileSurname = value.Get<maxon::String>() iferr_return;
 			}
 			// check for key value being "surname"
-			else if (keyString == "accountlicenses")
+			else if (keyString == "accountlicenses"_s)
 			{
 				// verify that the userID has been already filled
 				if (in_licdata.userID.IsEmpty())

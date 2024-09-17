@@ -6,6 +6,8 @@
 #include "c4d.h"
 #include "main.h"
 
+using namespace cinema;
+
 class PythonRegexCommand : public CommandData
 {
 public:
@@ -41,14 +43,14 @@ public:
 			maxon::BlockArray<maxon::Data> helperStack;
 			auto* res = scope.PrivateInvoke("main"_s, helperStack, maxon::GetDataType<maxon::Bool>(), &args.ToBlock()) iferr_return;
 			if (res && res->Get<Bool>().GetValue() == true)
-				MAXON_WARN_MUTE_UNUSED logger.Write(maxon::TARGETAUDIENCE::ALL, FormatString("@: The entered email address is valid"_s, vm.GetVersion()), MAXON_SOURCE_LOCATION, maxon::WRITEMETA::DEFAULT);
+				logger.Write(maxon::TARGETAUDIENCE::ALL, FormatString("@: The entered email address is valid"_s, vm.GetVersion()), MAXON_SOURCE_LOCATION, maxon::WRITEMETA::DEFAULT) iferr_ignore("just logging");
 			else
-				MAXON_WARN_MUTE_UNUSED logger.Write(maxon::TARGETAUDIENCE::ALL, FormatString("@: The entered email address failed to verify"_s, vm.GetVersion()), MAXON_SOURCE_LOCATION, maxon::WRITEMETA::DEFAULT);
+				logger.Write(maxon::TARGETAUDIENCE::ALL, FormatString("@: The entered email address failed to verify"_s, vm.GetVersion()), MAXON_SOURCE_LOCATION, maxon::WRITEMETA::DEFAULT) iferr_ignore("just logging");
 
 			return maxon::OK;
 		};
 
-		MAXON_WARN_MUTE_UNUSED executeVm(MAXON_CPYTHON3VM(), maxon::Loggers::Get(maxon::ID_LOGGER_PYTHON));
+		executeVm(MAXON_CPYTHON3VM(), maxon::Loggers::Get(maxon::ID_LOGGER_PYTHON)) iferr_ignore("continue no matter what");
 
 		return true;
 	}

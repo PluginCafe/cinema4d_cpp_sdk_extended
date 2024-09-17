@@ -11,6 +11,8 @@
 #include "oedrop.h"
 #include "main.h"
 
+using namespace cinema;
+
 struct DropEffectorData
 {
 	AutoAlloc<GeRayCollider> rcol;

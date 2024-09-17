@@ -1,4 +1,4 @@
-// MAXON API header files
+// Maxon API header files
 #include "maxon/streamconversion.h"
 #include "maxon/streamconversion_impl_helper.h"
 

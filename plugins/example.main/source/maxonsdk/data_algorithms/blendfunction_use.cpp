@@ -4,7 +4,7 @@
 /// ExecutionInterface implementation.
 // ------------------------------------------------------------------------
 
-// MAXON API header files
+// Maxon API header files
 #include "maxon/blend_function.h"
 #include "maxon/execution.h"
 #include "maxon/configuration.h"

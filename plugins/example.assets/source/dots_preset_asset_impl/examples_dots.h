@@ -19,7 +19,7 @@
 /// Inserts a null-object containing a DotsData user data parameter into the passed document.
 /// 
 /// @param doc    The document to insert the null object into.
-maxon::Result<void> InsertDotsDataNull(BaseDocument* doc);
+maxon::Result<void> InsertDotsDataNull(cinema::BaseDocument* doc);
 
 
 /// Demonstrates how to instantiate a preset asset with its data type.

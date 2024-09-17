@@ -13,7 +13,7 @@ class ExampleNodeMaterialExport : public maxon::Component<ExampleNodeMaterialExp
 	MAXON_COMPONENT(NORMAL);
 public:
 
-	MAXON_METHOD maxon::Result<void> Initialize(maxon::nodes::NodesGraphModelRef & graph, BaseDocument& baseDocument, const maxon::DataDictionary & config);
+	MAXON_METHOD maxon::Result<void> Initialize(maxon::nodes::NodesGraphModelRef& graph, cinema::BaseDocument& baseDocument, const maxon::DataDictionary& config);
 
 	MAXON_METHOD maxon::Result<maxon::Tuple<maxon::Id, maxon::DataDictionary>> GetParameters();
 

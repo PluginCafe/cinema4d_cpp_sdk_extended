@@ -4,7 +4,7 @@
 namespace maxonsdk
 {
 
-maxon::Result<void> ExampleNodeMaterialImport::Import(maxon::nodes::NodesGraphModelRef& graph, const maxon::material::MaterialExchangeData& materialData, BaseDocument& baseDocument)
+maxon::Result<void> ExampleNodeMaterialImport::Import(maxon::nodes::NodesGraphModelRef& graph, const maxon::material::MaterialExchangeData& materialData, cinema::BaseDocument& baseDocument)
 {
 	iferr_scope;
 
@@ -29,7 +29,7 @@ maxon::Result<void> ExampleNodeMaterialImport::Import(maxon::nodes::NodesGraphMo
 
 				// The information stored in substanceReference should suffice to reference a specific instance of an asset instance through the API
 				// defined in 'lib_substance.h'.
-				BaseList2D* substanceAsset = FindSubstanceAsset(baseDocument, substanceReference._assetName);
+				cinema::BaseList2D* substanceAsset = FindSubstanceAsset(baseDocument, substanceReference._assetName);
 				DiagnosticOutput("Cinema4d Substance Asset at address '@'.", (void*)substanceAsset);
 			}
 			else
@@ -54,17 +54,17 @@ maxon::Result<void> ExampleNodeMaterialImport::Import(maxon::nodes::NodesGraphMo
 	return maxon::OK;
 }
 
-BaseList2D* ExampleNodeMaterialImport::FindSubstanceAsset(BaseDocument& baseDocument, const String& assetName)
+cinema::BaseList2D* ExampleNodeMaterialImport::FindSubstanceAsset(cinema::BaseDocument& baseDocument, const cinema::String& assetName)
 {
-	AutoAlloc<AtomArray> substances;
+	cinema::AutoAlloc<cinema::AtomArray> substances;
 	if (substances == nullptr)
 		return nullptr;
 
-	const Bool onlySelected = false; // Get all Substances in the document
+	const cinema::Bool onlySelected = false; // Get all Substances in the document
 	GetSubstances(&baseDocument, substances, onlySelected);
-	for (Int32 index = 0; index < substances->GetCount(); ++index)
+	for (cinema::Int32 index = 0; index < substances->GetCount(); ++index)
 	{
-		BaseList2D* asset = static_cast<BaseList2D*>(substances->GetIndex(index));
+		cinema::BaseList2D* asset = static_cast<cinema::BaseList2D*>(substances->GetIndex(index));
 		if (asset == nullptr)
 			continue; // This should not happen, but let's be safe.
 

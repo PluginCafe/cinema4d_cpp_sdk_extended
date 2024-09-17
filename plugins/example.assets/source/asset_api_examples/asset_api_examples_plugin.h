@@ -24,30 +24,30 @@
 #define SDK_DATABASE_URL "https://assets.maxon.net/assets/sdkdatabase.db"
 
 /// Provides the GUI for the Asset API examples and also most of its interface logic.
-class AssetApiExamplesDialog : public GeDialog
+class AssetApiExamplesDialog : public cinema::GeDialog
 {
 public:
 	AssetApiExamplesDialog() {}
 	~AssetApiExamplesDialog() {}
 
 	/// Populates the GUI of the dialog.
-	virtual Bool CreateLayout();
+	virtual cinema::Bool CreateLayout();
 
 	/// Processes user inputs in the dialog. 
-	virtual Bool Command(Int32 id, const BaseContainer& msg);
+	virtual cinema::Bool Command(cinema::Int32 id, const cinema::BaseContainer& msg);
 
 	/// Initializes the dialog once its layout has been created.
-	virtual Bool InitValues();
+	virtual cinema::Bool InitValues();
 
 	/// Called when the dialog is closed.
-	virtual Bool AskClose();
+	virtual cinema::Bool AskClose();
 
 	/// Runs one of the Asset API example cases.
-	virtual maxon::Result<void> RunExample(const Int32 eid);
+	virtual maxon::Result<void> RunExample(const cinema::Int32 eid);
 
 private:
 	// The list view used by the four example categories.
-	SimpleListView contentListView = SimpleListView();
+	cinema::SimpleListView contentListView = cinema::SimpleListView();
 
 	// The example id range for the currently loaded examples.
 	maxon::Int32 minExampleId = NOTOK;
@@ -84,9 +84,9 @@ private:
 
 
 /// Provides the plugin interface for the Asset API examples.
-class AssetApiExamplesCommand : public CommandData
+class AssetApiExamplesCommand : public cinema::CommandData
 {
-	INSTANCEOF(AssetApiExamplesCommand, CommandData)
+	INSTANCEOF(AssetApiExamplesCommand, cinema::CommandData)
 
 private:
 	/// The dialog of the plugin instance.
@@ -96,14 +96,14 @@ public:
 	static AssetApiExamplesCommand* Alloc() { return NewObjClear(AssetApiExamplesCommand); }
 
 	/// Opens the dialog of the plugin.
-	virtual Bool Execute(BaseDocument* doc, GeDialog* parentManager);
+	virtual cinema::Bool Execute(cinema::BaseDocument* doc, cinema::GeDialog* parentManager);
 
 	/// Called to restore the dialog of the plugin after a layout change.
-	virtual Bool RestoreLayout(void* secret);
+	virtual cinema::Bool RestoreLayout(void* secret);
 };
 
 
 /// Called to register the AssetApiBasics example plugin.
-Bool RegisterAssetApiBasics();
+cinema::Bool RegisterAssetApiBasics();
 
 #endif // ASSET_API_EXAMPLES_PLUGIN_H__

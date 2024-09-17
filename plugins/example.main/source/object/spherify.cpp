@@ -7,6 +7,8 @@
 
 #define HANDLE_CNT 2
 
+using namespace cinema;
+
 class Spherify : public ObjectData
 {
 public:
@@ -101,7 +103,7 @@ DRAWRESULT Spherify::Draw(BaseObject* op, DRAWPASS drawpass, BaseDraw* bd, BaseD
 		m.sqmat *= rad;
 
 		bd->SetMatrix_Matrix(nullptr, Matrix());
-		bd->SetPen(bd->GetObjectColor(bh, op));
+		bd->SetPen(bd->GetObjectColor(bh, op), SET_PEN_USE_PROFILE_COLOR);
 		bd->DrawCircle(m);
 		maxon::Swap(m.sqmat.v2, m.sqmat.v3);
 		bd->DrawCircle(m);
@@ -114,20 +116,24 @@ DRAWRESULT Spherify::Draw(BaseObject* op, DRAWPASS drawpass, BaseDraw* bd, BaseD
 		Int32			 hitid = op->GetHighlightHandle(bd);
 		HandleInfo info;
 
-		bd->SetPen(GetViewColor(VIEWCOLOR_HANDLES));
+		const OcioConverterRef converter = bd->GetDocument()->GetColorConverter();
+		if (!converter)
+			return DRAWRESULT::SKIP;
+
+		bd->SetPen(GetViewColor(VIEWCOLOR_HANDLES), 0);
 		bd->SetMatrix_Matrix(op, bh->GetMg());
 		for (i = 0; i < HANDLE_CNT; i++)
 		{
 			GetHandle(op, i, info);
 			if (hitid == i)
-				bd->SetPen(GetViewColor(VIEWCOLOR_SELECTION_PREVIEW));
+				bd->SetPen(GetViewColor(VIEWCOLOR_SELECTION_PREVIEW), 0);
 			else
-				bd->SetPen(GetViewColor(VIEWCOLOR_HANDLES));
+				bd->SetPen(GetViewColor(VIEWCOLOR_HANDLES), 0);
 			bd->DrawHandle(info.position, DRAWHANDLE::BIG, 0);
 		}
 
 		GetHandle(op, 1, info);
-		bd->SetPen(GetViewColor(VIEWCOLOR_HANDLES));
+		bd->SetPen(GetViewColor(VIEWCOLOR_HANDLES), 0);
 		bd->DrawLine(info.position, Vector(0.0), 0);
 	}
 	return DRAWRESULT::OK;

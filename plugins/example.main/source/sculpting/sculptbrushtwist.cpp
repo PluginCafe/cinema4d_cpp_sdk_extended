@@ -5,6 +5,8 @@
 
 #define ID_SCULPT_BRUSH_TWIST 1030250
 
+using namespace cinema;
+
 class SculptBrushTwist : public SculptBrushToolData
 {
 public:

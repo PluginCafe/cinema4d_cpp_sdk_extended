@@ -1,6 +1,6 @@
 #include "registeradvancedpaint.h"
 
-Bool RegisterPaintAdvanced()
+cinema::Bool RegisterPaintAdvanced()
 {
 	RegisterPaintUndoSystem();
 	RegisterPaintBrushBase();
@@ -8,7 +8,7 @@ Bool RegisterPaintAdvanced()
 	return true;
 }
 
-Bool FreePaintAdvanced()
+cinema::Bool FreePaintAdvanced()
 {
 	FreePaintUndoSystem();
 	return true;

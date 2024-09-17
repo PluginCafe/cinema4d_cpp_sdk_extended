@@ -14,6 +14,7 @@
 #include "blw_pluginlicensedialog_res.h"
 #include "blw_pluginlicensedialog.h"
 
+using namespace cinema;
 
 static const Int32 ID_SDKEXAMPLE_BLW_PLGLICDLG 	    = 1040649;
 static const Int32 ID_SDKEXAMPLE_BLW_PLGLICDLG_DLG 	= 1040650;

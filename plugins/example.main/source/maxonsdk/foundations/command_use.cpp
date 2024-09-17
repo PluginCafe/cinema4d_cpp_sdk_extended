@@ -3,7 +3,7 @@
 /// The code is executed using an ExecutionInterface implementation.
 // ------------------------------------------------------------------------
 
-// MAXON API header files
+// Maxon API header files
 #include "maxon/execution.h"
 #include "maxon/configuration.h"
 

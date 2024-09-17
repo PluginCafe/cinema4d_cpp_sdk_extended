@@ -36,6 +36,8 @@
 
 #include "dots_preset_asset.h"
 
+using namespace cinema;
+
 // --- The thumbnail rendering for Dots assets -----------------------------------------------------
 
 maxon::Result<void> RenderPreview(
@@ -134,7 +136,7 @@ maxon::Result<void> DotsPresetAssetImpl::Init(
 
 	// This method is the counterpart to DotsPresetAssetImpl::Serialize() and would be named more
 	// aptly as DotsPresetAssetImpl::Deserialize(). Its name as an overload of Init() is however
-	// required by the ObjectInterface instation of the maxon API with ::CreateInit(). What has to
+	// required by the ObjectInterface instation of the Maxon API with ::CreateInit(). What has to
 	// be done here depends on how the data has been serialized before in DotsPresetAssetImpl::
 	// Serialize().
 

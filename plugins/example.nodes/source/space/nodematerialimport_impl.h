@@ -13,15 +13,10 @@ class ExampleNodeMaterialImport : public maxon::Component<ExampleNodeMaterialImp
 	MAXON_COMPONENT(NORMAL);
 public:
 
-	MAXON_METHOD maxon::Result<void> Import(maxon::nodes::NodesGraphModelRef& graph, const maxon::material::MaterialExchangeData& materialData, BaseDocument& baseDocument);
-
-	MAXON_METHOD maxon::Result<void> ImportExtended(maxon::nodes::NodesGraphModelRef& graph, const maxon::material::MaterialExchangeDataExtended& materialData, BaseDocument& baseDocument)
-	{
-		return self.Import(graph, reinterpret_cast<const maxon::material::MaterialExchangeData&>(materialData), baseDocument);
-	}
+	MAXON_METHOD maxon::Result<void> Import(maxon::nodes::NodesGraphModelRef& graph, const maxon::material::MaterialExchangeData& materialData, cinema::BaseDocument& baseDocument);
 
 private:
-	static BaseList2D* FindSubstanceAsset(BaseDocument& baseDocument, const String& assetName);
+	static cinema::BaseList2D* FindSubstanceAsset(cinema::BaseDocument& baseDocument, const cinema::String& assetName);
 };
 
 } // namespace maxonsdk

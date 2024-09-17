@@ -5,6 +5,8 @@
 
 #define ID_SCULPT_BRUSH_EXAMPLE_MODIFIER 1030975
 
+using namespace cinema;
+
 class ExampleSculptModifier : public SculptBrushModifierData
 {
 public:

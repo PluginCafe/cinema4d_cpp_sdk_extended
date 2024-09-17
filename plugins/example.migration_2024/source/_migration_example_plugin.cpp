@@ -19,6 +19,8 @@
 #include "_migration_example_plugin.h"
 #include "change_examples.h"
 
+using namespace cinema;
+
 Bool ChangeExamplesCommand::Execute(BaseDocument* doc, GeDialog* parentManager)
 {
 	iferr_scope_handler

@@ -3,7 +3,7 @@
 /// It shows how to use published objects and HierarchyObjectInterface based elements.
 // ------------------------------------------------------------------------
 
-// MAXON API header files
+// Maxon API header files
 #include "maxon/execution.h"
 #include "maxon/configuration.h"
 

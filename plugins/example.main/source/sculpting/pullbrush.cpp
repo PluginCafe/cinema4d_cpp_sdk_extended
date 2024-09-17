@@ -13,6 +13,8 @@ sculpting system what to do for each point on a dab.
 
 #define SCULPTPULLBRUSH_SDK_EXAMPLE 1028490	//You MUST get your own ID from www.plugincafe.com
 
+using namespace cinema;
+
 class ExampleSculptPullBrush : public SculptBrushToolData
 {
 public:

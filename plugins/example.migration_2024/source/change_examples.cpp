@@ -27,6 +27,7 @@
 
 #include "change_examples.h"
 
+using namespace cinema;
 
 maxon::Result<void>InstantiateDescID(BaseDocument* doc)
 {

@@ -6,6 +6,8 @@
 #include "maxon/memoizationcache.h"
 #include "maxon/dll.h"
 
+using namespace cinema;
+
 class MemStatDialog : public GeDialog
 {
 private:

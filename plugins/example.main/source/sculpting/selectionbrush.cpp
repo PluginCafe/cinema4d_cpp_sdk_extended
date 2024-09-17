@@ -12,6 +12,8 @@ The brush will work with all the symmetry options.
 
 #define SCULPTBRUSH_SDK_EXAMPLE_SELECTION 1029669	//You MUST get your own ID from www.plugincafe.com
 
+using namespace cinema;
+
 class SculptSelectionBrush : public SculptBrushToolData
 {
 public:

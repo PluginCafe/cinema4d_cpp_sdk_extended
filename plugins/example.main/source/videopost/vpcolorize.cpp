@@ -11,6 +11,8 @@
 #include "customgui_lensglow.h"
 #include "main.h"
 
+using namespace cinema;
+
 class ColorizeData : public VideoPostData
 {
 	INSTANCEOF(ColorizeData, VideoPostData)

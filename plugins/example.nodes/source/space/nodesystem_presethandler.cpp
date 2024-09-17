@@ -46,7 +46,7 @@ maxon::Result<void> NodeSystemPresetChangedHandler::HandleGraphChanged(const max
 		if (isDataAttribute == false)
 			return true;
 
-		const maxon::IdAndVersion assetId = node.GetValue(maxon::nodes::AssetId).GetValueOrDefault() iferr_return;
+		const maxon::IdAndVersion assetId = node.GetValue(maxon::nodes::AssetId).GetOrDefault() iferr_return;
 		const maxon::Id& nodeId = assetId.Get<0>();
 		if (nodeId != maxonexample::NODE::ENDNODE::GetId())
 			return true;
@@ -60,7 +60,7 @@ maxon::Result<void> NodeSystemPresetChangedHandler::HandleGraphChanged(const max
 		if (portId != maxonexample::NODE::ENDNODE::MATERIALPRESET)
 			return true;
 
-		const maxon::InternedId presetType = node.GetEffectivePortValue<maxon::InternedId>().GetValueOrDefault() iferr_return;
+		const maxon::InternedId presetType = node.GetEffectivePortValue<maxon::InternedId>().GetOrDefault() iferr_return;
 		if (presetType.IsEmpty() == true || presetType == maxonexample::NODE::ENDNODE::MATERIALPRESET_ENUM_NONE)
 			return true;
 
@@ -111,7 +111,7 @@ maxon::Result<void> NodeSystemPresetChangedHandler::ApplyMaterialPreset(maxon::G
 	// This would allow us to early-out in the change handler above, avoiding to re-consume one change event.
 
 	maxon::GraphNode inputs = presetInput.GetParent() iferr_return;
-	const maxon::InternedId presetType = presetInput.GetEffectivePortValue<maxon::InternedId>().GetValueOrDefault() iferr_return;
+	const maxon::InternedId presetType = presetInput.GetEffectivePortValue<maxon::InternedId>().GetOrDefault() iferr_return;
 
 	// Note that if this preset port is propagated through a group or an asset, this value assigment will not suffice.
 	// We would have to follow back the inputs for the presetInput port and mutate there.

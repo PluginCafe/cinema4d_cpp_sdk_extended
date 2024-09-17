@@ -5,6 +5,8 @@
 #include "ckblinker.h"
 #include "main.h"
 
+using namespace cinema;
+
 static Int32 g_autoId = 0;
 
 class BlinkerTrack : public CTrackData

@@ -24,7 +24,7 @@
 /// The standard suffix for the file format is "image".
 // ------------------------------------------------------------------------
 
-// MAXON API header files
+// Maxon API header files
 #include "maxon/fileformat.h"
 #include "maxon/mediasession_input.h"
 #include "maxon/mediasession_fileformats.h"

@@ -7,6 +7,8 @@
 
 #include "ohairsdkdeformer.h"
 
+using namespace cinema;
+
 //////////////////////////////////////////////////////////////////////////
 
 class HairDeformerObject : public ObjectData

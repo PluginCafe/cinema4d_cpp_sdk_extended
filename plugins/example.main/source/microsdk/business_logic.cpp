@@ -1,14 +1,16 @@
-// classic API header files
+// Cinema API header files
 #include "c4d_basedocument.h"
 #include "c4d_general.h"
 #include "c4d_baseobject.h"
 
-// MAXON API header files
+// Maxon API header files
 #include "maxon/configuration.h"
 #include "maxon/thread.h"
 
 // project header files
 #include "business_logic.h"
+
+using namespace cinema;
 
 namespace microsdk
 {

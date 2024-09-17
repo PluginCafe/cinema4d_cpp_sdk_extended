@@ -3,12 +3,12 @@
 
 #include "c4d.h"
 
-Bool RegisterPaintBrushBase();
-Bool RegisterPaintBrushSculpt();
-Bool RegisterPaintUndoSystem();
-Bool FreePaintUndoSystem();
+cinema::Bool RegisterPaintBrushBase();
+cinema::Bool RegisterPaintBrushSculpt();
+cinema::Bool RegisterPaintUndoSystem();
+cinema::Bool FreePaintUndoSystem();
 
-Bool RegisterPaintAdvanced();
-Bool FreePaintAdvanced();
+cinema::Bool RegisterPaintAdvanced();
+cinema::Bool FreePaintAdvanced();
 
 #endif // REGISTERADVANCEDPAINT_H__

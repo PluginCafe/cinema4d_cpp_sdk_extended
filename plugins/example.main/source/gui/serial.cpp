@@ -8,6 +8,8 @@
 #define SERIAL_SIZE 12
 #define MYPLUGIN_ID	9999999	// CHANGE THIS !!!!
 
+using namespace cinema;
+
 static Bool Validate(Char* nr)
 {
 	// example check for serial number

@@ -6,6 +6,9 @@
 
 #include "maxon/material/datadescription_material_standard_surface.h"
 #include "maxon/material/datadescription_material_fbx.h"
+
+using namespace cinema;
+
 namespace maxonsdk
 {
 

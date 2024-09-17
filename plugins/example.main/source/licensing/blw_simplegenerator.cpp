@@ -15,6 +15,8 @@
 #include "blw_checklicense.h"
 #include "blw_simplegenerator.h"
 
+using namespace cinema;
+
 static const Int32 ID_SDKEXAMPLE_BLW_SIMPLEGEN 	= 1040651;
 
 extern CheckLicense* g_checkLic;

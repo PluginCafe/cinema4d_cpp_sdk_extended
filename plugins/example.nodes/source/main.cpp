@@ -20,8 +20,11 @@
 // Forward declaration
 namespace maxonsdk
 {
-Bool RegisterCreateMaterialExample();
+cinema::Bool RegisterCreateMaterialExample();
 }
+
+namespace cinema
+{
 
 Bool PluginStart()
 {
@@ -83,6 +86,9 @@ Bool PluginMessage(Int32 id, void* data)
 
 	return false;
 }
+
+} // namespace cinema
+
 
 namespace maxonsdk
 {

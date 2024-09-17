@@ -13,6 +13,8 @@
 #include "c4d_basematerial.h"
 #include "maxon/nodesgraph.h"
 
+using namespace cinema;
+
 namespace maxonsdk
 {
 
@@ -27,8 +29,7 @@ maxon::Result<maxon::DESCRIPTIONMESSAGECHECKFLAGS> CustomNodeCommand::CommandChe
 
 	// We unpack the message and extract the instance of the node.
 	maxon::GraphModelRef graphModel = userData.Get(maxon::ARGUMENTS::NODECORE::GRAPHMODEL) iferr_return;
-	maxon::IoNodePath ioNodePath = userData.Get(maxon::ARGUMENTS::NODECORE::NODEPATH) iferr_return;
-	maxon::NodePath nodePath = ioNodePath.first;
+	maxon::NodePath nodePath = userData.Get(maxon::ARGUMENTS::NODECORE::NODEPATH) iferr_return;
 	maxon::GraphNode node = graphModel.GetNode(nodePath);
 
 	MAXON_SCOPE // We check whether this node is being processed currently.
@@ -53,8 +54,7 @@ maxon::Result<void> CustomNodeCommand::CommandExecute(const maxon::DataDictionar
 	
 	// We unpack the message and extract the instance of the node.
 	maxon::GraphModelRef graphModel = userData.Get(maxon::ARGUMENTS::NODECORE::GRAPHMODEL) iferr_return;
-	maxon::IoNodePath ioNodePath = userData.Get(maxon::ARGUMENTS::NODECORE::NODEPATH) iferr_return;
-	maxon::NodePath nodePath = ioNodePath.first;
+	maxon::NodePath nodePath = userData.Get(maxon::ARGUMENTS::NODECORE::NODEPATH) iferr_return;
 
 	MAXON_SCOPE // We print some info to the console
 	{

@@ -8,6 +8,8 @@
 #include "maxon/blockarray.h"
 #include "maxon/pointerarray.h"
 
+using namespace cinema;
+
 //----------------------------------------------------------------------------------------
 /// Tutorial code for using BaseArray, BlockArray, PointerArray.
 //----------------------------------------------------------------------------------------

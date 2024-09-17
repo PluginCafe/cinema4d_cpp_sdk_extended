@@ -8,6 +8,8 @@
 #define SUBDIV_DELTA								 30.0f
 #define ID_MODELING_EDGECUT_TOOL_SDK 450000025
 
+using namespace cinema;
+
 class EdgeCutTool : public DescriptionToolData
 {
 	Bool ModelingEdgeCut(AtomArray* arr, MODELINGCOMMANDMODE mode, BaseContainer* data, BaseDocument* doc, EditorWindow* win, const BaseContainer* msg, Bool undo, EdgeCutTool* tool);
@@ -87,7 +89,7 @@ TOOLDRAW EdgeCutTool::Draw(BaseDocument* doc, BaseContainer& data, BaseDraw* bd,
 		return TOOLDRAW::HANDLES;
 
 	bd->LineZOffset(3);
-	bd->SetPen(GetViewColor(VIEWCOLOR_SELECTION_PREVIEW));
+	bd->SetPen(GetViewColor(VIEWCOLOR_SELECTION_PREVIEW), 0);
 	bd->SetMatrix_Matrix(nullptr, Matrix());
 	Int32	cnt = (Int32)cutpoints.GetCount();
 	for (Int32 a = 0; a < cnt; a++)
